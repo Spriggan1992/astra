@@ -1,6 +1,6 @@
 part of 'password_cubit.dart';
 
-enum PasswordStatus { initial, error, success }
+enum PasswordStatus { initial, error, success, succsessPassword }
 
 class PasswordState extends Equatable {
   final String password;

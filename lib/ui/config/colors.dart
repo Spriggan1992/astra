@@ -11,4 +11,8 @@ class AstraColors {
   static const Color color_24_24_24_1 = Color.fromRGBO(24, 24, 24, 1);
   static const Color color_24_24_24_08 = Color.fromRGBO(24, 24, 24, 0.8);
   static const Color color_24_24_24_04 = Color.fromRGBO(24, 24, 24, 0.4);
+  static const Color dividerColor = Color.fromRGBO(176, 176, 176, 1);
+  static const Color goldenColor = Color.fromRGBO(217, 191, 131, 1);
+  static const Color goldenColorWithOpactity03 =
+      Color.fromRGBO(217, 191, 131, 0.3);
 }

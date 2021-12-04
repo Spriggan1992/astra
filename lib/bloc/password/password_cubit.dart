@@ -19,4 +19,8 @@ class PasswordCubit extends Cubit<PasswordState> {
     await localRepository.save(LocalRepository.keyPassword, state.password);
     emit(state.copyWith(status: PasswordStatus.success));
   }
+
+  void enterToApp() async {
+    emit(state.copyWith(status: PasswordStatus.succsessPassword));
+  }
 }

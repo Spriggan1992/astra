@@ -1,4 +1,6 @@
+import 'package:astra_app/ui/astra/home_screen.dart';
 import 'package:astra_app/ui/astra/store_screen.dart';
+import 'package:astra_app/ui/signin/enter/enter_password_screen.dart';
 import 'package:astra_app/ui/signin/enter/enter_screen.dart';
 import 'package:astra_app/ui/signin/registration/first_signin.dart';
 import 'package:astra_app/ui/signin/registration/how_to_get_club_screen.dart';
@@ -35,6 +37,10 @@ class AstraRouter {
         return StoreScreen.route();
       case EnterScreen.routeName:
         return EnterScreen.route();
+      case EnterPasswordScreen.routeName:
+        return EnterPasswordScreen.route();
+      case HomeScreen.routeName:
+        return HomeScreen.route();
 
       default:
         return _errorRoute();

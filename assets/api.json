@@ -1,0 +1,3573 @@
+{
+    "info": {
+        "_postman_id": "6e46ca2a-05c3-4eee-8599-d85cc9cb5175",
+        "name": "Astra Backend",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "superadmin",
+            "item": [
+                {
+                    "name": "кураторы",
+                    "item": [
+                        {
+                            "name": "создать куратора",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "email",
+                                            "value": "test@example.org",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "phone_number",
+                                            "value": "89998887755",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "firstname",
+                                            "value": "Имя",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "lastname",
+                                            "value": "Фамилия",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "patronyc",
+                                            "value": "Отчество",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "country",
+                                            "value": "1",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "city",
+                                            "value": "1",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "cashback",
+                                            "value": "1",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "created_at",
+                                            "value": "2020-10-10 00:00:00",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "saved_at",
+                                            "value": "2020-10-10 00:00:00",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "profile_photo",
+                                            "type": "file",
+                                            "src": "E6DcA9Lcy/square_320_c09ebae17387b7d6eeb9fa0d42afe5ee.jpg"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/create/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        "create",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "заблокировать куратора",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/block/3/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        "block",
+                                        "3",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "разблокировать куратора",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/unblock/3/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        "unblock",
+                                        "3",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список кураторов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMTg2LCJpYXQiOjE2MzYzMzM3ODYsImp0aSI6IjExZWRkM2JmNzEzZDQwNTI5MmM1MjMyMzkxOWU4OWQxIiwidXNlcl9pZCI6MX0.2KZpgJWTNfUxNrbhFBvhfqCqv2E4bq6fbxdKnDub6W0",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "детальная страница куратора",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/3/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        "3",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "изменить куратора",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "firstname",
+                                            "value": "new",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/update/3/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        "update",
+                                        "3",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "удалить куратора",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0ODY3ODU0LCJpYXQiOjE2MzQ3ODE0NTQsImp0aSI6ImZhMjBjM2Q2YTBmODRhYzdhZTIzN2M2ZjE4ZTBjZDg4IiwidXNlcl9pZCI6MX0.e976sYcgmkkVAwTbSMiWYsgkMkEQkugSSOOQL-O3bRE",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/delete/1/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        "delete",
+                                        "1",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "подтвердить списание(если недостаточно средств отклонить)",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3MDMxMzY5LCJpYXQiOjE2MzY5NDQ5NjksImp0aSI6ImFkYzVhMTRlMjcyMjRmNDY5YmM3Yjc2Nzg5YWZmYTMxIiwidXNlcl9pZCI6MX0.W1h0NubmwETIo__bouS7ByQfd2C7pmmw8VzKgwndorY",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/curators/cashback/access/9/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "curators",
+                                        "cashback",
+                                        "access",
+                                        "9",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "пользователи",
+                    "item": [
+                        {
+                            "name": "список пользователей",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/profiles/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "profiles",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "детальная страница пользователя",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/profiles/6/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "profiles",
+                                        "6",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "регионы",
+                    "item": [
+                        {
+                            "name": "список стран",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/regions/country/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "regions",
+                                        "country",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список городов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/regions/city/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "regions",
+                                        "city",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "создать страну",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "label",
+                                            "value": "Украина",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/regions/country/create/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "regions",
+                                        "country",
+                                        "create",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "создать город",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "country",
+                                            "value": "4",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "label",
+                                            "value": "Киев",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/regions/city/create/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "regions",
+                                        "city",
+                                        "create",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "справочная инфо",
+                    "item": [
+                        {
+                            "name": "список инфо",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/reference/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "reference",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "детальная страница инфо",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/reference/1/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "reference",
+                                        "1",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "изменить инфо",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MzkxMjYwLCJpYXQiOjE2MzUzMDQ4NjAsImp0aSI6IjVhNTBiMWNiMWJhMzQ0NTdhZGIyMjgwMjRjYjBmMWM3IiwidXNlcl9pZCI6MX0.oPWH07q9ia3s9WKcfVik6lM_-voM6N3CY_PvyDJ1cZo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "body",
+                                            "value": "new body",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/reference/1/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "reference",
+                                        "1",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "удалить инфо",
+                            "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/admin/reference/1/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "admin",
+                                        "reference",
+                                        "1",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "auth",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "username",
+                                    "value": "tim_huk",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "qwerty123",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "http://127.0.0.1:5555/api/v1/admin/auth/",
+                            "protocol": "http",
+                            "host": [
+                                "127",
+                                "0",
+                                "0",
+                                "1"
+                            ],
+                            "port": "5555",
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "auth",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "curator",
+            "item": [
+                {
+                    "name": "auth",
+                    "item": [
+                        {
+                            "name": "проверить аккаунт по номеру телефону",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "phone_number",
+                                            "value": "89998887755",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/auth/phone/check/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "auth",
+                                        "phone",
+                                        "check",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "логин по коду",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "phone_number",
+                                            "value": "89998887766",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "code",
+                                            "value": "1488",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/auth/login/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "auth",
+                                        "login",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "сброс кода",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "phone_number",
+                                            "value": "89998887766",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/auth/reset/create/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "auth",
+                                        "reset",
+                                        "create",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "проверить токен сброса",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "phone_number",
+                                            "value": "89998887755",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "reset",
+                                            "value": "30169674DF",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/auth/reset/validate/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "auth",
+                                        "reset",
+                                        "validate",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "сменить код-пароль",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "reset",
+                                            "value": "30169674DF",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "code",
+                                            "value": "1488",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/auth/reset/code/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "auth",
+                                        "reset",
+                                        "code",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "пользователи",
+                    "item": [
+                        {
+                            "name": "создать акккаунт",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"phone_number\": \"89998887745\",\r\n    \r\n    \"firstname\": \"Тимур\",\r\n    \"lastname\": \"Хукматов\",\r\n\r\n    \"gender\": 1,\r\n    \"age\": 21,\r\n    \"height\": 185,\r\n    \r\n    \"status\": 1,\r\n    \"have_child\": false,\r\n\r\n    \"country\": 1,\r\n    \"city\": 1\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/create/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "create",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список аккаунтов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NjA4MDY3LCJpYXQiOjE2MzY1MjE2NjcsImp0aSI6IjA2MTUyOWU3N2MxMTQwZWQ4MjRmYjE5NmM1Mjk0MGU4IiwidXNlcl9pZCI6M30.xCazZ5A-_qASgji-c5wDcoHAipQtu8BZa9iIw1oZy3g",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список по фамилии(по возрастанию)",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/by/lastname/a/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "by",
+                                        "lastname",
+                                        "a",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список по фамилии(по убыванию)",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/by/lastname/d/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "by",
+                                        "lastname",
+                                        "d",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список черновиков по дате(по возрастанию)",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/by/draft/a/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "by",
+                                        "draft",
+                                        "a",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список черновиков по дате(по убыванию)",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/by/draft/a/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "by",
+                                        "draft",
+                                        "a",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "детальная страница",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/6/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "6",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "загрузить фото",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NTAzMjA2LCJpYXQiOjE2MzY0MTY4MDYsImp0aSI6IjJhOGM1MDQxYmU2MDQxNDM4ZmMzYmNmODFlY2YxMWM4IiwidXNlcl9pZCI6M30.4P-FKPYN9tSdg5sF4NHlG0DBlFNv96DA4RNFgSrn0_w",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image",
+                                            "type": "file",
+                                            "src": "Q7Zdu60Pe/square_320_c09ebae17387b7d6eeb9fa0d42afe5ee_dKdLfMx_K0Jware.jpg"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/add/photo/7/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "add",
+                                        "photo",
+                                        "7",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "заменить фото",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NTAzMjA2LCJpYXQiOjE2MzY0MTY4MDYsImp0aSI6IjJhOGM1MDQxYmU2MDQxNDM4ZmMzYmNmODFlY2YxMWM4IiwidXNlcl9pZCI6M30.4P-FKPYN9tSdg5sF4NHlG0DBlFNv96DA4RNFgSrn0_w",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image",
+                                            "type": "file",
+                                            "src": "mq4UIYPdc/square_320_c09ebae17387b7d6eeb9fa0d42afe5ee_dKdLfMx_K0Jware.jpg"
+                                        },
+                                        {
+                                            "key": "image_id",
+                                            "value": "33",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/update/photo/7/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "update",
+                                        "photo",
+                                        "7",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "удалить фото",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NTA3MTA0LCJpYXQiOjE2MzY0MjA3MDQsImp0aSI6IjYxMjMxYjJjYTM1YzRlMGZhNmVhZTY3MDUxNzRiYWZhIiwidXNlcl9pZCI6M30.ZNhpPBA4lub9E6LELynY4Y-0k7cEFVj5tJ4PWspSK20",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image_id",
+                                            "value": "33",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/delete/photo/7/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "delete",
+                                        "photo",
+                                        "7",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "изменить данные аккаунта",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "PUT",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"firstname\": \"Имя\",\r\n    \"lastname\": \"Фамилия\",\r\n\r\n    \"gender\": 2,\r\n    \"age\": 21,\r\n    \"height\": 185,\r\n    \r\n    \"status\": 3,\r\n    \"have_child\": false,\r\n\r\n    \"country\": 2,\r\n    \"city\": 2\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/update/7/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "update",
+                                        "7",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "запрос на замену номера телефона",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NTExMDY1LCJpYXQiOjE2MzY0MjQ2NjUsImp0aSI6IjZjNDhhYTE4MjY0OTQyNTI5MmJhMWFhOTg2YjZiMDkwIiwidXNlcl9pZCI6M30.qhpaH_NaM58ftPke4q0hwjqaz3icwkL_mXk2YX_x1f0",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/update/phone/7/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "update",
+                                        "phone",
+                                        "7",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "подтвердить замену номера телефона",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NTExMDY1LCJpYXQiOjE2MzY0MjQ2NjUsImp0aSI6IjZjNDhhYTE4MjY0OTQyNTI5MmJhMWFhOTg2YjZiMDkwIiwidXNlcl9pZCI6M30.qhpaH_NaM58ftPke4q0hwjqaz3icwkL_mXk2YX_x1f0",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"code\": \"0A7478E840\",\r\n    \"phone_number\": \"89021112233\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/update/phone/confirm/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "update",
+                                        "phone",
+                                        "confirm",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "активировать аккаунт",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NjA4MDY3LCJpYXQiOjE2MzY1MjE2NjcsImp0aSI6IjA2MTUyOWU3N2MxMTQwZWQ4MjRmYjE5NmM1Mjk0MGU4IiwidXNlcl9pZCI6M30.xCazZ5A-_qASgji-c5wDcoHAipQtu8BZa9iIw1oZy3g",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/activate/6/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "activate",
+                                        "6",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "удалить аккаунт",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/profiles/delete/6/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "profiles",
+                                        "delete",
+                                        "6",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "регионы",
+                    "item": [
+                        {
+                            "name": "список стран",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/regions/country/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "regions",
+                                        "country",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список городов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/regions/city/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "regions",
+                                        "city",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "гендер",
+                    "item": [
+                        {
+                            "name": "список полов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/genders/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "genders",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "семейный статус",
+                    "item": [
+                        {
+                            "name": "список ",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NDIwMzk5LCJpYXQiOjE2MzYzMzM5OTksImp0aSI6IjI5M2UwOTlkZDA2ZTQ5ZDFhMjVlNDJjOWI5ZDVmZDUwIiwidXNlcl9pZCI6M30.LDS9zZnQoT8rl_qL97rnw6UYtuXPOZOsjGTLSXK1SEo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/statuses/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "statuses",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "промокод",
+                    "item": [
+                        {
+                            "name": "список промокодов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NTExMDY1LCJpYXQiOjE2MzY0MjQ2NjUsImp0aSI6IjZjNDhhYTE4MjY0OTQyNTI5MmJhMWFhOTg2YjZiMDkwIiwidXNlcl9pZCI6M30.qhpaH_NaM58ftPke4q0hwjqaz3icwkL_mXk2YX_x1f0",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/promocodes/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "promocodes",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "создать промокод",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NTExMDY1LCJpYXQiOjE2MzY0MjQ2NjUsImp0aSI6IjZjNDhhYTE4MjY0OTQyNTI5MmJhMWFhOTg2YjZiMDkwIiwidXNlcl9pZCI6M30.qhpaH_NaM58ftPke4q0hwjqaz3icwkL_mXk2YX_x1f0",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"label\": \"Новый год!\",\r\n    \"amount\": 22,\r\n    \"valid_before\": \"2022-02-01\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/promocodes/create/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "promocodes",
+                                        "create",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "кешбэк",
+                    "item": [
+                        {
+                            "name": "мой кешбэк",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Nzg1OTc2LCJpYXQiOjE2MzY2OTk1NzYsImp0aSI6Ijg2NTFjNzM2NDliZjQ4OGU5ZWE0MDczZDllNzA4YjA5IiwidXNlcl9pZCI6MTB9.6FAH5wP3BVMc52F-G8AWe0WjyL9_XXHVJm2OS4PzmxU",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/cashback/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "cashback",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "история",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3MDIzNTI5LCJpYXQiOjE2MzY5MzcxMjksImp0aSI6ImU5OWM2Mjc5MGQ2MjQyYTY5ZjA5ODkyZDE5NzM2M2MxIiwidXNlcl9pZCI6MTB9.IX4lIaOQ24_ekas1bdbplHmXCfwsIYZ3KnLFB5gtx5k",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/cashback/history/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "cashback",
+                                        "history",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "история по периоду",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Nzg1OTc2LCJpYXQiOjE2MzY2OTk1NzYsImp0aSI6Ijg2NTFjNzM2NDliZjQ4OGU5ZWE0MDczZDllNzA4YjA5IiwidXNlcl9pZCI6MTB9.6FAH5wP3BVMc52F-G8AWe0WjyL9_XXHVJm2OS4PzmxU",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/cashback/history/?date_from=2021-11-01&date_to=2021-11-12",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "cashback",
+                                        "history",
+                                        ""
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "date_from",
+                                            "value": "2021-11-01"
+                                        },
+                                        {
+                                            "key": "date_to",
+                                            "value": "2021-11-12"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "запрос на вывод",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3MDIzNTI5LCJpYXQiOjE2MzY5MzcxMjksImp0aSI6ImU5OWM2Mjc5MGQ2MjQyYTY5ZjA5ODkyZDE5NzM2M2MxIiwidXNlcl9pZCI6MTB9.IX4lIaOQ24_ekas1bdbplHmXCfwsIYZ3KnLFB5gtx5k",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"amount\": 5400\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/cashback/withdraw/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "cashback",
+                                        "withdraw",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "история вывода",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3MDIzNTI5LCJpYXQiOjE2MzY5MzcxMjksImp0aSI6ImU5OWM2Mjc5MGQ2MjQyYTY5ZjA5ODkyZDE5NzM2M2MxIiwidXNlcl9pZCI6MTB9.IX4lIaOQ24_ekas1bdbplHmXCfwsIYZ3KnLFB5gtx5k",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/cashback/withdraw/history/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "cashback",
+                                        "withdraw",
+                                        "history",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "чат",
+                    "item": [
+                        {
+                            "name": "список чатов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MTcyNDA5LCJpYXQiOjE2MzgwODYwMDksImp0aSI6IjdiOGMxMzEyYzI5MjQwNTViM2Q3NWI1MDNjNTBlMWExIiwidXNlcl9pZCI6MTF9.5pk__HINtYcXm7e5WmA8Ld_I1GAhXhtoUtJefhX8ErE",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/chat/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "chat",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "сообщения чата",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MTcyNDA5LCJpYXQiOjE2MzgwODYwMDksImp0aSI6IjdiOGMxMzEyYzI5MjQwNTViM2Q3NWI1MDNjNTBlMWExIiwidXNlcl9pZCI6MTF9.5pk__HINtYcXm7e5WmA8Ld_I1GAhXhtoUtJefhX8ErE",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/chat/2/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "chat",
+                                        "2",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "отправить сообщение",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MTcyNDA5LCJpYXQiOjE2MzgwODYwMDksImp0aSI6IjdiOGMxMzEyYzI5MjQwNTViM2Q3NWI1MDNjNTBlMWExIiwidXNlcl9pZCI6MTF9.5pk__HINtYcXm7e5WmA8Ld_I1GAhXhtoUtJefhX8ErE",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"message\": \"poshol nahuy\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/curator/chat/2/send/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "curator",
+                                        "chat",
+                                        "2",
+                                        "send",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "profile",
+            "item": [
+                {
+                    "name": "auth",
+                    "item": [
+                        {
+                            "name": "проверить аккаунт по номеру телефона",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"phone_number\": \"89021112233\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/auth/check/phone/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "auth",
+                                        "check",
+                                        "phone",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "логин",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"phone_number\": \"89242326969\",\r\n    \"password\": \"qwerty123\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/auth/login/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "auth",
+                                        "login",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "сброс пароля",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"phone_number\": \"89021112233\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/auth/reset/create/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "auth",
+                                        "reset",
+                                        "create",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "проверить токен сброса",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"phone_number\": \"89021112233\",\r\n    \"code\": \"235FD2FA34\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/auth/reset/check/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "auth",
+                                        "reset",
+                                        "check",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "задать новый пароль",
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"code\": \"AC31F915FC\",\r\n    \"password\": \"qwerty123\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/auth/reset/password/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "auth",
+                                        "reset",
+                                        "password",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "профиль",
+                    "item": [
+                        {
+                            "name": "скрыть аккаунт",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NjA5NDA1LCJpYXQiOjE2MzY1MjMwMDUsImp0aSI6ImY2NmVlY2U3MmIyYzRjZDBhNTZkOTYwNGUzN2I2ZDhmIiwidXNlcl9pZCI6Nn0.h2r7sUhGhegmjGxgS_GwKBn4Jf2leX4NYnJhht3g9Rc",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/hidden/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "hidden",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "показать аккаунт",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NjA5NDA1LCJpYXQiOjE2MzY1MjMwMDUsImp0aSI6ImY2NmVlY2U3MmIyYzRjZDBhNTZkOTYwNGUzN2I2ZDhmIiwidXNlcl9pZCI6Nn0.h2r7sUhGhegmjGxgS_GwKBn4Jf2leX4NYnJhht3g9Rc",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/unhidden/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "unhidden",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "показать полную информацию",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/info/show/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "info",
+                                        "show",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "скрыть полную информацию",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/info/hidden/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "info",
+                                        "hidden",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "добавить фото",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image",
+                                            "type": "file",
+                                            "src": "kmg462KNH/square_320_c09ebae17387b7d6eeb9fa0d42afe5ee_dKdLfMx_LRKUZIK.jpg"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/photo/add/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "photo",
+                                        "add",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "заменить фото",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "formdata",
+                                    "formdata": [
+                                        {
+                                            "key": "image",
+                                            "type": "file",
+                                            "src": "5k35L-bJL/square_320_c09ebae17387b7d6eeb9fa0d42afe5ee_dKdLfMx_yYGDUJx.jpg"
+                                        },
+                                        {
+                                            "key": "image_id",
+                                            "value": "34",
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/photo/update/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "photo",
+                                        "update",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "удалить фото",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"image_id\": 34\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/photo/delete/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "photo",
+                                        "delete",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "изменить краткую информацию",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"info\": \"my short info\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/info/short/update/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "info",
+                                        "short",
+                                        "update",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "задать статус отношений",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"status\": 1\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/info/status/update/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "info",
+                                        "status",
+                                        "update",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список статусов отношений",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/account/info/status/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "account",
+                                        "info",
+                                        "status",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "лента",
+                    "item": [
+                        {
+                            "name": "лента",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NzY2MjQ0LCJpYXQiOjE2MzY2Nzk4NDQsImp0aSI6IjQ0ZWQ2ZTNiYTI0MzQ5ODI4NjYyNGUwMjg4NGRiMWE3IiwidXNlcl9pZCI6OX0.ZTsR_sJ5uaAbtcX9Uo9EmwwrFXMYoWWgkwyyhRC5xzU",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "лайк",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/like/8/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "like",
+                                        "8",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "отвергнуть",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/nope/8/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "nope",
+                                        "8",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "подумать",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/think/8/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "think",
+                                        "8",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "заблокировать",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/block/8/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "block",
+                                        "8",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список тех кого лайкнул",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/like/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "like",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список тех кто лайкнул мой профиль",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/liked/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "liked",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список отложенных",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/think/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "think",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список отвергнутых",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2Njc1NzM0LCJpYXQiOjE2MzY1ODkzMzQsImp0aSI6IjhmODdiNDNmNTM4MjQ3OGQ4ZDk0OWM5NDE1NDRmNzU4IiwidXNlcl9pZCI6Nn0.B1sxw_mUIqyKFyEZ3qw_XbAwPFoRFCJ0gWWHNbWTTYA",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/feed/nope/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "feed",
+                                        "nope",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "кошелек",
+                    "item": [
+                        {
+                            "name": "список лайк пакетов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NzY2MjQ0LCJpYXQiOjE2MzY2Nzk4NDQsImp0aSI6IjQ0ZWQ2ZTNiYTI0MzQ5ODI4NjYyNGUwMjg4NGRiMWE3IiwidXNlcl9pZCI6OX0.ZTsR_sJ5uaAbtcX9Uo9EmwwrFXMYoWWgkwyyhRC5xzU",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/wallet/likes/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "wallet",
+                                        "likes",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "мой кошелек",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NzY2MjQ0LCJpYXQiOjE2MzY2Nzk4NDQsImp0aSI6IjQ0ZWQ2ZTNiYTI0MzQ5ODI4NjYyNGUwMjg4NGRiMWE3IiwidXNlcl9pZCI6OX0.ZTsR_sJ5uaAbtcX9Uo9EmwwrFXMYoWWgkwyyhRC5xzU",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/wallet/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "wallet",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "история пополнений",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NzY2MjQ0LCJpYXQiOjE2MzY2Nzk4NDQsImp0aSI6IjQ0ZWQ2ZTNiYTI0MzQ5ODI4NjYyNGUwMjg4NGRiMWE3IiwidXNlcl9pZCI6OX0.ZTsR_sJ5uaAbtcX9Uo9EmwwrFXMYoWWgkwyyhRC5xzU",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/wallet/history/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "wallet",
+                                        "history",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "пополнить",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NzY2MjQ0LCJpYXQiOjE2MzY2Nzk4NDQsImp0aSI6IjQ0ZWQ2ZTNiYTI0MzQ5ODI4NjYyNGUwMjg4NGRiMWE3IiwidXNlcl9pZCI6OX0.ZTsR_sJ5uaAbtcX9Uo9EmwwrFXMYoWWgkwyyhRC5xzU",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"package\": 3\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/wallet/append/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "wallet",
+                                        "append",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "чат",
+                    "item": [
+                        {
+                            "name": "список чатов",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MTY2OTgyLCJpYXQiOjE2MzgwODA1ODIsImp0aSI6IjM2NjI5YzgzY2ZjMTRiMTViNjI3YjlhMDJiYzc4NmQ1IiwidXNlcl9pZCI6MTR9.NPktAbfbvpHV_tbKqeSex4rVtoT0U1O6nFaHUsZ0dhw",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/chat/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "chat",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "список сообщений чата",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MTY2OTgyLCJpYXQiOjE2MzgwODA1ODIsImp0aSI6IjM2NjI5YzgzY2ZjMTRiMTViNjI3YjlhMDJiYzc4NmQ1IiwidXNlcl9pZCI6MTR9.NPktAbfbvpHV_tbKqeSex4rVtoT0U1O6nFaHUsZ0dhw",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/chat/1/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "chat",
+                                        "1",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "отправить сообщение",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MTY2OTgyLCJpYXQiOjE2MzgwODA1ODIsImp0aSI6IjM2NjI5YzgzY2ZjMTRiMTViNjI3YjlhMDJiYzc4NmQ1IiwidXNlcl9pZCI6MTR9.NPktAbfbvpHV_tbKqeSex4rVtoT0U1O6nFaHUsZ0dhw",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"message\": \"hi my name is huyok\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/chat/1/send/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "chat",
+                                        "1",
+                                        "send",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "чат с куратором",
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MTY2OTgyLCJpYXQiOjE2MzgwODA1ODIsImp0aSI6IjM2NjI5YzgzY2ZjMTRiMTViNjI3YjlhMDJiYzc4NmQ1IiwidXNlcl9pZCI6MTR9.NPktAbfbvpHV_tbKqeSex4rVtoT0U1O6nFaHUsZ0dhw",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "http://127.0.0.1:5555/api/v1/user/chat/curator/",
+                                    "protocol": "http",
+                                    "host": [
+                                        "127",
+                                        "0",
+                                        "0",
+                                        "1"
+                                    ],
+                                    "port": "5555",
+                                    "path": [
+                                        "api",
+                                        "v1",
+                                        "user",
+                                        "chat",
+                                        "curator",
+                                        ""
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

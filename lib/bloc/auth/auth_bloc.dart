@@ -26,7 +26,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final _password = await _localRepository.get(LocalRepository.keyPassword);
 
       if (_password != null) {
-        emit(AuthState.authenticated(_password));
+        if (_password.isEmpty) {
+          emit(AuthState.unauthenticated());
+        } else {
+          emit(AuthState.authenticated(_password));
+        }
       } else {
         emit(AuthState.unauthenticated());
       }

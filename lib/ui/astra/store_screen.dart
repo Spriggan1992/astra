@@ -1,3 +1,4 @@
+import 'package:astra_app/ui/astra/home_screen.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_bordered_button.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_gradient_button.dart';
@@ -78,7 +79,7 @@ class StoreScreen extends StatelessWidget {
           ),
           const _AstraChekBox(),
           const Divider(
-              color: Color.fromRGBO(176, 176, 176, 1),
+              color: AstraColors.dividerColor,
               thickness: 1,
               endIndent: 25,
               indent: 25),
@@ -103,7 +104,9 @@ class StoreScreen extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           AstraGradientButton(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(HomeScreen.routeName);
+            },
             title: 'Apple Pay',
           )
         ],

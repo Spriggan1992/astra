@@ -37,8 +37,12 @@ class SplashScreen extends StatelessWidget {
           },
         ),
         BlocListener<PasswordCubit, PasswordState>(
+          bloc: BlocProvider.of<PasswordCubit>(context),
           listener: (context, state) {
             if (state.status == PasswordStatus.success) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  StoreScreen.routeName, (route) => false);
+            } else if (state.status == PasswordStatus.succsessPassword) {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   StoreScreen.routeName, (route) => false);
             } else if (state.status == PasswordStatus.initial) {
