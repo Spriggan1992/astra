@@ -1,5 +1,11 @@
+import 'package:astra_app/ui/config/colors.dart';
+import 'package:astra_app/ui/config/gradients.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+class AstraBottomBar2 extends BottomAppBarTheme {
+  AstraBottomBar2() : super();
+}
 
 class AstraBottomNavBar extends StatefulWidget {
   const AstraBottomNavBar(
@@ -7,6 +13,7 @@ class AstraBottomNavBar extends StatefulWidget {
       this.onTapSearch,
       this.onTapFav,
       this.onTapMessage,
+      required this.selectedIndex,
       this.onTapSettings})
       : super(key: key);
 
@@ -15,90 +22,85 @@ class AstraBottomNavBar extends StatefulWidget {
   final VoidCallback? onTapMessage;
   final VoidCallback? onTapSettings;
 
+  final int selectedIndex;
+
   @override
   State<AstraBottomNavBar> createState() => _AstraBottomNavBarState();
 }
 
 class _AstraBottomNavBarState extends State<AstraBottomNavBar> {
   bool tap_1 = false;
-  bool tap_2 = true;
+  bool tap_2 = false;
   bool tap_3 = false;
   bool tap_4 = false;
 
+  _setSelect() {
+    if (widget.selectedIndex == 0) {
+      tap_1 = true;
+      tap_2 = false;
+      tap_3 = false;
+      tap_4 = false;
+    } else if (widget.selectedIndex == 1) {
+      tap_1 = false;
+      tap_2 = true;
+      tap_3 = false;
+      tap_4 = false;
+    } else if (widget.selectedIndex == 2) {
+      tap_1 = false;
+      tap_2 = false;
+      tap_3 = true;
+      tap_4 = false;
+    } else {
+      tap_1 = false;
+      tap_2 = false;
+      tap_3 = false;
+      tap_4 = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    _setSelect();
+
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color.fromRGBO(217, 191, 131, 0.8),
-          width: 1,
+      decoration: const BoxDecoration(
+        // border: Border(
+        //   left: BorderSide(color: Color.fromRGBO(217, 191, 131, 0.8), width: 1),
+        //   right:
+        //       BorderSide(color: Color.fromRGBO(217, 191, 131, 0.8), width: 1),
+        //   top: BorderSide(color: Color.fromRGBO(217, 191, 131, 0.8), width: 1),
+        // ),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(32),
+          topRight: Radius.circular(32),
         ),
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(32), topRight: Radius.circular(32)),
-        gradient: const LinearGradient(
-          colors: [
-            Color.fromRGBO(30, 49, 90, 1),
-            Color.fromRGBO(24, 38, 71, 1),
-          ],
+        gradient: LinearGradient(
+          colors: Gradients.blueGradient,
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.min,
         children: [
           AstraBottomBarItem(
             onTap: widget.onTapSearch!,
-            // () {
-            //   widget.onTapSearch;
-            //   debugPrint('tapped search');
-            //   tap_1 = true;
-            //   tap_2 = false;
-            //   tap_3 = false;
-            //   tap_4 = false;
-            //   setState(() {});
-            // },
             icon: Icons.search,
             isTapped: tap_1,
           ),
           AstraBottomBarItem(
             onTap: widget.onTapFav!,
-
-            // () {
-            //   widget.onTapFav;
-            //   debugPrint('tapped favorites');
-            //   tap_1 = false;
-            //   tap_2 = true;
-            //   tap_3 = false;
-            //   tap_4 = false;
-            //   setState(() {});
-            // },
             icon: CupertinoIcons.person_2_fill,
             isTapped: tap_2,
           ),
           AstraBottomBarItem(
             onTap: widget.onTapMessage!,
-            //   widget.onTapMessage;
-            //   debugPrint('tapped messages');
-            //   tap_1 = false;
-            //   tap_2 = false;
-            //   tap_3 = true;
-            //   tap_4 = false;
-            //   setState(() {});
-            // },
             icon: CupertinoIcons.envelope,
             isTapped: tap_3,
           ),
           AstraBottomBarItem(
             onTap: widget.onTapSettings!,
-            //   widget.onTapSettings;
-            //   debugPrint('tapped settings ');
-            //   tap_1 = false;
-            //   tap_2 = false;
-            //   tap_3 = false;
-            //   tap_4 = true;
-            //   setState(() {});
-            // },
             icon: Icons.settings,
             isTapped: tap_4,
           ),
@@ -125,18 +127,14 @@ class AstraBottomBarItem extends StatelessWidget {
     return (isTapped)
         ? ShaderMask(
             shaderCallback: (Rect bounds) {
-              return const LinearGradient(
-                colors: [
-                  Color.fromRGBO(217, 191, 131, 1),
-                  Color.fromRGBO(99, 71, 32, 1),
-                ],
-              ).createShader(bounds);
+              return const LinearGradient(colors: Gradients.goldenGradient)
+                  .createShader(bounds);
             },
             child: IconButton(
               onPressed: onTap,
               icon: Icon(
                 icon,
-                color: const Color.fromRGBO(217, 191, 131, 1),
+                color: AstraColors.goldenColor,
               ),
             ),
           )
@@ -144,7 +142,7 @@ class AstraBottomBarItem extends StatelessWidget {
             onPressed: onTap,
             icon: Icon(
               icon,
-              color: const Color.fromRGBO(251, 251, 251, 0.3),
+              color: AstraColors.goldenColorWithOpactity03,
             ),
           );
   }

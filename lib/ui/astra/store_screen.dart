@@ -4,6 +4,7 @@ import 'package:astra_app/ui/glodal/widgets/buttons/astra_bordered_button.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/ui/glodal/widgets/dialogs/store_dialog.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
+import 'package:astra_app/ui/signin/finish_register_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -105,7 +106,7 @@ class StoreScreen extends StatelessWidget {
           const SizedBox(height: 40),
           AstraGradientButton(
             onTap: () {
-              Navigator.of(context).pushNamed(HomeScreen.routeName);
+              Navigator.of(context).pushNamed(FinishRegisterScreen.routeName);
             },
             title: 'Apple Pay',
           )

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'info_button.dart';
-import 'info_card.dart';
+import '../favorite/info_button.dart';
+import '../favorite/info_card.dart';
 import 'search_detail.dart';
 
 class SearchScreen extends StatelessWidget {

@@ -10,7 +10,7 @@ import 'package:flutter/cupertino.dart'
 
 import 'favorite/astra_bottom_nav_bar.dart';
 import 'favorite/favorite_screen.dart';
-import 'favorite/search_screen.dart';
+import 'search/search_screen.dart';
 import 'message/message_screen.dart';
 import 'profile/profile_screen.dart';
 
@@ -22,7 +22,7 @@ class HomeScreen extends StatefulWidget {
   static Route route() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
-      builder: (_) => const HomeScreen_(),
+      builder: (_) => const HomeScreen(),
     );
   }
 
@@ -33,7 +33,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 1;
 
-  List<Widget> bodies = [
+  List<Widget> bodies = const [
     SearchScreen(),
     FavoriteScreen(),
     MessageScreen(),
@@ -48,21 +48,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: AstraBottomNavBar(
-        onTapSearch: () {
-          changeIndex(0);
-        },
-        onTapFav: () {
-          changeIndex(1);
-        },
-        onTapMessage: () {
-          changeIndex(2);
-        },
-        onTapSettings: () {
-          changeIndex(3);
-        },
+      body: Stack(
+        children: [
+          IndexedStack(index: currentIndex, children: bodies),
+          Positioned(
+            bottom: 0,
+            width: MediaQuery.of(context).size.width + 4,
+            child: AstraBottomNavBar(
+              selectedIndex: currentIndex,
+              onTapSearch: () {
+                changeIndex(0);
+              },
+              onTapFav: () {
+                changeIndex(1);
+              },
+              onTapMessage: () {
+                changeIndex(2);
+              },
+              onTapSettings: () {
+                changeIndex(3);
+              },
+            ),
+          ),
+        ],
       ),
-      body: bodies[currentIndex],
     );
   }
 }
@@ -161,5 +170,6 @@ class AstraBottomNavigationBarItem extends BottomNavigationBarItem {
               color: AstraColors.goldenColor,
             ),
           ),
+          label: label,
         );
 }

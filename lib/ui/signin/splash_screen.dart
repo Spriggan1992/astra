@@ -4,6 +4,7 @@ import 'package:astra_app/ui/astra/store_screen.dart';
 import 'package:astra_app/ui/config/gradients.dart';
 import 'package:astra_app/ui/glodal/widgets/logo.dart';
 import 'package:astra_app/ui/signin/enter/enter_screen.dart';
+import 'package:astra_app/ui/signin/finish_register_screen.dart';
 import 'package:astra_app/ui/signin/registration/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
