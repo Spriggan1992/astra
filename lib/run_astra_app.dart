@@ -1,5 +1,6 @@
 import 'package:astra_app/bloc/login/login_cubit.dart';
 import 'package:astra_app/bloc/password/password_cubit.dart';
+import 'package:astra_app/ui/astra/home_screen.dart';
 import 'package:astra_app/ui/config/route.dart';
 import 'package:astra_app/ui/glodal/themes/app_theme.dart';
 import 'package:astra_app/ui/signin/splash_screen.dart';
@@ -40,7 +41,7 @@ class AstraApp extends StatelessWidget {
           title: 'Astra app',
           theme: AppTheme.lightTheme,
           home: Container(),
-          initialRoute: SplashScreen.routeName,
+          initialRoute: HomeScreen.routeName, //SplashScreen.routeName,
           onGenerateRoute: AstraRouter.onGenerateRoute,
         ),
       ),

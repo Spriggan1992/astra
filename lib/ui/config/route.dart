@@ -44,7 +44,18 @@ class AstraRouter {
         return HomeScreen.route();
       case FinishRegisterScreen.routeName:
         return FinishRegisterScreen.route();
+      default:
+        return _errorRoute();
+    }
+  }
 
+  static Route onGenerateNestedRoute(RouteSettings settings) {
+    print(settings.name);
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: '/'),
+            builder: (_) => const Scaffold());
       default:
         return _errorRoute();
     }
