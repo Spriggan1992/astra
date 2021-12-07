@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-import 'package:astra_app/model/base_response.dart';
-import 'package:astra_app/model/failure.dart';
+import 'package:astra_app/models/models.dart';
 
 class AuthRepository {
   // Future<BaseResponse<UserData>?> getUserDataByPhone(

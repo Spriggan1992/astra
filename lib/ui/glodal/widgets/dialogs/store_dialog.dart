@@ -44,7 +44,7 @@ class StoreDialog extends StatelessWidget {
         text,
         textAlign: TextAlign.center,
         style: const TextStyle(
-            color: AstraColors.color_24_24_24_1,
+            color: AstraColors.black,
             fontSize: 15,
             fontWeight: FontWeight.w600),
       ),

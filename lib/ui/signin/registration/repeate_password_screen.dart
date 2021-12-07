@@ -114,7 +114,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
@@ -122,7 +122,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                         hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {
@@ -143,7 +143,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
@@ -151,7 +151,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                         hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {
@@ -172,7 +172,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
@@ -180,7 +180,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                         hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {
@@ -201,7 +201,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
@@ -209,7 +209,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                         hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {
@@ -229,7 +229,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                       style: Theme.of(context).textTheme.subtitle2!.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
-                            color: AstraColors.color_223_54_54_1,
+                            color: AstraColors.red,
                           ),
                     )
                   : Container(),

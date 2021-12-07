@@ -54,8 +54,8 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
     if (value.isNotEmpty) {
       final smscode =
           '${controller1.text}${controller2.text}${controller3.text}${controller4.text}';
-      final resivedSms = context.read<LoginCubit>().state.smsCode;
-      if (resivedSms == smscode) {
+      final recivedSms = context.read<LoginCubit>().state.smsCode;
+      if (recivedSms == smscode) {
         isCorrectSms = true;
       } else {
         isCorrectSms = false;
@@ -111,19 +111,20 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                   child: TextFormField(
                     controller: controller1,
                     focusNode: focusNode1,
+                    textAlign: TextAlign.center,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(1),
                     ],
                     keyboardType: TextInputType.number,
                     style: const TextStyle(
                       fontSize: 24,
-                      color: AstraColors.color_24_24_24_1,
+                      color: AstraColors.black,
                     ),
                     decoration: const InputDecoration(
                       hintText: '',
                       hintStyle: TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                     ),
                     onChanged: (value) {
@@ -139,19 +140,20 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                   child: TextFormField(
                     controller: controller2,
                     focusNode: focusNode2,
+                    textAlign: TextAlign.center,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(1),
                     ],
                     keyboardType: TextInputType.number,
                     style: const TextStyle(
                       fontSize: 24,
-                      color: AstraColors.color_24_24_24_1,
+                      color: AstraColors.black,
                     ),
                     decoration: const InputDecoration(
                       hintText: '',
                       hintStyle: TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                     ),
                     onChanged: (value) {
@@ -169,15 +171,16 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                       LengthLimitingTextInputFormatter(1),
                     ],
                     keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 24,
-                      color: AstraColors.color_24_24_24_1,
+                      color: AstraColors.black,
                     ),
                     decoration: const InputDecoration(
                       hintText: '',
                       hintStyle: TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                     ),
                     controller: controller3,
@@ -197,15 +200,16 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                       LengthLimitingTextInputFormatter(1),
                     ],
                     keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 24,
-                      color: AstraColors.color_24_24_24_1,
+                      color: AstraColors.black,
                     ),
                     decoration: const InputDecoration(
                       hintText: '',
                       hintStyle: TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                     ),
                     controller: controller4,
@@ -226,7 +230,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                     'Отправить повторно',
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                           fontSize: 12,
-                          color: AstraColors.color_24_24_24_04,
+                          color: AstraColors.grey,
                         ),
                   )
                 : Text(
@@ -234,7 +238,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
-                          color: AstraColors.color_198_81_65_1,
+                          color: AstraColors.orange,
                         ),
                   ),
             (isCorrectSms)
@@ -244,7 +248,7 @@ class _SmsCodeScreenState extends State<SmsCodeScreen> {
                     style: Theme.of(context).textTheme.subtitle2!.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
-                          color: AstraColors.color_198_81_65_1,
+                          color: AstraColors.orange,
                         ),
                   ),
             SizedBox(height: MediaQuery.of(context).size.height / 4),

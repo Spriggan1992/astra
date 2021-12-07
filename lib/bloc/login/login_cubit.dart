@@ -1,4 +1,4 @@
-import 'package:astra_app/model/failure.dart';
+import 'package:astra_app/models/models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

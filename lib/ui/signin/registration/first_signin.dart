@@ -57,7 +57,7 @@ class FirstSignin extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w400,
-                  color: AstraColors.color_24_24_24_1,
+                  color: AstraColors.black,
                 ),
                 decoration: const InputDecoration(
                   helperStyle: TextStyle(
@@ -68,7 +68,7 @@ class FirstSignin extends StatelessWidget {
                   hintStyle: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w400,
-                    color: AstraColors.color_24_24_24_1,
+                    color: AstraColors.grey,
                   ),
                 ),
                 onChanged: (value) {

@@ -44,7 +44,7 @@ class HowToGetClubScreen extends StatelessWidget {
                     child: const Text(
                       'Как попасть в клуб',
                       style: TextStyle(
-                          color: AstraColors.color_251_251_251_1, fontSize: 28),
+                          color: AstraColors.white, fontSize: 28),
                     ),
                   ),
                   _buildLineText('АСТРА — это реальные существующие люди.'),
@@ -63,7 +63,7 @@ class HowToGetClubScreen extends StatelessWidget {
             ),
           ),
           AstraAppBar(
-            iconColor: AstraColors.color_251_251_251_02,
+            iconColor: AstraColors.white02,
             elevation: 0,
             bgColor: Colors.transparent,
             onPressed: () {
@@ -81,7 +81,7 @@ class HowToGetClubScreen extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-            color: AstraColors.color_251_251_251_1,
+            color: AstraColors.white,
             fontSize: 15,
             fontWeight: FontWeight.w500),
       ),

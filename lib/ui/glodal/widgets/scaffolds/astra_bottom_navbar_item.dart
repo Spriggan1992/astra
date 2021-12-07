@@ -26,7 +26,7 @@ class AstraBottomBarItem extends StatelessWidget {
               onPressed: onTap,
               icon: Icon(
                 icon,
-                color: AstraColors.goldenColor,
+                color: AstraColors.golden,
               ),
             ),
           )
@@ -34,7 +34,7 @@ class AstraBottomBarItem extends StatelessWidget {
             onPressed: onTap,
             icon: Icon(
               icon,
-              color: AstraColors.goldenColorWithOpactity03,
+              color: AstraColors.golden03,
             ),
           );
   }

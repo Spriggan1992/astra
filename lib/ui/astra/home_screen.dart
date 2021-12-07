@@ -18,8 +18,8 @@ class HomeScreen extends StatelessWidget {
     return PageRouteBuilder(
       settings: const RouteSettings(name: routeName),
       transitionDuration: const Duration(seconds: 0),
-      pageBuilder: (_, __, ___) => BlocProvider<BotomNavBarCubit>(
-        create: (_) => BotomNavBarCubit(),
+      pageBuilder: (_, __, ___) => BlocProvider<BottomNavBarCubit>(
+        create: (_) => BottomNavBarCubit(),
         child: HomeScreen(),
       ),
     );
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BotomNavBarCubit, BotomNavBarState>(
+    return BlocBuilder<BottomNavBarCubit, BotomNavBarState>(
       builder: (context, state) {
         return Scaffold(
           body: Stack(
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
           .currentState!
           .popUntil((route) => route.isFirst);
     }
-    context.read<BotomNavBarCubit>().updateSelectedItem(selectedItem);
+    context.read<BottomNavBarCubit>().updateSelectedItem(selectedItem);
   }
 
   Widget _buildOffstageNavigator(

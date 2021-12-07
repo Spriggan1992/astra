@@ -56,7 +56,7 @@ class StoreScreen extends StatelessWidget {
             'Выберите количество лайков,\n которые хотите преобрести',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: AstraColors.color_24_24_24_1,
+              color: AstraColors.black,
               fontSize: 18,
               fontWeight: FontWeight.w400,
             ),
@@ -93,12 +93,12 @@ class StoreScreen extends StatelessWidget {
                 Text(
                   'К оплате',
                   style: TextStyle(
-                      color: AstraColors.color_24_24_24_1, fontSize: 18),
+                      color: AstraColors.black, fontSize: 18),
                 ),
                 Text(
                   '7000 руб.',
                   style: TextStyle(
-                      color: AstraColors.color_24_24_24_1, fontSize: 18),
+                      color: AstraColors.black, fontSize: 18),
                 ),
               ],
             ),
@@ -139,12 +139,12 @@ class _AstraChekBoxState extends State<_AstraChekBox> {
             value: chekBoxValue,
             side: MaterialStateBorderSide.resolveWith(
               (states) => const BorderSide(
-                  width: 1.0, color: AstraColors.color_24_24_24_08),
+                  width: 1.0, color: AstraColors.darkGrey),
             ),
             fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-            checkColor: AstraColors.color_24_24_24_08,
+            checkColor: AstraColors.darkGrey,
             onChanged: (value) {
               chekBoxValue = value!;
               setState(() {});
@@ -153,7 +153,7 @@ class _AstraChekBoxState extends State<_AstraChekBox> {
           const Text(
             'Автоматически обновлять покупку когда \nзакончатся лайки',
             style:
-                TextStyle(color: AstraColors.color_24_24_24_08, fontSize: 12),
+                TextStyle(color: AstraColors.darkGrey, fontSize: 12),
           ),
         ],
       ),

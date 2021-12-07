@@ -15,7 +15,7 @@ class AstraButton extends StatelessWidget {
       child: Text(
         title,
         style:
-            const TextStyle(color: AstraColors.color_24_38_71_1, fontSize: 14),
+            const TextStyle(color: AstraColors.blue, fontSize: 14),
       ),
       style: ButtonStyle(
         shape: MaterialStateProperty.all(

@@ -106,20 +106,21 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     child: TextFormField(
                       controller: controller1,
                       focusNode: focusNode1,
+                      obscureText: true,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: '*',
+                        // hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {
@@ -135,20 +136,21 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     child: TextFormField(
                       controller: controller2,
                       focusNode: focusNode2,
+                      obscureText: true,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: '*',
+                        // hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {
@@ -164,20 +166,21 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     child: TextFormField(
                       controller: controller3,
                       focusNode: focusNode3,
+                      obscureText: true,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: '*',
+                        // hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {
@@ -193,20 +196,21 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     child: TextFormField(
                       controller: controller4,
                       focusNode: focusNode4,
+                      obscureText: true,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
                       ],
                       style: const TextStyle(
                         fontSize: 24,
-                        color: AstraColors.color_24_24_24_1,
+                        color: AstraColors.black,
                       ),
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: '*',
+                        // hintText: '*',
                         hintStyle: TextStyle(
                           fontSize: 24,
-                          color: AstraColors.color_24_24_24_1,
+                          color: AstraColors.black,
                         ),
                       ),
                       onChanged: (value) {

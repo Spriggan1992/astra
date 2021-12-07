@@ -59,7 +59,7 @@ class SigninScreen extends StatelessWidget {
                               const BorderSide(width: 1.0, color: Colors.white),
                         ),
                         fillColor: MaterialStateColor.resolveWith(
-                            (states) => AstraColors.color_24_38_71_1),
+                            (states) => AstraColors.blue),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
                         checkColor: Colors.white,

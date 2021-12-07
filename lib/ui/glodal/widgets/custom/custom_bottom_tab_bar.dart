@@ -192,7 +192,7 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
                 explicitChildNodes: true,
                 child: Container(
                   decoration: const BoxDecoration(
-                    color: AstraColors.color_24_38_71_1,
+                    color: AstraColors.blue,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0)),

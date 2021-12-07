@@ -41,7 +41,7 @@ class AstraApp extends StatelessWidget {
           title: 'Astra app',
           theme: AppTheme.lightTheme,
           home: Container(),
-          initialRoute: HomeScreen.routeName, //SplashScreen.routeName,
+          initialRoute: SplashScreen.routeName, //SplashScreen.routeName,
           onGenerateRoute: AstraRouter.onGenerateRoute,
         ),
       ),
