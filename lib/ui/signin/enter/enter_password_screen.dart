@@ -14,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:astra_app/api/api.dart';
 
 class EnterPasswordScreen extends StatefulWidget {
   const EnterPasswordScreen({Key? key}) : super(key: key);
@@ -30,6 +31,8 @@ class EnterPasswordScreen extends StatefulWidget {
   @override
   State<EnterPasswordScreen> createState() => _EnterasswordScreenState();
 }
+
+// var api = API.auth.
 
 class _EnterasswordScreenState extends State<EnterPasswordScreen> {
   bool isCorrectPassword = true;

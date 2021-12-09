@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'message.g.dart';
+
+@JsonSerializable()
 class Message extends Equatable{
   Message({
     required this.text,
@@ -15,4 +19,6 @@ class Message extends Equatable{
 
   @override
   get props => [text, sender, timeSent, read];
+
+  factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
 }

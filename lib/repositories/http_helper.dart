@@ -7,7 +7,7 @@ class HttpHelpers {
   static const int apiKey = 123456;
   static String baseUrl = 'http://test.mydom.kg//';
 
-  static String register = 'api/v3/user/register';
+  static String register = 'api/v3/profile/register';
 
   static Future<http.Response> postRegister({required String body}) async {
     try {

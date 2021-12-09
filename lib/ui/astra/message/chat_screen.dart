@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:astra_app/api/api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'chat_item.dart';
 
@@ -16,7 +20,19 @@ class MessageChatScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {
+          onPressed: () async {
+            // this is just for testing purpose
+            // var chts = Auth();
+            // await chts.checkPhone("89998887755");
+            // print("chts ${await chts.checkPhone("89998887755")}");
+            // print("chts ${await chts.login("89998887755", "qwerty123")}");
+            // await chts.passwordReset("89998887755");
+            // await chts.checkResetToken("89998887755", "822CB4C303");
+            // await chts.resetPassword("822CB4C303", "qwerty123");
+            var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM5MDQ0OTY2LCJpYXQiOjE2Mzg5NTg1NjYsImp0aSI6IjMzYzRkY2Y4MzM0OTQxNjc4MzBlNzU0NzQ3NGVlODhlIiwidXNlcl9pZCI6M30.3-Ci3zOq5BRWCG-BhnwhdEJNMWQATUFoPcqSwYb_pYA";
+            // var ch = Chats();
+            // await ch.fetchChats(token);
+
             Navigator.of(context).pop();
           },
           icon: const Icon(

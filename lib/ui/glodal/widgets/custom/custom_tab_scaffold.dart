@@ -224,7 +224,7 @@ class CupertinoTabScaffold extends StatefulWidget {
         super(key: key);
 
   /// The [tabBar] is a [CupertinoTabBar] drawn at the bottom of the screen
-  /// that lets the user switch between different tabs in the main content area
+  /// that lets the profile switch between different tabs in the main content area
   /// when present.
   ///
   /// The [CupertinoTabBar.currentIndex] is only used to initialize a

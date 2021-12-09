@@ -15,7 +15,7 @@ class AuthRepository {
   //     final response = await HttpHelpers.postLogin(body: json.encode(_body));
   //     return BaseResponse.fromJson(response.body);
   //   } catch (error) {
-  //     throw Exception('Failed to load user login data');
+  //     throw Exception('Failed to load profile login data');
   //   }
   // }
 

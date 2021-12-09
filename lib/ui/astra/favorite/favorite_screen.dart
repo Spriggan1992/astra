@@ -72,7 +72,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
         bottom: TabBar(
           onTap: (index) {
             // Should not used it as it only called when tab options are clicked,
-            // not when user swapped
+            // not when profile swapped
           },
           controller: _controller,
           tabs: list,
