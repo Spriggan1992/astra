@@ -10,8 +10,9 @@ String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
 
 class Chats {
   Chats();
-  
+
   List<Chat> _chats = [];
+  List<Chat> _lastChats = [];
 
   get chats => _chats;
 

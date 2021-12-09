@@ -10,4 +10,9 @@ class Gradients {
     Color.fromRGBO(30, 49, 90, 1),
     Color.fromRGBO(24, 38, 71, 1),
   ];
+
+  static const List<Color> grayGradient = [
+    Color.fromRGBO(28, 45, 82, 0.1),
+    Color.fromRGBO(28, 45, 82, 0.1),
+  ];
 }

@@ -32,6 +32,7 @@ class CustomDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // title,
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
               child: title,

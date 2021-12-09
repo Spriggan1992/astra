@@ -1,3 +1,4 @@
+import 'package:astra_app/bloc/chat_list/chat_list_cubit.dart';
 import 'package:astra_app/bloc/login/login_cubit.dart';
 import 'package:astra_app/bloc/password/password_cubit.dart';
 import 'package:astra_app/ui/astra/home_screen.dart';
@@ -35,6 +36,9 @@ class AstraApp extends StatelessWidget {
           BlocProvider<PasswordCubit>(
             create: (context) =>
                 PasswordCubit(localRepository: context.read<LocalRepository>()),
+          ),
+          BlocProvider<ChatListCubit>(
+            create: (context) => ChatListCubit(),
           ),
         ],
         child: MaterialApp(

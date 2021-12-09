@@ -2,10 +2,12 @@ import 'package:astra_app/models/models.dart';
 import 'package:equatable/equatable.dart';
 
 class Chat extends Equatable {
-  Chat({
+  const Chat({
     required this.id,
     required this.messages,
-});
+  });
+
+  static Chat empty() => const Chat(id: 0, messages: []);
 
   final int id;
   final List<Message> messages;

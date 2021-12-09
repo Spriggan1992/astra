@@ -1,3 +1,5 @@
+import 'package:astra_app/models/models.dart';
+import 'package:astra_app/ui/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class MessageLitTile extends StatelessWidget {
@@ -5,53 +7,61 @@ class MessageLitTile extends StatelessWidget {
     Key? key,
     required this.selected,
     required this.onTap,
+    required this.chat,
+    required this.lastMessage,
+    required this.countOfunreadMessages,
   }) : super(key: key);
 
   final bool selected;
   final VoidCallback onTap;
+  final Chat chat;
+  final Message lastMessage;
+  final int countOfunreadMessages;
 
   @override
   Widget build(BuildContext context) {
     return Ink(
-      color: (selected) ? Color.fromRGBO(240, 241, 243, 1) : Colors.white,
+      color: (selected) ? const Color.fromRGBO(240, 241, 243, 1) : Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           ListTile(
             onTap: onTap,
             // isThreeLine: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             leading: CircleAvatar(
                 backgroundImage: Image.asset('assets/right_girl.png').image),
             title: Text(
-              'Анастасия',
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(24, 24, 24, 1)),
+              lastMessage.sender,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: AstraColors.black,
+              ),
             ),
             subtitle: Text(
-              'Приготовила пирог. Залетай, орел! И когда загремел гром, начнется дождь.',
-              style: TextStyle(
+              lastMessage.text,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
-                color: Color.fromRGBO(24, 24, 24, 0.6),
+                color: AstraColors.black06,
               ),
             ),
             trailing: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('12:45'),
+                Text(lastMessage.time),
                 Visibility(
                   visible: selected,
                   child: CircleAvatar(
                     maxRadius: 10,
-                    backgroundColor: Color.fromRGBO(24, 38, 71, 0.6),
+                    backgroundColor: AstraColors.blue06,
                     child: Text(
-                      '1',
-                      style: TextStyle(
-                          color: Color.fromRGBO(251, 251, 251, 1),
+                      "$countOfunreadMessages",
+                      style: const TextStyle(
+                          color: AstraColors.white,
                           fontSize: 8,
                           fontWeight: FontWeight.w700),
                     ),
@@ -60,9 +70,7 @@ class MessageLitTile extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
-            color: Color.fromRGBO(24, 24, 24, 0.1),
-          )
+          const Divider(color: AstraColors.black01)
         ],
       ),
     );
