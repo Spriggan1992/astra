@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../favorite/info_button.dart';
-import '../favorite/info_card.dart';
+import '../favorite/favorite_info_card.dart';
 import 'search_detail.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -21,7 +21,12 @@ class SearchScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const InfoCard(),
+            const FavoriteInfoCard(
+              name: 'Мария, 25',
+              location: 'Россия, Москва',
+              desc:
+                  'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
               child: Row(

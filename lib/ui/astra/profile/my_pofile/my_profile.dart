@@ -1,32 +1,69 @@
+import 'package:astra_app/ui/astra/home_screen.dart';
+import 'package:astra_app/ui/astra/profile/my_pofile/photo/image_pick_screen.dart';
+import 'package:astra_app/ui/astra/profile/my_pofile/photo/show_image_full_screen.dart';
+import 'package:astra_app/ui/config/colors.dart';
+import 'package:astra_app/ui/glodal/icons/svg_icon.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../show_image_full_screen.dart';
-import 'edit_my_profile_screen.dart';
+import 'widgets/profile_widgets.dart';
 
-class MyProfileScreen extends StatelessWidget {
+class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({Key? key}) : super(key: key);
+
+  static const String routeName = '/myprofilescreen';
+
+  static Route route() {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: routeName),
+      builder: (_) => const MyProfileScreen(),
+    );
+  }
+
+  @override
+  State<MyProfileScreen> createState() => _MyProfileScreenState();
+}
+
+class _MyProfileScreenState extends State<MyProfileScreen> {
+  bool _isEditMode = false;
+
+  bool _displayProfile = true;
+  bool _hideProfile = false;
+
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text =
+        'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..';
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AstraAppBar(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
         title: 'Мой профиль',
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return EditMyProfileScreen();
-                  },
-                ),
-              );
+              _isEditMode = !_isEditMode;
+              setState(() {});
             },
-            child: Image.asset('assets/icons/pencil.png'),
+            child: (_isEditMode)
+                ? const Icon(Icons.check, color: AstraColors.black)
+                : const SvgIcon(asset: 'assets/icons/pencil.svg', height: 20),
           ),
         ],
       ),
@@ -36,48 +73,33 @@ class MyProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ShowImageFullScreen();
-                    },
-                  ),
-                );
+            ProfileLogoScreen(
+              isEditMode: _isEditMode,
+              onPickImage: () {
+                Navigator.of(context, rootNavigator: true)
+                    .pushNamed(ImagePickScreen.routeName);
               },
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(50.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/left_girl.png'),
-                        const SizedBox(width: 40),
-                        Image.asset('assets/right_girl.png'),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    right: MediaQuery.of(context).size.width / 7 - 30,
-                    top: -20,
-                    child: Image.asset('assets/middle_girl.png'),
-                  ),
-                ],
-              ),
+              onShowImage: () {
+                Navigator.of(context, rootNavigator: true)
+                    .pushNamed(ShowImageFullScreen.routeName);
+              },
             ),
             const SizedBox(height: 8),
             const Text(
               'Август Августин, 30',
               style: TextStyle(
-                color: Color.fromRGBO(24, 24, 24, 1),
+                color: AstraColors.black,
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
             ),
-            _DescriptionWidget(),
+            (_isEditMode)
+                ? ProfileTextField(
+                    controller: _controller,
+                    leftSymbols: _controller.text.length,
+                    onChanged: (value) {},
+                  )
+                : _DescriptionWidget(text: _controller.text),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Row(
@@ -86,7 +108,7 @@ class MyProfileScreen extends StatelessWidget {
                   Text(
                     'На счету:',
                     style: TextStyle(
-                      color: Color.fromRGBO(24, 24, 24, 0.4),
+                      color: AstraColors.black04,
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
@@ -94,7 +116,7 @@ class MyProfileScreen extends StatelessWidget {
                   Text(
                     '4 лайка',
                     style: TextStyle(
-                      color: Color.fromRGBO(24, 24, 24, 1),
+                      color: AstraColors.black,
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
                     ),
@@ -104,127 +126,37 @@ class MyProfileScreen extends StatelessWidget {
             ),
             const Divider(
               height: 1,
-              color: Color.fromRGBO(24, 24, 24, 0.1),
+              color: AstraColors.black01,
               thickness: 1,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Отображать подробную анкету',
-                    style: TextStyle(
-                      color: Color.fromRGBO(24, 24, 24, 0.4),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Container(
-                    height: 22,
-                    width: 44,
-                    decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Color.fromRGBO(24, 24, 24, 0.1)),
-                        borderRadius: BorderRadius.circular(22)),
-                    child: Switch(
-                      value: true,
-                      onChanged: (value) {},
-                      activeTrackColor: Colors.white,
-                      inactiveTrackColor: Colors.white,
-                      activeColor: Color.fromRGBO(217, 191, 100, 1),
-                    ),
-                  ),
-                ],
-              ),
+            ProfileSwitchWidget(
+              onChanged: (value) {
+                _displayProfile = value;
+                setState(() {});
+              },
+              switchValue: _displayProfile,
+              title: 'Отображать подробную анкету',
             ),
-            const Divider(
-              height: 1,
-              color: Color.fromRGBO(24, 24, 24, 0.1),
-              thickness: 1,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Скрыть профиль',
-                    style: TextStyle(
-                      color: Color.fromRGBO(24, 24, 24, 0.4),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Container(
-                    height: 22,
-                    width: 44,
-                    decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Color.fromRGBO(24, 24, 24, 0.1)),
-                        borderRadius: BorderRadius.circular(22)),
-                    child: Switch(
-                      value: false,
-                      onChanged: (value) {},
-                      inactiveTrackColor: Colors.white,
-                      activeTrackColor: Colors.white,
-                      activeColor: Color.fromRGBO(217, 191, 100, 1),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(
-              height: 1,
-              color: Color.fromRGBO(24, 24, 24, 0.1),
-              thickness: 1,
+            ProfileSwitchWidget(
+              onChanged: (value) {
+                _hideProfile = value;
+                setState(() {});
+              },
+              switchValue: _hideProfile,
+              title: 'Скрыть профиль',
             ),
             const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundImage: Image.asset('assets/right_girl.png').image,
-                ),
-                const SizedBox(width: 20),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Алексей Муховец',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(24, 24, 24, 1)),
-                    ),
-                    Text(
-                      'Куратор',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromRGBO(24, 24, 24, 0.6),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width / 4),
-                const CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Color.fromRGBO(24, 24, 24, 1),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 19,
-                    child: Icon(CupertinoIcons.paperplane),
-                  ),
-                ),
-              ],
+            KuratorListTile(
+              leadingRadius: 22,
+              trallingRadius: 20,
+              name: 'Алексей Муховец',
+              backgroundImage: Image.asset('assets/right_girl.png').image,
+              onPressed: () {},
             ),
             const Padding(
               padding: EdgeInsets.only(top: 16, bottom: 16),
               child: Divider(
-                color: Color.fromRGBO(24, 24, 24, 0.1),
+                color: AstraColors.black01,
                 thickness: 1,
               ),
             ),
@@ -236,8 +168,9 @@ class MyProfileScreen extends StatelessWidget {
 }
 
 class _DescriptionWidget extends StatelessWidget {
-  const _DescriptionWidget({Key? key}) : super(key: key);
+  const _DescriptionWidget({Key? key, required this.text}) : super(key: key);
 
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -249,16 +182,16 @@ class _DescriptionWidget extends StatelessWidget {
           const Text(
             'Краткое описание:',
             style: TextStyle(
-              color: Color.fromRGBO(24, 24, 24, 0.4),
+              color: AstraColors.black04,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 8),
           Text(
-            'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
-            style: TextStyle(
-              color: Color.fromRGBO(24, 24, 24, 1),
+            text,
+            style: const TextStyle(
+              color: AstraColors.black,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),

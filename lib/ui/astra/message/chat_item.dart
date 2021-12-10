@@ -1,9 +1,18 @@
+import 'package:astra_app/ui/config/colors.dart';
+import 'package:astra_app/ui/config/gradients.dart';
 import 'package:flutter/material.dart';
 
 class ChatItemCard extends StatelessWidget {
-  const ChatItemCard({Key? key, required this.sent}) : super(key: key);
+  const ChatItemCard(
+      {Key? key,
+      required this.sent,
+      required this.timeSent,
+      required this.text})
+      : super(key: key);
 
   final bool sent;
+  final String timeSent;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,22 +27,18 @@ class ChatItemCard extends StatelessWidget {
           child: Stack(
             children: [
               Text(
-                "Здорово, меня Настя. Я из Москвы.Расскажу интересный факт о себе. Я 4 раза перездавала экзамен в школе и решила уйти работать. Работа оказалось не по душе (ведь душа хочет денег и любви), и я обучилась на повара. И сейчас, как раз, я готовлю кое-что)))))))",
+                text,
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                    color: (sent)
-                        ? Color.fromRGBO(251, 251, 251, 0.9)
-                        : Color.fromRGBO(24, 24, 24, 0.9),
+                    color: (sent) ? AstraColors.white09 : AstraColors.darkGrey,
                     fontSize: 15,
                     fontWeight: FontWeight.w500),
               ),
               Positioned(
                 child: Text(
-                  '12:21',
+                  timeSent,
                   style: TextStyle(
-                    color: (sent)
-                        ? Color.fromRGBO(251, 251, 251, 0.4)
-                        : Color.fromRGBO(24, 24, 24, 0.4),
+                    color: (sent) ? AstraColors.white04 : AstraColors.black04,
                     fontSize: 12,
                   ),
                 ),
@@ -45,20 +50,14 @@ class ChatItemCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             gradient: (sent)
-                ? LinearGradient(
-                    colors: [
-                      Color.fromRGBO(30, 49, 90, 1),
-                      Color.fromRGBO(24, 38, 71, 1),
-                    ],
+                ? const LinearGradient(
+                    colors: Gradients.blueGradient,
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     tileMode: TileMode.decal,
                     stops: [0.0, 1.0])
-                : LinearGradient(
-                    colors: [
-                      Color.fromRGBO(28, 45, 82, 0.1),
-                      Color.fromRGBO(28, 45, 82, 0.1),
-                    ],
+                : const LinearGradient(
+                    colors: Gradients.grayGradient,
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     tileMode: TileMode.decal,

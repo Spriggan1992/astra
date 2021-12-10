@@ -1,19 +1,61 @@
+import 'dart:io';
+
+import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class ImagePickScreen extends StatelessWidget {
+class ImagePickScreen extends StatefulWidget {
   const ImagePickScreen({Key? key}) : super(key: key);
+
+  static const String routeName = '/imagepickscreen';
+
+  static Route route() {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: routeName),
+      builder: (_) => const ImagePickScreen(),
+    );
+  }
+
+  @override
+  State<ImagePickScreen> createState() => _ImagePickScreenState();
+}
+
+class _ImagePickScreenState extends State<ImagePickScreen> {
+  List<File> _images = [];
+  final picker = ImagePicker();
+
+  Future getImage(int index) async {
+    final image = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _images[index] = File(image!.path);
+      print((image.path));
+    });
+  }
+
+  @override
+  void initState() {
+    getImage(1);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AstraAppBar(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
         title: 'Загрузка фотографии',
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Icon(Icons.check),
+            child: const Icon(
+              Icons.check,
+              color: AstraColors.black,
+            ),
           ),
         ],
       ),
@@ -33,9 +75,9 @@ class ImagePickScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                border: Border.all(color: Color.fromRGBO(0, 0, 0, 0.11)),
+                border: Border.all(color: const Color.fromRGBO(0, 0, 0, 0.11)),
                 borderRadius: BorderRadius.circular(14),
-                color: const Color.fromRGBO(251, 251, 251, 1),
+                color: AstraColors.white,
               ),
               child: Column(
                 children: [
@@ -49,7 +91,7 @@ class ImagePickScreen extends StatelessWidget {
                   ),
                   const Divider(
                     height: 1,
-                    color: Color.fromRGBO(24, 24, 24, 0.1),
+                    color: AstraColors.black01,
                     thickness: 1,
                   ),
                   Expanded(
@@ -68,7 +110,7 @@ class ImagePickScreen extends StatelessWidget {
                   ),
                   const Divider(
                     height: 1,
-                    color: Color.fromRGBO(24, 24, 24, 0.1),
+                    color: AstraColors.black01,
                     thickness: 1,
                   ),
                   Expanded(
@@ -87,7 +129,7 @@ class ImagePickScreen extends StatelessWidget {
                   ),
                   const Divider(
                     height: 1,
-                    color: Color.fromRGBO(24, 24, 24, 0.1),
+                    color: AstraColors.black01,
                     thickness: 1,
                   ),
                 ],

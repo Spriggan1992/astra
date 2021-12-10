@@ -7,9 +7,6 @@ import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/save_scaffold.dart';
 import 'package:astra_app/ui/signin/enter/enter_screen.dart';
 
-import 'package:astra_app/ui/signin/registration/password_screen.dart';
-
-import 'package:astra_app/ui/signin/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

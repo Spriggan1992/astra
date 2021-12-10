@@ -1,14 +1,18 @@
-import 'dart:developer';
-
-import 'package:astra_app/api/api.dart';
+import 'package:astra_app/models/chat/chat.dart';
+import 'package:astra_app/models/chat/message.dart';
+import 'package:astra_app/ui/config/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'chat_item.dart';
 
 class MessageChatScreen extends StatelessWidget {
-  const MessageChatScreen({Key? key}) : super(key: key);
+  const MessageChatScreen(
+      {Key? key, required this.chat, required this.lastMessage})
+      : super(key: key);
+
+  final Chat chat;
+  final Message lastMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +24,7 @@ class MessageChatScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () async {
-            // this is just for testing purpose
-            // var chts = Auth();
-            // await chts.checkPhone("89998887755");
-            // print("chts ${await chts.checkPhone("89998887755")}");
-            // print("chts ${await chts.login("89998887755", "qwerty123")}");
-            // await chts.passwordReset("89998887755");
-            // await chts.checkResetToken("89998887755", "822CB4C303");
-            // await chts.resetPassword("822CB4C303", "qwerty123");
-            var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM5MDQ0OTY2LCJpYXQiOjE2Mzg5NTg1NjYsImp0aSI6IjMzYzRkY2Y4MzM0OTQxNjc4MzBlNzU0NzQ3NGVlODhlIiwidXNlcl9pZCI6M30.3-Ci3zOq5BRWCG-BhnwhdEJNMWQATUFoPcqSwYb_pYA";
-            // var ch = Chats();
-            // await ch.fetchChats(token);
-
+          onPressed: () {
             Navigator.of(context).pop();
           },
           icon: const Icon(
@@ -44,7 +36,7 @@ class MessageChatScreen extends StatelessWidget {
         title: Column(
           children: [
             Text(
-              'Анастасия',
+              lastMessage.sender,
               style: Theme.of(context).textTheme.headline6!.copyWith(
                     color: const Color.fromRGBO(31, 31, 31, 1),
                     fontSize: 17,
@@ -62,22 +54,18 @@ class MessageChatScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              shrinkWrap: true,
-              children: [
-                ChatItemCard(sent: true),
-                ChatItemCard(sent: false),
-                ChatItemCard(sent: false),
-                ChatItemCard(sent: true),
-                ChatItemCard(sent: false),
-                ChatItemCard(sent: true),
-              ],
-            ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            itemCount: chat.messages.length,
+            itemBuilder: (context, index) {
+              final message = chat.messages[index];
+              return ChatItemCard(
+                  sent: true, text: message.text, timeSent: message.time);
+            },
           ),
-          Align(
+          const Align(
             alignment: Alignment.bottomCenter,
             child: _EnterMessageWidget(),
           ),
@@ -137,8 +125,8 @@ class _EnterMessageWidgetState extends State<_EnterMessageWidget> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     isDense: true,
-                    fillColor: Color.fromRGBO(251, 251, 251, 0.1),
-                    contentPadding: new EdgeInsets.symmetric(
+                    fillColor: AstraColors.white01,
+                    contentPadding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 15.0),
                     hintText: 'Cooбщение',
                     border: OutlineInputBorder(

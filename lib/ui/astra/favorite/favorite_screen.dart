@@ -1,5 +1,9 @@
+import 'package:astra_app/enums/favorite_screen_type.dart';
+import 'package:astra_app/ui/config/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'favorite_content_page.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -15,21 +19,29 @@ class _FavoriteScreenState extends State<FavoriteScreen>
 
   List<Widget> list = const [
     Tab(
-        child: Text(
-      'Ваши лайки',
-    )),
+      child: Text(
+        'Ваши лайки',
+        style: TextStyle(color: AstraColors.black, fontSize: 12),
+      ),
+    ),
     Tab(
-        child: Text(
-      'Лайки вас',
-    )),
+      child: Text(
+        'Лайки вас',
+        style: TextStyle(color: AstraColors.black, fontSize: 12),
+      ),
+    ),
     Tab(
-        child: Text(
-      'Подумать',
-    )),
+      child: Text(
+        'Подумать',
+        style: TextStyle(color: AstraColors.black, fontSize: 12),
+      ),
+    ),
     Tab(
-        child: Text(
-      'Стоп лист',
-    )),
+      child: Text(
+        'Стоп лист',
+        style: TextStyle(color: AstraColors.black, fontSize: 12),
+      ),
+    ),
   ];
 
   @override
@@ -88,134 +100,13 @@ class _FavoriteScreenState extends State<FavoriteScreen>
       body: TabBarView(
         controller: _controller,
         physics: const BouncingScrollPhysics(),
-        children: [
-          GridView.builder(
-            itemCount: 4,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                crossAxisCount: 2,
-                childAspectRatio: 1),
-            itemBuilder: (context, index) {
-              return FavoriteDetailWidget();
-            },
-          ),
-          GridView.builder(
-            itemCount: 4,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                crossAxisCount: 2,
-                childAspectRatio: 1),
-            itemBuilder: (context, index) {
-              return FavoriteDetailWidget();
-            },
-          ),
-          GridView.builder(
-            itemCount: 4,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                crossAxisCount: 2,
-                childAspectRatio: 1),
-            itemBuilder: (context, index) {
-              return FavoriteDetailWidget();
-            },
-          ),
-          GridView.builder(
-            itemCount: 4,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                crossAxisCount: 2,
-                childAspectRatio: 1),
-            itemBuilder: (context, index) {
-              return FavoriteDetailWidget();
-            },
-          ),
+        children: const [
+          FavoriteContentPage(screenType: FavoriteScreenType.yourLikes),
+          FavoriteContentPage(screenType: FavoriteScreenType.likesForYou),
+          FavoriteContentPage(screenType: FavoriteScreenType.think),
+          FavoriteContentPage(screenType: FavoriteScreenType.stopList),
         ],
       ),
-    );
-  }
-}
-
-class FavoriteDetailWidget extends StatelessWidget {
-  const FavoriteDetailWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                    color: const Color.fromRGBO(217, 191, 131, 1), width: 1.5),
-                borderRadius: BorderRadius.circular(32),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: Image.asset('assets/girl.png', fit: BoxFit.cover)
-                        .image),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                width: (MediaQuery.of(context).size.width / 2) - 20,
-                height: 42,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(32),
-                        bottomRight: Radius.circular(32)),
-                    color: Color.fromRGBO(251, 251, 251, 0.2)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'Настя, 26',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Text(
-                      'Россия, Москва',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color.fromRGBO(251, 251, 251, 0.5),
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        Positioned(
-          bottom: 30,
-          right: 5,
-          child: CircleAvatar(
-            backgroundColor: Color.fromRGBO(251, 251, 251, 0.2),
-            radius: 18,
-            child: Image.asset(
-              'assets/paper_plane.png',
-              color: Colors.white,
-              scale: 0.8,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
