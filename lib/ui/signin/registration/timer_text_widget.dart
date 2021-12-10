@@ -43,4 +43,10 @@ class _TimerTextWidgetState extends State<TimerTextWidget> {
           ),
     );
   }
+
+  @override
+  void dispose() {
+    timer!.cancel();
+    super.dispose();
+  }
 }
