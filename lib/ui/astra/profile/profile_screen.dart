@@ -72,8 +72,9 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 title: 'Мой профиль',
                 onTap: () {
-                  Navigator.of(context, rootNavigator: false)
-                      .pushNamed(MyProfileScreen.routeName);
+                  AutoRouter.of(
+                    context,
+                  ).push(const MyProfileScreenRoute());
                 },
               ),
               ProfileItem(
@@ -111,8 +112,9 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 title: 'Поддержка',
                 onTap: () {
-                  Navigator.of(context, rootNavigator: false)
-                      .pushNamed(SupportScreen.routeName);
+                  context.router.push(const SupportScreenRoute());
+                  // Navigator.of(context, rootNavigator: false)
+                  //     .pushNamed(SupportScreen.routeName);
                 },
               ),
               ProfileItem(
@@ -123,8 +125,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 title: 'О приложении',
                 onTap: () {
-                  Navigator.of(context, rootNavigator: false)
-                      .pushNamed(AboutScreen.routeName);
+                  context.router.push(const AboutScreenRoute());
                 },
               ),
               ProfileItem(

@@ -7,7 +7,7 @@ part 'password_state.dart';
 
 class PasswordCubit extends Cubit<PasswordState> {
   PasswordCubit({required this.localRepository})
-      : super(PasswordState.initial()) {}
+      : super(PasswordState.initial());
 
   final LocalRepository localRepository;
 

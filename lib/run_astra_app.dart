@@ -2,10 +2,7 @@ import 'package:astra_app/bloc/chat_list/chat_list_cubit.dart';
 import 'package:astra_app/bloc/login/login_cubit.dart';
 import 'package:astra_app/bloc/password/password_cubit.dart';
 import 'package:astra_app/routes/app_router.gr.dart';
-import 'package:astra_app/ui/astra/home_screen.dart';
-import 'package:astra_app/ui/config/route.dart';
 import 'package:astra_app/ui/glodal/themes/app_theme.dart';
-import 'package:astra_app/ui/signin/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
