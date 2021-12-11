@@ -1,22 +1,14 @@
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/config/gradients.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_button.dart';
 import 'package:astra_app/ui/glodal/widgets/logo.dart';
-import 'package:astra_app/ui/signin/registration/first_signin.dart';
 import 'package:astra_app/ui/signin/registration/how_to_get_club_screen.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class SigninScreen extends StatelessWidget {
   const SigninScreen({Key? key}) : super(key: key);
-
-  static const String routeName = '/signin';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const SigninScreen(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +35,7 @@ class SigninScreen extends StatelessWidget {
                 AstraButton(
                   title: 'Войти',
                   onTap: () {
-                    Navigator.of(context).pushNamed(FirstSignin.routeName);
+                    AutoRouter.of(context).push(const FirstSigninRoute());
                   },
                 ),
                 const SizedBox(height: 5),

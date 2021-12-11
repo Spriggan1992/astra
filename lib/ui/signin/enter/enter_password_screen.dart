@@ -1,11 +1,13 @@
 import 'package:astra_app/bloc/auth/auth_bloc.dart';
 import 'package:astra_app/bloc/password/password_cubit.dart';
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/astra/store_screen.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/save_scaffold.dart';
 import 'package:astra_app/ui/signin/enter/enter_screen.dart';
+import 'package:auto_route/auto_route.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +87,7 @@ class _EnterasswordScreenState extends State<EnterPasswordScreen> {
         elevation: 0,
         title: '',
         onPressed: () {
-          Navigator.of(context).popAndPushNamed(EnterScreen.routeName);
+          AutoRouter.of(context).push(const EnterScreenRoute());
         },
       ),
       body: SingleChildScrollView(
@@ -255,7 +257,8 @@ class _EnterasswordScreenState extends State<EnterPasswordScreen> {
                           title: 'Продолжить',
                           onTap: () {
                             context.read<PasswordCubit>().enterToApp();
-                            Navigator.pushNamed(context, StoreScreen.routeName);
+                            AutoRouter.of(context)
+                                .push(const StoreScreenRoute());
                           },
                           type: ButtonType.success),
                     ),

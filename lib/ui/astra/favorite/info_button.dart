@@ -19,7 +19,7 @@ class InfoButton extends StatelessWidget {
       onPressed: onTap,
       child: Icon(
         icon,
-        color: Color.fromRGBO(100, 72, 33, 1),
+        color: const Color.fromRGBO(100, 72, 33, 1),
         size: 40,
       ),
       style: ButtonStyle(
@@ -32,10 +32,10 @@ class InfoButton extends StatelessWidget {
           EdgeInsets.symmetric(horizontal: width, vertical: height),
         ),
         backgroundColor: MaterialStateProperty.all(
-          Color.fromRGBO(85, 85, 85, 0.5),
+          const Color.fromRGBO(85, 85, 85, 0.5),
         ),
         side: MaterialStateProperty.all(
-            BorderSide(color: Color.fromRGBO(217, 191, 131, 0.8))),
+            const BorderSide(color: Color.fromRGBO(217, 191, 131, 0.8))),
       ),
     );
   }
