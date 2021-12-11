@@ -3,6 +3,7 @@ import 'package:astra_app/ui/glodal/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
 import 'package:flutter/material.dart';
 
+//TODO Зачем экраны называть одинаковыми названиями? Это вносит только путаницу.
 class StoreScreen extends StatelessWidget {
   const StoreScreen({Key? key}) : super(key: key);
 

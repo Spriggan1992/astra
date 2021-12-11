@@ -1,18 +1,10 @@
-import 'package:astra_app/ui/astra/home_screen.dart';
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_button.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class FinishRegisterScreen extends StatelessWidget {
   const FinishRegisterScreen({Key? key}) : super(key: key);
-
-  static const String routeName = '/finishregistrscreen';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const FinishRegisterScreen(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +55,7 @@ class FinishRegisterScreen extends StatelessWidget {
             AstraButton(
               title: 'Начать просмотр',
               onTap: () {
-                Navigator.of(context).pushNamed(HomeScreen.routeName);
+                AutoRouter.of(context).push(HomeScreenRoute());
               },
             ),
           ],

@@ -1,26 +1,17 @@
 import 'package:astra_app/bloc/password/password_cubit.dart';
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/save_scaffold.dart';
-import 'package:astra_app/ui/signin/registration/sms_code_screen.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'repeate_password_screen.dart';
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({Key? key}) : super(key: key);
-
-  static const String routeName = '/passwordscreen';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const PasswordScreen(),
-    );
-  }
 
   @override
   State<PasswordScreen> createState() => _PasswordScreenState();
@@ -79,7 +70,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
         elevation: 0,
         title: '',
         onPressed: () {
-          Navigator.of(context).popAndPushNamed(SmsCodeScreen.routeName);
+          AutoRouter.of(context).pop();
         },
       ),
       body: SingleChildScrollView(
@@ -233,8 +224,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
                             final psw =
                                 '${controller1.text}${controller2.text}${controller3.text}${controller4.text}';
                             context.read<PasswordCubit>().onChangePassword(psw);
-                            Navigator.pushNamed(
-                                context, RepeatePasswordScreen.routeName);
+                            AutoRouter.of(context)
+                                .push(const RepeatePasswordScreenRoute());
                           },
                           type: ButtonType.success),
                     )

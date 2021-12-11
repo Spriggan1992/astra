@@ -11,11 +11,6 @@ import 'package:astra_app/ui/signin/enter/enter_screen.dart';
 import 'package:astra_app/ui/signin/finish_register_screen.dart';
 import 'package:astra_app/ui/signin/registration/first_signin.dart';
 import 'package:astra_app/ui/signin/registration/how_to_get_club_screen.dart';
-import 'package:astra_app/ui/signin/registration/password_screen.dart';
-import 'package:astra_app/ui/signin/registration/repeate_password_screen.dart';
-import 'package:astra_app/ui/signin/registration/signin_screen.dart';
-import 'package:astra_app/ui/signin/registration/sms_code_screen.dart';
-import 'package:astra_app/ui/signin/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class AstraRouter {
@@ -26,30 +21,16 @@ class AstraRouter {
         return MaterialPageRoute(
             settings: const RouteSettings(name: '/'),
             builder: (_) => const Scaffold());
-      case SplashScreen.routeName:
-        return SplashScreen.route();
-      case SigninScreen.routeName:
-        return SigninScreen.route();
       case HowToGetClubScreen.routeName:
         return HowToGetClubScreen.route();
       case FirstSignin.routeName:
         return FirstSignin.route();
-      case SmsCodeScreen.routeName:
-        return SmsCodeScreen.route();
-      case PasswordScreen.routeName:
-        return PasswordScreen.route();
-      case RepeatePasswordScreen.routeName:
-        return RepeatePasswordScreen.route();
-      case StoreScreen.routeName:
-        return StoreScreen.route();
       case EnterScreen.routeName:
         return EnterScreen.route();
       case EnterPasswordScreen.routeName:
         return EnterPasswordScreen.route();
-      case HomeScreen.routeName:
-        return HomeScreen.route();
-      case FinishRegisterScreen.routeName:
-        return FinishRegisterScreen.route();
+      // case HomeScreen.routeName:
+      //   return HomeScreen.route();
       case MyProfileScreen.routeName:
         return MyProfileScreen.route();
       case ShowImageFullScreen.routeName:
@@ -72,8 +53,6 @@ class AstraRouter {
             builder: (_) => const Scaffold());
       case MyProfileScreen.routeName:
         return MyProfileScreen.route();
-      case StoreScreen.routeName:
-        return StoreScreen.route();
       case SupportScreen.routeName:
         return SupportScreen.route();
       case AboutScreen.routeName:

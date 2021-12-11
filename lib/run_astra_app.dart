@@ -1,6 +1,7 @@
 import 'package:astra_app/bloc/chat_list/chat_list_cubit.dart';
 import 'package:astra_app/bloc/login/login_cubit.dart';
 import 'package:astra_app/bloc/password/password_cubit.dart';
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/astra/home_screen.dart';
 import 'package:astra_app/ui/config/route.dart';
 import 'package:astra_app/ui/glodal/themes/app_theme.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth/auth_bloc.dart';
 import 'repositories/auth_repository.dart';
 import 'repositories/local_repository.dart';
+
+final _appRouter = AppRouter();
 
 class AstraApp extends StatelessWidget {
   const AstraApp({Key? key}) : super(key: key);
@@ -41,12 +44,11 @@ class AstraApp extends StatelessWidget {
             create: (context) => ChatListCubit(),
           ),
         ],
-        child: MaterialApp(
-          title: 'Astra app',
+        child: MaterialApp.router(
           theme: AppTheme.lightTheme,
-          home: Container(),
-          initialRoute: SplashScreen.routeName, //SplashScreen.routeName,
-          onGenerateRoute: AstraRouter.onGenerateRoute,
+          routerDelegate: _appRouter.delegate(),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          debugShowCheckedModeBanner: false,
         ),
       ),
     );

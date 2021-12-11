@@ -1,8 +1,10 @@
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/astra/profile/support/support_screen.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/icons/svg_icon.dart';
 import 'package:astra_app/ui/glodal/widgets/dialogs/custom_dialog.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -90,8 +92,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 title: 'Магазин',
                 onTap: () {
-                  Navigator.of(context, rootNavigator: false)
-                      .pushNamed(StoreScreen.routeName);
+                  AutoRouter.of(context).push(const StoreScreenRoute());
                 },
               ),
               ProfileItem(
