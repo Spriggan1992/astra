@@ -8,10 +8,11 @@
         "**/Thumbs.db": true,
         "**/.classpath": true,
         "**/.factorypath": true,
-        "**/*.freezed.dartt": true,
+        "**/*.freezed.dart": true,
         "**/.project": true,
         "**/.settings": true,
-        "**/*.g.dart": true
+        "**/*.g.dart": true,
+        "**/*.freezed.dartt": true
     },
     "explorerExclude.backup": null
 }

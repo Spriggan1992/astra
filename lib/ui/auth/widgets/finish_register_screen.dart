@@ -55,7 +55,7 @@ class FinishRegisterScreen extends StatelessWidget {
             AstraButton(
               title: 'Начать просмотр',
               onTap: () {
-                AutoRouter.of(context).push(HomeScreenRoute());
+                AutoRouter.of(context).push(const HomeScreenRoute());
               },
             ),
           ],
