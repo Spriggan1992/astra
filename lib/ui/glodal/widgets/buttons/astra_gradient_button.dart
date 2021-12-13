@@ -5,7 +5,7 @@ enum ButtonType { success, loading, finished, waiting }
 
 class AstraGradientButton extends StatelessWidget {
   final String title;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final ButtonType type;
 
   const AstraGradientButton({

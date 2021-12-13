@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/// Defines a custom app bar.
 class AstraAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AstraAppBar({
     Key? key,

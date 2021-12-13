@@ -66,47 +66,48 @@ class _FavoriteScreenState extends State<FavoriteScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 1,
-        centerTitle: true,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            AutoRouter.of(context).pop();
-          },
-          icon: const Icon(
-            CupertinoIcons.back,
-            color: Colors.black87,
-            size: 35,
+        appBar: AppBar(
+          elevation: 1,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              CupertinoIcons.back,
+              color: Colors.black87,
+              size: 35,
+            ),
+          ),
+          bottom: TabBar(
+            onTap: (index) {
+              // Should not used it as it only called when tab options are clicked,
+              // not when profile swapped
+            },
+            controller: _controller,
+            tabs: list,
+          ),
+          title: Text(
+            'Избранное',
+            style: Theme.of(context).textTheme.headline6!.copyWith(
+                  color: const Color.fromRGBO(31, 31, 31, 1),
+                  fontSize: 17,
+                ),
           ),
         ),
-        bottom: TabBar(
-          onTap: (index) {
-            // Should not used it as it only called when tab options are clicked,
-            // not when profile swapped
-          },
+        body: TabBarView(
           controller: _controller,
-          tabs: list,
+          physics: const BouncingScrollPhysics(),
+          children: const [
+            FavoriteContentPage(screenType: FavoriteScreenType.yourLikes),
+            FavoriteContentPage(screenType: FavoriteScreenType.likesForYou),
+            FavoriteContentPage(screenType: FavoriteScreenType.think),
+            FavoriteContentPage(screenType: FavoriteScreenType.stopList),
+          ],
         ),
-        title: Text(
-          'Избранное',
-          style: Theme.of(context).textTheme.headline6!.copyWith(
-                color: const Color.fromRGBO(31, 31, 31, 1),
-                fontSize: 17,
-              ),
-        ),
-      ),
-      body: TabBarView(
-        controller: _controller,
-        physics: const BouncingScrollPhysics(),
-        children: const [
-          FavoriteContentPage(screenType: FavoriteScreenType.yourLikes),
-          FavoriteContentPage(screenType: FavoriteScreenType.likesForYou),
-          FavoriteContentPage(screenType: FavoriteScreenType.think),
-          FavoriteContentPage(screenType: FavoriteScreenType.stopList),
-        ],
       ),
     );
   }

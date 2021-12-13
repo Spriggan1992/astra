@@ -1,17 +1,13 @@
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@lazySingleton
 class LocalRepository {
-  late SharedPreferences _pref;
-
-  LocalRepository() {
-    initialize();
-  }
+  final SharedPreferences _pref;
 
   static String keyPassword = 'password';
 
-  Future<void> initialize() async {
-    _pref = await SharedPreferences.getInstance();
-  }
+  LocalRepository(this._pref);
 
   Future<void> save(String key, String value) async {
     await _pref.setString(key, value);

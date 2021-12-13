@@ -7,9 +7,12 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/*.freezed.dart": true,
         "**/.project": true,
         "**/.settings": true,
-        "**/.factorypath": true
+        "**/*.g.dart": true,
+        "**/*.freezed.dartt": true
     },
     "explorerExclude.backup": null
 }

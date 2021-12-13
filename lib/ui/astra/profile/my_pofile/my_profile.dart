@@ -1,9 +1,11 @@
-import 'package:astra_app/ui/astra/home_screen.dart';
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/astra/profile/my_pofile/photo/image_pick_screen.dart';
 import 'package:astra_app/ui/astra/profile/my_pofile/photo/show_image_full_screen.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/icons/svg_icon.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -76,12 +78,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             ProfileLogoScreen(
               isEditMode: _isEditMode,
               onPickImage: () {
-                Navigator.of(context, rootNavigator: true)
-                    .pushNamed(ImagePickScreen.routeName);
+                AutoRouter.of(context).push(const ImagePickScreenRoute());
               },
               onShowImage: () {
-                Navigator.of(context, rootNavigator: true)
-                    .pushNamed(ShowImageFullScreen.routeName);
+                AutoRouter.of(context).push(const ShowImageFullScreenRoute());
               },
             ),
             const SizedBox(height: 8),
