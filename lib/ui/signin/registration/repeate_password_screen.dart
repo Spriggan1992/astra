@@ -1,4 +1,5 @@
 import 'package:astra_app/bloc/password/password_cubit.dart';
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/astra_appbar.dart';
@@ -6,7 +7,7 @@ import 'package:astra_app/ui/glodal/widgets/scaffolds/save_scaffold.dart';
 
 import 'package:astra_app/ui/signin/registration/password_screen.dart';
 
-import 'package:astra_app/ui/signin/splash_screen.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,15 +15,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RepeatePasswordScreen extends StatefulWidget {
   const RepeatePasswordScreen({Key? key}) : super(key: key);
-
-  static const String routeName = '/repeatepasswordscreen';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const RepeatePasswordScreen(),
-    );
-  }
 
   @override
   State<RepeatePasswordScreen> createState() => _RepeatePasswordScreenState();
@@ -82,7 +74,7 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
         elevation: 0,
         title: '',
         onPressed: () {
-          Navigator.of(context).popAndPushNamed(PasswordScreen.routeName);
+          AutoRouter.of(context).popAndPush(const PasswordScreenRoute());
         },
       ),
       body: SingleChildScrollView(
@@ -251,8 +243,8 @@ class _RepeatePasswordScreenState extends State<RepeatePasswordScreen> {
                           title: 'Продолжить',
                           onTap: () {
                             context.read<PasswordCubit>().savePassword();
-                            Navigator.pushNamed(
-                                context, SplashScreen.routeName);
+                            AutoRouter.of(context)
+                                .push(const SplashScreenRoute());
                           },
                           type: ButtonType.success),
                     ),

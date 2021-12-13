@@ -1,5 +1,6 @@
 import 'package:astra_app/bloc/bottom_nav/bottom_nav_bar_cubit.dart';
 import 'package:astra_app/enums/bottom_nav_bar_item.dart';
+import 'package:astra_app/injection.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/tab_navigator.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -12,18 +13,18 @@ import '../glodal/widgets/scaffolds/astra_bottom_nav_bar.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  static const String routeName = '/homescreen';
+  // static const String routeName = '/homescreen';
 
-  static Route route() {
-    return PageRouteBuilder(
-      settings: const RouteSettings(name: routeName),
-      transitionDuration: const Duration(seconds: 0),
-      pageBuilder: (_, __, ___) => BlocProvider<BottomNavBarCubit>(
-        create: (_) => BottomNavBarCubit(),
-        child: HomeScreen(),
-      ),
-    );
-  }
+  // static Route route() {
+  //   return PageRouteBuilder(
+  //     settings: const RouteSettings(name: routeName),
+  //     transitionDuration: const Duration(seconds: 0),
+  //     pageBuilder: (_, __, ___) => BlocProvider<BottomNavBarCubit>(
+  //       create: (_) => BottomNavBarCubit(),
+  //       child: HomeScreen(),
+  //     ),
+  //   );
+  // }
 
   final Map<BottomNavBarItem, GlobalKey<NavigatorState>> navigatorKeys = {
     BottomNavBarItem.search: GlobalKey<NavigatorState>(),
@@ -47,61 +48,64 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BottomNavBarCubit, BotomNavBarState>(
-      builder: (context, state) {
-        return Scaffold(
-          body: Stack(
-            children: items
-                .map(
-                  (item, _) => MapEntry(
-                    item,
-                    _buildOffstageNavigator(item, item == state.selectedItem),
-                  ),
-                )
-                .values
-                .toList(),
-          ),
-          bottomNavigationBar: AstraBottomNavBar(
-            selectedIndex: currentIndex,
-            onTapSearch: () {
-              changeIndex(0);
-              final selectedItem = BottomNavBarItem.values[0];
-              _selectBottomNavBar(
-                context,
-                selectedItem,
-                selectedItem == state.selectedItem,
-              );
-            },
-            onTapFav: () {
-              changeIndex(1);
-              final selectedItem = BottomNavBarItem.values[1];
-              _selectBottomNavBar(
-                context,
-                selectedItem,
-                selectedItem == state.selectedItem,
-              );
-            },
-            onTapMessage: () {
-              changeIndex(2);
-              final selectedItem = BottomNavBarItem.values[2];
-              _selectBottomNavBar(
-                context,
-                selectedItem,
-                selectedItem == state.selectedItem,
-              );
-            },
-            onTapSettings: () {
-              changeIndex(3);
-              final selectedItem = BottomNavBarItem.values[3];
-              _selectBottomNavBar(
-                context,
-                selectedItem,
-                selectedItem == state.selectedItem,
-              );
-            },
-          ),
-        );
-      },
+    return BlocProvider(
+      create: (_) => getIt<BottomNavBarCubit>(),
+      child: BlocBuilder<BottomNavBarCubit, BotomNavBarState>(
+        builder: (context, state) {
+          return Scaffold(
+            body: Stack(
+              children: items
+                  .map(
+                    (item, _) => MapEntry(
+                      item,
+                      _buildOffstageNavigator(item, item == state.selectedItem),
+                    ),
+                  )
+                  .values
+                  .toList(),
+            ),
+            bottomNavigationBar: AstraBottomNavBar(
+              selectedIndex: currentIndex,
+              onTapSearch: () {
+                changeIndex(0);
+                final selectedItem = BottomNavBarItem.values[0];
+                _selectBottomNavBar(
+                  context,
+                  selectedItem,
+                  selectedItem == state.selectedItem,
+                );
+              },
+              onTapFav: () {
+                changeIndex(1);
+                final selectedItem = BottomNavBarItem.values[1];
+                _selectBottomNavBar(
+                  context,
+                  selectedItem,
+                  selectedItem == state.selectedItem,
+                );
+              },
+              onTapMessage: () {
+                changeIndex(2);
+                final selectedItem = BottomNavBarItem.values[2];
+                _selectBottomNavBar(
+                  context,
+                  selectedItem,
+                  selectedItem == state.selectedItem,
+                );
+              },
+              onTapSettings: () {
+                changeIndex(3);
+                final selectedItem = BottomNavBarItem.values[3];
+                _selectBottomNavBar(
+                  context,
+                  selectedItem,
+                  selectedItem == state.selectedItem,
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:astra_app/enums/favorite_screen_type.dart';
 import 'package:astra_app/ui/config/colors.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +74,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            AutoRouter.of(context).pop();
           },
           icon: const Icon(
             CupertinoIcons.back,

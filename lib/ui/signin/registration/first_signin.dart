@@ -1,8 +1,9 @@
 import 'package:astra_app/bloc/login/login_cubit.dart';
+import 'package:astra_app/routes/app_router.gr.dart';
 import 'package:astra_app/ui/config/colors.dart';
 import 'package:astra_app/ui/glodal/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/ui/glodal/widgets/scaffolds/save_scaffold.dart';
-import 'package:astra_app/ui/signin/registration/sms_code_screen.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -124,7 +125,9 @@ class FirstSignin extends StatelessWidget {
                     child: AstraGradientButton(
                         title: 'Продолжить',
                         onTap: () {
-                          Navigator.pushNamed(context, SmsCodeScreen.routeName);
+                          AutoRouter.of(context).push(
+                            const SmsCodeScreenRoute(),
+                          );
                         },
                         type: ButtonType.success),
                   );
