@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import 'api/auth/infrastructure/sembast_database.dart';
-import 'run_astra_app.dart';
+import 'infrastructure/core/database/sembast_database.dart';
+import 'presentation/core/run_astra_app.dart';
 
 void main() async {
   await _appInitializer();
