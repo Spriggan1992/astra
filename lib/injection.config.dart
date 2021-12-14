@@ -8,18 +8,18 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i5;
 
-import 'api/auth/application/auth/auth_bloc.dart' as _i14;
-import 'api/auth/application/code/code_bloc.dart' as _i3;
-import 'api/auth/application/password/password_bloc.dart' as _i11;
-import 'api/auth/application/phone/phone_bloc.dart' as _i12;
-import 'api/auth/application/repeat_password/repeat_password_bloc.dart' as _i13;
-import 'api/auth/infrastructure/auth_api_service.dart' as _i10;
-import 'api/auth/infrastructure/i_auth_api_service.dart' as _i9;
-import 'api/auth/infrastructure/i_local_storage.dart' as _i6;
-import 'api/auth/infrastructure/local_storage.dart' as _i7;
-import 'api/auth/infrastructure/sembast_database.dart' as _i4;
-import 'di/app_injectable_module.dart' as _i15;
-import 'repositories/local_repository.dart'
+import 'application/auth/auth/auth_bloc.dart' as _i13;
+import 'application/auth/code/code_bloc.dart' as _i3;
+import 'application/auth/confirm_password/confirm_password_bloc.dart' as _i14;
+import 'application/auth/password/password_bloc.dart' as _i11;
+import 'application/auth/phone/phone_bloc.dart' as _i12;
+import 'domain/auth/i_auth_api_service.dart' as _i9;
+import 'infrastructure/auth/repositories/auth_api_service.dart' as _i10;
+import 'infrastructure/auth/repositories/i_local_storage.dart' as _i6;
+import 'infrastructure/auth/repositories/local_storage.dart' as _i7;
+import 'infrastructure/core/database/sembast_database.dart' as _i4;
+import 'infrastructure/core/di/app_injectable_module.dart' as _i15;
+import 'infrastructure/core/repositories/local_repository.dart'
     as _i8; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -41,9 +41,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i11.PasswordBloc>(
       () => _i11.PasswordBloc(get<_i9.IAuthApiService>()));
   gh.factory<_i12.PhoneBloc>(() => _i12.PhoneBloc(get<_i9.IAuthApiService>()));
-  gh.factory<_i13.RepeatPasswordBloc>(
-      () => _i13.RepeatPasswordBloc(get<_i9.IAuthApiService>()));
-  gh.factory<_i14.AuthBloc>(() => _i14.AuthBloc(get<_i9.IAuthApiService>()));
+  gh.factory<_i13.AuthBloc>(() => _i13.AuthBloc(get<_i9.IAuthApiService>()));
+  gh.factory<_i14.ConfirmPasswordBloc>(
+      () => _i14.ConfirmPasswordBloc(get<_i9.IAuthApiService>()));
   return get;
 }
 
