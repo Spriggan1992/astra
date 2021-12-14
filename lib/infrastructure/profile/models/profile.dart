@@ -1,29 +1,58 @@
 import 'package:equatable/equatable.dart';
 
 class Profile extends Equatable {
-  final String name;
+  final int id;
+  final int curatorId;
+  final String phoneNumber;
+  final String firstname;
+  final String lastname;
   final int age;
-  final String info;
-  final bool isFullInfo;
+  final int height;
+  final String gender;
+  final String status;
+  final bool haveChild;
+  final String country;
+  final String city;
+  final List profilePhotos; // ??
+  final List curatorPhotos; // ??
+  final String profileInfo;
+  final String createdAt;
+  final String savedAt;
+  final bool isActive;
+  final bool draft;
   final bool isHidden;
-  // final Person curator;
+  final bool showInfo;
 
-  const Profile({
-    required this.name,
-    required this.age,
-    required this.info,
-    required this.isFullInfo,
-    required this.isHidden,
-    // required this.curator,
-  });
+  const Profile(
+    this.id,
+    this.curatorId,
+    this.phoneNumber,
+    this.firstname,
+    this.lastname,
+    this.age,
+    this.height,
+    this.gender,
+    this.status,
+    this.haveChild,
+    this.country,
+    this.city,
+    this.profilePhotos,
+    this.curatorPhotos,
+    this.profileInfo,
+    this.createdAt,
+    this.savedAt,
+    this.isActive,
+    this.draft,
+    this.isHidden,
+    this.showInfo,
+  );
 
   @override
   List<Object?> get props => [
-        name,
+        firstname,
         age,
-        info,
-        isFullInfo,
+        profileInfo,
+        showInfo,
         isHidden,
-        // curator,
       ];
 }
