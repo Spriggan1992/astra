@@ -15,9 +15,9 @@ class SembastDatabase {
   Future<void> init() async {
     if (_hasBeenInitialized) return;
     _hasBeenInitialized = true;
-    final dbDirectoiry = await getApplicationDocumentsDirectory();
-    dbDirectoiry.create(recursive: true);
-    final dbPath = join(dbDirectoiry.path, 'db.sembast');
+    final dbDirectory = await getApplicationDocumentsDirectory();
+    dbDirectory.create(recursive: true);
+    final dbPath = join(dbDirectory.path, 'db.sembast');
     _instance = await databaseFactoryIo.openDatabase(dbPath);
   }
 }

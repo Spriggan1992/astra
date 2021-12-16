@@ -49,11 +49,11 @@ class Auth {
     }
   }
 
-  Future checkResetToken(String phone, String resetToken) async {
+  Future checkSmsCode(String phone, String resetToken) async {
     Response<dynamic> res;
     try {
       var body = Map.from({"phone_number": phone, "code": resetToken});
-      res = await _dio.post(Endpoints.auth.checkResetToken, data: body);
+      res = await _dio.post(Endpoints.auth.checkSmsCode, data: body);
       log("${res.statusCode}: ${res.requestOptions.path}\n${res.data}",
           name: "Auth.checkResetToken");
       return res;

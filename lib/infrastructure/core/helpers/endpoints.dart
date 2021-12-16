@@ -14,7 +14,7 @@ class _AuthEndpoints {
   String get checkPhone => _address + "user/auth/check/phone/";
   String get login => _address + "user/auth/login/";
   String get passwordReset => _address + "user/auth/reset/create/";
-  String get checkResetToken => _address + "user/auth/reset/check/";
+  String get checkSmsCode => _address + "user/auth/reset/check/";
   String get resetPassword => _address + "user/auth/reset/password/";
 }
 

@@ -1,14 +1,18 @@
 import 'package:astra_app/infrastructure/chat/models/chat/chat.dart';
 import 'package:astra_app/infrastructure/chat/models/chat/message.dart';
-import 'dart:math';
+import 'dart:math' as math;
+import 'package:dio/dio.dart';
+import 'package:astra_app/infrastructure/core/helpers/endpoints.dart';
+import 'dart:developer';
 
 const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-Random _rnd = Random();
+math.Random _rnd = math.Random();
 
 String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
     length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
 class Chats {
+  final _dio = Dio();
   Chats();
 
   List<Chat> _chats = [];
@@ -33,6 +37,21 @@ class Chats {
       ),
     );
     return Future.delayed(const Duration(milliseconds: 500), () => {});
+  }
+
+  fetchRealChats(String token) async {
+    Response<dynamic> res;
+    try {
+      _dio.options.headers['Authorization'] = 'Bearer $token';
+      res = await _dio.get(Endpoints.chat.chats);
+      log("${res.statusCode}: ${res.requestOptions.path}\n${res.data}",
+          time: DateTime.now(), name: "Chat.fetchChats");
+      // _chats.addAll(res);
+    } on DioError catch (e) {
+      log("${e.response?.statusCode}: ${e.response?.data}",
+          name: "Chat.fetchChats");
+      return e.response?.data;
+    }
   }
 
   Future<Chat> getChat({required int id}) {
