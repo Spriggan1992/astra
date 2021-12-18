@@ -9,13 +9,18 @@ class AstraElevatedButton extends StatelessWidget {
   /// Button click event handler.
   final VoidCallback? onClick;
 
+  /// A flag responsible for enabling button.
   final bool isEnableButton;
+
+  /// A flag responsible for showing progress indicator when loading data.
+  final bool isLoading;
 
   const AstraElevatedButton({
     Key? key,
     required this.onClick,
     required this.title,
     this.isEnableButton = true,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
@@ -33,12 +38,19 @@ class AstraElevatedButton extends StatelessWidget {
         onPressed: isEnableButton ? onClick : null,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
-            ),
+          child: SizedBox(
+            width: isLoading ? 20 : null,
+            height: 20,
+            child: isLoading
+                ? const CircularProgressIndicator(
+                    color: AstraColors.white,
+                    strokeWidth: 2,
+                  )
+                : Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.white),
+                  ),
           ),
         ),
       ),

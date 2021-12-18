@@ -1,9 +1,9 @@
 import 'package:astra_app/infrastructure/auth/DTOs/auth_info_dto.dart';
-import 'package:astra_app/infrastructure/core/database/sembast_database.dart';
+import 'package:astra_app/infrastructure/core/database/sembast/sembast_database.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
 
-import 'i_local_storage.dart';
+import '../../../domain/auth/repositories/i_local_storage.dart';
 
 const _storeName = 'phoneNumber';
 
@@ -50,9 +50,9 @@ class LocalStorage implements ILocalStorage {
     final response = await _store.findFirst(_sembastDatabase.instance);
     final authInfo = AuthInfoDTO.fromJson(response!.value);
     final newAuthInfo = AuthInfoDTO(
-        phoneNumber: authInfo.phoneNumber,
-        password: authInfo.password,
-        isSignIn: false);
+      phoneNumber: authInfo.phoneNumber,
+      password: authInfo.password,
+    );
     await _store.delete(_sembastDatabase.instance);
     await _store.record(1).put(_sembastDatabase.instance, newAuthInfo.toJson());
   }

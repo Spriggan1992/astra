@@ -23,12 +23,12 @@ class _$AuthFailureTearOff {
     );
   }
 
-  _FailAuthorization failAuthorization() {
-    return const _FailAuthorization();
+  _Storage storage() {
+    return const _Storage();
   }
 
-  _UserNotExist userNotExist() {
-    return const _UserNotExist();
+  _NoConnection noConnection() {
+    return const _NoConnection();
   }
 }
 
@@ -40,44 +40,44 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) server,
-    required TResult Function() failAuthorization,
-    required TResult Function() userNotExist,
+    required TResult Function() storage,
+    required TResult Function() noConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Server value) server,
-    required TResult Function(_FailAuthorization value) failAuthorization,
-    required TResult Function(_UserNotExist value) userNotExist,
+    required TResult Function(_Storage value) storage,
+    required TResult Function(_NoConnection value) noConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -162,8 +162,8 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) server,
-    required TResult Function() failAuthorization,
-    required TResult Function() userNotExist,
+    required TResult Function() storage,
+    required TResult Function() noConnection,
   }) {
     return server(message);
   }
@@ -172,8 +172,8 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
   }) {
     return server?.call(message);
   }
@@ -182,8 +182,8 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
     required TResult orElse(),
   }) {
     if (server != null) {
@@ -196,8 +196,8 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Server value) server,
-    required TResult Function(_FailAuthorization value) failAuthorization,
-    required TResult Function(_UserNotExist value) userNotExist,
+    required TResult Function(_Storage value) storage,
+    required TResult Function(_NoConnection value) noConnection,
   }) {
     return server(this);
   }
@@ -206,8 +206,8 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
   }) {
     return server?.call(this);
   }
@@ -216,8 +216,8 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
     required TResult orElse(),
   }) {
     if (server != null) {
@@ -237,38 +237,35 @@ abstract class _Server extends AuthFailure {
 }
 
 /// @nodoc
-abstract class _$FailAuthorizationCopyWith<$Res> {
-  factory _$FailAuthorizationCopyWith(
-          _FailAuthorization value, $Res Function(_FailAuthorization) then) =
-      __$FailAuthorizationCopyWithImpl<$Res>;
+abstract class _$StorageCopyWith<$Res> {
+  factory _$StorageCopyWith(_Storage value, $Res Function(_Storage) then) =
+      __$StorageCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FailAuthorizationCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$FailAuthorizationCopyWith<$Res> {
-  __$FailAuthorizationCopyWithImpl(
-      _FailAuthorization _value, $Res Function(_FailAuthorization) _then)
-      : super(_value, (v) => _then(v as _FailAuthorization));
+class __$StorageCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$StorageCopyWith<$Res> {
+  __$StorageCopyWithImpl(_Storage _value, $Res Function(_Storage) _then)
+      : super(_value, (v) => _then(v as _Storage));
 
   @override
-  _FailAuthorization get _value => super._value as _FailAuthorization;
+  _Storage get _value => super._value as _Storage;
 }
 
 /// @nodoc
 
-class _$_FailAuthorization extends _FailAuthorization {
-  const _$_FailAuthorization() : super._();
+class _$_Storage extends _Storage {
+  const _$_Storage() : super._();
 
   @override
   String toString() {
-    return 'AuthFailure.failAuthorization()';
+    return 'AuthFailure.storage()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FailAuthorization);
+        (other.runtimeType == runtimeType && other is _Storage);
   }
 
   @override
@@ -278,32 +275,32 @@ class _$_FailAuthorization extends _FailAuthorization {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) server,
-    required TResult Function() failAuthorization,
-    required TResult Function() userNotExist,
+    required TResult Function() storage,
+    required TResult Function() noConnection,
   }) {
-    return failAuthorization();
+    return storage();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
   }) {
-    return failAuthorization?.call();
+    return storage?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
     required TResult orElse(),
   }) {
-    if (failAuthorization != null) {
-      return failAuthorization();
+    if (storage != null) {
+      return storage();
     }
     return orElse();
   }
@@ -312,74 +309,74 @@ class _$_FailAuthorization extends _FailAuthorization {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Server value) server,
-    required TResult Function(_FailAuthorization value) failAuthorization,
-    required TResult Function(_UserNotExist value) userNotExist,
+    required TResult Function(_Storage value) storage,
+    required TResult Function(_NoConnection value) noConnection,
   }) {
-    return failAuthorization(this);
+    return storage(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
   }) {
-    return failAuthorization?.call(this);
+    return storage?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
     required TResult orElse(),
   }) {
-    if (failAuthorization != null) {
-      return failAuthorization(this);
+    if (storage != null) {
+      return storage(this);
     }
     return orElse();
   }
 }
 
-abstract class _FailAuthorization extends AuthFailure {
-  const factory _FailAuthorization() = _$_FailAuthorization;
-  const _FailAuthorization._() : super._();
+abstract class _Storage extends AuthFailure {
+  const factory _Storage() = _$_Storage;
+  const _Storage._() : super._();
 }
 
 /// @nodoc
-abstract class _$UserNotExistCopyWith<$Res> {
-  factory _$UserNotExistCopyWith(
-          _UserNotExist value, $Res Function(_UserNotExist) then) =
-      __$UserNotExistCopyWithImpl<$Res>;
+abstract class _$NoConnectionCopyWith<$Res> {
+  factory _$NoConnectionCopyWith(
+          _NoConnection value, $Res Function(_NoConnection) then) =
+      __$NoConnectionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UserNotExistCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$UserNotExistCopyWith<$Res> {
-  __$UserNotExistCopyWithImpl(
-      _UserNotExist _value, $Res Function(_UserNotExist) _then)
-      : super(_value, (v) => _then(v as _UserNotExist));
+class __$NoConnectionCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$NoConnectionCopyWith<$Res> {
+  __$NoConnectionCopyWithImpl(
+      _NoConnection _value, $Res Function(_NoConnection) _then)
+      : super(_value, (v) => _then(v as _NoConnection));
 
   @override
-  _UserNotExist get _value => super._value as _UserNotExist;
+  _NoConnection get _value => super._value as _NoConnection;
 }
 
 /// @nodoc
 
-class _$_UserNotExist extends _UserNotExist {
-  const _$_UserNotExist() : super._();
+class _$_NoConnection extends _NoConnection {
+  const _$_NoConnection() : super._();
 
   @override
   String toString() {
-    return 'AuthFailure.userNotExist()';
+    return 'AuthFailure.noConnection()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UserNotExist);
+        (other.runtimeType == runtimeType && other is _NoConnection);
   }
 
   @override
@@ -389,32 +386,32 @@ class _$_UserNotExist extends _UserNotExist {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) server,
-    required TResult Function() failAuthorization,
-    required TResult Function() userNotExist,
+    required TResult Function() storage,
+    required TResult Function() noConnection,
   }) {
-    return userNotExist();
+    return noConnection();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
   }) {
-    return userNotExist?.call();
+    return noConnection?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? failAuthorization,
-    TResult Function()? userNotExist,
+    TResult Function()? storage,
+    TResult Function()? noConnection,
     required TResult orElse(),
   }) {
-    if (userNotExist != null) {
-      return userNotExist();
+    if (noConnection != null) {
+      return noConnection();
     }
     return orElse();
   }
@@ -423,38 +420,38 @@ class _$_UserNotExist extends _UserNotExist {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Server value) server,
-    required TResult Function(_FailAuthorization value) failAuthorization,
-    required TResult Function(_UserNotExist value) userNotExist,
+    required TResult Function(_Storage value) storage,
+    required TResult Function(_NoConnection value) noConnection,
   }) {
-    return userNotExist(this);
+    return noConnection(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
   }) {
-    return userNotExist?.call(this);
+    return noConnection?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_FailAuthorization value)? failAuthorization,
-    TResult Function(_UserNotExist value)? userNotExist,
+    TResult Function(_Storage value)? storage,
+    TResult Function(_NoConnection value)? noConnection,
     required TResult orElse(),
   }) {
-    if (userNotExist != null) {
-      return userNotExist(this);
+    if (noConnection != null) {
+      return noConnection(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserNotExist extends AuthFailure {
-  const factory _UserNotExist() = _$_UserNotExist;
-  const _UserNotExist._() : super._();
+abstract class _NoConnection extends AuthFailure {
+  const factory _NoConnection() = _$_NoConnection;
+  const _NoConnection._() : super._();
 }

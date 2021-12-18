@@ -22,7 +22,7 @@ class NavigationBar extends StatelessWidget {
   const NavigationBar({
     Key? key,
     required this.items,
-    this.currentIndex = 0,
+    this.currentIndex = 1,
     this.onTap,
     this.selectedItemColor = AstraColors.golden,
     this.unselectedItemColor = AstraColors.white03,

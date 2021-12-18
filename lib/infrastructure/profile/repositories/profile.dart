@@ -1,4 +1,4 @@
-import 'package:astra_app/infrastructure/core/helpers/endpoints.dart';
+import 'package:astra_app/infrastructure/core/http/endpoints.dart';
 import 'package:dio/dio.dart';
 import 'dart:developer';
 
@@ -14,8 +14,10 @@ class Profile {
           time: DateTime.now(), name: "Profile.getProfile");
       return res;
     } on DioError catch (e) {
-      log("${e.response?.statusCode}: ${e.response?.data}",
-          name: "Profile.getProfile");
+      log(
+        "${e.response?.statusCode}: ${e.response?.data}",
+        name: "Profile.getProfile",
+      );
       return e.response?.data;
     }
   }
@@ -117,7 +119,8 @@ class Profile {
     Response<dynamic> res;
     try {
       _dio.options.headers['Authorization'] = 'Bearer $token';
-      res = await _dio.delete(Endpoints.user.deletePhoto, data: {"image_id": imageId});
+      res = await _dio
+          .delete(Endpoints.user.deletePhoto, data: {"image_id": imageId});
       log("${res.statusCode}: ${res.requestOptions.path}\n${res.data}",
           time: DateTime.now(), name: "Profile.deletePhoto");
       return res;
@@ -132,7 +135,8 @@ class Profile {
     Response<dynamic> res;
     try {
       _dio.options.headers['Authorization'] = 'Bearer $token';
-      res = await _dio.post(Endpoints.user.updateShortInfo, data: {"info": info});
+      res =
+          await _dio.post(Endpoints.user.updateShortInfo, data: {"info": info});
       log("${res.statusCode}: ${res.requestOptions.path}\n${res.data}",
           time: DateTime.now(), name: "Profile.updateShortInfo");
       return res;
@@ -147,7 +151,8 @@ class Profile {
     Response<dynamic> res;
     try {
       _dio.options.headers['Authorization'] = 'Bearer $token';
-      res = await _dio.post(Endpoints.user.updateStatus, data: {"status": status});
+      res = await _dio
+          .post(Endpoints.user.updateStatus, data: {"status": status});
       log("${res.statusCode}: ${res.requestOptions.path}\n${res.data}",
           time: DateTime.now(), name: "Profile.UpdateStatus");
       return res;

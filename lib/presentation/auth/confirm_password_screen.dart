@@ -4,6 +4,7 @@ import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/auth/widgets/pin_code_field.dart';
 import 'package:astra_app/presentation/auth/widgets/screen_content.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/widgets/buttons/astra_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -51,12 +52,11 @@ class ConfirmPasswordScreen extends StatelessWidget {
                   : "",
               style: const TextStyle(color: AstraColors.red),
             ),
-            isEnableButton: state.isEnableBtn,
-            clickButton: () {
-              context
-                  .read<ConfirmPasswordBloc>()
-                  .add(const ConfirmPasswordEvent.pressedButn());
-            },
+            button: AstraElevatedButton(
+              isEnableButton: true,
+              title: 'Продолжить',
+              onClick: () {},
+            ),
           );
         },
       ),

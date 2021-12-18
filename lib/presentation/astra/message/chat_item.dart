@@ -3,12 +3,12 @@ import 'package:astra_app/presentation/core/theming/gradients.dart';
 import 'package:flutter/material.dart';
 
 class ChatItemCard extends StatelessWidget {
-  const ChatItemCard(
-      {Key? key,
-      required this.sent,
-      required this.timeSent,
-      required this.text})
-      : super(key: key);
+  const ChatItemCard({
+    Key? key,
+    required this.sent,
+    required this.timeSent,
+    required this.text,
+  }) : super(key: key);
 
   final bool sent;
   final String timeSent;
@@ -24,6 +24,24 @@ class ChatItemCard extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           constraints:
               BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 1.4),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            gradient: (sent)
+                ? const LinearGradient(
+                    colors: Gradients.blueGradient,
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    tileMode: TileMode.decal,
+                    stops: [0.0, 1.0],
+                  )
+                : const LinearGradient(
+                    colors: Gradients.grayGradient,
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    tileMode: TileMode.decal,
+                    stops: [0.0, 1.0],
+                  ),
+          ),
           child: Stack(
             children: [
               Text(
@@ -46,22 +64,6 @@ class ChatItemCard extends StatelessWidget {
                 right: 0,
               ),
             ],
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            gradient: (sent)
-                ? const LinearGradient(
-                    colors: Gradients.blueGradient,
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    tileMode: TileMode.decal,
-                    stops: [0.0, 1.0])
-                : const LinearGradient(
-                    colors: Gradients.grayGradient,
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    tileMode: TileMode.decal,
-                    stops: [0.0, 1.0]),
           ),
         ),
         //Expanded(child: Container(), flex: 1),

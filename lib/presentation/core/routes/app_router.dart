@@ -48,6 +48,7 @@ import 'package:auto_route/auto_route.dart';
           path: '',
           name: 'FavoritesRouter',
           page: FavoriteScreen,
+          initial: true,
         ),
         AutoRoute(
           path: 'message',

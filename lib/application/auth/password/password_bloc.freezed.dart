@@ -30,12 +30,6 @@ class _$PasswordEventTearOff {
     );
   }
 
-  _SubmittedPassword submittedPassword(String password) {
-    return _SubmittedPassword(
-      password,
-    );
-  }
-
   _PressedButn pressedButn() {
     return const _PressedButn();
   }
@@ -50,7 +44,6 @@ mixin _$PasswordEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, String? code) initialized,
     required TResult Function(String password) changedPassword,
-    required TResult Function(String password) submittedPassword,
     required TResult Function() pressedButn,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +51,6 @@ mixin _$PasswordEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
   }) =>
       throw _privateConstructorUsedError;
@@ -66,7 +58,6 @@ mixin _$PasswordEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
     required TResult orElse(),
   }) =>
@@ -75,7 +66,6 @@ mixin _$PasswordEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedPassword value) changedPassword,
-    required TResult Function(_SubmittedPassword value) submittedPassword,
     required TResult Function(_PressedButn value) pressedButn,
   }) =>
       throw _privateConstructorUsedError;
@@ -83,7 +73,6 @@ mixin _$PasswordEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
   }) =>
       throw _privateConstructorUsedError;
@@ -91,7 +80,6 @@ mixin _$PasswordEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
     required TResult orElse(),
   }) =>
@@ -192,7 +180,6 @@ class _$_Initialized implements _Initialized {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, String? code) initialized,
     required TResult Function(String password) changedPassword,
-    required TResult Function(String password) submittedPassword,
     required TResult Function() pressedButn,
   }) {
     return initialized(phoneNumber, code);
@@ -203,7 +190,6 @@ class _$_Initialized implements _Initialized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
   }) {
     return initialized?.call(phoneNumber, code);
@@ -214,7 +200,6 @@ class _$_Initialized implements _Initialized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
     required TResult orElse(),
   }) {
@@ -229,7 +214,6 @@ class _$_Initialized implements _Initialized {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedPassword value) changedPassword,
-    required TResult Function(_SubmittedPassword value) submittedPassword,
     required TResult Function(_PressedButn value) pressedButn,
   }) {
     return initialized(this);
@@ -240,7 +224,6 @@ class _$_Initialized implements _Initialized {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
   }) {
     return initialized?.call(this);
@@ -251,7 +234,6 @@ class _$_Initialized implements _Initialized {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
     required TResult orElse(),
   }) {
@@ -339,7 +321,6 @@ class _$_ChangedPassword implements _ChangedPassword {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, String? code) initialized,
     required TResult Function(String password) changedPassword,
-    required TResult Function(String password) submittedPassword,
     required TResult Function() pressedButn,
   }) {
     return changedPassword(password);
@@ -350,7 +331,6 @@ class _$_ChangedPassword implements _ChangedPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
   }) {
     return changedPassword?.call(password);
@@ -361,7 +341,6 @@ class _$_ChangedPassword implements _ChangedPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
     required TResult orElse(),
   }) {
@@ -376,7 +355,6 @@ class _$_ChangedPassword implements _ChangedPassword {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedPassword value) changedPassword,
-    required TResult Function(_SubmittedPassword value) submittedPassword,
     required TResult Function(_PressedButn value) pressedButn,
   }) {
     return changedPassword(this);
@@ -387,7 +365,6 @@ class _$_ChangedPassword implements _ChangedPassword {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
   }) {
     return changedPassword?.call(this);
@@ -398,7 +375,6 @@ class _$_ChangedPassword implements _ChangedPassword {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
     required TResult orElse(),
   }) {
@@ -415,152 +391,6 @@ abstract class _ChangedPassword implements PasswordEvent {
   String get password;
   @JsonKey(ignore: true)
   _$ChangedPasswordCopyWith<_ChangedPassword> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$SubmittedPasswordCopyWith<$Res> {
-  factory _$SubmittedPasswordCopyWith(
-          _SubmittedPassword value, $Res Function(_SubmittedPassword) then) =
-      __$SubmittedPasswordCopyWithImpl<$Res>;
-  $Res call({String password});
-}
-
-/// @nodoc
-class __$SubmittedPasswordCopyWithImpl<$Res>
-    extends _$PasswordEventCopyWithImpl<$Res>
-    implements _$SubmittedPasswordCopyWith<$Res> {
-  __$SubmittedPasswordCopyWithImpl(
-      _SubmittedPassword _value, $Res Function(_SubmittedPassword) _then)
-      : super(_value, (v) => _then(v as _SubmittedPassword));
-
-  @override
-  _SubmittedPassword get _value => super._value as _SubmittedPassword;
-
-  @override
-  $Res call({
-    Object? password = freezed,
-  }) {
-    return _then(_SubmittedPassword(
-      password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SubmittedPassword implements _SubmittedPassword {
-  const _$_SubmittedPassword(this.password);
-
-  @override
-  final String password;
-
-  @override
-  String toString() {
-    return 'PasswordEvent.submittedPassword(password: $password)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SubmittedPassword &&
-            const DeepCollectionEquality().equals(other.password, password));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(password));
-
-  @JsonKey(ignore: true)
-  @override
-  _$SubmittedPasswordCopyWith<_SubmittedPassword> get copyWith =>
-      __$SubmittedPasswordCopyWithImpl<_SubmittedPassword>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber, String? code) initialized,
-    required TResult Function(String password) changedPassword,
-    required TResult Function(String password) submittedPassword,
-    required TResult Function() pressedButn,
-  }) {
-    return submittedPassword(password);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber, String? code)? initialized,
-    TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
-    TResult Function()? pressedButn,
-  }) {
-    return submittedPassword?.call(password);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber, String? code)? initialized,
-    TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
-    TResult Function()? pressedButn,
-    required TResult orElse(),
-  }) {
-    if (submittedPassword != null) {
-      return submittedPassword(password);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initialized value) initialized,
-    required TResult Function(_ChangedPassword value) changedPassword,
-    required TResult Function(_SubmittedPassword value) submittedPassword,
-    required TResult Function(_PressedButn value) pressedButn,
-  }) {
-    return submittedPassword(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initialized value)? initialized,
-    TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
-    TResult Function(_PressedButn value)? pressedButn,
-  }) {
-    return submittedPassword?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialized value)? initialized,
-    TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
-    TResult Function(_PressedButn value)? pressedButn,
-    required TResult orElse(),
-  }) {
-    if (submittedPassword != null) {
-      return submittedPassword(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SubmittedPassword implements PasswordEvent {
-  const factory _SubmittedPassword(String password) = _$_SubmittedPassword;
-
-  String get password;
-  @JsonKey(ignore: true)
-  _$SubmittedPasswordCopyWith<_SubmittedPassword> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -606,7 +436,6 @@ class _$_PressedButn implements _PressedButn {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, String? code) initialized,
     required TResult Function(String password) changedPassword,
-    required TResult Function(String password) submittedPassword,
     required TResult Function() pressedButn,
   }) {
     return pressedButn();
@@ -617,7 +446,6 @@ class _$_PressedButn implements _PressedButn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
   }) {
     return pressedButn?.call();
@@ -628,7 +456,6 @@ class _$_PressedButn implements _PressedButn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, String? code)? initialized,
     TResult Function(String password)? changedPassword,
-    TResult Function(String password)? submittedPassword,
     TResult Function()? pressedButn,
     required TResult orElse(),
   }) {
@@ -643,7 +470,6 @@ class _$_PressedButn implements _PressedButn {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedPassword value) changedPassword,
-    required TResult Function(_SubmittedPassword value) submittedPassword,
     required TResult Function(_PressedButn value) pressedButn,
   }) {
     return pressedButn(this);
@@ -654,7 +480,6 @@ class _$_PressedButn implements _PressedButn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
   }) {
     return pressedButn?.call(this);
@@ -665,7 +490,6 @@ class _$_PressedButn implements _PressedButn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedPassword value)? changedPassword,
-    TResult Function(_SubmittedPassword value)? submittedPassword,
     TResult Function(_PressedButn value)? pressedButn,
     required TResult orElse(),
   }) {
@@ -688,21 +512,23 @@ class _$PasswordStateTearOff {
       {required String phoneNumber,
       required String password,
       required bool isEnableBtn,
-      required bool isShowError,
+      required String errorMessage,
       required bool isSignIn,
-      required AuthInfo authInfo,
       required bool isSuseccfullySignIn,
       required bool redirectToConfirmePassword,
+      required bool isLoading,
+      required bool isNoConnection,
       String? code}) {
     return _PasswordState(
       phoneNumber: phoneNumber,
       password: password,
       isEnableBtn: isEnableBtn,
-      isShowError: isShowError,
+      errorMessage: errorMessage,
       isSignIn: isSignIn,
-      authInfo: authInfo,
       isSuseccfullySignIn: isSuseccfullySignIn,
       redirectToConfirmePassword: redirectToConfirmePassword,
+      isLoading: isLoading,
+      isNoConnection: isNoConnection,
       code: code,
     );
   }
@@ -723,19 +549,22 @@ mixin _$PasswordState {
   bool get isEnableBtn => throw _privateConstructorUsedError;
 
   /// A flag that responsible for displaying error message.
-  bool get isShowError => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
 
   /// A flag responsible for condition if user already was signed in system or not.
   bool get isSignIn => throw _privateConstructorUsedError;
-
-  /// Authorization information.
-  AuthInfo get authInfo => throw _privateConstructorUsedError;
 
   /// A flag that responsible that user successfully signed in.
   bool get isSuseccfullySignIn => throw _privateConstructorUsedError;
 
   /// A flag that responsible for redirect to [ConfirmPasswordScreen].
   bool get redirectToConfirmePassword => throw _privateConstructorUsedError;
+
+  /// A flag responsible fo loading data.
+  bool get isLoading => throw _privateConstructorUsedError;
+
+  /// A flag responsible for show snackbar with no connection error.
+  bool get isNoConnection => throw _privateConstructorUsedError;
 
   /// Sms code.
   ///
@@ -756,14 +585,13 @@ abstract class $PasswordStateCopyWith<$Res> {
       {String phoneNumber,
       String password,
       bool isEnableBtn,
-      bool isShowError,
+      String errorMessage,
       bool isSignIn,
-      AuthInfo authInfo,
       bool isSuseccfullySignIn,
       bool redirectToConfirmePassword,
+      bool isLoading,
+      bool isNoConnection,
       String? code});
-
-  $AuthInfoCopyWith<$Res> get authInfo;
 }
 
 /// @nodoc
@@ -780,11 +608,12 @@ class _$PasswordStateCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? password = freezed,
     Object? isEnableBtn = freezed,
-    Object? isShowError = freezed,
+    Object? errorMessage = freezed,
     Object? isSignIn = freezed,
-    Object? authInfo = freezed,
     Object? isSuseccfullySignIn = freezed,
     Object? redirectToConfirmePassword = freezed,
+    Object? isLoading = freezed,
+    Object? isNoConnection = freezed,
     Object? code = freezed,
   }) {
     return _then(_value.copyWith(
@@ -800,18 +629,14 @@ class _$PasswordStateCopyWithImpl<$Res>
           ? _value.isEnableBtn
           : isEnableBtn // ignore: cast_nullable_to_non_nullable
               as bool,
-      isShowError: isShowError == freezed
-          ? _value.isShowError
-          : isShowError // ignore: cast_nullable_to_non_nullable
-              as bool,
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       isSignIn: isSignIn == freezed
           ? _value.isSignIn
           : isSignIn // ignore: cast_nullable_to_non_nullable
               as bool,
-      authInfo: authInfo == freezed
-          ? _value.authInfo
-          : authInfo // ignore: cast_nullable_to_non_nullable
-              as AuthInfo,
       isSuseccfullySignIn: isSuseccfullySignIn == freezed
           ? _value.isSuseccfullySignIn
           : isSuseccfullySignIn // ignore: cast_nullable_to_non_nullable
@@ -820,18 +645,19 @@ class _$PasswordStateCopyWithImpl<$Res>
           ? _value.redirectToConfirmePassword
           : redirectToConfirmePassword // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNoConnection: isNoConnection == freezed
+          ? _value.isNoConnection
+          : isNoConnection // ignore: cast_nullable_to_non_nullable
+              as bool,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
-  }
-
-  @override
-  $AuthInfoCopyWith<$Res> get authInfo {
-    return $AuthInfoCopyWith<$Res>(_value.authInfo, (value) {
-      return _then(_value.copyWith(authInfo: value));
-    });
   }
 }
 
@@ -846,15 +672,13 @@ abstract class _$PasswordStateCopyWith<$Res>
       {String phoneNumber,
       String password,
       bool isEnableBtn,
-      bool isShowError,
+      String errorMessage,
       bool isSignIn,
-      AuthInfo authInfo,
       bool isSuseccfullySignIn,
       bool redirectToConfirmePassword,
+      bool isLoading,
+      bool isNoConnection,
       String? code});
-
-  @override
-  $AuthInfoCopyWith<$Res> get authInfo;
 }
 
 /// @nodoc
@@ -873,11 +697,12 @@ class __$PasswordStateCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? password = freezed,
     Object? isEnableBtn = freezed,
-    Object? isShowError = freezed,
+    Object? errorMessage = freezed,
     Object? isSignIn = freezed,
-    Object? authInfo = freezed,
     Object? isSuseccfullySignIn = freezed,
     Object? redirectToConfirmePassword = freezed,
+    Object? isLoading = freezed,
+    Object? isNoConnection = freezed,
     Object? code = freezed,
   }) {
     return _then(_PasswordState(
@@ -893,18 +718,14 @@ class __$PasswordStateCopyWithImpl<$Res>
           ? _value.isEnableBtn
           : isEnableBtn // ignore: cast_nullable_to_non_nullable
               as bool,
-      isShowError: isShowError == freezed
-          ? _value.isShowError
-          : isShowError // ignore: cast_nullable_to_non_nullable
-              as bool,
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       isSignIn: isSignIn == freezed
           ? _value.isSignIn
           : isSignIn // ignore: cast_nullable_to_non_nullable
               as bool,
-      authInfo: authInfo == freezed
-          ? _value.authInfo
-          : authInfo // ignore: cast_nullable_to_non_nullable
-              as AuthInfo,
       isSuseccfullySignIn: isSuseccfullySignIn == freezed
           ? _value.isSuseccfullySignIn
           : isSuseccfullySignIn // ignore: cast_nullable_to_non_nullable
@@ -912,6 +733,14 @@ class __$PasswordStateCopyWithImpl<$Res>
       redirectToConfirmePassword: redirectToConfirmePassword == freezed
           ? _value.redirectToConfirmePassword
           : redirectToConfirmePassword // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNoConnection: isNoConnection == freezed
+          ? _value.isNoConnection
+          : isNoConnection // ignore: cast_nullable_to_non_nullable
               as bool,
       code: code == freezed
           ? _value.code
@@ -928,11 +757,12 @@ class _$_PasswordState implements _PasswordState {
       {required this.phoneNumber,
       required this.password,
       required this.isEnableBtn,
-      required this.isShowError,
+      required this.errorMessage,
       required this.isSignIn,
-      required this.authInfo,
       required this.isSuseccfullySignIn,
       required this.redirectToConfirmePassword,
+      required this.isLoading,
+      required this.isNoConnection,
       this.code});
 
   @override
@@ -950,15 +780,11 @@ class _$_PasswordState implements _PasswordState {
   @override
 
   /// A flag that responsible for displaying error message.
-  final bool isShowError;
+  final String errorMessage;
   @override
 
   /// A flag responsible for condition if user already was signed in system or not.
   final bool isSignIn;
-  @override
-
-  /// Authorization information.
-  final AuthInfo authInfo;
   @override
 
   /// A flag that responsible that user successfully signed in.
@@ -969,6 +795,14 @@ class _$_PasswordState implements _PasswordState {
   final bool redirectToConfirmePassword;
   @override
 
+  /// A flag responsible fo loading data.
+  final bool isLoading;
+  @override
+
+  /// A flag responsible for show snackbar with no connection error.
+  final bool isNoConnection;
+  @override
+
   /// Sms code.
   ///
   /// Can be [null], if the user already had been registered before.
@@ -976,7 +810,7 @@ class _$_PasswordState implements _PasswordState {
 
   @override
   String toString() {
-    return 'PasswordState(phoneNumber: $phoneNumber, password: $password, isEnableBtn: $isEnableBtn, isShowError: $isShowError, isSignIn: $isSignIn, authInfo: $authInfo, isSuseccfullySignIn: $isSuseccfullySignIn, redirectToConfirmePassword: $redirectToConfirmePassword, code: $code)';
+    return 'PasswordState(phoneNumber: $phoneNumber, password: $password, isEnableBtn: $isEnableBtn, errorMessage: $errorMessage, isSignIn: $isSignIn, isSuseccfullySignIn: $isSuseccfullySignIn, redirectToConfirmePassword: $redirectToConfirmePassword, isLoading: $isLoading, isNoConnection: $isNoConnection, code: $code)';
   }
 
   @override
@@ -990,13 +824,15 @@ class _$_PasswordState implements _PasswordState {
             const DeepCollectionEquality()
                 .equals(other.isEnableBtn, isEnableBtn) &&
             const DeepCollectionEquality()
-                .equals(other.isShowError, isShowError) &&
+                .equals(other.errorMessage, errorMessage) &&
             const DeepCollectionEquality().equals(other.isSignIn, isSignIn) &&
-            const DeepCollectionEquality().equals(other.authInfo, authInfo) &&
             const DeepCollectionEquality()
                 .equals(other.isSuseccfullySignIn, isSuseccfullySignIn) &&
             const DeepCollectionEquality().equals(
                 other.redirectToConfirmePassword, redirectToConfirmePassword) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.isNoConnection, isNoConnection) &&
             const DeepCollectionEquality().equals(other.code, code));
   }
 
@@ -1006,11 +842,12 @@ class _$_PasswordState implements _PasswordState {
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(isEnableBtn),
-      const DeepCollectionEquality().hash(isShowError),
+      const DeepCollectionEquality().hash(errorMessage),
       const DeepCollectionEquality().hash(isSignIn),
-      const DeepCollectionEquality().hash(authInfo),
       const DeepCollectionEquality().hash(isSuseccfullySignIn),
       const DeepCollectionEquality().hash(redirectToConfirmePassword),
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(isNoConnection),
       const DeepCollectionEquality().hash(code));
 
   @JsonKey(ignore: true)
@@ -1024,11 +861,12 @@ abstract class _PasswordState implements PasswordState {
       {required String phoneNumber,
       required String password,
       required bool isEnableBtn,
-      required bool isShowError,
+      required String errorMessage,
       required bool isSignIn,
-      required AuthInfo authInfo,
       required bool isSuseccfullySignIn,
       required bool redirectToConfirmePassword,
+      required bool isLoading,
+      required bool isNoConnection,
       String? code}) = _$_PasswordState;
 
   @override
@@ -1046,15 +884,11 @@ abstract class _PasswordState implements PasswordState {
   @override
 
   /// A flag that responsible for displaying error message.
-  bool get isShowError;
+  String get errorMessage;
   @override
 
   /// A flag responsible for condition if user already was signed in system or not.
   bool get isSignIn;
-  @override
-
-  /// Authorization information.
-  AuthInfo get authInfo;
   @override
 
   /// A flag that responsible that user successfully signed in.
@@ -1063,6 +897,14 @@ abstract class _PasswordState implements PasswordState {
 
   /// A flag that responsible for redirect to [ConfirmPasswordScreen].
   bool get redirectToConfirmePassword;
+  @override
+
+  /// A flag responsible fo loading data.
+  bool get isLoading;
+  @override
+
+  /// A flag responsible for show snackbar with no connection error.
+  bool get isNoConnection;
   @override
 
   /// Sms code.

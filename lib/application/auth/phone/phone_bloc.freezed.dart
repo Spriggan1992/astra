@@ -30,10 +30,6 @@ class _$PhoneEventTearOff {
   _PressedBtn pressedBtn() {
     return const _PressedBtn();
   }
-
-  _ResetStates resetStates() {
-    return const _ResetStates();
-  }
 }
 
 /// @nodoc
@@ -46,7 +42,6 @@ mixin _$PhoneEvent {
     required TResult Function() initialized,
     required TResult Function(String value) changedTextValue,
     required TResult Function() pressedBtn,
-    required TResult Function() resetStates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +49,6 @@ mixin _$PhoneEvent {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +56,6 @@ mixin _$PhoneEvent {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,7 +64,6 @@ mixin _$PhoneEvent {
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedTextValue value) changedTextValue,
     required TResult Function(_PressedBtn value) pressedBtn,
-    required TResult Function(_ResetStates value) resetStates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,7 +71,6 @@ mixin _$PhoneEvent {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,7 +78,6 @@ mixin _$PhoneEvent {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -152,7 +142,6 @@ class _$_Initialized implements _Initialized {
     required TResult Function() initialized,
     required TResult Function(String value) changedTextValue,
     required TResult Function() pressedBtn,
-    required TResult Function() resetStates,
   }) {
     return initialized();
   }
@@ -163,7 +152,6 @@ class _$_Initialized implements _Initialized {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
   }) {
     return initialized?.call();
   }
@@ -174,7 +162,6 @@ class _$_Initialized implements _Initialized {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
     required TResult orElse(),
   }) {
     if (initialized != null) {
@@ -189,7 +176,6 @@ class _$_Initialized implements _Initialized {
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedTextValue value) changedTextValue,
     required TResult Function(_PressedBtn value) pressedBtn,
-    required TResult Function(_ResetStates value) resetStates,
   }) {
     return initialized(this);
   }
@@ -200,7 +186,6 @@ class _$_Initialized implements _Initialized {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
   }) {
     return initialized?.call(this);
   }
@@ -211,7 +196,6 @@ class _$_Initialized implements _Initialized {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
     required TResult orElse(),
   }) {
     if (initialized != null) {
@@ -293,7 +277,6 @@ class _$_ChangedTextValue implements _ChangedTextValue {
     required TResult Function() initialized,
     required TResult Function(String value) changedTextValue,
     required TResult Function() pressedBtn,
-    required TResult Function() resetStates,
   }) {
     return changedTextValue(value);
   }
@@ -304,7 +287,6 @@ class _$_ChangedTextValue implements _ChangedTextValue {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
   }) {
     return changedTextValue?.call(value);
   }
@@ -315,7 +297,6 @@ class _$_ChangedTextValue implements _ChangedTextValue {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
     required TResult orElse(),
   }) {
     if (changedTextValue != null) {
@@ -330,7 +311,6 @@ class _$_ChangedTextValue implements _ChangedTextValue {
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedTextValue value) changedTextValue,
     required TResult Function(_PressedBtn value) pressedBtn,
-    required TResult Function(_ResetStates value) resetStates,
   }) {
     return changedTextValue(this);
   }
@@ -341,7 +321,6 @@ class _$_ChangedTextValue implements _ChangedTextValue {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
   }) {
     return changedTextValue?.call(this);
   }
@@ -352,7 +331,6 @@ class _$_ChangedTextValue implements _ChangedTextValue {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
     required TResult orElse(),
   }) {
     if (changedTextValue != null) {
@@ -414,7 +392,6 @@ class _$_PressedBtn implements _PressedBtn {
     required TResult Function() initialized,
     required TResult Function(String value) changedTextValue,
     required TResult Function() pressedBtn,
-    required TResult Function() resetStates,
   }) {
     return pressedBtn();
   }
@@ -425,7 +402,6 @@ class _$_PressedBtn implements _PressedBtn {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
   }) {
     return pressedBtn?.call();
   }
@@ -436,7 +412,6 @@ class _$_PressedBtn implements _PressedBtn {
     TResult Function()? initialized,
     TResult Function(String value)? changedTextValue,
     TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
     required TResult orElse(),
   }) {
     if (pressedBtn != null) {
@@ -451,7 +426,6 @@ class _$_PressedBtn implements _PressedBtn {
     required TResult Function(_Initialized value) initialized,
     required TResult Function(_ChangedTextValue value) changedTextValue,
     required TResult Function(_PressedBtn value) pressedBtn,
-    required TResult Function(_ResetStates value) resetStates,
   }) {
     return pressedBtn(this);
   }
@@ -462,7 +436,6 @@ class _$_PressedBtn implements _PressedBtn {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
   }) {
     return pressedBtn?.call(this);
   }
@@ -473,7 +446,6 @@ class _$_PressedBtn implements _PressedBtn {
     TResult Function(_Initialized value)? initialized,
     TResult Function(_ChangedTextValue value)? changedTextValue,
     TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
     required TResult orElse(),
   }) {
     if (pressedBtn != null) {
@@ -488,122 +460,6 @@ abstract class _PressedBtn implements PhoneEvent {
 }
 
 /// @nodoc
-abstract class _$ResetStatesCopyWith<$Res> {
-  factory _$ResetStatesCopyWith(
-          _ResetStates value, $Res Function(_ResetStates) then) =
-      __$ResetStatesCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$ResetStatesCopyWithImpl<$Res> extends _$PhoneEventCopyWithImpl<$Res>
-    implements _$ResetStatesCopyWith<$Res> {
-  __$ResetStatesCopyWithImpl(
-      _ResetStates _value, $Res Function(_ResetStates) _then)
-      : super(_value, (v) => _then(v as _ResetStates));
-
-  @override
-  _ResetStates get _value => super._value as _ResetStates;
-}
-
-/// @nodoc
-
-class _$_ResetStates implements _ResetStates {
-  const _$_ResetStates();
-
-  @override
-  String toString() {
-    return 'PhoneEvent.resetStates()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ResetStates);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initialized,
-    required TResult Function(String value) changedTextValue,
-    required TResult Function() pressedBtn,
-    required TResult Function() resetStates,
-  }) {
-    return resetStates();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initialized,
-    TResult Function(String value)? changedTextValue,
-    TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
-  }) {
-    return resetStates?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialized,
-    TResult Function(String value)? changedTextValue,
-    TResult Function()? pressedBtn,
-    TResult Function()? resetStates,
-    required TResult orElse(),
-  }) {
-    if (resetStates != null) {
-      return resetStates();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initialized value) initialized,
-    required TResult Function(_ChangedTextValue value) changedTextValue,
-    required TResult Function(_PressedBtn value) pressedBtn,
-    required TResult Function(_ResetStates value) resetStates,
-  }) {
-    return resetStates(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initialized value)? initialized,
-    TResult Function(_ChangedTextValue value)? changedTextValue,
-    TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
-  }) {
-    return resetStates?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialized value)? initialized,
-    TResult Function(_ChangedTextValue value)? changedTextValue,
-    TResult Function(_PressedBtn value)? pressedBtn,
-    TResult Function(_ResetStates value)? resetStates,
-    required TResult orElse(),
-  }) {
-    if (resetStates != null) {
-      return resetStates(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ResetStates implements PhoneEvent {
-  const factory _ResetStates() = _$_ResetStates;
-}
-
-/// @nodoc
 class _$PhoneStateTearOff {
   const _$PhoneStateTearOff();
 
@@ -611,12 +467,16 @@ class _$PhoneStateTearOff {
       {required String phoneNumber,
       required bool isEnableBtn,
       required bool redirectToPasswordScreen,
-      required bool redirectConfirmCode}) {
+      required bool redirectConfirmCode,
+      required bool isLoading,
+      required bool isNoConnection}) {
     return _PhoneState(
       phoneNumber: phoneNumber,
       isEnableBtn: isEnableBtn,
       redirectToPasswordScreen: redirectToPasswordScreen,
       redirectConfirmCode: redirectConfirmCode,
+      isLoading: isLoading,
+      isNoConnection: isNoConnection,
     );
   }
 }
@@ -638,6 +498,12 @@ mixin _$PhoneState {
   /// A flag that responsible for redirect to [CodeScreen].
   bool get redirectConfirmCode => throw _privateConstructorUsedError;
 
+  /// A flag responsible for loading data.
+  bool get isLoading => throw _privateConstructorUsedError;
+
+  /// A flag responsible for show snackbar with no connection error.
+  bool get isNoConnection => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $PhoneStateCopyWith<PhoneState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -652,7 +518,9 @@ abstract class $PhoneStateCopyWith<$Res> {
       {String phoneNumber,
       bool isEnableBtn,
       bool redirectToPasswordScreen,
-      bool redirectConfirmCode});
+      bool redirectConfirmCode,
+      bool isLoading,
+      bool isNoConnection});
 }
 
 /// @nodoc
@@ -669,6 +537,8 @@ class _$PhoneStateCopyWithImpl<$Res> implements $PhoneStateCopyWith<$Res> {
     Object? isEnableBtn = freezed,
     Object? redirectToPasswordScreen = freezed,
     Object? redirectConfirmCode = freezed,
+    Object? isLoading = freezed,
+    Object? isNoConnection = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: phoneNumber == freezed
@@ -687,6 +557,14 @@ class _$PhoneStateCopyWithImpl<$Res> implements $PhoneStateCopyWith<$Res> {
           ? _value.redirectConfirmCode
           : redirectConfirmCode // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNoConnection: isNoConnection == freezed
+          ? _value.isNoConnection
+          : isNoConnection // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -701,7 +579,9 @@ abstract class _$PhoneStateCopyWith<$Res> implements $PhoneStateCopyWith<$Res> {
       {String phoneNumber,
       bool isEnableBtn,
       bool redirectToPasswordScreen,
-      bool redirectConfirmCode});
+      bool redirectConfirmCode,
+      bool isLoading,
+      bool isNoConnection});
 }
 
 /// @nodoc
@@ -720,6 +600,8 @@ class __$PhoneStateCopyWithImpl<$Res> extends _$PhoneStateCopyWithImpl<$Res>
     Object? isEnableBtn = freezed,
     Object? redirectToPasswordScreen = freezed,
     Object? redirectConfirmCode = freezed,
+    Object? isLoading = freezed,
+    Object? isNoConnection = freezed,
   }) {
     return _then(_PhoneState(
       phoneNumber: phoneNumber == freezed
@@ -738,6 +620,14 @@ class __$PhoneStateCopyWithImpl<$Res> extends _$PhoneStateCopyWithImpl<$Res>
           ? _value.redirectConfirmCode
           : redirectConfirmCode // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNoConnection: isNoConnection == freezed
+          ? _value.isNoConnection
+          : isNoConnection // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -749,7 +639,9 @@ class _$_PhoneState implements _PhoneState {
       {required this.phoneNumber,
       required this.isEnableBtn,
       required this.redirectToPasswordScreen,
-      required this.redirectConfirmCode});
+      required this.redirectConfirmCode,
+      required this.isLoading,
+      required this.isNoConnection});
 
   @override
 
@@ -767,10 +659,18 @@ class _$_PhoneState implements _PhoneState {
 
   /// A flag that responsible for redirect to [CodeScreen].
   final bool redirectConfirmCode;
+  @override
+
+  /// A flag responsible for loading data.
+  final bool isLoading;
+  @override
+
+  /// A flag responsible for show snackbar with no connection error.
+  final bool isNoConnection;
 
   @override
   String toString() {
-    return 'PhoneState(phoneNumber: $phoneNumber, isEnableBtn: $isEnableBtn, redirectToPasswordScreen: $redirectToPasswordScreen, redirectConfirmCode: $redirectConfirmCode)';
+    return 'PhoneState(phoneNumber: $phoneNumber, isEnableBtn: $isEnableBtn, redirectToPasswordScreen: $redirectToPasswordScreen, redirectConfirmCode: $redirectConfirmCode, isLoading: $isLoading, isNoConnection: $isNoConnection)';
   }
 
   @override
@@ -785,7 +685,10 @@ class _$_PhoneState implements _PhoneState {
             const DeepCollectionEquality().equals(
                 other.redirectToPasswordScreen, redirectToPasswordScreen) &&
             const DeepCollectionEquality()
-                .equals(other.redirectConfirmCode, redirectConfirmCode));
+                .equals(other.redirectConfirmCode, redirectConfirmCode) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.isNoConnection, isNoConnection));
   }
 
   @override
@@ -794,7 +697,9 @@ class _$_PhoneState implements _PhoneState {
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(isEnableBtn),
       const DeepCollectionEquality().hash(redirectToPasswordScreen),
-      const DeepCollectionEquality().hash(redirectConfirmCode));
+      const DeepCollectionEquality().hash(redirectConfirmCode),
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(isNoConnection));
 
   @JsonKey(ignore: true)
   @override
@@ -807,7 +712,9 @@ abstract class _PhoneState implements PhoneState {
       {required String phoneNumber,
       required bool isEnableBtn,
       required bool redirectToPasswordScreen,
-      required bool redirectConfirmCode}) = _$_PhoneState;
+      required bool redirectConfirmCode,
+      required bool isLoading,
+      required bool isNoConnection}) = _$_PhoneState;
 
   @override
 
@@ -825,6 +732,14 @@ abstract class _PhoneState implements PhoneState {
 
   /// A flag that responsible for redirect to [CodeScreen].
   bool get redirectConfirmCode;
+  @override
+
+  /// A flag responsible for loading data.
+  bool get isLoading;
+  @override
+
+  /// A flag responsible for show snackbar with no connection error.
+  bool get isNoConnection;
   @override
   @JsonKey(ignore: true)
   _$PhoneStateCopyWith<_PhoneState> get copyWith =>

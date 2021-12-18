@@ -37,16 +37,17 @@ class StoreDialog extends StatelessWidget {
     );
   }
 
-  _buildLineText(String text) {
+  Widget _buildLineText(String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: const TextStyle(
-            color: AstraColors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600),
+          color: AstraColors.black,
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }

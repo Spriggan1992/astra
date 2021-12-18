@@ -8,14 +8,12 @@ part of 'auth_info_dto.dart';
 
 _$_AuthInfoDTO _$$_AuthInfoDTOFromJson(Map<String, dynamic> json) =>
     _$_AuthInfoDTO(
-      phoneNumber: json['phoneNumber'] as String,
+      phoneNumber: json['phone_number'] as String,
       password: json['password'] as String,
-      isSignIn: json['isSignIn'] as bool,
     );
 
 Map<String, dynamic> _$$_AuthInfoDTOToJson(_$_AuthInfoDTO instance) =>
     <String, dynamic>{
-      'phoneNumber': instance.phoneNumber,
+      'phone_number': instance.phoneNumber,
       'password': instance.password,
-      'isSignIn': instance.isSignIn,
     };

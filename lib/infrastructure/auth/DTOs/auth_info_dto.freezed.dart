@@ -22,13 +22,11 @@ class _$AuthInfoDTOTearOff {
   const _$AuthInfoDTOTearOff();
 
   _AuthInfoDTO call(
-      {required String phoneNumber,
-      required String password,
-      required bool isSignIn}) {
+      {@JsonKey(name: 'phone_number') required String phoneNumber,
+      @JsonKey(name: 'password') required String password}) {
     return _AuthInfoDTO(
       phoneNumber: phoneNumber,
       password: password,
-      isSignIn: isSignIn,
     );
   }
 
@@ -42,9 +40,13 @@ const $AuthInfoDTO = _$AuthInfoDTOTearOff();
 
 /// @nodoc
 mixin _$AuthInfoDTO {
+  /// Phone numberfor sending to server.
+  @JsonKey(name: 'phone_number')
   String get phoneNumber => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError; // Temp property.
-  bool get isSignIn => throw _privateConstructorUsedError;
+
+  /// Password for sending to server.
+  @JsonKey(name: 'password')
+  String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +59,9 @@ abstract class $AuthInfoDTOCopyWith<$Res> {
   factory $AuthInfoDTOCopyWith(
           AuthInfoDTO value, $Res Function(AuthInfoDTO) then) =
       _$AuthInfoDTOCopyWithImpl<$Res>;
-  $Res call({String phoneNumber, String password, bool isSignIn});
+  $Res call(
+      {@JsonKey(name: 'phone_number') String phoneNumber,
+      @JsonKey(name: 'password') String password});
 }
 
 /// @nodoc
@@ -72,7 +76,6 @@ class _$AuthInfoDTOCopyWithImpl<$Res> implements $AuthInfoDTOCopyWith<$Res> {
   $Res call({
     Object? phoneNumber = freezed,
     Object? password = freezed,
-    Object? isSignIn = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: phoneNumber == freezed
@@ -83,10 +86,6 @@ class _$AuthInfoDTOCopyWithImpl<$Res> implements $AuthInfoDTOCopyWith<$Res> {
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      isSignIn: isSignIn == freezed
-          ? _value.isSignIn
-          : isSignIn // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -98,7 +97,9 @@ abstract class _$AuthInfoDTOCopyWith<$Res>
           _AuthInfoDTO value, $Res Function(_AuthInfoDTO) then) =
       __$AuthInfoDTOCopyWithImpl<$Res>;
   @override
-  $Res call({String phoneNumber, String password, bool isSignIn});
+  $Res call(
+      {@JsonKey(name: 'phone_number') String phoneNumber,
+      @JsonKey(name: 'password') String password});
 }
 
 /// @nodoc
@@ -115,7 +116,6 @@ class __$AuthInfoDTOCopyWithImpl<$Res> extends _$AuthInfoDTOCopyWithImpl<$Res>
   $Res call({
     Object? phoneNumber = freezed,
     Object? password = freezed,
-    Object? isSignIn = freezed,
   }) {
     return _then(_AuthInfoDTO(
       phoneNumber: phoneNumber == freezed
@@ -126,10 +126,6 @@ class __$AuthInfoDTOCopyWithImpl<$Res> extends _$AuthInfoDTOCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      isSignIn: isSignIn == freezed
-          ? _value.isSignIn
-          : isSignIn // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -138,24 +134,27 @@ class __$AuthInfoDTOCopyWithImpl<$Res> extends _$AuthInfoDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AuthInfoDTO extends _AuthInfoDTO {
   const _$_AuthInfoDTO(
-      {required this.phoneNumber,
-      required this.password,
-      required this.isSignIn})
+      {@JsonKey(name: 'phone_number') required this.phoneNumber,
+      @JsonKey(name: 'password') required this.password})
       : super._();
 
   factory _$_AuthInfoDTO.fromJson(Map<String, dynamic> json) =>
       _$$_AuthInfoDTOFromJson(json);
 
   @override
+
+  /// Phone numberfor sending to server.
+  @JsonKey(name: 'phone_number')
   final String phoneNumber;
   @override
+
+  /// Password for sending to server.
+  @JsonKey(name: 'password')
   final String password;
-  @override // Temp property.
-  final bool isSignIn;
 
   @override
   String toString() {
-    return 'AuthInfoDTO(phoneNumber: $phoneNumber, password: $password, isSignIn: $isSignIn)';
+    return 'AuthInfoDTO(phoneNumber: $phoneNumber, password: $password)';
   }
 
   @override
@@ -165,16 +164,14 @@ class _$_AuthInfoDTO extends _AuthInfoDTO {
             other is _AuthInfoDTO &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.isSignIn, isSignIn));
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(isSignIn));
+      const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
   @override
@@ -189,20 +186,23 @@ class _$_AuthInfoDTO extends _AuthInfoDTO {
 
 abstract class _AuthInfoDTO extends AuthInfoDTO {
   const factory _AuthInfoDTO(
-      {required String phoneNumber,
-      required String password,
-      required bool isSignIn}) = _$_AuthInfoDTO;
+      {@JsonKey(name: 'phone_number') required String phoneNumber,
+      @JsonKey(name: 'password') required String password}) = _$_AuthInfoDTO;
   const _AuthInfoDTO._() : super._();
 
   factory _AuthInfoDTO.fromJson(Map<String, dynamic> json) =
       _$_AuthInfoDTO.fromJson;
 
   @override
+
+  /// Phone numberfor sending to server.
+  @JsonKey(name: 'phone_number')
   String get phoneNumber;
   @override
+
+  /// Password for sending to server.
+  @JsonKey(name: 'password')
   String get password;
-  @override // Temp property.
-  bool get isSignIn;
   @override
   @JsonKey(ignore: true)
   _$AuthInfoDTOCopyWith<_AuthInfoDTO> get copyWith =>

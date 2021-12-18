@@ -13,7 +13,7 @@ class ContinueDialog extends StatelessWidget {
     return Dialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0)), //this right here
-      child: Container(
+      child: SizedBox(
         height: 125,
         child: Padding(
           padding: const EdgeInsets.all(12.0),
