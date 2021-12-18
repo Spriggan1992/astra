@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/auth/i_auth_api_service.dart';
+import 'package:astra_app/domain/auth/repositories/i_auth_api_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -27,30 +27,38 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
           emit(
             state.copyWith(
                 phoneNumber: e.value,
-                isEnableBtn: e.value.length >= 12,
+                isEnableBtn: e.value.length == 11,
                 redirectConfirmCode: false,
                 redirectToPasswordScreen: false),
           );
         },
         pressedBtn: (e) async {
-          final hasAlreadyRegistered =
-              await _apiService.getAuthInfo(state.phoneNumber);
+          emit(state.copyWith(isLoading: true));
+          final hasAlreadyRegistered = await _apiService.checkPhoneNumber(
+            state.phoneNumber,
+          );
           emit(
-            state.copyWith(
-              redirectConfirmCode: hasAlreadyRegistered.isLeft(),
-              redirectToPasswordScreen: hasAlreadyRegistered.isRight(),
+            hasAlreadyRegistered.fold(
+              (failure) => failure.maybeWhen(
+                noConnection: () => state.copyWith(
+                  isNoConnection: true,
+                ),
+                orElse: () => state.copyWith(
+                  redirectConfirmCode: true,
+                ),
+              ),
+              (success) => state.copyWith(
+                redirectToPasswordScreen: success,
+              ),
             ),
           );
-        },
-        resetStates: (e) async {
-          emit(
-            state.copyWith(
-              isEnableBtn: state.phoneNumber.length >= 12,
+          emit(state.copyWith(
+              isEnableBtn: state.phoneNumber.length == 11,
               phoneNumber: state.phoneNumber,
               redirectConfirmCode: false,
               redirectToPasswordScreen: false,
-            ),
-          );
+              isNoConnection: false,
+              isLoading: false));
         },
       );
     });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class AppTheme {
   static ThemeData lightTheme = _buildLightAppTheme();
 
@@ -26,7 +27,7 @@ class AppTheme {
     );
   }
 
-  static _lightTextTheme(TextTheme baseTextTheme) {
+  static TextTheme _lightTextTheme(TextTheme baseTextTheme) {
     return baseTextTheme.copyWith();
   }
 }

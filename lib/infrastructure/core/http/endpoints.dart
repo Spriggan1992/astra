@@ -1,4 +1,4 @@
-import 'package:astra_app/infrastructure/core/helpers/server_address.dart';
+import 'package:astra_app/infrastructure/core/http/server_address.dart';
 
 class Endpoints {
   static get auth => _AuthEndpoints();

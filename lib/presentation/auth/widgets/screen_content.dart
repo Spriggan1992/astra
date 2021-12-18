@@ -1,4 +1,3 @@
-import 'package:astra_app/presentation/core/widgets/buttons/astra_elevated_button.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +9,8 @@ class ScreenContent extends StatelessWidget {
   /// A text field to display.
   final Widget textFieldContent;
 
-  /// Button click event handler.
-  final VoidCallback? clickButton;
+  /// Botton widget.
+  final Widget button;
 
   /// App bar backpress click event handler.
   final VoidCallback? onBackPresed;
@@ -19,15 +18,13 @@ class ScreenContent extends StatelessWidget {
   /// A notification message to display.
   final Widget? notificationMessageContent;
 
-  final bool isEnableButton;
   const ScreenContent({
     Key? key,
     required this.title,
     required this.textFieldContent,
-    required this.clickButton,
+    required this.button,
     this.notificationMessageContent,
     this.onBackPresed,
-    this.isEnableButton = true,
   }) : super(key: key);
 
   @override
@@ -67,11 +64,7 @@ class ScreenContent extends StatelessWidget {
                 ],
               ),
             ),
-            AstraElevatedButton(
-              isEnableButton: isEnableButton,
-              title: 'Продолжить',
-              onClick: clickButton,
-            )
+            button
           ],
         ),
       ),

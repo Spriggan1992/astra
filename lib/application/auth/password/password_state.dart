@@ -13,13 +13,10 @@ class PasswordState with _$PasswordState {
     required bool isEnableBtn,
 
     /// A flag that responsible for displaying error message.
-    required bool isShowError,
+    required String errorMessage,
 
     /// A flag responsible for condition if user already was signed in system or not.
     required bool isSignIn,
-
-    /// Authorization information.
-    required AuthInfo authInfo,
 
     /// A flag that responsible that user successfully signed in.
     required bool isSuseccfullySignIn,
@@ -27,19 +24,26 @@ class PasswordState with _$PasswordState {
     /// A flag that responsible for redirect to [ConfirmPasswordScreen].
     required bool redirectToConfirmePassword,
 
+    /// A flag responsible fo loading data.
+    required bool isLoading,
+
+    /// A flag responsible for show snackbar with no connection error.
+    required bool isNoConnection,
+
     /// Sms code.
     ///
     /// Can be [null], if the user already had been registered before.
     String? code,
   }) = _PasswordState;
-  factory PasswordState.initial() => PasswordState(
+  factory PasswordState.initial() => const PasswordState(
         phoneNumber: '',
         password: '',
         isEnableBtn: false,
-        isShowError: false,
+        errorMessage: '',
         isSignIn: false,
-        authInfo: AuthInfo.empty(),
         isSuseccfullySignIn: false,
         redirectToConfirmePassword: false,
+        isLoading: false,
+        isNoConnection: false,
       );
 }

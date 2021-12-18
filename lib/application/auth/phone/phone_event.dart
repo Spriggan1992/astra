@@ -10,7 +10,4 @@ class PhoneEvent with _$PhoneEvent {
 
   /// Button click event.
   const factory PhoneEvent.pressedBtn() = _PressedBtn;
-
-  /// Reset all states event.
-  const factory PhoneEvent.resetStates() = _ResetStates;
 }

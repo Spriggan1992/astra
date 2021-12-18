@@ -24,7 +24,6 @@ class MessageLitTile extends StatelessWidget {
     return Ink(
       color: (selected) ? const Color.fromRGBO(240, 241, 243, 1) : Colors.white,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           ListTile(
             onTap: onTap,
@@ -32,7 +31,8 @@ class MessageLitTile extends StatelessWidget {
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             leading: CircleAvatar(
-                backgroundImage: Image.asset('assets/right_girl.png').image),
+              backgroundImage: Image.asset('assets/right_girl.png').image,
+            ),
             title: Text(
               lastMessage.sender,
               style: const TextStyle(
@@ -53,7 +53,7 @@ class MessageLitTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(lastMessage.time),
+                Text(lastMessage.time.toString()),
                 Visibility(
                   visible: selected,
                   child: CircleAvatar(
@@ -62,9 +62,10 @@ class MessageLitTile extends StatelessWidget {
                     child: Text(
                       "$countOfunreadMessages",
                       style: const TextStyle(
-                          color: AstraColors.white,
-                          fontSize: 8,
-                          fontWeight: FontWeight.w700),
+                        color: AstraColors.white,
+                        fontSize: 8,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),

@@ -1,12 +1,23 @@
-class BaseResponse<T> {
-  final int? status;
-  final String? message;
-  final T? data;
-  const BaseResponse({
-    this.status,
-    this.message,
-    this.data,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'base_response.freezed.dart';
+
+@freezed
+class BaseResponse<T> with _$BaseResponse<T> {
+  const BaseResponse._();
+  const factory BaseResponse.noConnection() = _NoConnection;
+  const factory BaseResponse.withDate(T data) = _WithDate<T>;
+}
+
+// class BaseResponse<T> {
+//   final int? status;
+//   final String? message;
+//   final T? data;
+//   const BaseResponse({
+//     this.status,
+//     this.message,
+//     this.data,
+//   });
 
   // Map<String, dynamic> toMap() {
   //   return {
@@ -28,4 +39,4 @@ class BaseResponse<T> {
 
   // factory BaseResponse.fromJson(String source) =>
   //     BaseResponse.fromMap(json.decode(source));
-}
+// }

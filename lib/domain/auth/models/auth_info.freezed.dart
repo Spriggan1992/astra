@@ -17,14 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthInfoTearOff {
   const _$AuthInfoTearOff();
 
-  _AuthInfo call(
-      {required String phoneNumber,
-      required String password,
-      required bool isSignIn}) {
+  _AuthInfo call({required String phoneNumber, required String password}) {
     return _AuthInfo(
       phoneNumber: phoneNumber,
       password: password,
-      isSignIn: isSignIn,
     );
   }
 }
@@ -34,9 +30,11 @@ const $AuthInfo = _$AuthInfoTearOff();
 
 /// @nodoc
 mixin _$AuthInfo {
+  /// Phone number.
   String get phoneNumber => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError; // Temp property.
-  bool get isSignIn => throw _privateConstructorUsedError;
+
+  /// Password.
+  String get password => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthInfoCopyWith<AuthInfo> get copyWith =>
@@ -47,7 +45,7 @@ mixin _$AuthInfo {
 abstract class $AuthInfoCopyWith<$Res> {
   factory $AuthInfoCopyWith(AuthInfo value, $Res Function(AuthInfo) then) =
       _$AuthInfoCopyWithImpl<$Res>;
-  $Res call({String phoneNumber, String password, bool isSignIn});
+  $Res call({String phoneNumber, String password});
 }
 
 /// @nodoc
@@ -62,7 +60,6 @@ class _$AuthInfoCopyWithImpl<$Res> implements $AuthInfoCopyWith<$Res> {
   $Res call({
     Object? phoneNumber = freezed,
     Object? password = freezed,
-    Object? isSignIn = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: phoneNumber == freezed
@@ -73,10 +70,6 @@ class _$AuthInfoCopyWithImpl<$Res> implements $AuthInfoCopyWith<$Res> {
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      isSignIn: isSignIn == freezed
-          ? _value.isSignIn
-          : isSignIn // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -86,7 +79,7 @@ abstract class _$AuthInfoCopyWith<$Res> implements $AuthInfoCopyWith<$Res> {
   factory _$AuthInfoCopyWith(_AuthInfo value, $Res Function(_AuthInfo) then) =
       __$AuthInfoCopyWithImpl<$Res>;
   @override
-  $Res call({String phoneNumber, String password, bool isSignIn});
+  $Res call({String phoneNumber, String password});
 }
 
 /// @nodoc
@@ -102,7 +95,6 @@ class __$AuthInfoCopyWithImpl<$Res> extends _$AuthInfoCopyWithImpl<$Res>
   $Res call({
     Object? phoneNumber = freezed,
     Object? password = freezed,
-    Object? isSignIn = freezed,
   }) {
     return _then(_AuthInfo(
       phoneNumber: phoneNumber == freezed
@@ -113,10 +105,6 @@ class __$AuthInfoCopyWithImpl<$Res> extends _$AuthInfoCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      isSignIn: isSignIn == freezed
-          ? _value.isSignIn
-          : isSignIn // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -124,22 +112,21 @@ class __$AuthInfoCopyWithImpl<$Res> extends _$AuthInfoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthInfo extends _AuthInfo {
-  const _$_AuthInfo(
-      {required this.phoneNumber,
-      required this.password,
-      required this.isSignIn})
+  const _$_AuthInfo({required this.phoneNumber, required this.password})
       : super._();
 
   @override
+
+  /// Phone number.
   final String phoneNumber;
   @override
+
+  /// Password.
   final String password;
-  @override // Temp property.
-  final bool isSignIn;
 
   @override
   String toString() {
-    return 'AuthInfo(phoneNumber: $phoneNumber, password: $password, isSignIn: $isSignIn)';
+    return 'AuthInfo(phoneNumber: $phoneNumber, password: $password)';
   }
 
   @override
@@ -149,16 +136,14 @@ class _$_AuthInfo extends _AuthInfo {
             other is _AuthInfo &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.isSignIn, isSignIn));
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(isSignIn));
+      const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
   @override
@@ -168,17 +153,17 @@ class _$_AuthInfo extends _AuthInfo {
 
 abstract class _AuthInfo extends AuthInfo {
   const factory _AuthInfo(
-      {required String phoneNumber,
-      required String password,
-      required bool isSignIn}) = _$_AuthInfo;
+      {required String phoneNumber, required String password}) = _$_AuthInfo;
   const _AuthInfo._() : super._();
 
   @override
+
+  /// Phone number.
   String get phoneNumber;
   @override
+
+  /// Password.
   String get password;
-  @override // Temp property.
-  bool get isSignIn;
   @override
   @JsonKey(ignore: true)
   _$AuthInfoCopyWith<_AuthInfo> get copyWith =>

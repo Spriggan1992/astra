@@ -7,14 +7,16 @@ part 'auth_info.freezed.dart';
 class AuthInfo with _$AuthInfo {
   const AuthInfo._();
   const factory AuthInfo({
+    /// Phone number.
     required String phoneNumber,
+
+    /// Password.
     required String password,
-    // Temp property.
-    required bool isSignIn,
   }) = _AuthInfo;
+
+  /// Returns an empty user information.
   factory AuthInfo.empty() => const AuthInfo(
         phoneNumber: "",
         password: "",
-        isSignIn: false,
       );
 }

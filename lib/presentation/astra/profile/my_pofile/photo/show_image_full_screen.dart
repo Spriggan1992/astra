@@ -46,14 +46,16 @@ class ShowImageFullScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: IconButton(
                       onPressed: () async {
-                        final result = await showDialog(
+                        await showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return CustomDialog(
                               title: const Text(
                                 "Вы точно хотите удалить фотографию?",
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w600),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               action1: TextButton(
                                 onPressed: () =>
@@ -74,9 +76,6 @@ class ShowImageFullScreen extends StatelessWidget {
                             );
                           },
                         );
-                        if (result) {
-                          //TODO алгоритм удаление через блок и проверка запрещенные фото.
-                        }
                       },
                       icon: const Icon(
                         Icons.delete_outline,

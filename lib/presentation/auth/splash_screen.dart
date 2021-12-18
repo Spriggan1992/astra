@@ -20,10 +20,6 @@ class SplashScreen extends StatelessWidget {
                 initial: (_) {},
                 authenticated: (_) {
                   AutoRouter.of(context).push(const HomeScreenRoute());
-                  // AutoRouter.of(context).pushAndPopUntil(
-                  //   const HomeScreenRoute(),
-                  //   predicate: (route) => false,
-                  // );
                 },
                 unauthenticated: (_) {
                   AutoRouter.of(context).push(const PhoneNumberScreenRoute());

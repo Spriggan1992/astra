@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:astra_app/domain/auth/entities/auth_info.dart';
-import 'package:astra_app/domain/auth/i_auth_api_service.dart';
+import 'package:astra_app/domain/auth/models/auth_info.dart';
+import 'package:astra_app/domain/auth/repositories/i_auth_api_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -44,9 +44,9 @@ class ConfirmPasswordBloc
         pressedButn: (e) async {
           final response = await _apiService.signUp(
             AuthInfo(
-                phoneNumber: state.phoneNumber,
-                password: state.confirmePassword,
-                isSignIn: true),
+              phoneNumber: state.phoneNumber,
+              password: state.confirmePassword,
+            ),
           );
           response.fold(
             (l) => log("что-то пошло не так."),

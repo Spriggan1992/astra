@@ -7,9 +7,11 @@ import 'package:flutter/material.dart';
 import 'chat_item.dart';
 
 class MessageChatScreen extends StatelessWidget {
-  const MessageChatScreen(
-      {Key? key, required this.chat, required this.lastMessage})
-      : super(key: key);
+  const MessageChatScreen({
+    Key? key,
+    required this.chat,
+    required this.lastMessage,
+  }) : super(key: key);
 
   final Chat chat;
   final Message lastMessage;
@@ -62,7 +64,9 @@ class MessageChatScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final message = chat.messages[index];
               return ChatItemCard(
-                  sent: true, text: message.text, timeSent: message.time);
+                  sent: true,
+                  text: message.text,
+                  timeSent: message.time.toString());
             },
           ),
           const Align(
@@ -85,7 +89,7 @@ class _EnterMessageWidget extends StatefulWidget {
 }
 
 class _EnterMessageWidgetState extends State<_EnterMessageWidget> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -95,10 +99,11 @@ class _EnterMessageWidgetState extends State<_EnterMessageWidget> {
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromRGBO(217, 191, 131, 0.8),
-              width: 1,
             ),
             borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(32), topRight: Radius.circular(32)),
+              topLeft: Radius.circular(32),
+              topRight: Radius.circular(32),
+            ),
             gradient: const LinearGradient(
               colors: [
                 Color.fromRGBO(30, 49, 90, 1),
@@ -115,7 +120,7 @@ class _EnterMessageWidgetState extends State<_EnterMessageWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              SizedBox(
                 height: 40,
                 width: (_controller.text.isNotEmpty)
                     ? MediaQuery.of(context).size.width - 80
@@ -127,11 +132,14 @@ class _EnterMessageWidgetState extends State<_EnterMessageWidget> {
                     isDense: true,
                     fillColor: AstraColors.white01,
                     contentPadding: const EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 15.0),
+                      vertical: 10.0,
+                      horizontal: 15.0,
+                    ),
                     hintText: 'Cooбщение',
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                        borderSide: BorderSide.none),
+                      borderRadius: BorderRadius.circular(32.0),
+                      borderSide: BorderSide.none,
+                    ),
                     filled: true,
                   ),
                   onChanged: (value) {

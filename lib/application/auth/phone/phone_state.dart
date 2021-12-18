@@ -14,11 +14,19 @@ class PhoneState with _$PhoneState {
 
     /// A flag that responsible for redirect to [CodeScreen].
     required bool redirectConfirmCode,
+
+    /// A flag responsible for loading data.
+    required bool isLoading,
+
+    /// A flag responsible for show snackbar with no connection error.
+    required bool isNoConnection,
   }) = _PhoneState;
   factory PhoneState.initial() => const PhoneState(
         phoneNumber: "",
         isEnableBtn: false,
         redirectToPasswordScreen: false,
         redirectConfirmCode: false,
+        isLoading: false,
+        isNoConnection: false,
       );
 }

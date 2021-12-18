@@ -6,7 +6,13 @@ part 'auth_failure.freezed.dart';
 @freezed
 class AuthFailure with _$AuthFailure {
   const AuthFailure._();
+
+  /// Returns server error.
   const factory AuthFailure.server([String? message]) = _Server;
-  const factory AuthFailure.failAuthorization() = _FailAuthorization;
-  const factory AuthFailure.userNotExist() = _UserNotExist;
+
+  /// Returns storage error.
+  const factory AuthFailure.storage() = _Storage;
+
+  /// Returns no connection error.
+  const factory AuthFailure.noConnection() = _NoConnection;
 }
