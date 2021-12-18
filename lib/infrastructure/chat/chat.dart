@@ -1,8 +1,8 @@
 import 'package:astra_app/infrastructure/chat/models/chat/chat.dart';
 import 'package:astra_app/infrastructure/chat/models/chat/message.dart';
+import 'package:astra_app/infrastructure/core/http/endpoints.dart';
 import 'dart:math' as math;
 import 'package:dio/dio.dart';
-import 'package:astra_app/infrastructure/core/helpers/endpoints.dart';
 import 'dart:developer';
 
 const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
