@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:astra_app/infrastructure/auth/repositories/authenticator.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -21,7 +23,7 @@ class DioInterceptor extends Interceptor {
     final token = await _authenticator.getSignedToken();
     final modifiedOptions = options
       ..headers.addAll(
-        token == null ? {} : {'Authorization': 'bearer $token'},
+        token == null ? {} : {'Authorization': 'Bearer ${token.access}'},
       );
 
     handler.next(modifiedOptions);
@@ -30,8 +32,12 @@ class DioInterceptor extends Interceptor {
   @override
   Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
     final errorResponse = err.response;
-
-    if (errorResponse != null && errorResponse.statusCode == 401) {
+    //todo: workaround until backing is ready
+    final invalidToken =
+        errorResponse != null && errorResponse.data['code'] != null;
+    if (errorResponse != null &&
+        invalidToken &&
+        errorResponse.statusCode == 401) {
       final token = await _authenticator.getSignedToken();
 
       token != null

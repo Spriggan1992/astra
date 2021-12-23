@@ -40,7 +40,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
             final response = await _apiService.signIn(
               AuthInfo(
                 phoneNumber: state.phoneNumber,
-                password: 'qwerty123',
+                password: state.password,
               ),
             );
             response.fold(

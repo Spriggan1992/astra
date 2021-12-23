@@ -1,6 +1,6 @@
+import 'package:astra_app/domain/core/failure/failure.dart';
 import 'package:astra_app/infrastructure/chat/chat.dart';
 import 'package:astra_app/infrastructure/chat/models/chat/chat.dart';
-import 'package:astra_app/domain/core/failure/failure.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

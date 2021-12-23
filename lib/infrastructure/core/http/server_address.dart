@@ -3,5 +3,3 @@ class ServerAddress {
   final String _apiVer = "v1";
   get relevant => "$_address/$_apiVer/";
 }
-
-
