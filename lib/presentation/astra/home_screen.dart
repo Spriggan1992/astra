@@ -4,7 +4,7 @@ import 'package:astra_app/presentation/core/widgets/scaffolds/navigation_bar.dar
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide NavigationBar;
 
 /// Defines home screen.
 class HomeScreen extends StatelessWidget {

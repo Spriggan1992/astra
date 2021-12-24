@@ -3,15 +3,15 @@ import 'package:dartz/dartz.dart';
 
 /// Describe profile api.
 abstract class IProfileRepository {
-  Future<Either<AstraFilure, dynamic>> getProfile();
-  Future<Either<AstraFilure, dynamic>> hideAccount();
-  Future<Either<AstraFilure, dynamic>> showAccount();
-  Future<Either<AstraFilure, dynamic>> hideAccountInfo();
-  Future<Either<AstraFilure, dynamic>> showAccountInfo();
-  Future<Either<AstraFilure, dynamic>> addPhoto();
-  Future<Either<AstraFilure, dynamic>> updatePhoto();
-  Future<Either<AstraFilure, dynamic>> deletePhoto();
-  Future<Either<AstraFilure, dynamic>> updateShortInfo();
-  Future<Either<AstraFilure, dynamic>> updateStatus();
-  Future<Either<AstraFilure, dynamic>> getStatuses();
+  Future<Either<AstraFailure, dynamic>> getProfile();
+  Future<Either<AstraFailure, dynamic>> hideAccount();
+  Future<Either<AstraFailure, dynamic>> showAccount();
+  Future<Either<AstraFailure, dynamic>> hideAccountInfo();
+  Future<Either<AstraFailure, dynamic>> showAccountInfo();
+  Future<Either<AstraFailure, dynamic>> addPhoto();
+  Future<Either<AstraFailure, dynamic>> updatePhoto();
+  Future<Either<AstraFailure, dynamic>> deletePhoto();
+  Future<Either<AstraFailure, dynamic>> updateShortInfo();
+  Future<Either<AstraFailure, dynamic>> updateStatus();
+  Future<Either<AstraFailure, dynamic>> getStatuses();
 }
