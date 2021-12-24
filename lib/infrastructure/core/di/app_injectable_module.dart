@@ -1,5 +1,6 @@
 import 'package:astra_app/infrastructure/core/database/sembast/sembast_database.dart';
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -22,4 +23,8 @@ abstract class AppInjectableModule {
   /// Initialized dio client.
   @lazySingleton
   Dio get dio => Dio();
+
+  /// Initizlized imagePicker service.
+  @lazySingleton
+  ImagePicker get imagePicker => ImagePicker();
 }

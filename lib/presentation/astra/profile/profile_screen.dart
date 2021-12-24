@@ -92,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: 'Магазин',
                   onTap: () {
-                    AutoRouter.of(context).push(const StoreScreenRoute());
+                    AutoRouter.of(context).push(StoreScreenRoute());
                   },
                 ),
                 ProfileItem(

@@ -60,7 +60,7 @@ class Authenticator {
       final token = Token(
           access: "acess token should be put here",
           refresh: "refresh token should be put here");
-      await _secureStorage.save(token);
+      // await _secureStorage.save(token);
       return right(refreshedToken.data);
     } on FormatException {
       return left(const AuthFailure.server());

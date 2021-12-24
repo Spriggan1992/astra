@@ -1,3 +1,4 @@
+import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/navigation_bar.dart';
 import 'package:auto_route/auto_route.dart';

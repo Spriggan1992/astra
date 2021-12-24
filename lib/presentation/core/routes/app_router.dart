@@ -7,10 +7,10 @@ import 'package:astra_app/presentation/astra/profile/my_pofile/my_profile.dart';
 import 'package:astra_app/presentation/astra/profile/my_pofile/photo/image_pick_screen.dart';
 import 'package:astra_app/presentation/astra/profile/my_pofile/photo/show_image_full_screen.dart';
 import 'package:astra_app/presentation/astra/profile/profile_screen.dart';
-import 'package:astra_app/presentation/astra/profile/store/store_screen.dart';
 import 'package:astra_app/presentation/astra/profile/support/support_screen.dart';
 import 'package:astra_app/presentation/astra/search/search_detail.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
+import 'package:astra_app/presentation/astra/store/store_screen.dart';
 import 'package:astra_app/presentation/auth/code_screen.dart';
 import 'package:astra_app/presentation/auth/confirm_password_screen.dart';
 import 'package:astra_app/presentation/auth/how_to_get_club_screen.dart';
@@ -29,8 +29,8 @@ import 'package:auto_route/auto_route.dart';
     MaterialRoute(page: CodeScreen),
     MaterialRoute(page: PasswordScreen),
     MaterialRoute(page: ConfirmPasswordScreen),
-    MaterialRoute(page: StoreScreen),
     MaterialRoute(page: FinishRegisterScreen),
+    MaterialRoute(page: ImagePickScreen),
     AutoRoute(
       path: '',
       page: HomeScreen,
@@ -65,10 +65,10 @@ import 'package:auto_route/auto_route.dart';
           children: [
             AutoRoute(path: '', page: ProfileScreen),
             AutoRoute(path: ':showImageFullScreen', page: ShowImageFullScreen),
-            AutoRoute(path: ':imagePickScreen', page: ImagePickScreen),
             AutoRoute(path: ':myProfileScreen', page: MyProfileScreen),
             AutoRoute(path: ':aboutScreen', page: AboutScreen),
             AutoRoute(path: ':supportScreen', page: SupportScreen),
+            AutoRoute(path: ':store', page: StoreScreen),
           ],
         ),
       ],

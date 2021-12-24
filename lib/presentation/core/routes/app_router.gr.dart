@@ -17,23 +17,24 @@ import '../../astra/favorite/favorite_screen.dart' as _i11;
 import '../../astra/home_screen.dart' as _i9;
 import '../../astra/message/chat_screen.dart' as _i15;
 import '../../astra/message/message_screen.dart' as _i12;
-import '../../astra/profile/about/about_screen.dart' as _i20;
-import '../../astra/profile/my_pofile/my_profile.dart' as _i19;
-import '../../astra/profile/my_pofile/photo/image_pick_screen.dart' as _i18;
+import '../../astra/profile/about/about_screen.dart' as _i19;
+import '../../astra/profile/my_pofile/my_profile.dart' as _i18;
+import '../../astra/profile/my_pofile/photo/image_pick_screen.dart' as _i8;
 import '../../astra/profile/my_pofile/photo/show_image_full_screen.dart'
     as _i17;
 import '../../astra/profile/profile_screen.dart' as _i16;
-import '../../astra/profile/store/store_screen.dart' as _i7;
-import '../../astra/profile/support/support_screen.dart' as _i21;
+import '../../astra/profile/support/support_screen.dart' as _i20;
 import '../../astra/search/search_detail.dart' as _i14;
 import '../../astra/search/search_screen.dart' as _i13;
+import '../../astra/store/store_screen.dart' as _i21;
 import '../../auth/code_screen.dart' as _i4;
 import '../../auth/confirm_password_screen.dart' as _i6;
 import '../../auth/how_to_get_club_screen.dart' as _i3;
 import '../../auth/password_screen.dart' as _i5;
 import '../../auth/phone_number_screen.dart' as _i2;
 import '../../auth/splash_screen.dart' as _i1;
-import '../../auth/widgets/finish_register_screen.dart' as _i8;
+import '../../auth/widgets/finish_register_screen.dart' as _i7;
+import '../enums/store_screen_qualifier.dart' as _i25;
 
 class AppRouter extends _i10.RootStackRouter {
   AppRouter([_i22.GlobalKey<_i22.NavigatorState>? navigatorKey])
@@ -75,13 +76,13 @@ class AppRouter extends _i10.RootStackRouter {
               phoneNumber: args.phoneNumber,
               confirmePassword: args.confirmePassword));
     },
-    StoreScreenRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i7.StoreScreen());
-    },
     FinishRegisterScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.FinishRegisterScreen());
+          routeData: routeData, child: const _i7.FinishRegisterScreen());
+    },
+    ImagePickScreenRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i8.ImagePickScreen());
     },
     HomeScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
@@ -126,21 +127,25 @@ class AppRouter extends _i10.RootStackRouter {
       return _i10.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i17.ShowImageFullScreen());
     },
-    ImagePickScreenRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i18.ImagePickScreen());
-    },
     MyProfileScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i19.MyProfileScreen());
+          routeData: routeData, child: const _i18.MyProfileScreen());
     },
     AboutScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i20.AboutScreen());
+          routeData: routeData, child: const _i19.AboutScreen());
     },
     SupportScreenRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i21.SupportScreen());
+          routeData: routeData, child: const _i20.SupportScreen());
+    },
+    StoreScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<StoreScreenRouteArgs>(
+          orElse: () => const StoreScreenRouteArgs());
+      return _i10.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i21.StoreScreen(
+              key: args.key, storeQualifer: args.storeQualifer));
     }
   };
 
@@ -155,9 +160,9 @@ class AppRouter extends _i10.RootStackRouter {
         _i10.RouteConfig(PasswordScreenRoute.name, path: '/password-screen'),
         _i10.RouteConfig(ConfirmPasswordScreenRoute.name,
             path: '/confirm-password-screen'),
-        _i10.RouteConfig(StoreScreenRoute.name, path: '/store-screen'),
         _i10.RouteConfig(FinishRegisterScreenRoute.name,
             path: '/finish-register-screen'),
+        _i10.RouteConfig(ImagePickScreenRoute.name, path: '/image-pick-screen'),
         _i10.RouteConfig(HomeScreenRoute.name, path: '', children: [
           _i10.RouteConfig(SearchRouter.name,
               path: 'searche',
@@ -185,14 +190,14 @@ class AppRouter extends _i10.RootStackRouter {
                     path: '', parent: SettingsRouter.name),
                 _i10.RouteConfig(ShowImageFullScreenRoute.name,
                     path: ':showImageFullScreen', parent: SettingsRouter.name),
-                _i10.RouteConfig(ImagePickScreenRoute.name,
-                    path: ':imagePickScreen', parent: SettingsRouter.name),
                 _i10.RouteConfig(MyProfileScreenRoute.name,
                     path: ':myProfileScreen', parent: SettingsRouter.name),
                 _i10.RouteConfig(AboutScreenRoute.name,
                     path: ':aboutScreen', parent: SettingsRouter.name),
                 _i10.RouteConfig(SupportScreenRoute.name,
-                    path: ':supportScreen', parent: SettingsRouter.name)
+                    path: ':supportScreen', parent: SettingsRouter.name),
+                _i10.RouteConfig(StoreScreenRoute.name,
+                    path: ':store', parent: SettingsRouter.name)
               ])
         ])
       ];
@@ -304,19 +309,19 @@ class ConfirmPasswordScreenRouteArgs {
   }
 }
 
-/// generated route for [_i7.StoreScreen]
-class StoreScreenRoute extends _i10.PageRouteInfo<void> {
-  const StoreScreenRoute() : super(name, path: '/store-screen');
-
-  static const String name = 'StoreScreenRoute';
-}
-
-/// generated route for [_i8.FinishRegisterScreen]
+/// generated route for [_i7.FinishRegisterScreen]
 class FinishRegisterScreenRoute extends _i10.PageRouteInfo<void> {
   const FinishRegisterScreenRoute()
       : super(name, path: '/finish-register-screen');
 
   static const String name = 'FinishRegisterScreenRoute';
+}
+
+/// generated route for [_i8.ImagePickScreen]
+class ImagePickScreenRoute extends _i10.PageRouteInfo<void> {
+  const ImagePickScreenRoute() : super(name, path: '/image-pick-screen');
+
+  static const String name = 'ImagePickScreenRoute';
 }
 
 /// generated route for [_i9.HomeScreen]
@@ -417,30 +422,50 @@ class ShowImageFullScreenRoute extends _i10.PageRouteInfo<void> {
   static const String name = 'ShowImageFullScreenRoute';
 }
 
-/// generated route for [_i18.ImagePickScreen]
-class ImagePickScreenRoute extends _i10.PageRouteInfo<void> {
-  const ImagePickScreenRoute() : super(name, path: ':imagePickScreen');
-
-  static const String name = 'ImagePickScreenRoute';
-}
-
-/// generated route for [_i19.MyProfileScreen]
+/// generated route for [_i18.MyProfileScreen]
 class MyProfileScreenRoute extends _i10.PageRouteInfo<void> {
   const MyProfileScreenRoute() : super(name, path: ':myProfileScreen');
 
   static const String name = 'MyProfileScreenRoute';
 }
 
-/// generated route for [_i20.AboutScreen]
+/// generated route for [_i19.AboutScreen]
 class AboutScreenRoute extends _i10.PageRouteInfo<void> {
   const AboutScreenRoute() : super(name, path: ':aboutScreen');
 
   static const String name = 'AboutScreenRoute';
 }
 
-/// generated route for [_i21.SupportScreen]
+/// generated route for [_i20.SupportScreen]
 class SupportScreenRoute extends _i10.PageRouteInfo<void> {
   const SupportScreenRoute() : super(name, path: ':supportScreen');
 
   static const String name = 'SupportScreenRoute';
+}
+
+/// generated route for [_i21.StoreScreen]
+class StoreScreenRoute extends _i10.PageRouteInfo<StoreScreenRouteArgs> {
+  StoreScreenRoute(
+      {_i22.Key? key,
+      _i25.StoreScreenQualifier storeQualifer =
+          _i25.StoreScreenQualifier.storeSettings})
+      : super(name,
+            path: ':store',
+            args: StoreScreenRouteArgs(key: key, storeQualifer: storeQualifer));
+
+  static const String name = 'StoreScreenRoute';
+}
+
+class StoreScreenRouteArgs {
+  const StoreScreenRouteArgs(
+      {this.key, this.storeQualifer = _i25.StoreScreenQualifier.storeSettings});
+
+  final _i22.Key? key;
+
+  final _i25.StoreScreenQualifier storeQualifer;
+
+  @override
+  String toString() {
+    return 'StoreScreenRouteArgs{key: $key, storeQualifer: $storeQualifer}';
+  }
 }

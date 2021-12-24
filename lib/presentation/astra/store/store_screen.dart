@@ -1,25 +1,65 @@
+import 'package:astra_app/application/settings/store/store_actor/store_actor_bloc.dart';
+import 'package:astra_app/application/settings/store/store_bloc.dart';
+import 'package:astra_app/domain/store/models/like.dart';
+import 'package:astra_app/injection.dart';
+import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/buttons/astra_bordered_button.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/store_dialog.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-//TODO Зачем экраны называть одинаковыми названиями? Это вносит только путаницу.
+import 'widgets/astra_check_box.dart';
+import 'widgets/grouped_selected_like_packages.dart';
+
 class StoreScreen extends StatelessWidget {
-  const StoreScreen({Key? key}) : super(key: key);
+  /// Current screen qualifier
+  final StoreScreenQualifier storeQualifer;
+  const StoreScreen(
+      {Key? key, this.storeQualifer = StoreScreenQualifier.storeSettings})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<StoreBloc>()..add(const StoreEvent.initialized()),
+      child: BlocBuilder<StoreBloc, StoreState>(
+        builder: (context, state) {
+          return state.map(
+            initial: (_) => Container(),
+            loadInProgress: (_) => const LoadingScreen(),
+            loadSuccess: (state) => BlocProvider(
+              create: (context) => getIt<StoreActorBloc>()
+                ..add(StoreActorEvent.initialized(state.likes)),
+              child: StoreScreenContent(storeQualifer: storeQualifer),
+            ),
+            loadFailure: (_) => const ErrorScreen(),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class StoreScreenContent extends StatelessWidget {
+  final StoreScreenQualifier storeQualifer;
+  const StoreScreenContent({Key? key, required this.storeQualifer})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async =>
+          storeQualifer == StoreScreenQualifier.storeSettings,
       child: Scaffold(
         appBar: AstraAppBar(
           onPressed: () {
-            //TODO Куда?
+            context.router.pop();
           },
           title: 'Магазин',
           elevation: 0.3,
@@ -56,23 +96,16 @@ class StoreScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            AstraBorderredButton(
-              onTap: () {},
-              title: '3 лайка',
-              withBorder: true,
+            BlocBuilder<StoreActorBloc, StoreActorState>(
+              builder: (context, state) => GroupedSelectedLikePackages(
+                likes: state.likes,
+                onSelectLike: (like) => context
+                    .read<StoreActorBloc>()
+                    .add(StoreActorEvent.likePackageSelected(like)),
+                selectedLike: state.like,
+              ),
             ),
-            const SizedBox(height: 12),
-            AstraGradientLikeButton(
-              onTap: () {},
-              title: '5 лайков',
-            ),
-            const SizedBox(height: 12),
-            AstraBorderredButton(
-              onTap: () {},
-              title: '10 лайков',
-              withBorder: true,
-            ),
-            const _AstraChekBox(),
+            const AstraChekBox(),
             const Divider(
                 color: AstraColors.dividerColor,
                 thickness: 1,
@@ -83,14 +116,20 @@ class StoreScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'К оплате',
                     style: TextStyle(color: AstraColors.black, fontSize: 18),
                   ),
-                  Text(
-                    '7000 руб.',
-                    style: TextStyle(color: AstraColors.black, fontSize: 18),
+                  BlocBuilder<StoreActorBloc, StoreActorState>(
+                    buildWhen: (p, c) => p.like != c.like,
+                    builder: (context, state) {
+                      return Text(
+                        state.like.price.toString(),
+                        style: const TextStyle(
+                            color: AstraColors.black, fontSize: 18),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -104,50 +143,6 @@ class StoreScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _AstraChekBox extends StatefulWidget {
-  const _AstraChekBox({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<_AstraChekBox> createState() => _AstraChekBoxState();
-}
-
-class _AstraChekBoxState extends State<_AstraChekBox> {
-  bool chekBoxValue = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 12, top: 24),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Checkbox(
-            value: chekBoxValue,
-            side: MaterialStateBorderSide.resolveWith(
-              (states) =>
-                  const BorderSide(width: 1.0, color: AstraColors.darkGrey),
-            ),
-            fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-            checkColor: AstraColors.darkGrey,
-            onChanged: (value) {
-              chekBoxValue = value!;
-              setState(() {});
-            },
-          ),
-          const Text(
-            'Автоматически обновлять покупку когда \nзакончатся лайки',
-            style: TextStyle(color: AstraColors.darkGrey, fontSize: 12),
-          ),
-        ],
       ),
     );
   }
