@@ -39,7 +39,9 @@ class StoreScreen extends StatelessWidget {
                 ..add(StoreActorEvent.initialized(state.likes)),
               child: StoreScreenContent(storeQualifer: storeQualifer),
             ),
-            loadFailure: (_) => const ErrorScreen(),
+            loadFailure: (_) => ErrorScreen(
+              onTryAgain: () {},
+            ),
           );
         },
       ),

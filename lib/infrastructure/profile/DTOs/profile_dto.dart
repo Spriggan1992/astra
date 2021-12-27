@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:astra_app/domain/profile/models/profile.dart';
+import 'package:astra_app/infrastructure/image_picker/DTOs/image_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profile_dto.freezed.dart';
 part 'profile_dto.g.dart';
@@ -47,9 +48,12 @@ class ProfileDTO with _$ProfileDTO {
     @JsonKey(name: 'city') required final String city,
 
     /// Users profile photos.
-    @JsonKey(name: 'profile_photos') required final List profilePhotos, // ??
+    @JsonKey(name: 'profile_photos')
+        required final List<ImageDTO> profilePhotos,
+
     /// Curators photos.
-    @JsonKey(name: 'curator_photos') required final List curatorPhotos, // ??
+    @JsonKey(name: 'curator_photos')
+        required final List<ImageDTO> curatorPhotos,
 
     /// Users profileInfo.
     @JsonKey(name: 'profile_info') required final String profileInfo,
@@ -88,8 +92,10 @@ class ProfileDTO with _$ProfileDTO {
       haveChild: _.haveChild,
       country: _.country,
       city: _.city,
-      profilePhotos: _.profilePhotos,
-      curatorPhotos: _.curatorPhotos,
+      profilePhotos:
+          _.profilePhotos.map((e) => ImageDTO.fromDomain(e)).toList(),
+      curatorPhotos:
+          _.curatorPhotos.map((e) => ImageDTO.fromDomain(e)).toList(),
       profileInfo: _.profileInfo,
       createdAt: _.createdAt,
       savedAt: _.savedAt,
@@ -100,6 +106,7 @@ class ProfileDTO with _$ProfileDTO {
     );
   }
 
+  /// Convert DTO to domain.
   Profile toDomain() => Profile(
         id: id,
         curatorId: curatorId,
@@ -113,8 +120,8 @@ class ProfileDTO with _$ProfileDTO {
         haveChild: haveChild,
         country: country,
         city: city,
-        profilePhotos: profilePhotos,
-        curatorPhotos: curatorPhotos,
+        profilePhotos: profilePhotos.map((e) => e.toDomain()).toList(),
+        curatorPhotos: curatorPhotos.map((e) => e.toDomain()).toList(),
         profileInfo: profileInfo,
         createdAt: createdAt,
         savedAt: savedAt,
@@ -128,7 +135,7 @@ class ProfileDTO with _$ProfileDTO {
   factory ProfileDTO.fromJson(Map<String, dynamic> json) =>
       _$ProfileDTOFromJson(json);
 
-  ///
+  /// Convert object to json.
   factory ProfileDTO.toJson() {
     return ProfileDTO.toJson();
   }

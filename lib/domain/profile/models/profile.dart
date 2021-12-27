@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/image_picker/models/image.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profile.freezed.dart';
 
@@ -43,9 +44,10 @@ class Profile with _$Profile {
     required final String city,
 
     /// Users profile photos to diplsy.
-    required final List profilePhotos, // ??
+    required final List<ImageModel> profilePhotos,
+
     /// Curators photos to display.
-    required final List curatorPhotos, // ??
+    required final List<ImageModel> curatorPhotos,
 
     /// Users profileInfo to display.
     required final String profileInfo,
@@ -68,4 +70,36 @@ class Profile with _$Profile {
     /// A flag responsible for hidden account info account.
     required final bool showInfo,
   }) = _Profile;
+
+  /// Get user information.
+  String get userInfo => '$lastname $firstname, $age';
+
+  /// Get user location.
+  String get userLocation => '$country, $city';
+
+  String get curatorInfo => '$country, $city';
+
+  /// Emty profile.
+  factory Profile.empty() => const Profile(
+      id: 0,
+      curatorId: 0,
+      phoneNumber: "",
+      firstname: "",
+      lastname: "",
+      age: 0,
+      height: 0,
+      gender: "",
+      status: "",
+      haveChild: false,
+      country: "",
+      city: "",
+      profilePhotos: [],
+      curatorPhotos: [],
+      profileInfo: "",
+      createdAt: "",
+      savedAt: "",
+      isActive: false,
+      draft: false,
+      isHidden: false,
+      showInfo: false);
 }

@@ -34,8 +34,8 @@ class _$ProfileDTOTearOff {
       @JsonKey(name: 'have_child') required bool haveChild,
       @JsonKey(name: 'country') required String country,
       @JsonKey(name: 'city') required String city,
-      @JsonKey(name: 'profile_photos') required List<dynamic> profilePhotos,
-      @JsonKey(name: 'curator_photos') required List<dynamic> curatorPhotos,
+      @JsonKey(name: 'profile_photos') required List<ImageDTO> profilePhotos,
+      @JsonKey(name: 'curator_photos') required List<ImageDTO> curatorPhotos,
       @JsonKey(name: 'profile_info') required String profileInfo,
       @JsonKey(name: 'created_at') required String createdAt,
       @JsonKey(name: 'saved_at') required String savedAt,
@@ -127,10 +127,12 @@ mixin _$ProfileDTO {
 
   /// Users profile photos.
   @JsonKey(name: 'profile_photos')
-  List<dynamic> get profilePhotos => throw _privateConstructorUsedError; // ??
+  List<ImageDTO> get profilePhotos => throw _privateConstructorUsedError;
+
   /// Curators photos.
   @JsonKey(name: 'curator_photos')
-  List<dynamic> get curatorPhotos => throw _privateConstructorUsedError; // ??
+  List<ImageDTO> get curatorPhotos => throw _privateConstructorUsedError;
+
   /// Users profileInfo.
   @JsonKey(name: 'profile_info')
   String get profileInfo => throw _privateConstructorUsedError;
@@ -183,8 +185,8 @@ abstract class $ProfileDTOCopyWith<$Res> {
       @JsonKey(name: 'have_child') bool haveChild,
       @JsonKey(name: 'country') String country,
       @JsonKey(name: 'city') String city,
-      @JsonKey(name: 'profile_photos') List<dynamic> profilePhotos,
-      @JsonKey(name: 'curator_photos') List<dynamic> curatorPhotos,
+      @JsonKey(name: 'profile_photos') List<ImageDTO> profilePhotos,
+      @JsonKey(name: 'curator_photos') List<ImageDTO> curatorPhotos,
       @JsonKey(name: 'profile_info') String profileInfo,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'saved_at') String savedAt,
@@ -278,11 +280,11 @@ class _$ProfileDTOCopyWithImpl<$Res> implements $ProfileDTOCopyWith<$Res> {
       profilePhotos: profilePhotos == freezed
           ? _value.profilePhotos
           : profilePhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageDTO>,
       curatorPhotos: curatorPhotos == freezed
           ? _value.curatorPhotos
           : curatorPhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageDTO>,
       profileInfo: profileInfo == freezed
           ? _value.profileInfo
           : profileInfo // ignore: cast_nullable_to_non_nullable
@@ -334,8 +336,8 @@ abstract class _$ProfileDTOCopyWith<$Res> implements $ProfileDTOCopyWith<$Res> {
       @JsonKey(name: 'have_child') bool haveChild,
       @JsonKey(name: 'country') String country,
       @JsonKey(name: 'city') String city,
-      @JsonKey(name: 'profile_photos') List<dynamic> profilePhotos,
-      @JsonKey(name: 'curator_photos') List<dynamic> curatorPhotos,
+      @JsonKey(name: 'profile_photos') List<ImageDTO> profilePhotos,
+      @JsonKey(name: 'curator_photos') List<ImageDTO> curatorPhotos,
       @JsonKey(name: 'profile_info') String profileInfo,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'saved_at') String savedAt,
@@ -431,11 +433,11 @@ class __$ProfileDTOCopyWithImpl<$Res> extends _$ProfileDTOCopyWithImpl<$Res>
       profilePhotos: profilePhotos == freezed
           ? _value.profilePhotos
           : profilePhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageDTO>,
       curatorPhotos: curatorPhotos == freezed
           ? _value.curatorPhotos
           : curatorPhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageDTO>,
       profileInfo: profileInfo == freezed
           ? _value.profileInfo
           : profileInfo // ignore: cast_nullable_to_non_nullable
@@ -560,12 +562,14 @@ class _$_ProfileDTO extends _ProfileDTO {
 
   /// Users profile photos.
   @JsonKey(name: 'profile_photos')
-  final List<dynamic> profilePhotos;
-  @override // ??
+  final List<ImageDTO> profilePhotos;
+  @override
+
   /// Curators photos.
   @JsonKey(name: 'curator_photos')
-  final List<dynamic> curatorPhotos;
-  @override // ??
+  final List<ImageDTO> curatorPhotos;
+  @override
+
   /// Users profileInfo.
   @JsonKey(name: 'profile_info')
   final String profileInfo;
@@ -688,8 +692,8 @@ abstract class _ProfileDTO extends ProfileDTO {
       @JsonKey(name: 'have_child') required bool haveChild,
       @JsonKey(name: 'country') required String country,
       @JsonKey(name: 'city') required String city,
-      @JsonKey(name: 'profile_photos') required List<dynamic> profilePhotos,
-      @JsonKey(name: 'curator_photos') required List<dynamic> curatorPhotos,
+      @JsonKey(name: 'profile_photos') required List<ImageDTO> profilePhotos,
+      @JsonKey(name: 'curator_photos') required List<ImageDTO> curatorPhotos,
       @JsonKey(name: 'profile_info') required String profileInfo,
       @JsonKey(name: 'created_at') required String createdAt,
       @JsonKey(name: 'saved_at') required String savedAt,
@@ -764,12 +768,14 @@ abstract class _ProfileDTO extends ProfileDTO {
 
   /// Users profile photos.
   @JsonKey(name: 'profile_photos')
-  List<dynamic> get profilePhotos;
-  @override // ??
+  List<ImageDTO> get profilePhotos;
+  @override
+
   /// Curators photos.
   @JsonKey(name: 'curator_photos')
-  List<dynamic> get curatorPhotos;
-  @override // ??
+  List<ImageDTO> get curatorPhotos;
+  @override
+
   /// Users profileInfo.
   @JsonKey(name: 'profile_info')
   String get profileInfo;

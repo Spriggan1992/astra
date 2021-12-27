@@ -2,14 +2,14 @@ import 'package:astra_app/presentation/astra/favorite/favorite_screen.dart';
 import 'package:astra_app/presentation/astra/home_screen.dart';
 import 'package:astra_app/presentation/astra/message/chat_screen.dart';
 import 'package:astra_app/presentation/astra/message/message_screen.dart';
-import 'package:astra_app/presentation/astra/profile/about/about_screen.dart';
-import 'package:astra_app/presentation/astra/profile/my_pofile/my_profile.dart';
-import 'package:astra_app/presentation/astra/profile/my_pofile/photo/image_pick_screen.dart';
-import 'package:astra_app/presentation/astra/profile/my_pofile/photo/show_image_full_screen.dart';
-import 'package:astra_app/presentation/astra/profile/profile_screen.dart';
-import 'package:astra_app/presentation/astra/profile/support/support_screen.dart';
 import 'package:astra_app/presentation/astra/search/search_detail.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
+import 'package:astra_app/presentation/astra/settings/about/about_screen.dart';
+import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
+import 'package:astra_app/presentation/astra/settings/my_pofile/photo/image_pick_screen.dart';
+import 'package:astra_app/presentation/astra/settings/my_pofile/photo/show_image_full_screen.dart';
+import 'package:astra_app/presentation/astra/settings/settings_start_screen/settings_screen.dart';
+import 'package:astra_app/presentation/astra/settings/support/support_screen.dart';
 import 'package:astra_app/presentation/astra/store/store_screen.dart';
 import 'package:astra_app/presentation/auth/code_screen.dart';
 import 'package:astra_app/presentation/auth/confirm_password_screen.dart';
@@ -31,6 +31,7 @@ import 'package:auto_route/auto_route.dart';
     MaterialRoute(page: ConfirmPasswordScreen),
     MaterialRoute(page: FinishRegisterScreen),
     MaterialRoute(page: ImagePickScreen),
+    MaterialRoute(page: ShowImageFullScreen),
     AutoRoute(
       path: '',
       page: HomeScreen,
@@ -40,7 +41,10 @@ import 'package:auto_route/auto_route.dart';
           name: 'SearchRouter',
           page: EmptyRouterPage,
           children: [
-            AutoRoute(path: '', page: SearchScreen),
+            AutoRoute(
+              path: '',
+              page: SearchScreen,
+            ),
             AutoRoute(path: ':searchDetailPage', page: SearchDetailPage),
           ],
         ),
@@ -63,8 +67,7 @@ import 'package:auto_route/auto_route.dart';
           name: 'SettingsRouter',
           page: EmptyRouterPage,
           children: [
-            AutoRoute(path: '', page: ProfileScreen),
-            AutoRoute(path: ':showImageFullScreen', page: ShowImageFullScreen),
+            AutoRoute(path: '', page: SettingsScreen),
             AutoRoute(path: ':myProfileScreen', page: MyProfileScreen),
             AutoRoute(path: ':aboutScreen', page: AboutScreen),
             AutoRoute(path: ':supportScreen', page: SupportScreen),

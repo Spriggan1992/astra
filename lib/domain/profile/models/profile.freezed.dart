@@ -30,8 +30,8 @@ class _$ProfileTearOff {
       required bool haveChild,
       required String country,
       required String city,
-      required List<dynamic> profilePhotos,
-      required List<dynamic> curatorPhotos,
+      required List<ImageModel> profilePhotos,
+      required List<ImageModel> curatorPhotos,
       required String profileInfo,
       required String createdAt,
       required String savedAt,
@@ -107,9 +107,11 @@ mixin _$Profile {
   String get city => throw _privateConstructorUsedError;
 
   /// Users profile photos to diplsy.
-  List<dynamic> get profilePhotos => throw _privateConstructorUsedError; // ??
+  List<ImageModel> get profilePhotos => throw _privateConstructorUsedError;
+
   /// Curators photos to display.
-  List<dynamic> get curatorPhotos => throw _privateConstructorUsedError; // ??
+  List<ImageModel> get curatorPhotos => throw _privateConstructorUsedError;
+
   /// Users profileInfo to display.
   String get profileInfo => throw _privateConstructorUsedError;
 
@@ -152,8 +154,8 @@ abstract class $ProfileCopyWith<$Res> {
       bool haveChild,
       String country,
       String city,
-      List<dynamic> profilePhotos,
-      List<dynamic> curatorPhotos,
+      List<ImageModel> profilePhotos,
+      List<ImageModel> curatorPhotos,
       String profileInfo,
       String createdAt,
       String savedAt,
@@ -247,11 +249,11 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
       profilePhotos: profilePhotos == freezed
           ? _value.profilePhotos
           : profilePhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageModel>,
       curatorPhotos: curatorPhotos == freezed
           ? _value.curatorPhotos
           : curatorPhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageModel>,
       profileInfo: profileInfo == freezed
           ? _value.profileInfo
           : profileInfo // ignore: cast_nullable_to_non_nullable
@@ -302,8 +304,8 @@ abstract class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       bool haveChild,
       String country,
       String city,
-      List<dynamic> profilePhotos,
-      List<dynamic> curatorPhotos,
+      List<ImageModel> profilePhotos,
+      List<ImageModel> curatorPhotos,
       String profileInfo,
       String createdAt,
       String savedAt,
@@ -398,11 +400,11 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
       profilePhotos: profilePhotos == freezed
           ? _value.profilePhotos
           : profilePhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageModel>,
       curatorPhotos: curatorPhotos == freezed
           ? _value.curatorPhotos
           : curatorPhotos // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<ImageModel>,
       profileInfo: profileInfo == freezed
           ? _value.profileInfo
           : profileInfo // ignore: cast_nullable_to_non_nullable
@@ -513,11 +515,13 @@ class _$_Profile extends _Profile {
   @override
 
   /// Users profile photos to diplsy.
-  final List<dynamic> profilePhotos;
-  @override // ??
+  final List<ImageModel> profilePhotos;
+  @override
+
   /// Curators photos to display.
-  final List<dynamic> curatorPhotos;
-  @override // ??
+  final List<ImageModel> curatorPhotos;
+  @override
+
   /// Users profileInfo to display.
   final String profileInfo;
   @override
@@ -628,8 +632,8 @@ abstract class _Profile extends Profile {
       required bool haveChild,
       required String country,
       required String city,
-      required List<dynamic> profilePhotos,
-      required List<dynamic> curatorPhotos,
+      required List<ImageModel> profilePhotos,
+      required List<ImageModel> curatorPhotos,
       required String profileInfo,
       required String createdAt,
       required String savedAt,
@@ -690,11 +694,13 @@ abstract class _Profile extends Profile {
   @override
 
   /// Users profile photos to diplsy.
-  List<dynamic> get profilePhotos;
-  @override // ??
+  List<ImageModel> get profilePhotos;
+  @override
+
   /// Curators photos to display.
-  List<dynamic> get curatorPhotos;
-  @override // ??
+  List<ImageModel> get curatorPhotos;
+  @override
+
   /// Users profileInfo to display.
   String get profileInfo;
   @override

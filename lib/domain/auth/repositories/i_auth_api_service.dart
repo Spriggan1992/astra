@@ -1,4 +1,5 @@
 import 'package:astra_app/domain/auth/models/auth_info.dart';
+import 'package:astra_app/infrastructure/auth/DTOs/token.dart';
 import 'package:dartz/dartz.dart';
 
 import '../failures/auth_failure.dart';

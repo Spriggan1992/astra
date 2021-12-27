@@ -6,9 +6,11 @@ class Endpoints {
   static get feed => _FeedEndpoints();
   static get shop => _ShopEndpoints();
   static get user => _ProfileEndpoints();
+  static get imageAdress => relevantAdress;
 }
 
 final String _address = ServerAddress().relevant;
+final String relevantAdress = ServerAddress().imageAdress;
 
 class _AuthEndpoints {
   String get checkPhone => _address + "user/auth/check/phone/";
@@ -56,4 +58,6 @@ class _ProfileEndpoints {
   String get updateShortInfo => _address + "user/account/info/short/update/";
   String get updateStatus => _address + "user/account/info/status/update/";
   String get getStatuses => _address + "user/account/info/status/";
+  String get getCurator => _address + "user/account/curator/";
+  String get refreshToken => _address + "users/auth/jwt/refresh/";
 }

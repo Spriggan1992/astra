@@ -20,8 +20,12 @@ _$_ProfileDTO _$$_ProfileDTOFromJson(Map<String, dynamic> json) =>
       haveChild: json['have_child'] as bool,
       country: json['country'] as String,
       city: json['city'] as String,
-      profilePhotos: json['profile_photos'] as List<dynamic>,
-      curatorPhotos: json['curator_photos'] as List<dynamic>,
+      profilePhotos: (json['profile_photos'] as List<dynamic>)
+          .map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      curatorPhotos: (json['curator_photos'] as List<dynamic>)
+          .map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
+          .toList(),
       profileInfo: json['profile_info'] as String,
       createdAt: json['created_at'] as String,
       savedAt: json['saved_at'] as String,

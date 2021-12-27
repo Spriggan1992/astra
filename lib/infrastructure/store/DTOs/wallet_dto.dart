@@ -17,7 +17,7 @@ class WalletDTO with _$WalletDTO {
     required int amount,
 
     /// Profile identifier.
-    @JsonKey(name: 'profiel_id') required int profielId,
+    @JsonKey(name: 'profile_id') required int profielId,
   }) = _WalletDTO;
 
   /// Return converted DTO from json.
