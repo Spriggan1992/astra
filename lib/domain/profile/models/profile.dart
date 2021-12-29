@@ -72,7 +72,10 @@ class Profile with _$Profile {
   }) = _Profile;
 
   /// Get user information.
-  String get userInfo => '$lastname $firstname, $age';
+  String get userInfo => '$firstname $lastname, $age';
+
+  /// Get user name and age.
+  String get userNameAge => '$firstname , $age';
 
   /// Get user location.
   String get userLocation => '$country, $city';

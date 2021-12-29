@@ -1,9 +1,7 @@
 import 'package:astra_app/application/settings/store/store_actor/store_actor_bloc.dart';
 import 'package:astra_app/application/settings/store/store_bloc.dart';
-import 'package:astra_app/domain/store/models/like.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
-import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/store_dialog.dart';
@@ -11,7 +9,6 @@ import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart'
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -138,10 +135,8 @@ class StoreScreenContent extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             AstraGradientButton(
-              onTap: () {
-                AutoRouter.of(context).push(const FinishRegisterScreenRoute());
-              },
-              title: 'Apple Pay',
+              onTap: () {},
+              title: 'Google Pay',
             )
           ],
         ),

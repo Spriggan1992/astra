@@ -1,5 +1,4 @@
 import 'package:astra_app/presentation/core/widgets/scaffolds/botom_hide_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'favorite_info_card.dart';

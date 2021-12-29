@@ -1,6 +1,13 @@
-import 'package:astra_app/application/core/enums/favorite_icon_type.dart';
+import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
+import 'package:astra_app/application/favorite/favorite_actor/favorite_actor_bloc.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/widgets/custom/blur_mask.dart';
+import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
+import 'package:astra_app/presentation/core/theming/borders.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'favorite_action_icon.dart';
 
 class FavoriteDetailWidget extends StatelessWidget {
   const FavoriteDetailWidget({
@@ -10,9 +17,11 @@ class FavoriteDetailWidget extends StatelessWidget {
     required this.location,
     required this.onTap,
     this.mutualSympathy = false,
+    required this.favotieType,
   }) : super(key: key);
 
-  final ImageProvider image;
+  final FavoriteScreenType favotieType;
+  final String image;
   final String name;
   final String location;
   final bool mutualSympathy;
@@ -26,97 +35,63 @@ class FavoriteDetailWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: AstraColors.golden, width: 1.5),
-                  borderRadius: BorderRadius.circular(32),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: image, //      ,
-                  ),
-                ),
+              AstraNetworkImage(
+                imageUrl: image,
+                borderRadius: BorderRadius.circular(32),
+                border: Border.all(color: AstraColors.golden, width: 1.5),
+                fit: BoxFit.cover,
               ),
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  width: (MediaQuery.of(context).size.width / 2) - 20,
-                  height: 42,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(32),
-                        bottomRight: Radius.circular(32)),
-                    color: AstraColors.white02,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: BlurMask(
+                  borderRadius: Borders.favoriteCardBorder,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 42,
+                    decoration: const BoxDecoration(
+                      borderRadius: Borders.favoriteCardBorder,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          name,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Text(
-                        location,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: AstraColors.white05,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
+                        Text(
+                          location,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: AstraColors.white05,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ],
           ),
-          Visibility(
-            visible: mutualSympathy,
-            child: Positioned(
-              bottom: 30,
-              right: 5,
-              child: getFavoriteIcon(FavoriteIconType.papeline),
-            ),
+          BlocBuilder<FavoriteActorBloc, FavoriteActorState>(
+            buildWhen: (p, c) =>
+                p.isRemovedFromStopList != c.isRemovedFromStopList,
+            builder: (context, state) {
+              return FavoriteActionIcon(
+                favotieType: favotieType,
+                isRemovedFromStopList: state.isRemovedFromStopList,
+                mutualSympathy: mutualSympathy,
+              );
+            },
           ),
         ],
       ),
     );
-  }
-
-  Widget getFavoriteIcon(FavoriteIconType iconType) {
-    switch (iconType) {
-      case FavoriteIconType.papeline:
-        return CircleAvatar(
-          backgroundColor: AstraColors.white02,
-          radius: 18,
-          child: Image.asset(
-            'assets/paper_plane.png',
-            color: Colors.white,
-            scale: 0.8,
-          ),
-        );
-      case FavoriteIconType.chek:
-        return const CircleAvatar(
-            backgroundColor: AstraColors.white02,
-            radius: 18,
-            child: Icon(
-              Icons.check,
-              color: AstraColors.white,
-            ));
-      case FavoriteIconType.add:
-        return const CircleAvatar(
-            backgroundColor: AstraColors.white02,
-            radius: 18,
-            child: Icon(
-              Icons.add,
-              color: AstraColors.white,
-            ));
-      default:
-        return Container();
-    }
   }
 }

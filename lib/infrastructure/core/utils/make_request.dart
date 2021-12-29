@@ -10,7 +10,7 @@ typedef CallBackRequest<T> = Future<T> Function();
 
 /// Make http request.
 ///
-/// Returns [Either] there left is [AuthFailure] and right is [T].
+/// Returns [Either] there left is [AstraFailure] and right is [T].
 Future<Either<AstraFailure, T>> makeRequest<T>(
   CallBackRequest callback,
 ) async {

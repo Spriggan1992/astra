@@ -24,7 +24,7 @@ class _$WalletDTOTearOff {
   _WalletDTO call(
       {required int id,
       required int amount,
-      @JsonKey(name: 'profiel_id') required int profielId}) {
+      @JsonKey(name: 'profile_id') required int profielId}) {
     return _WalletDTO(
       id: id,
       amount: amount,
@@ -49,7 +49,7 @@ mixin _$WalletDTO {
   int get amount => throw _privateConstructorUsedError;
 
   /// Profile identifier.
-  @JsonKey(name: 'profiel_id')
+  @JsonKey(name: 'profile_id')
   int get profielId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,7 +62,7 @@ mixin _$WalletDTO {
 abstract class $WalletDTOCopyWith<$Res> {
   factory $WalletDTOCopyWith(WalletDTO value, $Res Function(WalletDTO) then) =
       _$WalletDTOCopyWithImpl<$Res>;
-  $Res call({int id, int amount, @JsonKey(name: 'profiel_id') int profielId});
+  $Res call({int id, int amount, @JsonKey(name: 'profile_id') int profielId});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ abstract class _$WalletDTOCopyWith<$Res> implements $WalletDTOCopyWith<$Res> {
           _WalletDTO value, $Res Function(_WalletDTO) then) =
       __$WalletDTOCopyWithImpl<$Res>;
   @override
-  $Res call({int id, int amount, @JsonKey(name: 'profiel_id') int profielId});
+  $Res call({int id, int amount, @JsonKey(name: 'profile_id') int profielId});
 }
 
 /// @nodoc
@@ -143,7 +143,7 @@ class _$_WalletDTO extends _WalletDTO {
   const _$_WalletDTO(
       {required this.id,
       required this.amount,
-      @JsonKey(name: 'profiel_id') required this.profielId})
+      @JsonKey(name: 'profile_id') required this.profielId})
       : super._();
 
   factory _$_WalletDTO.fromJson(Map<String, dynamic> json) =>
@@ -160,7 +160,7 @@ class _$_WalletDTO extends _WalletDTO {
   @override
 
   /// Profile identifier.
-  @JsonKey(name: 'profiel_id')
+  @JsonKey(name: 'profile_id')
   final int profielId;
 
   @override
@@ -200,7 +200,7 @@ abstract class _WalletDTO extends WalletDTO {
   const factory _WalletDTO(
       {required int id,
       required int amount,
-      @JsonKey(name: 'profiel_id') required int profielId}) = _$_WalletDTO;
+      @JsonKey(name: 'profile_id') required int profielId}) = _$_WalletDTO;
   const _WalletDTO._() : super._();
 
   factory _WalletDTO.fromJson(Map<String, dynamic> json) =
@@ -217,7 +217,7 @@ abstract class _WalletDTO extends WalletDTO {
   @override
 
   /// Profile identifier.
-  @JsonKey(name: 'profiel_id')
+  @JsonKey(name: 'profile_id')
   int get profielId;
   @override
   @JsonKey(ignore: true)

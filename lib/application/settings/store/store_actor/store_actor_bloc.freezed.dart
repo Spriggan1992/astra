@@ -387,7 +387,10 @@ const $StoreActorState = _$StoreActorStateTearOff();
 
 /// @nodoc
 mixin _$StoreActorState {
+  /// State of likes.
   List<Like> get likes => throw _privateConstructorUsedError;
+
+  /// State of like.
   Like get like => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -487,8 +490,12 @@ class _$_StoreActorState implements _StoreActorState {
   const _$_StoreActorState({required this.likes, required this.like});
 
   @override
+
+  /// State of likes.
   final List<Like> likes;
   @override
+
+  /// State of like.
   final Like like;
 
   @override
@@ -522,8 +529,12 @@ abstract class _StoreActorState implements StoreActorState {
       {required List<Like> likes, required Like like}) = _$_StoreActorState;
 
   @override
+
+  /// State of likes.
   List<Like> get likes;
   @override
+
+  /// State of like.
   Like get like;
   @override
   @JsonKey(ignore: true)

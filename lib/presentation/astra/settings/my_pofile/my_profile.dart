@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:astra_app/application/settings/my_profile/my_profile/my_profile_bloc.dart';
 import 'package:astra_app/application/settings/my_profile/my_profile_actor.dart/my_profile_actor_bloc.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
@@ -11,13 +9,10 @@ import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/scaffold_with_loading.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:provider/provider.dart';
 import 'widgets/profile_widgets.dart';
 
 /// Defines MyProfileScreen.
@@ -74,10 +69,8 @@ class MyProfileScreenContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyProfileActorBloc, MyProfileActorState>(
-      buildWhen: (p, c) => p.isLoading != c.isLoading,
       builder: (context, scaffoldState) {
-        return ScaffoldWithLoading(
-          isLoading: scaffoldState.isLoading,
+        return Scaffold(
           backgroundColor: Colors.white,
           appBar: AstraAppBar(
             onPressed: () {
@@ -136,8 +129,6 @@ class MyProfileScreenContent extends StatelessWidget {
                                 .add(const MyProfileActorEvent.imagesAdded());
                           },
                           onShowImage: () async {
-                            log(state.profile.profilePhotos.length.toString(),
-                                name: 'images');
                             await AutoRouter.of(context)
                                 .push(
                                   ShowImageFullScreenRoute(

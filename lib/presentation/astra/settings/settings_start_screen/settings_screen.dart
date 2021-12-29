@@ -7,7 +7,6 @@ import 'package:astra_app/presentation/core/widgets/images/astra_network_image.d
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

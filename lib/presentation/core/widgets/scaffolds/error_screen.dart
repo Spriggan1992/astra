@@ -23,7 +23,10 @@ class ErrorScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(errorTitle),
+          Text(
+            errorTitle,
+            textAlign: TextAlign.center,
+          ),
           AstraButton(
             title: 'Попробовать снова',
             onTap: onTryAgain,

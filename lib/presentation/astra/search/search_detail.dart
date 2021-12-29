@@ -7,8 +7,8 @@ class SearchDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(0, 0, 0, 0.2),
-        title: Text(
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 0.2),
+        title: const Text(
           'Подробная анкета',
           style: TextStyle(color: Colors.white),
         ),
@@ -16,7 +16,7 @@ class SearchDetailPage extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
         ),
       ),
       body: Container(

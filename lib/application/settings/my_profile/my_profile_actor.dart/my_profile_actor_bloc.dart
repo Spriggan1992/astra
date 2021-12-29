@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:astra_app/domain/image_picker/models/image.dart';
 import 'package:astra_app/domain/image_picker/reopositories/i_image_picker.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
@@ -35,7 +33,6 @@ class MyProfileActorBloc
             ),
           );
         }, accountInfoDisplayingToggled: (e) async {
-          emit(state.copyWith(isLoading: true));
           final response =
               await _profileRepository.showAccountInfo(!state.profile.showInfo);
           emit(
@@ -51,10 +48,8 @@ class MyProfileActorBloc
               ),
             ),
           );
-          emit(state.copyWith(
-              isLoading: false, isShowNoInternetConnectionError: false));
+          emit(state.copyWith(isShowNoInternetConnectionError: false));
         }, accountVisibilityToggled: (e) async {
-          emit(state.copyWith(isLoading: true));
           final response =
               await _profileRepository.hideAccount(!state.profile.isHidden);
           emit(
@@ -70,13 +65,11 @@ class MyProfileActorBloc
               ),
             ),
           );
-          emit(state.copyWith(
-              isLoading: false, isShowNoInternetConnectionError: false));
+          emit(state.copyWith(isShowNoInternetConnectionError: false));
         }, editModeToggled: (e) async {
           emit(state.copyWith(isEditMode: !state.isEditMode));
         }, changesSubmitted: (e) async {
           // Setup isLoading state to true.
-          emit(state.copyWith(isLoading: true));
           if (state.selectedImages.isNotEmpty) {
             final response =
                 await _profileRepository.addPhoto(state.selectedImages);
@@ -94,7 +87,6 @@ class MyProfileActorBloc
                 },
               ),
             );
-            // getIt<MyProfileBloc>().add(const MyProfileEvent.profileLoaded());
           }
           // Update short user information and get response as Either with left(failure) and right(success).
           final response = await _profileRepository
@@ -111,7 +103,6 @@ class MyProfileActorBloc
             ),
           );
           emit(state.copyWith(
-            isLoading: false,
             isShowNoInternetConnectionError: false,
           ));
         }, imagesAdded: (e) async {
@@ -125,7 +116,6 @@ class MyProfileActorBloc
             emit(state.copyWith(selectedImages: images));
           }
         }, imagesDeleted: (e) async {
-          emit(state.copyWith(isLoading: true));
           final response = await _profileRepository.deletePhoto(e.image);
           emit(response.fold(
               (failure) => failure.map(
@@ -141,7 +131,6 @@ class MyProfileActorBloc
                 profile: state.profile.copyWith(profilePhotos: updatedImages));
           }));
           emit(state.copyWith(
-              isLoading: true,
               isShowNoInternetConnectionError: false,
               isShowUnexpactedError: false));
         }, editingModeCanceled: (e) async {

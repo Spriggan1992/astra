@@ -29,6 +29,9 @@ class AstraNetworkImage extends StatelessWidget {
 
   /// Image provider. In this case resposible for showing image stored on device.
   final ImageProvider<Object>? fileImage;
+
+  /// An immutable set of radii for each corner of a rectangle.
+  final BorderRadius? borderRadius;
   const AstraNetworkImage({
     Key? key,
     required this.imageUrl,
@@ -39,6 +42,7 @@ class AstraNetworkImage extends StatelessWidget {
     this.border,
     this.backgroundColor,
     this.fileImage,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -52,9 +56,9 @@ class AstraNetworkImage extends StatelessWidget {
           height: height ?? MediaQuery.of(context).size.height,
           width: width ?? MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.black,
-            shape: boxShape ?? BoxShape.rectangle,
-          ),
+              color: Colors.black,
+              shape: boxShape ?? BoxShape.rectangle,
+              borderRadius: borderRadius),
         ),
       ),
       errorWidget: (context, url, error) => _ImageContainer(
@@ -62,6 +66,7 @@ class AstraNetworkImage extends StatelessWidget {
           width: width,
           border: border,
           boxShape: boxShape,
+          borderRadius: borderRadius,
           fit: fit,
           imageProvider: const AssetImage('assets/no-image.png')),
       imageBuilder: (context, imageProvider) => _ImageContainer(
@@ -69,6 +74,7 @@ class AstraNetworkImage extends StatelessWidget {
         width: width,
         border: border,
         boxShape: boxShape,
+        borderRadius: borderRadius,
         fit: fit,
         imageProvider: fileImage ?? imageProvider,
       ),
@@ -86,6 +92,7 @@ class _ImageContainer extends StatelessWidget {
     required this.boxShape,
     required this.fit,
     required this.imageProvider,
+    this.borderRadius,
   }) : super(key: key);
 
   /// Image container height.
@@ -106,6 +113,9 @@ class _ImageContainer extends StatelessWidget {
   /// Identifies an image without committing to the precise final asset.
   final ImageProvider<Object> imageProvider;
 
+  /// An immutable set of radii for each corner of a rectangle.
+  final BorderRadius? borderRadius;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -113,6 +123,7 @@ class _ImageContainer extends StatelessWidget {
       width: width ?? MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         border: border,
+        borderRadius: borderRadius,
         shape: boxShape ?? BoxShape.rectangle,
         image: DecorationImage(
           fit: fit ?? BoxFit.cover,

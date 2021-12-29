@@ -10,9 +10,6 @@ class MyProfileActorState with _$MyProfileActorState {
     /// A flag respnosible for showing or hiding edit mode.
     required bool isEditMode,
 
-    /// A flag respnosible for showing or hiding progress indicator, when loading data.
-    required bool isLoading,
-
     /// A flag respnosible for showing or hiding error, when there no internet connection.
     required bool isShowNoInternetConnectionError,
 
@@ -34,7 +31,7 @@ class MyProfileActorState with _$MyProfileActorState {
   factory MyProfileActorState.initial() => MyProfileActorState(
         profile: Profile.empty(),
         isEditMode: false,
-        isLoading: false,
+        // isLoading: false,
         isShowNoInternetConnectionError: false,
         isShowUnexpactedError: false,
         isSuccessfullySubmitted: false,

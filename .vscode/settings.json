@@ -8,7 +8,7 @@
         "**/Thumbs.db": true,
         "**/.classpath": true,
         "**/.factorypath": true,
-        "**/*.freezed.dart": false,
+        "**/*.freezed.dart": true,
         "**/.project": true,
         "**/.settings": true,
         "**/*.g.dart": true,

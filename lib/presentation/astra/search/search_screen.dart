@@ -41,23 +41,20 @@ class SearchScreen extends StatelessWidget {
                     InfoButton(
                       onTap: () {},
                       icon: Icons.close,
-                      height: 16,
-                      width: 38,
-                    ),
-                    InfoButton(
-                      onTap: () {},
-                      icon: CupertinoIcons.question,
-                      height: 8,
-                      width: 32,
                     ),
                     InfoButton(
                       onTap: () {
                         AutoRouter.of(context)
                             .push(const SearchDetailPageRoute());
                       },
+                      icon: CupertinoIcons.question,
+                      iconSize: 30,
+                      height: 52,
+                      width: 90,
+                    ),
+                    InfoButton(
+                      onTap: () {},
                       icon: Icons.check,
-                      height: 16,
-                      width: 38,
                     ),
                   ],
                 ),
