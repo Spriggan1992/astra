@@ -51,6 +51,7 @@ class PhoneNumberScreen extends StatelessWidget {
                 style: const TextStyle(fontSize: 24),
                 inputFormatters: [maskFormatter],
                 autofocus: true,
+                keyboardType: TextInputType.phone,
                 decoration:
                     const InputDecoration(hintText: "Введите номер телефона"),
                 onChanged: (value) {

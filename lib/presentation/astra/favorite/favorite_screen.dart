@@ -1,7 +1,12 @@
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
+import 'package:astra_app/application/favorite/favorite_actor/favorite_actor_bloc.dart';
+import 'package:astra_app/application/favorite/favorite_bloc.dart';
+import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'favorite_content_page.dart';
 
@@ -15,7 +20,7 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen>
     with SingleTickerProviderStateMixin {
   late TabController _controller;
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   List<Widget> list = const [
     Tab(
@@ -50,10 +55,12 @@ class _FavoriteScreenState extends State<FavoriteScreen>
     _controller = TabController(length: list.length, vsync: this);
 
     _controller.addListener(() {
+      _controller.indexIsChanging;
       setState(() {
         _selectedIndex = _controller.index;
       });
-      print("Selected Index: " + _controller.index.toString());
+      BlocProvider.of<FavoriteBloc>(context)
+          .add(FavoriteEvent.initialized(_getFavoiteType(_selectedIndex)));
     });
   }
 
@@ -62,6 +69,39 @@ class _FavoriteScreenState extends State<FavoriteScreen>
     super.dispose();
     _controller.dispose();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<FavoriteActorBloc>(),
+      child: BlocBuilder<FavoriteBloc, FavoriteState>(
+        buildWhen: (previous, current) =>
+            previous.isNoInternetConnection != current.isNoInternetConnection ||
+            previous.isUnexpectedError != current.isUnexpectedError,
+        builder: (context, state) {
+          if (state.isNoInternetConnection) {
+            return ErrorScreen(onTryAgain: () {
+              BlocProvider.of<FavoriteBloc>(context).add(
+                  FavoriteEvent.initialized(_getFavoiteType(_selectedIndex)));
+            });
+          }
+          return FavoriteScreenContent(controller: _controller, list: list);
+        },
+      ),
+    );
+  }
+}
+
+class FavoriteScreenContent extends StatelessWidget {
+  const FavoriteScreenContent({
+    Key? key,
+    required TabController controller,
+    required this.list,
+  })  : _controller = controller,
+        super(key: key);
+
+  final TabController _controller;
+  final List<Widget> list;
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +122,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
             ),
           ),
           bottom: TabBar(
-            onTap: (index) {
-              // Should not used it as it only called when tab options are clicked,
-              // not when profile swapped
-            },
+            onTap: (index) {},
             controller: _controller,
             tabs: list,
           ),
@@ -101,13 +138,40 @@ class _FavoriteScreenState extends State<FavoriteScreen>
           controller: _controller,
           physics: const BouncingScrollPhysics(),
           children: const [
-            FavoriteContentPage(screenType: FavoriteScreenType.yourLikes),
-            FavoriteContentPage(screenType: FavoriteScreenType.likesForYou),
-            FavoriteContentPage(screenType: FavoriteScreenType.think),
-            FavoriteContentPage(screenType: FavoriteScreenType.stopList),
+            FavoritePage(
+              favoriteType: FavoriteScreenType.yourLikes,
+            ),
+            FavoritePage(
+              favoriteType: FavoriteScreenType.likesForYou,
+            ),
+            FavoritePage(
+              favoriteType: FavoriteScreenType.think,
+            ),
+            FavoritePage(
+              favoriteType: FavoriteScreenType.stopList,
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+FavoriteScreenType _getFavoiteType(int index) {
+  FavoriteScreenType type = FavoriteScreenType.likesForYou;
+  switch (index) {
+    case 0:
+      type = FavoriteScreenType.likesForYou;
+      break;
+    case 1:
+      type = FavoriteScreenType.yourLikes;
+      break;
+    case 2:
+      type = FavoriteScreenType.think;
+      break;
+    case 3:
+      type = FavoriteScreenType.stopList;
+      break;
+  }
+  return type;
 }

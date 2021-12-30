@@ -9,6 +9,7 @@ class AstraColors {
   static const Color white03 = Color.fromRGBO(251, 251, 251, 0.3);
   static const Color white04 = Color.fromRGBO(251, 251, 251, 0.4);
   static const Color white05 = Color.fromRGBO(251, 251, 251, 0.5);
+  static const Color white06 = Color.fromRGBO(251, 251, 251, 0.6);
   static const Color white = Color.fromRGBO(251, 251, 251, 1);
   static const Color white01 = Color.fromRGBO(251, 251, 251, 0.1);
   static const Color white08 = Color.fromRGBO(251, 251, 251, 0.8);

@@ -19,8 +19,7 @@ class CustomDialog extends StatelessWidget {
       ),
       elevation: 1.0,
       backgroundColor: Colors.white,
-      insetPadding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.width / 1.30,
+      insetPadding: const EdgeInsets.symmetric(
         horizontal: 24,
       ),
       child: Container(
@@ -29,6 +28,7 @@ class CustomDialog extends StatelessWidget {
           color: Colors.white,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -49,26 +49,29 @@ class CustomDialog extends StatelessWidget {
             ),
             LayoutBuilder(
               builder: (context, constraints) {
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                        child: action1, width: (constraints.maxWidth / 2) - 5),
-                    const SizedBox(
-                      height: 25,
-                      child: VerticalDivider(
-                        color: Color.fromRGBO(24, 24, 24, 0.1),
-                        width: 1,
-                        thickness: 2,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        child: action1,
                       ),
-                    ),
-                    SizedBox(
-                        child: action2, width: (constraints.maxWidth / 2) - 5),
-                  ],
+                      const SizedBox(
+                        height: 25,
+                        child: VerticalDivider(
+                          color: Color.fromRGBO(24, 24, 24, 0.1),
+                          width: 1,
+                          thickness: 2,
+                        ),
+                      ),
+                      SizedBox(child: action2),
+                    ],
+                  ),
                 );
               },
-            )
+            ),
+            const SizedBox(height: 4)
           ],
         ),
       ),

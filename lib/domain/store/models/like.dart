@@ -16,6 +16,7 @@ class Like with _$Like {
     required int price,
   }) = _Like;
 
+  /// Get like display name.
   String get likeInfo => '$amount ${_likeEnding()}';
 
   /// Return emty like package.

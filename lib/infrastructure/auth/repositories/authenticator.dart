@@ -1,11 +1,15 @@
 import 'package:astra_app/domain/auth/failures/auth_failure.dart';
 import 'package:astra_app/infrastructure/auth/DTOs/token.dart';
 import 'package:astra_app/infrastructure/core/database/secure_strorage/i_secure_storage.dart';
+import 'package:astra_app/infrastructure/core/http/endpoints.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+
+const _access = 'access';
+const _refresh = 'refresh';
 
 /// Autherization service.
 @lazySingleton
@@ -52,16 +56,15 @@ class Authenticator {
 
   /// Refresh access token by refresh token.
   Future<Either<AuthFailure, Token>> refresh(
-    String toke,
+    String refreshToken,
   ) async {
     try {
-      /// TODO Here should be logic with exchange token.
-      final refreshedToken = await _dio.post("acess token should be put here");
-      final token = Token(
-          access: "acess token should be put here",
-          refresh: "refresh token should be put here");
-      // await _secureStorage.save(token);
-      return right(refreshedToken.data);
+      final response = await _dio
+          .post(Endpoints.user.refreshToken, data: {_refresh: refreshToken});
+      final token =
+          Token(access: response.data[_access], refresh: refreshToken);
+      await _secureStorage.save(token);
+      return right(token);
     } on FormatException {
       return left(const AuthFailure.server());
     } on DioError catch (e) {

@@ -10,7 +10,7 @@ typedef CallBackRequest<T> = Future<T> Function();
 
 /// Make http request.
 ///
-/// Returns [Either] there left is [AuthFailure] and right is [T].
+/// Returns [Either] there left is [AstraFailure] and right is [T].
 Future<Either<AstraFailure, T>> makeRequest<T>(
   CallBackRequest callback,
 ) async {
@@ -19,7 +19,7 @@ Future<Either<AstraFailure, T>> makeRequest<T>(
     log("$response", name: "sucess_response");
     return right(response);
   } on DioError catch (e) {
-    log("${e.message}: ${e.type}", level: 2);
+    log("${e.message}: ${e.type}; response: ${e.response}", level: 2);
     if (e.isNoConnectionError) {
       log("${e.message}: ${e.type}", level: 2);
       return left(const AstraFailure.noConnection());
