@@ -1,9 +1,9 @@
 import 'package:astra_app/application/settings/settings/settings_bloc.dart';
-import 'package:astra_app/domain/profile/models/profile.dart';
+import 'package:astra_app/domain/profile/models/profile_short_model.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/settings/settings_start_screen/widgets/settings_items.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
+import 'package:astra_app/presentation/core/widgets/images/astra_file_image.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
@@ -32,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
                 ..add(const SettingsEvent.profileLoaded()),
             ),
             loadSuccess: (state) =>
-                PSettingsScreenBodyContent(profile: state.profile),
+                SettingsScreenBodyContent(profile: state.profile),
           );
         },
       ),
@@ -41,10 +41,10 @@ class SettingsScreen extends StatelessWidget {
 }
 
 /// Defines content for SettingsScreen.
-class PSettingsScreenBodyContent extends StatelessWidget {
+class SettingsScreenBodyContent extends StatelessWidget {
   /// Profile information.
-  final Profile profile;
-  const PSettingsScreenBodyContent({
+  final ProfileShortModel profile;
+  const SettingsScreenBodyContent({
     Key? key,
     required this.profile,
   }) : super(key: key);
@@ -66,14 +66,19 @@ class PSettingsScreenBodyContent extends StatelessWidget {
               child: ListTile(
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                leading: AstraNetworkImage(
-                  imageUrl: profile.profilePhotos.isEmpty
-                      ? ""
-                      : profile.profilePhotos.first.imageUrl,
+                leading: AstraFileImage(
+                  image: profile.avatar.compressedImages!.thumbnail!,
                   height: 60,
                   width: 60,
-                  boxShape: BoxShape.circle,
                 ),
+                // leading: AstraNetworkImage(
+                //   imageUrl: profile.avatar.i
+                //       ? ""
+                //       : profile.profilePhotos.first.imageUrl,
+                // height: 60,
+                // width: 60,
+                //   boxShape: BoxShape.circle,
+                // ),
                 title: Text(
                   profile.userInfo,
                   style: const TextStyle(

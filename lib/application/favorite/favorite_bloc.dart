@@ -33,19 +33,6 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
           emit(state.copyWith(isLoading: false));
         },
       );
-
-      // await event.map(
-      //   initialized: (e) async {
-      //     emit(const FavoriteState.loadInProgress());
-      //     final response = await _getResponseResult(e.favoriteType);
-      //     emit(response.fold(
-      //         (failure) => failure.map(
-      //             api: (_) => const FavoriteState.loadFailure(),
-      //             noConnection: (_) =>
-      //                 const FavoriteState.noInternetConnection()),
-      //         (profiles) => FavoriteState.loadSuccess(profiles)));
-      //   },
-      // );
     });
   }
 

@@ -1,23 +1,25 @@
-import 'package:astra_app/domain/image_picker/models/image.dart';
+import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
+import 'package:astra_app/presentation/core/widgets/images/astra_file_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class KuratorListTile extends StatelessWidget {
-  const KuratorListTile(
+/// Represent widget that display information about curator.
+class CuratorListTile extends StatelessWidget {
+  const CuratorListTile(
       {Key? key,
-      required this.imageUrl,
-      required this.name,
-      required this.leadingRadius,
       required this.trallingRadius,
-      required this.onPressed})
+      required this.onPressed,
+      required this.curator})
       : super(key: key);
 
-  final String imageUrl;
-  final String name;
+  /// Curator  information.
+  final CuratorModel curator;
+
+  /// Button click  event handler.
   final VoidCallback onPressed;
-  final double leadingRadius;
+
+  /// Traling icon radius.
   final double trallingRadius;
 
   @override
@@ -28,11 +30,11 @@ class KuratorListTile extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              AstraNetworkImage(
-                imageUrl: imageUrl,
-                boxShape: BoxShape.circle,
+              AstraFileImage(
+                image: curator.profilePhoto.compressedImages!.thumbnail!,
                 height: 48,
                 width: 48,
+                border: null,
               ),
               const SizedBox(width: 20),
               Column(
@@ -40,7 +42,7 @@ class KuratorListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    curator.curatorFullname,
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

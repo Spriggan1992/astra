@@ -1,14 +1,15 @@
-import 'dart:developer';
-
-import 'package:astra_app/domain/image_picker/models/image.dart';
+import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
+import 'package:astra_app/domain/profile/models/profile_short_model.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:astra_app/infrastructure/core/http/endpoints.dart';
+import 'package:astra_app/infrastructure/core/services/images/i_chache_image_service.dart';
 import 'package:astra_app/infrastructure/core/utils/make_request.dart';
 import 'package:astra_app/infrastructure/profile/DTOs/dto_curator.dart';
 import 'package:astra_app/infrastructure/profile/DTOs/profile_dto.dart';
+import 'package:astra_app/infrastructure/profile/DTOs/profile_short.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -23,14 +24,32 @@ class ProfileRepository implements IProfileRepository {
   /// Dio client.
   final Dio _dio;
 
-  ProfileRepository(this._dio);
+  /// Service for caching network images.
+  final ICacheImageService _cacheImageService;
+
+  ProfileRepository(this._dio, this._cacheImageService);
+
   @override
   Future<Either<AstraFailure, Profile>> getProfile() async {
     final result = await makeRequest<Profile>(() async {
       final response = await _dio.get(Endpoints.user.account);
-      return ProfileDTO.fromJson(response.data).toDomain();
+      final profile = ProfileDTO.fromJson(response.data).toDomain();
+      final imageModels = await _getImageModels(profile.profilePhotos);
+      final updatedProfile = profile.copyWith(profilePhotos: imageModels);
+      return updatedProfile;
     });
-    log(result.toString());
+    return result.fold((l) => left(l), (r) => right(r));
+  }
+
+  @override
+  Future<Either<AstraFailure, ProfileShortModel>> getProfileShort() async {
+    final result = await makeRequest<ProfileShortModel>(() async {
+      final response = await _dio.get(Endpoints.user.accountShort);
+      final profileShort = ProfileShortDTO.fromJson(response.data).toDomain();
+      final image = await _getImageModel(profileShort.avatar);
+      final updatedProfile = profileShort.copyWith(avatar: image);
+      return updatedProfile;
+    });
     return result.fold((l) => left(l), (r) => right(r));
   }
 
@@ -93,7 +112,14 @@ class ProfileRepository implements IProfileRepository {
   Future<Either<AstraFailure, CuratorModel>> getCuratorInfo() async {
     final result = await makeRequest<CuratorModel>(() async {
       final response = await _dio.get(Endpoints.user.getCurator);
-      return CuratorDTO.fromJson(response.data).toDomain();
+      final curator = CuratorDTO.fromJson(response.data).toDomain();
+      final curatorPhoto = await _cacheImageService
+          .getCompressedFileImage(curator.profilePhoto.imageUrl);
+      final updatedCurator = curator.copyWith(
+          profilePhoto: ImageModel(
+              imageUrl: curator.profilePhoto.imageUrl,
+              compressedImages: curatorPhoto));
+      return updatedCurator;
     });
     return result.fold((l) => left(l), (r) => right(r));
   }
@@ -102,10 +128,36 @@ class ProfileRepository implements IProfileRepository {
     FormData data = FormData.fromMap({
       _images: _astraImages,
     });
-    images.forEach((e) async {
-      data.files.add(MapEntry(_images,
-          await MultipartFile.fromFile(e.imagePath, filename: e.imagePath)));
-    });
+    for (var e in images) {
+      data.files.add(MapEntry(
+          _images,
+          await MultipartFile.fromFile(
+            e.compressedImages!.fullImage!.path,
+            filename: e.compressedImages!.fullImage!.path,
+          )));
+    }
     return data;
+  }
+
+  Future<List<ImageModel>> _getImageModels(List<ImageModel> value) async {
+    List<ImageModel> images = [];
+    for (var e in value) {
+      final compressedImages =
+          await _cacheImageService.getCompressedFileImage(e.imageUrl);
+      images.add(ImageModel(
+          imageUrl: e.imageUrl, id: e.id, compressedImages: compressedImages));
+    }
+    return images;
+  }
+
+  Future<ImageModel> _getImageModel(ImageModel value) async {
+    final compressedImages = await _cacheImageService
+        .getCompressedFileImage(value.imageUrl, isFullImage: false);
+    final image = value.copyWith(
+      id: value.id,
+      imageUrl: value.imageUrl,
+      compressedImages: compressedImages,
+    );
+    return image;
   }
 }

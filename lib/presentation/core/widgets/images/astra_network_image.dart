@@ -48,6 +48,8 @@ class AstraNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
+      // memCacheHeight: height!.toInt(),
+      // memCacheWidth: width!.toInt(),
       imageUrl: imageUrl ?? "",
       placeholder: (context, url) => Shimmer.fromColors(
         baseColor: const Color(0xFFEBEBF4),

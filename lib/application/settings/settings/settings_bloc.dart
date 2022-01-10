@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:astra_app/domain/profile/models/profile.dart';
+import 'package:astra_app/domain/profile/models/profile_short_model.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,7 +18,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         await event.map(
           profileLoaded: (e) async {
             emit(const SettingsState.loadInProgress());
-            final response = await _profileRepo.getProfile();
+            final response = await _profileRepo.getProfileShort();
             emit(
               response.fold(
                 (l) => const SettingsState.loadFailure(),

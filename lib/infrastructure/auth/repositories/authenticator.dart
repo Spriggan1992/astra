@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:astra_app/domain/auth/failures/auth_failure.dart';
 import 'package:astra_app/infrastructure/auth/DTOs/token.dart';
 import 'package:astra_app/infrastructure/core/database/secure_strorage/i_secure_storage.dart';
@@ -7,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:http/http.dart' as http;
 
 const _access = 'access';
 const _refresh = 'refresh';
@@ -17,10 +21,7 @@ class Authenticator {
   /// Secure storage instance.
   final ISecureStorage _secureStorage;
 
-  /// Dio client instance.
-  final Dio _dio;
-
-  Authenticator(this._dio, this._secureStorage);
+  Authenticator(this._secureStorage);
 
   /// Get signedin token.
   ///
@@ -43,7 +44,9 @@ class Authenticator {
   }
 
   /// Check if user already signed in.
-  Future<bool> isSignedIn() => getSignedToken().then((token) => token != null);
+  Future<bool> isSignedIn() => getSignedToken().then((token) {
+        return token != null;
+      });
 
   Future<Either<AuthFailure, Unit>> clearSecureStorage() async {
     try {
@@ -59,18 +62,34 @@ class Authenticator {
     String refreshToken,
   ) async {
     try {
-      final response = await _dio
-          .post(Endpoints.user.refreshToken, data: {_refresh: refreshToken});
-      final token =
-          Token(access: response.data[_access], refresh: refreshToken);
-      await _secureStorage.save(token);
-      return right(token);
+      final token = await _getTokenOrNull(refreshToken);
+      if (token != null) {
+        await _secureStorage.save(token);
+        return right(token);
+      } else {
+        return left(const AuthFailure.server());
+      }
     } on FormatException {
       return left(const AuthFailure.server());
     } on DioError catch (e) {
       return left(AuthFailure.server('${e.error}: ${e.message}'));
     } on PlatformException {
       return left(const AuthFailure.storage());
+    }
+  }
+
+  Future<Token?> _getTokenOrNull(String refreshToken) async {
+    final request =
+        http.MultipartRequest("POST", Uri.parse(Endpoints.user.refreshToken))
+          ..fields[_refresh] = refreshToken;
+    final http.Response response =
+        await http.Response.fromStream(await request.send());
+    if (response.statusCode == 401) {
+      return null;
+    } else {
+      Map<String, dynamic> jsonData =
+          json.decode(response.body) as Map<String, dynamic>;
+      return Token(access: jsonData[_access], refresh: refreshToken);
     }
   }
 }

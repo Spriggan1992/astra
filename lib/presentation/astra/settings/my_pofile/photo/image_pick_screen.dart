@@ -22,7 +22,7 @@ class ImagePickScreen extends StatefulWidget {
 }
 
 class _ImagePickScreenState extends State<ImagePickScreen> {
-  List<File> _images = [];
+  final List<File> _images = [];
   final picker = ImagePicker();
 
   Future getImage(int index) async {
@@ -30,7 +30,6 @@ class _ImagePickScreenState extends State<ImagePickScreen> {
 
     setState(() {
       _images[index] = File(image!.path);
-      print((image.path));
     });
   }
 
@@ -83,8 +82,7 @@ class _ImagePickScreenState extends State<ImagePickScreen> {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: Container(
-                        child: Row(
+                    child: Row(
                       children: [
                         Expanded(
                           child: Container(
@@ -92,7 +90,7 @@ class _ImagePickScreenState extends State<ImagePickScreen> {
                               borderRadius: BorderRadius.circular(8),
                               color: Colors.red,
                             ),
-                            child: (Text("5")),
+                            child: (const Text("5")),
                             margin: const EdgeInsets.all(2),
                             width: 80,
                             height: 80,
@@ -115,7 +113,7 @@ class _ImagePickScreenState extends State<ImagePickScreen> {
                           ),
                         ),
                       ],
-                    )),
+                    ),
                   ),
                   const Divider(
                     height: 1,

@@ -42,7 +42,7 @@ class ProfileSwitchWidget extends StatelessWidget {
                   onChanged: onChanged,
                   activeTrackColor: Colors.white,
                   inactiveTrackColor: Colors.white,
-                  activeColor: Color.fromRGBO(217, 191, 100, 1),
+                  activeColor: const Color.fromRGBO(217, 191, 100, 1),
                 ),
               ),
             ],

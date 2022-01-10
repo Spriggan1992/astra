@@ -1,5 +1,6 @@
+import 'package:astra_app/infrastructure/core/services/images/compressed_images.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'image.freezed.dart';
+part 'image_models.freezed.dart';
 
 /// Represent image model.
 @freezed
@@ -12,11 +13,10 @@ class ImageModel with _$ImageModel {
     /// Imgae url to display.
     required String imageUrl,
 
-    /// Image transformed to base64 for sending to server.
-    required String imagePath,
+    /// Compressed images
+    CompressedImages? compressedImages,
   }) = _ImageModel;
   factory ImageModel.empty() => const ImageModel(
-        imagePath: '',
         imageUrl: '',
       );
   bool get imageUrlIsEmpty => imageUrl.isEmpty;

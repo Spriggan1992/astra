@@ -1,6 +1,6 @@
 import 'package:astra_app/application/auth/auth/auth_bloc.dart';
 import 'package:astra_app/application/settings/settings/settings_bloc.dart';
-import 'package:astra_app/domain/profile/models/profile.dart';
+import 'package:astra_app/domain/profile/models/profile_short_model.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/widgets/profile_item_widget.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsItems extends StatelessWidget {
-  final Profile profile;
+  final ProfileShortModel profile;
   const SettingsItems({
     Key? key,
     required this.profile,

@@ -1,13 +1,10 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:astra_app/domain/image_picker/models/image.dart';
-import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
+import 'package:astra_app/domain/core/models/image_models.dart';
+import 'package:astra_app/presentation/core/widgets/images/astra_file_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-final _border = Border.all(color: AstraColors.golden08);
 
 class ProfileLogoScreen extends StatelessWidget {
   const ProfileLogoScreen({
@@ -16,14 +13,14 @@ class ProfileLogoScreen extends StatelessWidget {
     this.onPickImage,
     this.onShowImage,
     this.isEditMode = false,
-    this.addedImgIrl,
+    this.addedImg,
   }) : super(key: key);
 
   final VoidCallback? onPickImage;
   final VoidCallback? onShowImage;
   final bool isEditMode;
   final List<ImageModel> images;
-  final String? addedImgIrl;
+  final File? addedImg;
   @override
   Widget build(BuildContext context) {
     return (isEditMode)
@@ -33,19 +30,10 @@ class ProfileLogoScreen extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.center,
-                  child: AstraNetworkImage(
-                    border: _border,
-                    height: 130,
+                  child: AstraFileImage(
+                    image:
+                        addedImg ?? images.first.compressedImages!.thumbnail!,
                     width: 130,
-                    imageUrl: images.first.imageUrl,
-                    fileImage: addedImgIrl == null
-                        ? null
-                        : FileImage(
-                            File(
-                              addedImgIrl!,
-                            ),
-                          ),
-                    boxShape: BoxShape.circle,
                   ),
                 ),
                 SizedBox(
@@ -81,31 +69,26 @@ class ProfileLogoScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AstraNetworkImage(
-                        border: _border,
-                        height: 130,
-                        width: 90,
-                        imageUrl: images.isEmpty ? '' : images[1].imageUrl,
-                        boxShape: BoxShape.circle,
+                      Align(
+                        alignment: Alignment.center,
+                        child: AstraFileImage(
+                          image: images[1].compressedImages!.thumbnail!,
+                        ),
                       ),
                       const SizedBox(width: 40),
-                      AstraNetworkImage(
-                        border: _border,
-                        height: 130,
-                        width: 90,
-                        imageUrl: images.isEmpty ? '' : images[2].imageUrl,
-                        boxShape: BoxShape.circle,
+                      Align(
+                        alignment: Alignment.center,
+                        child: AstraFileImage(
+                          image: images[2].compressedImages!.thumbnail!,
+                        ),
                       ),
                     ],
                   ),
                   Align(
                     alignment: Alignment.center,
-                    child: AstraNetworkImage(
-                      border: _border,
-                      height: 130,
+                    child: AstraFileImage(
+                      image: images.first.compressedImages!.thumbnail!,
                       width: 130,
-                      imageUrl: images.isEmpty ? '' : images.first.imageUrl,
-                      boxShape: BoxShape.circle,
                     ),
                   ),
                 ],

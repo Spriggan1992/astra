@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/image_picker/models/image.dart';
+import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profile.freezed.dart';
 

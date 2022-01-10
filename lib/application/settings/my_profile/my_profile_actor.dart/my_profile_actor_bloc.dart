@@ -1,9 +1,12 @@
-import 'package:astra_app/domain/image_picker/models/image.dart';
+import 'dart:io';
+
+import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/domain/image_picker/reopositories/i_image_picker.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:astra_app/domain/store/models/wallet.dart';
+import 'package:astra_app/infrastructure/core/services/images/compressed_images.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -22,10 +25,12 @@ class MyProfileActorBloc
     on<MyProfileActorEvent>(
       (event, emit) async {
         await event.map(initialized: (e) async {
+          emit(state.copyWith(isLoading: true));
           emit(state.copyWith(
               profile: e.profile,
               walletInfo: e.walletInfo,
               curatorInfo: e.curatorInfo));
+          emit(state.copyWith(isLoading: false));
         }, descriptionChanged: (e) async {
           emit(
             state.copyWith(
@@ -91,7 +96,9 @@ class MyProfileActorBloc
           // Update short user information and get response as Either with left(failure) and right(success).
           final response = await _profileRepository
               .updateShortInfo(state.profile.profileInfo);
-          // Here we fold our response, if we get left(failure response) -> mapping state -> if we get AstraFailure.noConnection, setup  flag ///isShowNoInternetConnectionError to true for displaying snackbar with message that no innternet connection, if we get AstraFailure.api (rest dio exception), show coresponding error in UI.
+          // Here we fold our response, if we get left(failure response) -> mapping state -> if we get AstraFailure.
+          // no connection, setup  flag ///isShowNoInternetConnectionError to true for displaying snackbar with message that
+          // no innternet connection, if we get AstraFailure.api (rest dio exception), show coresponding error in UI.
           // if response is success -> setup flag isSuccessfullySubmitted to true.
           emit(
             response.fold(
@@ -110,7 +117,10 @@ class MyProfileActorBloc
           if (imagesResult != null) {
             final images = imagesResult
                 .map(
-                  (e) => ImageModel(imagePath: e.path, imageUrl: ""),
+                  (e) => ImageModel(
+                      compressedImages:
+                          CompressedImages(fullImage: File(e.path)),
+                      imageUrl: ""),
                 )
                 .toList();
             emit(state.copyWith(selectedImages: images));
@@ -140,18 +150,4 @@ class MyProfileActorBloc
       },
     );
   }
-  // Future<T> _resultHandler<T>(
-  //     {required Future<Either<AstraFailure, T>> Function() resultHandler,
-  //     required Emitter<MyProfileActorState> emit}) async {
-  //   final result = await resultHandler();
-  //   late T successResult;
-  //   result.fold(
-  //       (l) => l.map(
-  //           api: (_) => emit(state.copyWith(isShowErrorScreen: true)),
-  //           noConnection: (_) =>
-  //               emit(state.copyWith(isSowNoConnetcionScreen: true))), (r) {
-  //     successResult = r;
-  //   });
-  //   return successResult;
-  // }
 }

@@ -7,7 +7,6 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,12 +67,11 @@ class SupportScreenContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            KuratorListTile(
-                name: curatorInfo.curatorFullname,
-                leadingRadius: 32,
-                trallingRadius: 28,
-                onPressed: () {},
-                imageUrl: curatorInfo.profilePhoto),
+            CuratorListTile(
+              curator: curatorInfo,
+              trallingRadius: 28,
+              onPressed: () {},
+            ),
 
             const Padding(
               padding: EdgeInsets.only(top: 16, bottom: 16),
