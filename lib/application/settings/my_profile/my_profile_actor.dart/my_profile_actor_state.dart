@@ -4,6 +4,9 @@ part of 'my_profile_actor_bloc.dart';
 @freezed
 class MyProfileActorState with _$MyProfileActorState {
   const factory MyProfileActorState({
+    /// Todo
+    required bool isLoading,
+
     /// User profile information.
     required Profile profile,
 
@@ -29,6 +32,7 @@ class MyProfileActorState with _$MyProfileActorState {
     required CuratorModel curatorInfo,
   }) = _MyProfileActorState;
   factory MyProfileActorState.initial() => MyProfileActorState(
+        isLoading: false,
         profile: Profile.empty(),
         isEditMode: false,
         // isLoading: false,

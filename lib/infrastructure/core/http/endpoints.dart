@@ -18,6 +18,7 @@ class _AuthEndpoints {
   String get passwordReset => _address + "user/auth/reset/create/";
   String get checkSmsCode => _address + "user/auth/reset/check/";
   String get resetPassword => _address + "user/auth/reset/password/";
+  String get refreshToken => _address + "users/auth/jwt/refresh/";
 }
 
 class _ChatEndpoints {
@@ -48,6 +49,7 @@ class _ShopEndpoints {
 
 class _ProfileEndpoints {
   String get account => _address + "user/account/";
+  String get accountShort => _address + "user/account/min/";
   String get hideAccount => _address + "user/account/hidden/";
   String get showAccount => _address + "user/account/unhidden/";
   String get hideAccountInfo => _address + "user/account/info/hidden/";

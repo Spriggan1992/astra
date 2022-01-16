@@ -12,7 +12,8 @@ class SettingsState with _$SettingsState {
   /// Successfule loaded data state.
   ///
   /// Keep state of [Profile] if loaded successfully.
-  const factory SettingsState.loadSuccess(Profile profile) = _LoadSuccess;
+  const factory SettingsState.loadSuccess(ProfileShortModel profile) =
+      _LoadSuccess;
 
   /// Unsuccessfully loaded data state.
   const factory SettingsState.loadFailure() = _LoadFailure;

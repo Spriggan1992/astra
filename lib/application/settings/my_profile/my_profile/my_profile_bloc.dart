@@ -3,7 +3,6 @@ import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:astra_app/domain/store/models/wallet.dart';
 import 'package:astra_app/domain/store/repositories/i_store_reposytory.dart';
-import 'package:astra_app/infrastructure/profile/DTOs/dto_curator.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

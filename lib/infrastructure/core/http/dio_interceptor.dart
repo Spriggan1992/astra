@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:astra_app/infrastructure/auth/repositories/authenticator.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -7,10 +5,10 @@ import 'package:injectable/injectable.dart';
 /// Dio interceptor for intercepting request.
 @LazySingleton()
 class DioInterceptor extends Interceptor {
-  /// Service for auuthentication.
+  /// Service for authentication.
   final Authenticator _authenticator;
 
-  /// Inctanse of dio client.
+  /// Dio client.
   final Dio _dio;
 
   DioInterceptor(this._dio, this._authenticator);

@@ -1,12 +1,12 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:astra_app/domain/profile/models/profile.dart';
-import 'package:astra_app/infrastructure/image_picker/DTOs/image_dto.dart';
+import 'package:astra_app/infrastructure/core/DTOs/image_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profile_dto.freezed.dart';
 part 'profile_dto.g.dart';
 
-/// Represemt data transfer object profile.
+/// Represet profile data transfer object .
 @freezed
 class ProfileDTO with _$ProfileDTO {
   const ProfileDTO._();

@@ -59,6 +59,10 @@ dependencies:
   shared_preferences: ^2.0.9
   shimmer: ^2.0.0
   outline_gradient_button: ^2.0.0+1
+  flutter_cache_manager: ^3.3.0
+  flutter_image_compress: ^1.1.0
+  meta: ^1.7.0
+  image: ^3.1.0
 
 dev_dependencies:
   auto_route_generator: ^3.1.0

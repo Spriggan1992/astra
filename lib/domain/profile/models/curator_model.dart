@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'curator_model.freezed.dart';
 
@@ -31,9 +32,9 @@ class CuratorModel with _$CuratorModel {
     required String city,
 
     /// Curator profile photo to display.
-    required String profilePhoto,
+    required ImageModel profilePhoto,
   }) = _CuratorModel;
-  factory CuratorModel.empty() => const CuratorModel(
+  factory CuratorModel.empty() => CuratorModel(
         id: 0,
         email: '',
         phoneNumber: 0,
@@ -42,7 +43,7 @@ class CuratorModel with _$CuratorModel {
         patronyc: '',
         country: '',
         city: '',
-        profilePhoto: '',
+        profilePhoto: ImageModel.empty(),
       );
 
   /// Gets curator fullname.

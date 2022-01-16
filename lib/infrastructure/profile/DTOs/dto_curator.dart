@@ -1,9 +1,14 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:astra_app/domain/profile/models/curator_model.dart';
+import 'package:astra_app/infrastructure/core/DTOs/image_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'dto_curator.g.dart';
 part 'dto_curator.freezed.dart';
+
+ImageDTO? _curatorPhoto(List<Object> json) {
+  return json.singleOrNull as ImageDTO?;
+}
 
 /// Represent curator data transfer object.
 @freezed
@@ -35,7 +40,7 @@ class CuratorDTO with _$CuratorDTO {
     @JsonKey(name: 'city') required String city,
 
     /// Curator profile photo.
-    @JsonKey(name: 'profile_photo') required String profilePhoto,
+    @JsonKey(name: 'profile_photo') required List<ImageDTO> profilePhoto,
   }) = _CuratorDTO;
 
   /// Return converted DTO from json.
@@ -58,7 +63,7 @@ class CuratorDTO with _$CuratorDTO {
       patronyc: _.patronyc,
       country: _.country,
       city: _.city,
-      profilePhoto: _.profilePhoto,
+      profilePhoto: [ImageDTO.fromDomain(_.profilePhoto)],
     );
   }
 
@@ -72,6 +77,6 @@ class CuratorDTO with _$CuratorDTO {
         patronyc: patronyc,
         country: country,
         city: city,
-        profilePhoto: profilePhoto,
+        profilePhoto: profilePhoto.single.toDomain(),
       );
 }

@@ -19,7 +19,7 @@ void showSnackBar(
             controller: controller,
             backgroundColor: AstraColors.disableBtn,
             position: FlashPosition.bottom,
-            behavior: FlashBehavior.fixed,
+            behavior: FlashBehavior.floating,
             child: FlashBar(
               padding: const EdgeInsets.all(20),
               content: Text(title ?? 'Отсутствует подключение к интернету',
