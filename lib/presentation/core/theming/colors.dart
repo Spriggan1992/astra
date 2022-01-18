@@ -30,4 +30,6 @@ class AstraColors {
   static const Color darkWhite = Color.fromRGBO(206, 206, 206, 1);
   static const Color darken = Color.fromRGBO(85, 85, 85, 0.2);
   static const Color disableBtn = Color.fromRGBO(233, 233, 233, 1);
+  static const Color blackMetallic07 = Color.fromRGBO(0, 0, 0, 0.7);
+  static const Color blackMetallic09 = Color.fromRGBO(0, 0, 0, 0.9);
 }

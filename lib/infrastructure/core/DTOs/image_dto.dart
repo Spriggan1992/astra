@@ -5,8 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/infrastructure/core/http/endpoints.dart';
 
-part '../../image_picker/DTOs/image_dto.freezed.dart';
-part '../../image_picker/DTOs/image_dto.g.dart';
+part 'image_dto.freezed.dart';
+part 'image_dto.g.dart';
 
 /// Represet image data transfer object.
 @freezed

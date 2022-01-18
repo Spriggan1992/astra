@@ -1,8 +1,9 @@
+import 'package:astra_app/domain/applicant/applicant.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_screen.dart';
 import 'package:astra_app/presentation/astra/home_screen.dart';
 import 'package:astra_app/presentation/astra/message/chat_screen.dart';
 import 'package:astra_app/presentation/astra/message/message_screen.dart';
-import 'package:astra_app/presentation/astra/search/search_detail.dart';
+import 'package:astra_app/presentation/astra/search/applicant_screen.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/astra/settings/about/about_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
@@ -45,7 +46,7 @@ import 'package:auto_route/auto_route.dart';
               path: '',
               page: SearchScreen,
             ),
-            AutoRoute(path: ':searchDetailPage', page: SearchDetailPage),
+            AutoRoute(path: ':applicantScreen', page: ApplicantScreen),
           ],
         ),
         AutoRoute(

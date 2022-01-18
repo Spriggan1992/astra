@@ -48,4 +48,5 @@ class CuratorModel with _$CuratorModel {
 
   /// Gets curator fullname.
   String get curatorFullname => "$firstname $lastname";
+
 }
