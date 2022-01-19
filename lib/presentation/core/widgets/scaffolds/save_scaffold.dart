@@ -9,7 +9,7 @@ class SafeScaffold extends StatelessWidget {
     this.appBar,
     this.backgroundColor,
     this.safeAreaSettings,
-  });
+  }) : super(key: scaffoldKey);
 
   /// Ключ, для идентификации виджета
   final Key? scaffoldKey;

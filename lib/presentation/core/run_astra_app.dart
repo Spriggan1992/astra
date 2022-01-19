@@ -6,11 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/auth/auth/auth_bloc.dart';
 import '../../injection.dart';
 
-final _appRouter = AppRouter();
-
+// This widget is the root of your application.
 class AstraApp extends StatelessWidget {
   const AstraApp({Key? key}) : super(key: key);
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -25,8 +23,8 @@ class AstraApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         theme: AppTheme.lightTheme,
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
+        routerDelegate: getIt<AppRouter>().delegate(),
+        routeInformationParser: getIt<AppRouter>().defaultRouteParser(),
         debugShowCheckedModeBanner: false,
       ),
     );

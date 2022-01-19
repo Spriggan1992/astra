@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import 'infrastructure/core/database/sembast/sembast_database.dart';
+import 'presentation/core/routes/app_router.gr.dart';
 import 'presentation/core/run_astra_app.dart';
 
 void main() async {
@@ -18,6 +19,7 @@ Future<void> _appInitializer() async {
   configureInjection(Environment.prod);
   await getIt<SembastDatabase>().init();
   getIt<Dio>().interceptors.add(getIt<DioInterceptor>());
+  getIt.registerSingleton<AppRouter>(AppRouter());
   BlocOverrides.runZoned(() => runApp(const AstraApp()),
       blocObserver: SimpleBlocObserver());
 }

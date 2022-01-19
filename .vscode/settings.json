@@ -1,18 +1,18 @@
 {
     "files.exclude": {
-        "**/.classpath": true,
-        "**/.DS_Store": true,
-        "**/.factorypath": true,
         "**/.git": true,
+        "**/.svn": true,
         "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.classpath": true,
+        "**/.factorypath": true,
         "**/.project": true,
         "**/.settings": true,
-        "**/.svn": true,
         "**/*.freezed.dart": true,
         "**/*.freezed.dartt": true,
-        "**/*.g.dart": true,
-        "**/CVS": true,
-        "**/Thumbs.db": true
+        "**/*.g.dart": true
     },
     "explorerExclude.backup": null,
     "hide-files.files": []

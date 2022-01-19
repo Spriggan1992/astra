@@ -10,18 +10,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'favorite_content_page.dart';
 
-class FavoriteScreen extends StatefulWidget {
+class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
-  _FavoriteScreenState createState() => _FavoriteScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<FavoriteActorBloc>(),
+      child: BlocBuilder<FavoriteBloc, FavoriteState>(
+        buildWhen: (previous, current) =>
+            previous.isNoInternetConnection != current.isNoInternetConnection ||
+            previous.isUnexpectedError != current.isUnexpectedError,
+        builder: (context, state) {
+          if (state.isNoInternetConnection) {
+            return ErrorScreen(onTryAgain: () {
+              BlocProvider.of<FavoriteBloc>(context)
+                  .add(const FavoriteEvent.loadedData());
+            });
+          }
+          return FavoriteScreenContent(indexTab: state.favoriteType.index);
+        },
+      ),
+    );
+  }
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen>
+class FavoriteScreenContent extends StatefulWidget {
+  final int indexTab;
+  const FavoriteScreenContent({
+    Key? key,
+    required this.indexTab,
+  }) : super(key: key);
+
+  @override
+  State<FavoriteScreenContent> createState() => _FavoriteScreenContentState();
+}
+
+class _FavoriteScreenContentState extends State<FavoriteScreenContent>
     with SingleTickerProviderStateMixin {
   late TabController _controller;
-  int _selectedIndex = 1;
-
   List<Widget> list = const [
     Tab(
       child: Text(
@@ -48,19 +75,15 @@ class _FavoriteScreenState extends State<FavoriteScreen>
       ),
     ),
   ];
-
   @override
   void initState() {
     super.initState();
     _controller = TabController(length: list.length, vsync: this);
-
+    _controller.index = widget.indexTab;
     _controller.addListener(() {
       _controller.indexIsChanging;
-      setState(() {
-        _selectedIndex = _controller.index;
-      });
-      BlocProvider.of<FavoriteBloc>(context)
-          .add(FavoriteEvent.initialized(_getFavoiteType(_selectedIndex)));
+      BlocProvider.of<FavoriteBloc>(context).add(FavoriteEvent.loadedData(
+          favoriteType: _getFavoiteType(_controller.index)));
     });
   }
 
@@ -72,86 +95,50 @@ class _FavoriteScreenState extends State<FavoriteScreen>
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<FavoriteActorBloc>(),
-      child: BlocBuilder<FavoriteBloc, FavoriteState>(
-        buildWhen: (previous, current) =>
-            previous.isNoInternetConnection != current.isNoInternetConnection ||
-            previous.isUnexpectedError != current.isUnexpectedError,
-        builder: (context, state) {
-          if (state.isNoInternetConnection) {
-            return ErrorScreen(onTryAgain: () {
-              BlocProvider.of<FavoriteBloc>(context).add(
-                  FavoriteEvent.initialized(_getFavoiteType(_selectedIndex)));
-            });
-          }
-          return FavoriteScreenContent(controller: _controller, list: list);
-        },
-      ),
-    );
-  }
-}
-
-class FavoriteScreenContent extends StatelessWidget {
-  const FavoriteScreenContent({
-    Key? key,
-    required TabController controller,
-    required this.list,
-  })  : _controller = controller,
-        super(key: key);
-
-  final TabController _controller;
-  final List<Widget> list;
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 1,
+        centerTitle: true,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 1,
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              CupertinoIcons.back,
-              color: Colors.black87,
-              size: 35,
-            ),
-          ),
-          bottom: TabBar(
-            onTap: (index) {},
-            controller: _controller,
-            tabs: list,
-          ),
-          title: Text(
-            'Избранное',
-            style: Theme.of(context).textTheme.headline6!.copyWith(
-                  color: const Color.fromRGBO(31, 31, 31, 1),
-                  fontSize: 17,
-                ),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            CupertinoIcons.back,
+            color: Colors.black87,
+            size: 35,
           ),
         ),
-        body: TabBarView(
+        bottom: TabBar(
+          onTap: (index) {},
           controller: _controller,
-          physics: const BouncingScrollPhysics(),
-          children: const [
-            FavoritePage(
-              favoriteType: FavoriteScreenType.yourLikes,
-            ),
-            FavoritePage(
-              favoriteType: FavoriteScreenType.likesForYou,
-            ),
-            FavoritePage(
-              favoriteType: FavoriteScreenType.think,
-            ),
-            FavoritePage(
-              favoriteType: FavoriteScreenType.stopList,
-            ),
-          ],
+          tabs: list,
         ),
+        title: Text(
+          'Избранное',
+          style: Theme.of(context).textTheme.headline6!.copyWith(
+                color: const Color.fromRGBO(31, 31, 31, 1),
+                fontSize: 17,
+              ),
+        ),
+      ),
+      body: TabBarView(
+        controller: _controller,
+        physics: const BouncingScrollPhysics(),
+        children: const [
+          FavoritePage(
+            favoriteType: FavoriteScreenType.yourLikes,
+          ),
+          FavoritePage(
+            favoriteType: FavoriteScreenType.likesForYou,
+          ),
+          FavoritePage(
+            favoriteType: FavoriteScreenType.think,
+          ),
+          FavoritePage(
+            favoriteType: FavoriteScreenType.stopList,
+          ),
+        ],
       ),
     );
   }
