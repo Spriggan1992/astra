@@ -10,26 +10,28 @@ part 'applicant.freezed.dart';
 class Applicant with _$Applicant{
   const Applicant._(); 
   const factory Applicant ({
-    //applicants name
+    ///Applicant name.
     required String name,
-    //applicant,s age
+    ///Applicant age.
     required int age,
-    //the applicant's status - married, unmarried e.
+    ///The applicant's status - married, unmarried e.
     required String status,
-    //the height
+    ///The height of applicant.
     required String height, 
-    // 
+    ///A sign that aplicant has mutual sympathy with current user.
+    required bool mutualSympathy, 
+    /// A sign that aplicants has children or not.
     required bool havingChildren,  
-    //place of residence 
+    ///Place of residence. 
     required String location,
-     //applicant description
+     ///Applicant description.
     required String desc,
-    //bg main image
+    //Bg main image.
     required String mainImage,
-    //list of images of applicant
+    //List of images of applicant.
     required List<String> images,
 
-    //Additional info of the applicant
+    //Additional info of the applicant.
     required List<ApplicantInfo> additionalInfo, 
        
    
@@ -48,6 +50,7 @@ class Applicant with _$Applicant{
               havingChildren: true,
               height: '170 см',
               status: 'Не замужем',
+              mutualSympathy: false,
               images: [
                 'assets/girl.png',
                 'assets/girl.png',
@@ -71,6 +74,7 @@ class Applicant with _$Applicant{
                havingChildren: true,
               height: '170 см',
               status: 'Не замужем',
+              mutualSympathy: true,
               images: [
                 'assets/girl.png',
                 'assets/girl.png',
@@ -94,6 +98,7 @@ class Applicant with _$Applicant{
                havingChildren: true,
               height: '170 см',
               status: 'Не замужем',
+              mutualSympathy: false,
               images: [
                 'assets/girl.png',
                 'assets/girl.png',
@@ -117,6 +122,7 @@ class Applicant with _$Applicant{
                havingChildren: true,
               height: '170 см',
               status: 'Не замужем',
+              mutualSympathy: false,
               images: [
                 'assets/girl.png',
                 'assets/girl.png',
