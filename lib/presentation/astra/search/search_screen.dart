@@ -1,5 +1,6 @@
 import 'package:astra_app/domain/applicant/applicant.dart';
-import 'package:astra_app/presentation/astra/search/search_card.dart';
+import 'package:astra_app/presentation/astra/search/sympathy/sympathy_dialog.dart';
+import 'package:astra_app/presentation/astra/search/widgets/search_card.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +24,36 @@ class _SearchScreenState extends State<SearchScreen> {
     final _applicants = Applicant.getApplicants();
 
     for (var applicant in _applicants) {
-      swipeItems.add(SwipeItem(content: applicant, onSlideUpdate: (SlideRegion? region)async{
-      }));
+      swipeItems.add(
+        SwipeItem(
+            content: applicant, onSlideUpdate: (SlideRegion? region) async {}),
+      );
     }
     _matchEngine = MatchEngine(swipeItems: swipeItems);
     super.initState();
+  }
+
+  void _showSympathyDialog(BuildContext context, Applicant applicant) async {
+    final result = await showDialog(
+      barrierDismissible: true,
+      context: context,
+      builder: (context) {
+        return SympathyDialog(
+          image: Image.asset(applicant.mainImage, fit: BoxFit.cover),
+          onClose: () => Navigator.of(context).pop(false),
+          onWrite: () => Navigator.of(context).pop(true),
+        );
+      },
+    );
+
+    //go to store
+    if (result) {
+      AutoRouter.of(context).push(const MessageRouter());
+    }
+    //go back
+    else {
+      _matchEngine.currentItem!.like();
+    }
   }
 
   @override
@@ -51,8 +77,12 @@ class _SearchScreenState extends State<SearchScreen> {
               AutoRouter.of(context)
                   .push(ApplicantScreenRoute(applicant: _currentApplicant));
             },
-            onTapLike: () {
-              _matchEngine.currentItem!.like();
+            onTapLike: () async {
+              if (_currentApplicant.mutualSympathy) {
+                _showSympathyDialog(context, _currentApplicant);
+              } else {
+                _matchEngine.currentItem!.like();
+              }
             },
           );
         },

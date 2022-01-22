@@ -9,17 +9,18 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/cupertino.dart' as _i23;
 import 'package:flutter/material.dart' as _i22;
 
-import '../../../domain/applicant/applicant.dart' as _i24;
-import '../../../domain/core/models/image_models.dart' as _i23;
-import '../../../infrastructure/chat/models/chat/chat.dart' as _i25;
-import '../../../infrastructure/chat/models/chat/message.dart' as _i26;
+import '../../../domain/applicant/applicant.dart' as _i25;
+import '../../../domain/core/models/image_models.dart' as _i24;
+import '../../../infrastructure/chat/models/chat/chat.dart' as _i26;
+import '../../../infrastructure/chat/models/chat/message.dart' as _i27;
 import '../../astra/favorite/favorite_screen.dart' as _i12;
 import '../../astra/home_screen.dart' as _i10;
 import '../../astra/message/chat_screen.dart' as _i16;
 import '../../astra/message/message_screen.dart' as _i13;
-import '../../astra/search/applicant_screen.dart' as _i15;
+import '../../astra/search/applicants/applicant_screen.dart' as _i15;
 import '../../astra/search/search_screen.dart' as _i14;
 import '../../astra/settings/about/about_screen.dart' as _i19;
 import '../../astra/settings/my_pofile/my_profile.dart' as _i18;
@@ -37,7 +38,7 @@ import '../../auth/password_screen.dart' as _i5;
 import '../../auth/phone_number_screen.dart' as _i2;
 import '../../auth/splash_screen.dart' as _i1;
 import '../../auth/widgets/finish_register_screen.dart' as _i7;
-import '../enums/store_screen_qualifier.dart' as _i27;
+import '../enums/store_screen_qualifier.dart' as _i28;
 
 class AppRouter extends _i11.RootStackRouter {
   AppRouter([_i22.GlobalKey<_i22.NavigatorState>? navigatorKey])
@@ -240,7 +241,7 @@ class HowToGetClubScreenRoute extends _i11.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.CodeScreen]
 class CodeScreenRoute extends _i11.PageRouteInfo<CodeScreenRouteArgs> {
-  CodeScreenRoute({_i22.Key? key, required String phoneNumber})
+  CodeScreenRoute({_i23.Key? key, required String phoneNumber})
       : super(CodeScreenRoute.name,
             path: '/code-screen',
             args: CodeScreenRouteArgs(key: key, phoneNumber: phoneNumber));
@@ -251,7 +252,7 @@ class CodeScreenRoute extends _i11.PageRouteInfo<CodeScreenRouteArgs> {
 class CodeScreenRouteArgs {
   const CodeScreenRouteArgs({this.key, required this.phoneNumber});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String phoneNumber;
 
@@ -265,7 +266,7 @@ class CodeScreenRouteArgs {
 /// [_i5.PasswordScreen]
 class PasswordScreenRoute extends _i11.PageRouteInfo<PasswordScreenRouteArgs> {
   PasswordScreenRoute(
-      {_i22.Key? key, required String phoneNumber, String? code})
+      {_i23.Key? key, required String phoneNumber, String? code})
       : super(PasswordScreenRoute.name,
             path: '/password-screen',
             args: PasswordScreenRouteArgs(
@@ -278,7 +279,7 @@ class PasswordScreenRouteArgs {
   const PasswordScreenRouteArgs(
       {this.key, required this.phoneNumber, this.code});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String phoneNumber;
 
@@ -295,7 +296,7 @@ class PasswordScreenRouteArgs {
 class ConfirmPasswordScreenRoute
     extends _i11.PageRouteInfo<ConfirmPasswordScreenRouteArgs> {
   ConfirmPasswordScreenRoute(
-      {_i22.Key? key,
+      {_i23.Key? key,
       required String phoneNumber,
       required String confirmePassword})
       : super(ConfirmPasswordScreenRoute.name,
@@ -312,7 +313,7 @@ class ConfirmPasswordScreenRouteArgs {
   const ConfirmPasswordScreenRouteArgs(
       {this.key, required this.phoneNumber, required this.confirmePassword});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String phoneNumber;
 
@@ -347,7 +348,7 @@ class ImagePickScreenRoute extends _i11.PageRouteInfo<void> {
 class ShowImageFullScreenRoute
     extends _i11.PageRouteInfo<ShowImageFullScreenRouteArgs> {
   ShowImageFullScreenRoute(
-      {_i22.Key? key, required List<_i23.ImageModel> images})
+      {_i23.Key? key, required List<_i24.ImageModel> images})
       : super(ShowImageFullScreenRoute.name,
             path: '/show-image-full-screen',
             args: ShowImageFullScreenRouteArgs(key: key, images: images));
@@ -358,9 +359,9 @@ class ShowImageFullScreenRoute
 class ShowImageFullScreenRouteArgs {
   const ShowImageFullScreenRouteArgs({this.key, required this.images});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final List<_i23.ImageModel> images;
+  final List<_i24.ImageModel> images;
 
   @override
   String toString() {
@@ -424,7 +425,7 @@ class SearchScreenRoute extends _i11.PageRouteInfo<void> {
 /// [_i15.ApplicantScreen]
 class ApplicantScreenRoute
     extends _i11.PageRouteInfo<ApplicantScreenRouteArgs> {
-  ApplicantScreenRoute({_i22.Key? key, required _i24.Applicant applicant})
+  ApplicantScreenRoute({_i23.Key? key, required _i25.Applicant applicant})
       : super(ApplicantScreenRoute.name,
             path: ':applicantScreen',
             args: ApplicantScreenRouteArgs(key: key, applicant: applicant));
@@ -435,9 +436,9 @@ class ApplicantScreenRoute
 class ApplicantScreenRouteArgs {
   const ApplicantScreenRouteArgs({this.key, required this.applicant});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i24.Applicant applicant;
+  final _i25.Applicant applicant;
 
   @override
   String toString() {
@@ -450,9 +451,9 @@ class ApplicantScreenRouteArgs {
 class MessageChatScreenRoute
     extends _i11.PageRouteInfo<MessageChatScreenRouteArgs> {
   MessageChatScreenRoute(
-      {_i22.Key? key,
-      required _i25.Chat chat,
-      required _i26.Message lastMessage})
+      {_i23.Key? key,
+      required _i26.Chat chat,
+      required _i27.Message lastMessage})
       : super(MessageChatScreenRoute.name,
             path: '',
             args: MessageChatScreenRouteArgs(
@@ -465,11 +466,11 @@ class MessageChatScreenRouteArgs {
   const MessageChatScreenRouteArgs(
       {this.key, required this.chat, required this.lastMessage});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i25.Chat chat;
+  final _i26.Chat chat;
 
-  final _i26.Message lastMessage;
+  final _i27.Message lastMessage;
 
   @override
   String toString() {
@@ -515,9 +516,9 @@ class SupportScreenRoute extends _i11.PageRouteInfo<void> {
 /// [_i21.StoreScreen]
 class StoreScreenRoute extends _i11.PageRouteInfo<StoreScreenRouteArgs> {
   StoreScreenRoute(
-      {_i22.Key? key,
-      _i27.StoreScreenQualifier storeQualifer =
-          _i27.StoreScreenQualifier.storeSettings})
+      {_i23.Key? key,
+      _i28.StoreScreenQualifier storeQualifer =
+          _i28.StoreScreenQualifier.storeSettings})
       : super(StoreScreenRoute.name,
             path: ':store',
             args: StoreScreenRouteArgs(key: key, storeQualifer: storeQualifer));
@@ -527,11 +528,11 @@ class StoreScreenRoute extends _i11.PageRouteInfo<StoreScreenRouteArgs> {
 
 class StoreScreenRouteArgs {
   const StoreScreenRouteArgs(
-      {this.key, this.storeQualifer = _i27.StoreScreenQualifier.storeSettings});
+      {this.key, this.storeQualifer = _i28.StoreScreenQualifier.storeSettings});
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
-  final _i27.StoreScreenQualifier storeQualifer;
+  final _i28.StoreScreenQualifier storeQualifer;
 
   @override
   String toString() {
