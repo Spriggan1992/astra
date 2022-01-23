@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:astra_app/domain/favorites/repositories/i_favorites_repository.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:bloc/bloc.dart';
@@ -14,15 +16,28 @@ class FavoriteActorBloc extends Bloc<FavoriteActorEvent, FavoriteActorState> {
   FavoriteActorBloc(this._favoritesApi) : super(FavoriteActorState.initial()) {
     on<FavoriteActorEvent>((event, emit) async {
       await event.map(
+        initialized: (e) async {
+          log(e.toString(), name: 'profiles');
+          emit(state.copyWith(profiles: e.profiles, selectedProfiles: []));
+        },
         removedFromStopList: (e) async {
           emit(state.copyWith(isLoading: true));
           final response = await _favoritesApi.toThink(e.profile.id);
-          emit(response.fold(
+          emit(
+            response.fold(
               (failure) => failure.map(
                   api: (_) => state.copyWith(isUnexpectedError: true),
                   noConnection: (_) =>
                       state.copyWith(isNoInternetConnection: true)),
-              (_) => state.copyWith(isRemovedFromStopList: true)));
+              (_) {
+                List<Profile> selectedList = [];
+                selectedList.add(e.profile);
+                return state.copyWith(selectedProfiles: selectedList);
+              },
+            ),
+          );
+          emit(state.copyWith(
+              isNoInternetConnection: false, isUnexpectedError: false));
         },
       );
     });

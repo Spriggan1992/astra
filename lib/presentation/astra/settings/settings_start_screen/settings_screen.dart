@@ -4,7 +4,7 @@ import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/settings/settings_start_screen/widgets/settings_items.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/images/astra_file_image.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:flutter/material.dart';
@@ -55,8 +55,7 @@ class SettingsScreenBodyContent extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AstraAppBar(
-          onPressed: () {},
+        appBar: const AstraAppBar(
           title: 'Настройки',
         ),
         body: Column(
@@ -71,14 +70,6 @@ class SettingsScreenBodyContent extends StatelessWidget {
                   height: 60,
                   width: 60,
                 ),
-                // leading: AstraNetworkImage(
-                //   imageUrl: profile.avatar.i
-                //       ? ""
-                //       : profile.profilePhotos.first.imageUrl,
-                // height: 60,
-                // width: 60,
-                //   boxShape: BoxShape.circle,
-                // ),
                 title: Text(
                   profile.userInfo,
                   style: const TextStyle(

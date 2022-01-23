@@ -1,7 +1,9 @@
 import 'package:astra_app/application/chat/chat_list/chat_list_cubit.dart';
 import 'package:astra_app/infrastructure/chat/models/chat/message.dart';
+import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
 import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
-import 'package:astra_app/presentation/core/widgets/dialogs/custom_dialog.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,14 +24,6 @@ class MessageScreen extends StatelessWidget {
           elevation: 1,
           centerTitle: true,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              CupertinoIcons.back,
-              color: Colors.black87,
-              size: 35,
-            ),
-          ),
           title: Text(
             'Сообщения',
             style: Theme.of(context).textTheme.headline6!.copyWith(
@@ -85,22 +79,17 @@ class MessageScreen extends StatelessWidget {
                       return await showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return CustomDialog(
-                            title: const Text(
-                              "Вы точно хотите удалить диалог?",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w600),
+                          return DialogTwoActions(
+                            title: 'Вы точно хотите удалить диалог?',
+                            action1: DialogActionButton(
+                              onClick: () => Navigator.of(context).pop(false),
+                              title: 'Отмена',
                             ),
-                            action1: TextButton(
-                              onPressed: () => Navigator.of(context).pop(false),
-                              child: const Text("Отмена"),
-                            ),
-                            action2: TextButton(
-                              onPressed: () => Navigator.of(context).pop(true),
-                              child: const Text(
-                                "Удалить",
-                                style: TextStyle(color: Colors.red),
-                              ),
+                            action2: DialogActionButton(
+                              onClick: () => Navigator.of(context).pop(true),
+                              title: 'Удалить',
+                              buttonStyle: TextButton.styleFrom(
+                                  primary: AstraColors.red),
                             ),
                           );
                         },

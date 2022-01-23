@@ -1,5 +1,5 @@
-import 'package:astra_app/domain/applicant/applicant.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_screen.dart';
+import 'package:astra_app/presentation/astra/favorite/user_form/user_form_screen.dart';
 import 'package:astra_app/presentation/astra/home_screen.dart';
 import 'package:astra_app/presentation/astra/message/chat_screen.dart';
 import 'package:astra_app/presentation/astra/message/message_screen.dart';
@@ -19,7 +19,6 @@ import 'package:astra_app/presentation/auth/password_screen.dart';
 import 'package:astra_app/presentation/auth/phone_number_screen.dart';
 import 'package:astra_app/presentation/auth/splash_screen.dart';
 import 'package:astra_app/presentation/auth/widgets/finish_register_screen.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 
 @MaterialAutoRouter(
@@ -33,6 +32,7 @@ import 'package:auto_route/auto_route.dart';
     MaterialRoute(page: FinishRegisterScreen),
     MaterialRoute(page: ImagePickScreen),
     MaterialRoute(page: ShowImageFullScreen),
+    MaterialRoute(page: UserFormScreen),
     AutoRoute(
       path: '',
       page: HomeScreen,

@@ -16,25 +16,23 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   final IFavoritesRepository _favoritesApi;
   FavoriteBloc(this._favoritesApi) : super(FavoriteState.initial()) {
     on<FavoriteEvent>((event, emit) async {
-      await event.map(
-        loadedData: (e) async {
-          emit(state.copyWith(
-              isLoading: true,
-              favoriteType: e.favoriteType ?? FavoriteScreenType.likesForYou,
-              isNoInternetConnection: false,
-              isUnexpectedError: false));
-          await Future.delayed(const Duration(milliseconds: 500));
-          final response = await _getResponseResult(
-              e.favoriteType ?? FavoriteScreenType.likesForYou);
-          emit(response.fold(
-              (failure) => failure.map(
-                  api: (_) => state.copyWith(isUnexpectedError: true),
-                  noConnection: (_) =>
-                      state.copyWith(isNoInternetConnection: true)),
-              (profile) => state.copyWith(isSuccess: true, profiles: profile)));
-          emit(state.copyWith(isLoading: false));
-        },
-      );
+      await event.map(loadedData: (e) async {
+        emit(state.copyWith(
+            isLoading: true,
+            favoriteType: e.favoriteType ?? FavoriteScreenType.likesForYou,
+            isNoInternetConnection: false,
+            isUnexpectedError: false));
+        await Future.delayed(const Duration(milliseconds: 500));
+        final response = await _getResponseResult(
+            e.favoriteType ?? FavoriteScreenType.likesForYou);
+        emit(response.fold(
+            (failure) => failure.map(
+                api: (_) => state.copyWith(isUnexpectedError: true),
+                noConnection: (_) =>
+                    state.copyWith(isNoInternetConnection: true)),
+            (profile) => state.copyWith(isSuccess: true, profiles: profile)));
+        emit(state.copyWith(isLoading: false));
+      });
     });
   }
 

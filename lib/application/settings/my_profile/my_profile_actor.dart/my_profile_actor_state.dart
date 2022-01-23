@@ -35,7 +35,6 @@ class MyProfileActorState with _$MyProfileActorState {
         isLoading: false,
         profile: Profile.empty(),
         isEditMode: false,
-        // isLoading: false,
         isShowNoInternetConnectionError: false,
         isShowUnexpactedError: false,
         isSuccessfullySubmitted: false,

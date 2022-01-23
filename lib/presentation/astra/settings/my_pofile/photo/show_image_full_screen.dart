@@ -1,12 +1,13 @@
 import 'package:astra_app/application/settings/my_profile/full_screen_image.dart/full_screen_image_bloc.dart';
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
+import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/dialogs/custom_dialog.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
 
 ///  Defines FullImageScreen.
 class ShowImageFullScreen extends StatelessWidget {
@@ -69,26 +70,18 @@ class ShowImageFullScreen extends StatelessWidget {
                                           context: context,
                                           builder:
                                               (BuildContext showDilogcontext) {
-                                            return CustomDialog(
-                                              title: const Text(
-                                                "Вы точно хотите удалить фотографию?",
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                              action1: TextButton(
-                                                onPressed: () => Navigator.of(
+                                            return DialogTwoActions(
+                                              title:
+                                                  "Вы точно хотите удалить\nфотографию?",
+                                              action1: DialogActionButton(
+                                                title: 'Отмена',
+                                                onClick: () => Navigator.of(
                                                         showDilogcontext)
                                                     .pop(false),
-                                                child: const Text(
-                                                  "Отмена",
-                                                  style: TextStyle(
-                                                      color: AstraColors.black),
-                                                ),
                                               ),
-                                              action2: TextButton(
-                                                onPressed: () {
+                                              action2: DialogActionButton(
+                                                title: 'Удалить',
+                                                onClick: () {
                                                   BlocProvider.of<
                                                               FullScreenImageBloc>(
                                                           context)
@@ -97,11 +90,10 @@ class ShowImageFullScreen extends StatelessWidget {
                                                               .imagesDeleted());
                                                   context.router.pop();
                                                 },
-                                                child: const Text(
-                                                  "Удалить",
-                                                  style: TextStyle(
-                                                      color: Colors.red),
-                                                ),
+                                                buttonStyle:
+                                                    TextButton.styleFrom(
+                                                        primary:
+                                                            AstraColors.red),
                                               ),
                                             );
                                           },
