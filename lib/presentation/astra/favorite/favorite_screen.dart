@@ -5,7 +5,7 @@ import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/favorite/tab_item.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
-import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_action.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -122,8 +122,9 @@ class _FavoriteScreenContentState extends State<FavoriteScreenContent>
                           context: context,
                           builder: (dialogContext) {
                             return DialogOneAction(
-                              'Все пользователи восстановлены и\nбудут пересены в раздел «подумать‎»',
-                              DialogActionButton(
+                              title:
+                                  'Все пользователи восстановлены и\nбудут пересены в раздел «подумать‎»',
+                              action: DialogActionButton(
                                 title: 'Продолжить',
                                 onClick: () {
                                   context.router.pop();
