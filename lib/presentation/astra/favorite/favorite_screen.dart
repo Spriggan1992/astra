@@ -122,8 +122,9 @@ class _FavoriteScreenContentState extends State<FavoriteScreenContent>
                           context: context,
                           builder: (dialogContext) {
                             return DialogOneAction(
-                              title:
+                              content: const Text(
                                   'Все пользователи восстановлены и\nбудут пересены в раздел «подумать‎»',
+                                  textAlign: TextAlign.center),
                               action: DialogActionButton(
                                 title: 'Продолжить',
                                 onClick: () {

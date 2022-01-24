@@ -1,7 +1,10 @@
 import 'package:astra_app/application/auth/phone/phone_bloc.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
+import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_elevated_button.dart';
+import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -24,29 +27,49 @@ class PhoneNumberScreen extends StatelessWidget {
               AutoRouter.of(context).push(
                 PasswordScreenRoute(phoneNumber: listenState.phoneNumber),
               );
-              // context.read<PhoneBloc>().add(const PhoneEvent.resetStates());
             }
             if (listenState.redirectConfirmCode) {
-              //todo: Remove when back (registration) will be ready.
-              showSnackBar(context,
-                  title: "Регистрация в данный момент не доступна");
-              //todo: Uncomment when back (registration) will be ready.
-              // AutoRouter.of(context).push(
-              //   CodeScreenRoute(phoneNumber: state.phoneNumber),
-              // );
-              // context.read<PhoneBloc>().add(const PhoneEvent.resetStates());
+              showDialog(
+                context: context,
+                builder: (context) => DialogOneAction(
+                  content: Column(
+                    children: const [
+                      Text(
+                        'Номер в базе\nне зарегистрирован',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Для регистрации обратитесь\nв службу поддержки по номеру',
+                        style: TextStyle(
+                            color: AstraColors.dialogContent, fontSize: 15),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        '+ 7111 111 11 11',
+                        style: TextStyle(color: AstraColors.blue, fontSize: 15),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  action: DialogActionButton(
+                    title: "Спасибо",
+                    onClick: () => context.router.pop(),
+                  ),
+                ),
+              );
             }
             if (listenState.isNoConnection) {
               showSnackBar(context);
-              // context.read<PhoneBloc>().add(const PhoneEvent.resetStates());
             }
           },
           child: ScreenContent(
             title: "Мой номер телефона",
-            textFieldContent: BlocBuilder<PhoneBloc, PhoneState>(
-                // buildWhen: (previous, current) =>
-                // previous.phoneNumber != current.phoneNumber,
-                builder: (context, state) {
+            textFieldContent:
+                BlocBuilder<PhoneBloc, PhoneState>(builder: (context, state) {
               return TextFormField(
                 style: const TextStyle(fontSize: 24),
                 inputFormatters: [maskFormatter],

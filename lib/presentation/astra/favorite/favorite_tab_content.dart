@@ -62,8 +62,9 @@ class FavoriteTabContent extends StatelessWidget {
                                   context: context,
                                   builder: (_) {
                                     return DialogOneAction(
-                                      title:
+                                      content: const Text(
                                           'Пользователи пересен в раздел\n«подумать‎»',
+                                          textAlign: TextAlign.center),
                                       action: DialogActionButton(
                                         title: 'Продолжить',
                                         onClick: () {

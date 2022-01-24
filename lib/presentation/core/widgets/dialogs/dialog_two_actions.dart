@@ -18,7 +18,10 @@ class DialogTwoActions extends BaseDialog {
     required this.action2,
   }) : super(
           key,
-          title,
+          Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

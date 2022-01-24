@@ -3,18 +3,14 @@ import 'package:flutter/material.dart';
 
 /// Base class for dialogs.
 class BaseDialog extends StatelessWidget {
-  const BaseDialog(
-    Key? key,
-    this.dialogTitle,
-    this.dialogAction,
-  ) : super(key: key);
+  const BaseDialog(Key? key, this.dialogContent, this.dialogAction)
+      : super(key: key);
+
+  /// Base dialog content.
+  final Widget dialogContent;
 
   /// Base dialog action.
   final Widget dialogAction;
-
-  /// Base dialog title.
-  final String dialogTitle;
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -39,10 +35,7 @@ class BaseDialog extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
-              child: Text(
-                dialogTitle,
-                textAlign: TextAlign.center,
-              ),
+              child: dialogContent,
             ),
             const Divider(
               color: AstraColors.dividerDialogColor,

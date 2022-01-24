@@ -33,4 +33,5 @@ class AstraColors {
   static const Color disableBtn = Color.fromRGBO(233, 233, 233, 1);
   static const Color blackMetallic07 = Color.fromRGBO(0, 0, 0, 0.7);
   static const Color blackMetallic09 = Color.fromRGBO(0, 0, 0, 0.9);
+  static const Color dialogContent = Color(0xFFA0A0A0);
 }

@@ -3,18 +3,22 @@ import 'package:flutter/material.dart';
 
 /// Defines dialog with one action.
 class DialogOneAction extends BaseDialog {
+  /// Dialog content to display.
+  final Widget content;
+
   /// Dialog title to display.
-  final String title;
+  final String? title;
 
   /// Dialog action.
   final Widget action;
   const DialogOneAction({
     Key? key,
-    required this.title,
+    this.title,
+    required this.content,
     required this.action,
   }) : super(
           key,
-          title,
+          content,
           action,
         );
 }
