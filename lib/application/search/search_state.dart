@@ -11,7 +11,7 @@ class SearchState with _$SearchState {
     required String errorMessage,
 
     //List of applicants 
-    required List<Applicant> applicants,  
+    required List<Profile> applicants,  
 
   }) =_SearchState; 
 

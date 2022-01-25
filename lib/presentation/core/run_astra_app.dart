@@ -1,4 +1,5 @@
 import 'package:astra_app/application/chat/chat_list/chat_list_cubit.dart';
+import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/themes/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ class AstraApp extends StatelessWidget {
         ),
         BlocProvider<ChatListCubit>(
           create: (context) => ChatListCubit(),
+        ),
+         BlocProvider<SearchBloc>(
+          create: (context) => getIt<SearchBloc>(),
         ),
       ],
       child: MaterialApp.router(

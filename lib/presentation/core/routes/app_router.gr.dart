@@ -9,28 +9,28 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:flutter/cupertino.dart' as _i23;
-import 'package:flutter/material.dart' as _i22;
+import 'package:flutter/material.dart' as _i23;
 
-import '../../../domain/applicant/applicant.dart' as _i25;
 import '../../../domain/core/models/image_models.dart' as _i24;
+import '../../../domain/profile/models/profile.dart' as _i25;
 import '../../../infrastructure/chat/models/chat/chat.dart' as _i26;
 import '../../../infrastructure/chat/models/chat/message.dart' as _i27;
 import '../../astra/favorite/favorite_screen.dart' as _i12;
 import '../../astra/home_screen.dart' as _i10;
-import '../../astra/message/chat_screen.dart' as _i16;
+import '../../astra/message/chat_screen.dart' as _i17;
 import '../../astra/message/message_screen.dart' as _i13;
 import '../../astra/search/applicants/applicant_screen.dart' as _i15;
-import '../../astra/search/search_screen.dart' as _i14;
-import '../../astra/settings/about/about_screen.dart' as _i19;
-import '../../astra/settings/my_pofile/my_profile.dart' as _i18;
+import '../../astra/search/search_page_route.dart' as _i14;
+import '../../astra/search/search_screen.dart' as _i16;
+import '../../astra/settings/about/about_screen.dart' as _i20;
+import '../../astra/settings/my_pofile/my_profile.dart' as _i19;
 import '../../astra/settings/my_pofile/photo/image_pick_screen.dart' as _i8;
 import '../../astra/settings/my_pofile/photo/show_image_full_screen.dart'
     as _i9;
 import '../../astra/settings/settings_start_screen/settings_screen.dart'
-    as _i17;
-import '../../astra/settings/support/support_screen.dart' as _i20;
-import '../../astra/store/store_screen.dart' as _i21;
+    as _i18;
+import '../../astra/settings/support/support_screen.dart' as _i21;
+import '../../astra/store/store_screen.dart' as _i22;
 import '../../auth/code_screen.dart' as _i4;
 import '../../auth/confirm_password_screen.dart' as _i6;
 import '../../auth/how_to_get_club_screen.dart' as _i3;
@@ -41,7 +41,7 @@ import '../../auth/widgets/finish_register_screen.dart' as _i7;
 import '../enums/store_screen_qualifier.dart' as _i28;
 
 class AppRouter extends _i11.RootStackRouter {
-  AppRouter([_i22.GlobalKey<_i22.NavigatorState>? navigatorKey])
+  AppRouter([_i23.GlobalKey<_i23.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -114,46 +114,52 @@ class AppRouter extends _i11.RootStackRouter {
       return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i11.EmptyRouterPage());
     },
-    SearchScreenRoute.name: (routeData) {
+    SearchPageRouteRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i14.SearchScreen());
+          routeData: routeData, child: const _i14.SearchPageRoute());
     },
     ApplicantScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ApplicantScreenRouteArgs>();
       return _i11.MaterialPageX<dynamic>(
           routeData: routeData,
-          child:
-              _i15.ApplicantScreen(key: args.key, applicant: args.applicant));
+          child: _i15.ApplicantScreen(
+              key: args.key, applicant: args.applicant, image: args.image));
+    },
+    SearchScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchScreenRouteArgs>();
+      return _i11.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i16.SearchScreen(key: args.key, applicants: args.applicants));
     },
     MessageChatScreenRoute.name: (routeData) {
       final args = routeData.argsAs<MessageChatScreenRouteArgs>();
       return _i11.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i16.MessageChatScreen(
+          child: _i17.MessageChatScreen(
               key: args.key, chat: args.chat, lastMessage: args.lastMessage));
     },
     SettingsScreenRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i17.SettingsScreen());
+          routeData: routeData, child: const _i18.SettingsScreen());
     },
     MyProfileScreenRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i18.MyProfileScreen());
+          routeData: routeData, child: const _i19.MyProfileScreen());
     },
     AboutScreenRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i19.AboutScreen());
+          routeData: routeData, child: const _i20.AboutScreen());
     },
     SupportScreenRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i20.SupportScreen());
+          routeData: routeData, child: const _i21.SupportScreen());
     },
     StoreScreenRoute.name: (routeData) {
       final args = routeData.argsAs<StoreScreenRouteArgs>(
           orElse: () => const StoreScreenRouteArgs());
       return _i11.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i21.StoreScreen(
+          child: _i22.StoreScreen(
               key: args.key, storeQualifer: args.storeQualifer));
     }
   };
@@ -179,10 +185,12 @@ class AppRouter extends _i11.RootStackRouter {
               path: 'searche',
               parent: HomeScreenRoute.name,
               children: [
-                _i11.RouteConfig(SearchScreenRoute.name,
+                _i11.RouteConfig(SearchPageRouteRoute.name,
                     path: '', parent: SearchRouter.name),
                 _i11.RouteConfig(ApplicantScreenRoute.name,
-                    path: ':applicantScreen', parent: SearchRouter.name)
+                    path: ':applicantScreen', parent: SearchRouter.name),
+                _i11.RouteConfig(SearchScreenRoute.name,
+                    path: ':searchScreen', parent: SearchRouter.name)
               ]),
           _i11.RouteConfig(FavoritesRouter.name,
               path: '', parent: HomeScreenRoute.name),
@@ -414,40 +422,69 @@ class SettingsRouter extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.SearchScreen]
-class SearchScreenRoute extends _i11.PageRouteInfo<void> {
-  const SearchScreenRoute() : super(SearchScreenRoute.name, path: '');
+/// [_i14.SearchPageRoute]
+class SearchPageRouteRoute extends _i11.PageRouteInfo<void> {
+  const SearchPageRouteRoute() : super(SearchPageRouteRoute.name, path: '');
 
-  static const String name = 'SearchScreenRoute';
+  static const String name = 'SearchPageRouteRoute';
 }
 
 /// generated route for
 /// [_i15.ApplicantScreen]
 class ApplicantScreenRoute
     extends _i11.PageRouteInfo<ApplicantScreenRouteArgs> {
-  ApplicantScreenRoute({_i23.Key? key, required _i25.Applicant applicant})
+  ApplicantScreenRoute(
+      {_i23.Key? key, required _i25.Profile applicant, required String image})
       : super(ApplicantScreenRoute.name,
             path: ':applicantScreen',
-            args: ApplicantScreenRouteArgs(key: key, applicant: applicant));
+            args: ApplicantScreenRouteArgs(
+                key: key, applicant: applicant, image: image));
 
   static const String name = 'ApplicantScreenRoute';
 }
 
 class ApplicantScreenRouteArgs {
-  const ApplicantScreenRouteArgs({this.key, required this.applicant});
+  const ApplicantScreenRouteArgs(
+      {this.key, required this.applicant, required this.image});
 
   final _i23.Key? key;
 
-  final _i25.Applicant applicant;
+  final _i25.Profile applicant;
+
+  final String image;
 
   @override
   String toString() {
-    return 'ApplicantScreenRouteArgs{key: $key, applicant: $applicant}';
+    return 'ApplicantScreenRouteArgs{key: $key, applicant: $applicant, image: $image}';
   }
 }
 
 /// generated route for
-/// [_i16.MessageChatScreen]
+/// [_i16.SearchScreen]
+class SearchScreenRoute extends _i11.PageRouteInfo<SearchScreenRouteArgs> {
+  SearchScreenRoute({_i23.Key? key, required List<_i25.Profile> applicants})
+      : super(SearchScreenRoute.name,
+            path: ':searchScreen',
+            args: SearchScreenRouteArgs(key: key, applicants: applicants));
+
+  static const String name = 'SearchScreenRoute';
+}
+
+class SearchScreenRouteArgs {
+  const SearchScreenRouteArgs({this.key, required this.applicants});
+
+  final _i23.Key? key;
+
+  final List<_i25.Profile> applicants;
+
+  @override
+  String toString() {
+    return 'SearchScreenRouteArgs{key: $key, applicants: $applicants}';
+  }
+}
+
+/// generated route for
+/// [_i17.MessageChatScreen]
 class MessageChatScreenRoute
     extends _i11.PageRouteInfo<MessageChatScreenRouteArgs> {
   MessageChatScreenRoute(
@@ -479,7 +516,7 @@ class MessageChatScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i17.SettingsScreen]
+/// [_i18.SettingsScreen]
 class SettingsScreenRoute extends _i11.PageRouteInfo<void> {
   const SettingsScreenRoute() : super(SettingsScreenRoute.name, path: '');
 
@@ -487,7 +524,7 @@ class SettingsScreenRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.MyProfileScreen]
+/// [_i19.MyProfileScreen]
 class MyProfileScreenRoute extends _i11.PageRouteInfo<void> {
   const MyProfileScreenRoute()
       : super(MyProfileScreenRoute.name, path: ':myProfileScreen');
@@ -496,7 +533,7 @@ class MyProfileScreenRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i19.AboutScreen]
+/// [_i20.AboutScreen]
 class AboutScreenRoute extends _i11.PageRouteInfo<void> {
   const AboutScreenRoute() : super(AboutScreenRoute.name, path: ':aboutScreen');
 
@@ -504,7 +541,7 @@ class AboutScreenRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i20.SupportScreen]
+/// [_i21.SupportScreen]
 class SupportScreenRoute extends _i11.PageRouteInfo<void> {
   const SupportScreenRoute()
       : super(SupportScreenRoute.name, path: ':supportScreen');
@@ -513,7 +550,7 @@ class SupportScreenRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i21.StoreScreen]
+/// [_i22.StoreScreen]
 class StoreScreenRoute extends _i11.PageRouteInfo<StoreScreenRouteArgs> {
   StoreScreenRoute(
       {_i23.Key? key,

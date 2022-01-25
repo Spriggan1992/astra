@@ -1,11 +1,10 @@
+import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:astra_app/application/search/search_state_type.dart';
 import 'package:astra_app/domain/search/repositories/i_search_repository.dart';
-
-import '../../domain/applicant/applicant.dart';
 
 part 'search_bloc.freezed.dart';
 part 'search_event.dart';
@@ -18,6 +17,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this._searchApi) : super(SearchState.initial()) {
     on<SearchEvent>((event, emit) async {
       await event.map(loadData: (e) async {
+        await Future.delayed(const Duration(seconds: 2)); 
         final responce = await _searchApi.getApplicants();
         responce.fold(
           (failure) => emit(
@@ -34,14 +34,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           ),
         );
       });
-
-      //  event.map(
-      //     search: (e) {
-
-      //     final responce =  _searchApi.getApplicants();
-
-      //   },
-      // );
     });
   }
 }
