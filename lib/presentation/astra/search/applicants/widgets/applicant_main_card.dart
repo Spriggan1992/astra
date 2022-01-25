@@ -3,7 +3,9 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/custom/blur_mask.dart';
 import 'package:flutter/material.dart';
 
-///Applicant main card, do display main info about the applicant
+import 'text_item_widget.dart';
+
+/// Applicant main card, do display main info about the applicant
 class ApplicationMainCardScreen extends StatelessWidget {
   const ApplicationMainCardScreen(
       {Key? key, required this.applicant, required this.onClose})
@@ -12,7 +14,7 @@ class ApplicationMainCardScreen extends StatelessWidget {
   /// Applicant info model
   final Profile applicant;
 
-  ///Event handler on close
+  /// Event handler on close
   final VoidCallback onClose;
 
   @override
@@ -71,43 +73,18 @@ class ApplicationMainCardScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildItemWidget(
+                TextItemWidget(
                     title: 'Семейное положение:', value: applicant.status),
-                _buildItemWidget(title: 'Рост:', value: '${applicant.height}'),
+                TextItemWidget(title: 'Рост:', value: '${applicant.height}'),
               ],
             ),
             const SizedBox(height: 16),
-            _buildItemWidget(
+            TextItemWidget(
                 title: 'Наличие детей:',
                 value: (applicant.haveChild) ? 'Есть' : 'Нет'),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildItemWidget({required String title, required String value}) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            color: AstraColors.white05,
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        Text(
-          value,
-          style: const TextStyle(
-            color: AstraColors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
     );
   }
 }

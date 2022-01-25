@@ -1,4 +1,3 @@
-import 'package:astra_app/domain/applicant/applicant.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_screen.dart';
 import 'package:astra_app/presentation/astra/home_screen.dart';
 import 'package:astra_app/presentation/astra/message/chat_screen.dart';

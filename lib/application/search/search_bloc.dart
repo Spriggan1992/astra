@@ -18,8 +18,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<SearchEvent>((event, emit) async {
       await event.map(loadData: (e) async {
         await Future.delayed(const Duration(seconds: 2)); 
-        final responce = await _searchApi.getApplicants();
-        responce.fold(
+        final response = await _searchApi.getApplicants();
+        response.fold(
           (failure) => emit(
             state.copyWith(
               stateType: SearchStateType.failure,

@@ -5,6 +5,7 @@ import 'package:astra_app/presentation/core/widgets/custom/platform.activity_ind
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Search bloc router to show screen quess from the state
 class SearchPageRoute extends StatelessWidget {
   const SearchPageRoute({Key? key}) : super(key: key);
 

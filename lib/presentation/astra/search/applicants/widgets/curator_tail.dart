@@ -2,8 +2,8 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///Temporary Curator tile widget to display
-///Need to redo when we get data from the API
+/// Temporary Curator tile widget to display
+/// Need to redo when we get data from the API
 class CuratorTile extends StatelessWidget {
   const CuratorTile({Key? key}) : super(key: key);
 

@@ -3,17 +3,17 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
 
-///Opens when clicking on the button [Подробная анкета].
+/// Opens when clicking on the button [Подробная анкета].
 ///
-///Detailed application form of the applicant, 
-///Shows data such as characteristic,capabilities e.t.s 
+/// Detailed application form of the applicant, 
+/// Shows data such as characteristic,capabilities e.t.s 
 class ApplicantDetailScreen extends StatelessWidget {
   const ApplicantDetailScreen({Key? key, required this.applicant, required this.image}) : super(key: key);
 
-  ///Applicant main profile image
+  /// Profile of the applicant
   final Profile applicant; 
    
-  ///Applicant image path for display 
+  /// Applicant image path for display 
   final String image; 
 
   @override

@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 import 'widgets/applicant_elevated_button.dart';
 import 'widgets/curator_tail.dart';
 
-///Applicant screen, shows the detail info about applicant
+/// Applicant screen, shows the detail info about applicant
 class ApplicantScreen extends StatelessWidget {
   const ApplicantScreen({Key? key, required this.applicant, required this.image}) : super(key: key);
 
-  ///Applicant data 
+  /// Applicant data 
   final Profile applicant;
 
   /// Applicant main profile image
