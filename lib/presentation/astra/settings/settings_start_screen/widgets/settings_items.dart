@@ -5,7 +5,8 @@ import 'package:astra_app/presentation/astra/settings/my_pofile/widgets/profile_
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
-import 'package:astra_app/presentation/core/widgets/dialogs/custom_dialog.dart';
+import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,17 +99,11 @@ class SettingsItems extends StatelessWidget {
             await showDialog(
               context: context,
               builder: (BuildContext context) {
-                return CustomDialog(
-                  title: const Text(
-                    "Вы точно хотите выйти из аккаунта?",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                  ),
-                  action1: TextButton(
-                    onPressed: () => Navigator.of(context).pop(false),
-                    child: const Text(
-                      "Отмена",
-                      style: TextStyle(color: AstraColors.black),
-                    ),
+                return DialogTwoActions(
+                  title: "Вы точно хотите выйти из аккаунта?",
+                  action1: DialogActionButton(
+                    title: 'Отмена',
+                    onClick: () => Navigator.of(context).pop(false),
                   ),
                   action2: TextButton(
                     onPressed: () {

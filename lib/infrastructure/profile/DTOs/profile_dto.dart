@@ -75,6 +75,9 @@ class ProfileDTO with _$ProfileDTO {
 
     /// A flag responsible for hidden account info account.
     @JsonKey(name: 'show_info') required final bool showInfo,
+
+    /// A flag responsible for showing mutual sympathy.
+    @JsonKey(name: 'is_mutual_like') required final bool isMutualLike,
   }) = _ProfileDTO;
 
   /// Return converted DTO from from domain.
@@ -103,6 +106,7 @@ class ProfileDTO with _$ProfileDTO {
       draft: _.draft,
       isHidden: _.isHidden,
       showInfo: _.showInfo,
+      isMutualLike: _.isMutualLike,
     );
   }
 
@@ -129,6 +133,8 @@ class ProfileDTO with _$ProfileDTO {
         draft: draft,
         isHidden: isHidden,
         showInfo: showInfo,
+        isMutualLike: isMutualLike,
+        isStopList: false,
       );
 
   /// Return converted DTO from json.

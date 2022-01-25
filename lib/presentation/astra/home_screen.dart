@@ -1,3 +1,4 @@
+import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/injection.dart';
@@ -22,13 +23,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              getIt<FavoriteBloc>()..add(const FavoriteEvent.loadedData()),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) =>
+          getIt<FavoriteBloc>()..add(const FavoriteEvent.loadedData()),
       child: AutoTabsScaffold(
         extendBody: true,
         routes: routes,
@@ -67,11 +64,31 @@ void _loadDataWhenPressNavButton(
         BlocProvider.of<SearchBloc>(context).add(const SearchEvent.loadData());
       break;
     case 1:
-      BlocProvider.of<FavoriteBloc>(context).add(FavoriteEvent.loadedData(
-          favoriteType: context.read<FavoriteBloc>().state.favoriteType));
+      context.read<FavoriteBloc>().add(FavoriteEvent.loadedData(
+          favoriteType: getFavoiteType(
+              context.read<FavoriteBloc>().state.favoriteType.index)));
       break;
     case 2:
       //Update data here
       break;
   }
+}
+
+FavoriteScreenType getFavoiteType(int index) {
+  FavoriteScreenType type = FavoriteScreenType.likesForYou;
+  switch (index) {
+    case 0:
+      type = FavoriteScreenType.likesForYou;
+      break;
+    case 1:
+      type = FavoriteScreenType.yourLikes;
+      break;
+    case 2:
+      type = FavoriteScreenType.think;
+      break;
+    case 3:
+      type = FavoriteScreenType.stopList;
+      break;
+  }
+  return type;
 }

@@ -27,7 +27,7 @@ class CompressImageService implements ICompressImageService {
       final fullImage = await FlutterImageCompress.compressAndGetFile(
         compressImagePathsConfig.downloadedImageFile.path,
         compressImagePathsConfig.fullImagePath!,
-        quality: 1,
+        quality: 40,
       );
       compressedImages = compressedImages.copyWith(fullImage: fullImage);
     }
@@ -35,7 +35,7 @@ class CompressImageService implements ICompressImageService {
       final File? thumbnail = await FlutterImageCompress.compressAndGetFile(
         compressImagePathsConfig.downloadedImageFile.path,
         compressImagePathsConfig.thumbnailPath!,
-        quality: 1,
+        quality: 40,
         minHeight: 1024,
         minWidth: 768,
       );

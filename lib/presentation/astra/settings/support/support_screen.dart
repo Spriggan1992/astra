@@ -5,7 +5,7 @@ import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/widgets/profile_widgets.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

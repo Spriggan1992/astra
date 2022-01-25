@@ -6,7 +6,7 @@ class AstraAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AstraAppBar({
     Key? key,
     this.title,
-    required this.onPressed,
+    this.onPressed,
     this.actions,
     this.bgColor,
     this.iconColor,
@@ -18,7 +18,7 @@ class AstraAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? bgColor;
   final Color? iconColor;
   final double elevation;
-  final Function() onPressed;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,18 @@ class AstraAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: elevation,
       centerTitle: true,
       backgroundColor: (bgColor == null) ? Colors.white : bgColor,
-      leading: IconButton(
-        onPressed: onPressed,
-        icon: Icon(
-          CupertinoIcons.back,
-          color: (iconColor == null)
-              ? const Color.fromRGBO(176, 176, 176, 1)
-              : iconColor,
-          size: 25,
-        ),
-      ),
+      leading: onPressed == null
+          ? null
+          : IconButton(
+              onPressed: onPressed,
+              icon: Icon(
+                CupertinoIcons.back,
+                color: (iconColor == null)
+                    ? const Color.fromRGBO(176, 176, 176, 1)
+                    : iconColor,
+                size: 25,
+              ),
+            ),
       title: Text(
         title ?? '',
         style: Theme.of(context).textTheme.headline6!.copyWith(

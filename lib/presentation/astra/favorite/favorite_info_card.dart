@@ -3,24 +3,29 @@ import 'dart:ui';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
+/// Defines card that contains information about user.
 class FavoriteInfoCard extends StatelessWidget {
   const FavoriteInfoCard({
     Key? key,
     required this.name,
     required this.location,
-    required this.desc,
+    required this.description,
   }) : super(key: key);
 
+  /// User name to display.
   final String name;
+
+  /// User location to display.
   final String location;
-  final String desc;
+
+  /// Short users description.
+  final String description;
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
       margin: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-        // color: AstraColors.darken,
         border: Border.all(color: AstraColors.darken, width: 2),
         borderRadius: BorderRadius.circular(12),
       ),
@@ -32,6 +37,7 @@ class FavoriteInfoCard extends StatelessWidget {
             padding:
                 const EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 24),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +58,7 @@ class FavoriteInfoCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  desc,
+                  description,
                   style: const TextStyle(
                       color: AstraColors.white08, fontSize: 14, height: 1.4),
                 ),

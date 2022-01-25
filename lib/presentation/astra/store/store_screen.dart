@@ -5,7 +5,7 @@ import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/store_dialog.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:auto_route/auto_route.dart';

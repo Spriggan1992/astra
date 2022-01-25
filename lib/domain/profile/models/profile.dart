@@ -69,6 +69,10 @@ class Profile with _$Profile {
 
     /// A flag responsible for hidden account info account.
     required final bool showInfo,
+
+    /// A flag responsible for showing mutual sympathy.
+    required final bool isMutualLike,
+    bool? isStopList,
   }) = _Profile;
 
   /// Get user information.
@@ -104,5 +108,7 @@ class Profile with _$Profile {
       isActive: false,
       draft: false,
       isHidden: false,
-      showInfo: false);
+      showInfo: false,
+      isMutualLike: false,
+      isStopList: false);
 }

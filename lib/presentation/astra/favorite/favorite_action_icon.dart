@@ -30,12 +30,12 @@ class FavoriteActionIcon extends StatelessWidget {
       child: Positioned(
         bottom: 24,
         right: 10,
-        child: getFavoriteIcon(favotieType, isRemovedFromStopList),
+        child: _getFavoriteIcon(favotieType, isRemovedFromStopList),
       ),
     );
   }
 
-  Widget getFavoriteIcon(
+  Widget _getFavoriteIcon(
       FavoriteScreenType favoriteType, bool isRemovedFromStopList) {
     if (favoriteType == FavoriteScreenType.likesForYou ||
         favoriteType == FavoriteScreenType.yourLikes) {

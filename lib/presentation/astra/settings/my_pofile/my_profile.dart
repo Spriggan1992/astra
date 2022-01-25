@@ -8,7 +8,7 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
