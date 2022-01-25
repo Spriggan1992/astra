@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/applicant/applicant.dart';
+import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/presentation/astra/search/applicants/applicant_detail_screen.dart';
 import 'package:astra_app/presentation/astra/search/applicants/widgets/applicant_main_card.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
@@ -10,12 +10,16 @@ import 'package:flutter/material.dart';
 import 'widgets/applicant_elevated_button.dart';
 import 'widgets/curator_tail.dart';
 
-///Applicant screen, shows the detail info about applicant
+/// Applicant screen, shows the detail info about applicant
 class ApplicantScreen extends StatelessWidget {
-  const ApplicantScreen({Key? key, required this.applicant}) : super(key: key);
+  const ApplicantScreen({Key? key, required this.applicant, required this.image}) : super(key: key);
 
-  ///Applicant data
-  final Applicant applicant;
+  /// Applicant data 
+  final Profile applicant;
+
+  /// Applicant main profile image
+  final String image; 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +31,7 @@ class ApplicantScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: Image.asset(applicant.mainImage).image,
+              image: Image.asset(image).image,
               fit: BoxFit.cover),
         ),
         padding: const EdgeInsets.all(16),
@@ -45,11 +49,11 @@ class ApplicantScreen extends StatelessWidget {
               onClick: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
-                    return ApplicantDetailScreen(applicant: applicant);
+                    return ApplicantDetailScreen(applicant: applicant, image: image);
                   },
                 ));
               },
-              isEnableButton: true,
+              isEnableButton: applicant.showInfo,
             ),
             const SizedBox(height: 48),
           ],

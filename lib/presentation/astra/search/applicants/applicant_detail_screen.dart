@@ -1,17 +1,20 @@
-import 'package:astra_app/domain/applicant/applicant.dart';
+import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/applicant_info_card.dart';
 
-///Opens when clicking on the button [Подробная анкета].
+/// Opens when clicking on the button [Подробная анкета].
 ///
-///Detailed application form of the applicant, 
-///Shows data such as characteristic,capabilities e.t.s 
+/// Detailed application form of the applicant, 
+/// Shows data such as characteristic,capabilities e.t.s 
 class ApplicantDetailScreen extends StatelessWidget {
-  const ApplicantDetailScreen({Key? key, required this.applicant}) : super(key: key);
+  const ApplicantDetailScreen({Key? key, required this.applicant, required this.image}) : super(key: key);
 
-  final Applicant applicant; 
+  /// Profile of the applicant
+  final Profile applicant; 
+   
+  /// Applicant image path for display 
+  final String image; 
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +36,18 @@ class ApplicantDetailScreen extends StatelessWidget {
       body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: Image.asset(applicant.mainImage).image, fit: BoxFit.cover),
+                image: Image.asset(image).image, fit: BoxFit.cover),
           ),
           child:ListView.builder(
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.only(top: 16, left: 15, right: 15, bottom: 60),
-            itemCount: applicant.additionalInfo.length,
+            itemCount: 10,//applicant.additionalInfo.length,
             itemBuilder: (context, index) {
-              final additionalInfo = applicant.additionalInfo.elementAt(index); 
+              //final additionalInfo = applicant.additionalInfo.elementAt(index); 
             return Padding(
               padding: const EdgeInsets.only(top:8.0, bottom:16 ),
-              child: ApplicantInfoCard(title: additionalInfo.title,desc: additionalInfo.desc),
+              child: Text(applicant.profileInfo),//ApplicantInfoCard(title: additionalInfo.title,desc: additionalInfo.desc),
             ); 
           },) 
       ),

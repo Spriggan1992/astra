@@ -2,8 +2,8 @@
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/custom/blur_mask.dart';
 import 'package:flutter/material.dart';
-///If [isEnableButton] show the text [Подробная анкета] else [Подробная анкета скрыта] 
-///Spesical button to display the applicant's detailed information
+/// If [isEnableButton] show the text [Подробная анкета] else [Подробная анкета скрыта] 
+/// Spesical button to display the applicant's detailed information
 class ApplicantElevatedButton extends StatelessWidget {
    /// Button click event handler.
   final VoidCallback? onClick;

@@ -1,11 +1,9 @@
 
-import 'dart:ui';
-
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/custom/blur_mask.dart';
 import 'package:flutter/material.dart';
 
-///Widget to display item 
+/// Widget to display item 
 class ApplicantInfoCard extends StatelessWidget {
   const ApplicantInfoCard({
     Key? key, required this.title, required this.desc,

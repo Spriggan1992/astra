@@ -1,5 +1,6 @@
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
+import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/navigation_bar.dart';
@@ -60,7 +61,7 @@ void _loadDataWhenPressNavButton(
     BuildContext context, int index, List<PageRouteInfo<dynamic>> routes) {
   switch (index) {
     case 0:
-      //Update data here
+        BlocProvider.of<SearchBloc>(context).add(const SearchEvent.loadData());
       break;
     case 1:
       context.read<FavoriteBloc>().add(FavoriteEvent.loadedData(

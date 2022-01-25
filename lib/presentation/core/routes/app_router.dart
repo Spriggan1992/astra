@@ -4,6 +4,7 @@ import 'package:astra_app/presentation/astra/home_screen.dart';
 import 'package:astra_app/presentation/astra/message/chat_screen.dart';
 import 'package:astra_app/presentation/astra/message/message_screen.dart';
 import 'package:astra_app/presentation/astra/search/applicants/applicant_screen.dart';
+import 'package:astra_app/presentation/astra/search/search_page_route.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/astra/settings/about/about_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
@@ -44,9 +45,10 @@ import 'package:auto_route/auto_route.dart';
           children: [
             AutoRoute(
               path: '',
-              page: SearchScreen,
+              page: SearchPageRoute,
             ),
             AutoRoute(path: ':applicantScreen', page: ApplicantScreen),
+            AutoRoute(path: ':searchScreen', page: SearchScreen),
           ],
         ),
         AutoRoute(
