@@ -51,6 +51,7 @@ class SearchRepository extends ISearchRepository {
         profileInfo: 'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
         savedAt: '',
         showInfo: true,
+        isMutualLike: true,
         profilePhotos: [
           ImageModel(imageUrl: 'assets/girl.png'), 
           ImageModel(imageUrl: 'assets/girl.png'), 
@@ -71,6 +72,7 @@ class SearchRepository extends ISearchRepository {
         status: 'married',
         lastname: 'Лена',
         createdAt: '',
+        isMutualLike: false,
         curatorPhotos: [
           ImageModel(imageUrl: 'assets/girl.png'), 
           ImageModel(imageUrl: 'assets/girl.png'), 
