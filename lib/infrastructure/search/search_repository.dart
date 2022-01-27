@@ -27,7 +27,7 @@ class SearchRepository extends ISearchRepository {
 
   static List<Profile> getProfileList() {
     return [
-     const Profile(
+      const Profile(
         firstname: 'Мария',
         age: 25,
         city: 'Москва',
@@ -38,8 +38,8 @@ class SearchRepository extends ISearchRepository {
         lastname: 'Мария',
         createdAt: '',
         curatorPhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
         ],
         draft: true,
         gender: 'Женский',
@@ -48,20 +48,21 @@ class SearchRepository extends ISearchRepository {
         isActive: true,
         isHidden: false,
         phoneNumber: '',
-        profileInfo: 'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
+        profileInfo:
+            'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
         savedAt: '',
         showInfo: true,
+        isMutualLike: false,
         profilePhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
         ],
       ),
-
-       const Profile(
+      const Profile(
         firstname: 'Лена',
         age: 25,
         city: 'Москва',
@@ -72,8 +73,8 @@ class SearchRepository extends ISearchRepository {
         lastname: 'Лена',
         createdAt: '',
         curatorPhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
         ],
         draft: false,
         gender: 'Женский',
@@ -82,16 +83,18 @@ class SearchRepository extends ISearchRepository {
         isActive: true,
         isHidden: false,
         phoneNumber: '',
-        profileInfo: 'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
+        profileInfo:
+            'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
         savedAt: '',
         showInfo: false,
+        isMutualLike: false,
         profilePhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
-          ImageModel(imageUrl: 'assets/girl.png'), 
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
+          ImageModel(imageUrl: 'assets/girl.png'),
         ],
       ),
     ];

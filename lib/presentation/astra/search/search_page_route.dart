@@ -11,18 +11,22 @@ class SearchPageRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-       BlocBuilder<SearchBloc, SearchState>(
-        builder: (context, state) {
-          if (state.stateType == SearchStateType.initial) {
-            return const Scaffold(body:  Center(child: PlatformActivityIndicator()));
-          } else if (state.stateType == SearchStateType.success) {
-            return SearchScreen(applicants: state.applicants);
-          } else {
-            return Scaffold(body: Text(state.errorMessage));
-          }
-        },
-      
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (context, state) {
+        if (state.stateType == SearchStateType.initial) {
+          return const Scaffold(
+            body: Center(
+              child: PlatformActivityIndicator(),
+            ),
+          );
+        } else if (state.stateType == SearchStateType.success) {
+          return SearchScreen(applicants: state.applicants);
+        } else {
+          return Scaffold(
+            body: Text(state.errorMessage),
+          );
+        }
+      },
     );
   }
 }
