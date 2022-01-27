@@ -58,6 +58,14 @@ class SettingsItems extends StatelessWidget {
           },
         ),
         ProfileItem(
+          icon: const SvgIcon(
+            asset: 'assets/icons/promocode.svg',
+            height: 20,
+          ),
+          title: 'Промокод',
+          onTap: () => context.router.push(const PromocodeScreenRoute()),
+        ),
+        ProfileItem(
           icon: const Icon(
             CupertinoIcons.exclamationmark_circle_fill,
             color: AstraColors.darkWhite,
@@ -100,16 +108,16 @@ class SettingsItems extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return DialogTwoActions(
-                  title: "Вы точно хотите выйти из аккаунта?",
+                  content: const Text(
+                    "Вы точно хотите выйти из аккаунта?",
+                    textAlign: TextAlign.center,
+                  ),
                   action1: DialogActionButton(
                     title: 'Отмена',
                     onClick: () => Navigator.of(context).pop(false),
                   ),
                   action2: TextButton(
                     onPressed: () {
-                      // context.router.pushAndPopUntil(
-                      //     const PhoneNumberScreenRoute(),
-                      //     predicate: (_) => false);
                       context.read<AuthBloc>().add(const AuthEvent.signedOut());
                     },
                     child: const Text(

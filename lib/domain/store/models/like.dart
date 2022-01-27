@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/extensions.dart/extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'like.freezed.dart';
 
@@ -17,7 +18,7 @@ class Like with _$Like {
   }) = _Like;
 
   /// Get like display name.
-  String get likeInfo => '$amount ${_likeEnding()}';
+  String get likeInfo => '$amount ${amount.likeEnding}';
 
   /// Return emty like package.
   factory Like.empty() => const Like(
@@ -25,15 +26,4 @@ class Like with _$Like {
         amount: 0,
         price: 0,
       );
-
-  /// Get ending of string representation of likes, depend on amount of likes.
-  String _likeEnding() {
-    if (amount == 1) {
-      return "лайк";
-    } else if (amount > 1 && amount < 5) {
-      return "лайка";
-    } else {
-      return "лайков";
-    }
-  }
 }

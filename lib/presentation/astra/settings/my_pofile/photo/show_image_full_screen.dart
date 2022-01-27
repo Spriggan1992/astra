@@ -71,8 +71,10 @@ class ShowImageFullScreen extends StatelessWidget {
                                           builder:
                                               (BuildContext showDilogcontext) {
                                             return DialogTwoActions(
-                                              title:
-                                                  "Вы точно хотите удалить\nфотографию?",
+                                              content: const Text(
+                                                "Вы точно хотите удалить\nфотографию?",
+                                                textAlign: TextAlign.center,
+                                              ),
                                               action1: DialogActionButton(
                                                 title: 'Отмена',
                                                 onClick: () => Navigator.of(

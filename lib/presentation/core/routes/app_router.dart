@@ -10,7 +10,8 @@ import 'package:astra_app/presentation/astra/settings/about/about_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/photo/image_pick_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/photo/show_image_full_screen.dart';
-import 'package:astra_app/presentation/astra/settings/settings_start_screen/settings_screen.dart';
+import 'package:astra_app/presentation/astra/settings/promocode/promocode_screen.dart';
+import 'package:astra_app/presentation/astra/settings/settings_screen.dart';
 import 'package:astra_app/presentation/astra/settings/support/support_screen.dart';
 import 'package:astra_app/presentation/astra/store/store_screen.dart';
 import 'package:astra_app/presentation/auth/code_screen.dart';
@@ -75,6 +76,7 @@ import 'package:auto_route/auto_route.dart';
             AutoRoute(path: ':aboutScreen', page: AboutScreen),
             AutoRoute(path: ':supportScreen', page: SupportScreen),
             AutoRoute(path: ':store', page: StoreScreen),
+            AutoRoute(path: ':promocode', page: PromocodeScreen),
           ],
         ),
       ],

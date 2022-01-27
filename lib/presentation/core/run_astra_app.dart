@@ -14,11 +14,11 @@ class AstraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(
+        BlocProvider(
           create: (context) =>
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
         ),
-        BlocProvider<ChatListCubit>(
+        BlocProvider(
           create: (context) => ChatListCubit(),
         ),
          BlocProvider<SearchBloc>(

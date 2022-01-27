@@ -10,16 +10,16 @@ class FavoriteState with _$FavoriteState {
     /// Type of favorite screen.
     required FavoriteScreenType favoriteType,
 
-    /// Flag, responsible for showing loading indicator.
+    /// Flag, responsible to showing loading indicator.
     required bool isLoading,
 
-    /// Flag, responsible showing error when no internet connection.
+    /// Flag, responsible to showing error when no internet connection.
     required bool isNoInternetConnection,
 
-    /// Flag, responsible showing unexpected error.
+    /// Flag, responsible to showing unexpected error.
     required bool isUnexpectedError,
 
-    /// Flag responsible for successfuly loaded data from server.
+    /// Flag responsible for successfully loaded data from server.
     required bool isSuccess,
   }) = _FavoritState;
 

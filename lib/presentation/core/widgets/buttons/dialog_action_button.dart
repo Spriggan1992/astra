@@ -25,7 +25,11 @@ class DialogActionButton extends StatelessWidget {
       child: Text(
         title,
       ),
-      style: buttonStyle ?? TextButton.styleFrom(primary: AstraColors.black),
+      style: buttonStyle ??
+          TextButton.styleFrom(
+              primary: AstraColors.black,
+              textStyle:
+                  const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
     );
   }
 }

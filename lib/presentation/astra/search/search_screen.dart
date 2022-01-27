@@ -10,7 +10,7 @@ import 'package:swipe_cards/swipe_cards.dart';
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key, required this.applicants}) : super(key: key);
 
-  final List<Profile> applicants; 
+  final List<Profile> applicants;
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -23,7 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    final _applicants = widget.applicants;  
+    final _applicants = widget.applicants;
 
     for (var applicant in _applicants) {
       swipeItems.add(
@@ -67,7 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
         onStackFinished: () {},
         itemBuilder: (context, index) {
           final Profile _currentProfile = swipeItems[index].content;
-          final String _image = _currentProfile.profilePhotos[0].imageUrl; 
+          final String _image = _currentProfile.profilePhotos[0].imageUrl;
           return SearchCard(
             image: Image.asset(_image).image,
             name: _currentProfile.firstname,

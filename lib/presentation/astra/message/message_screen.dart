@@ -4,7 +4,6 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
 import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -80,7 +79,10 @@ class MessageScreen extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return DialogTwoActions(
-                            title: 'Вы точно хотите удалить диалог?',
+                            content: const Text(
+                              'Вы точно хотите удалить диалог?',
+                              textAlign: TextAlign.center,
+                            ),
                             action1: DialogActionButton(
                               onClick: () => Navigator.of(context).pop(false),
                               title: 'Отмена',
