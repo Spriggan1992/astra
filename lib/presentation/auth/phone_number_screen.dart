@@ -85,17 +85,20 @@ class PhoneNumberScreen extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.disabled,
               );
             }),
-            button:
-                BlocBuilder<PhoneBloc, PhoneState>(builder: (context, state) {
-              return AstraElevatedButton(
-                isLoading: state.isLoading,
-                isEnableButton: state.isEnableBtn,
-                title: 'Продолжить',
-                onClick: () {
-                  context.read<PhoneBloc>().add(const PhoneEvent.pressedBtn());
-                },
-              );
-            }),
+            button: BlocBuilder<PhoneBloc, PhoneState>(
+              builder: (context, state) {
+                return AstraElevatedButton(
+                  isLoading: state.isLoading,
+                  isEnableButton: state.isEnableBtn,
+                  title: 'Продолжить',
+                  onClick: () {
+                    context
+                        .read<PhoneBloc>()
+                        .add(const PhoneEvent.pressedBtn());
+                  },
+                );
+              },
+            ),
             notificationMessageContent: const Text(
               "Вам придёт сообщение с кодом.\nНикому его не говорите.",
             ),

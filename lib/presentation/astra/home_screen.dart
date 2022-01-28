@@ -20,7 +20,6 @@ const routes = [
 /// Defines home screen.
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -28,6 +27,7 @@ class HomeScreen extends StatelessWidget {
           getIt<FavoriteBloc>()..add(const FavoriteEvent.loadedData()),
       child: AutoTabsScaffold(
         extendBody: true,
+        resizeToAvoidBottomInset: false,
         routes: routes,
         bottomNavigationBuilder: (navContext, tabsRouter) {
           return NavigationBar(

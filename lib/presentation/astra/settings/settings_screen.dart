@@ -1,7 +1,7 @@
 import 'package:astra_app/application/settings/settings/settings_bloc.dart';
 import 'package:astra_app/domain/profile/models/profile_short_model.dart';
 import 'package:astra_app/injection.dart';
-import 'package:astra_app/presentation/astra/settings/settings_start_screen/widgets/settings_items.dart';
+import 'package:astra_app/presentation/astra/settings/widgets/settings_items.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/images/astra_file_image.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
@@ -58,40 +58,42 @@ class SettingsScreenBodyContent extends StatelessWidget {
         appBar: const AstraAppBar(
           title: 'Настройки',
         ),
-        body: Column(
-          children: [
-            Container(
-              color: const Color.fromRGBO(240, 241, 243, 1),
-              child: ListTile(
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                leading: AstraFileImage(
-                  image: profile.avatar.compressedImages!.thumbnail!,
-                  height: 60,
-                  width: 60,
-                ),
-                title: Text(
-                  profile.userInfo,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: AstraColors.black,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                color: const Color.fromRGBO(240, 241, 243, 1),
+                child: ListTile(
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  leading: AstraFileImage(
+                    image: profile.avatar.compressedImages!.thumbnail!,
+                    height: 60,
+                    width: 60,
                   ),
-                ),
-                subtitle: Text(
-                  profile.userLocation,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AstraColors.black06,
+                  title: Text(
+                    profile.userInfo,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AstraColors.black,
+                    ),
+                  ),
+                  subtitle: Text(
+                    profile.userLocation,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AstraColors.black06,
+                    ),
                   ),
                 ),
               ),
-            ),
-            SettingsItems(
-              profile: profile,
-            )
-          ],
+              SettingsItems(
+                profile: profile,
+              )
+            ],
+          ),
         ),
       ),
     );

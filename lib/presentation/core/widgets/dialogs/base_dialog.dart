@@ -34,7 +34,7 @@ class BaseDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 32),
+              padding: const EdgeInsets.symmetric(vertical: 24),
               child: dialogContent,
             ),
             const Divider(
@@ -43,7 +43,8 @@ class BaseDialog extends StatelessWidget {
               thickness: 1,
             ),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32.0, vertical: 2),
                 child: dialogAction),
             const SizedBox(height: 4)
           ],

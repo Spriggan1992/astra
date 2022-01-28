@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Defines dialog with two actions.
 class DialogTwoActions extends BaseDialog {
   /// Dialog title to display.
-  final String title;
+  final Widget content;
 
   /// Negative dialog action.
   final Widget action1;
@@ -13,15 +13,12 @@ class DialogTwoActions extends BaseDialog {
   final Widget action2;
   DialogTwoActions({
     Key? key,
-    required this.title,
+    required this.content,
     required this.action1,
     required this.action2,
   }) : super(
           key,
-          Text(
-            title,
-            textAlign: TextAlign.center,
-          ),
+          content,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
