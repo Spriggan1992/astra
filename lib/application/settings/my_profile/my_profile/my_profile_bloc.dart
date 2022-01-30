@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/user_info_service/i_user_unfo_service.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
@@ -15,7 +16,8 @@ part 'my_profile_bloc.freezed.dart';
 class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
   final IStoreReposytory _storeRepository;
   final IProfileRepository _profileRepo;
-  MyProfileBloc(this._profileRepo, this._storeRepository)
+  final IUserInfoService _userInfo;
+  MyProfileBloc(this._profileRepo, this._storeRepository, this._userInfo)
       : super(const MyProfileState.initial()) {
     on<MyProfileEvent>((event, emit) async {
       await event.map(profileLoaded: (e) async {
@@ -30,7 +32,11 @@ class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
             curatorInfoResponse.isRight()) {
           emit(
             MyProfileState.loadSuccess(
-              profileResponse.getOrElse(() => Profile.empty()),
+              profileResponse.fold((failure) => Profile.empty(), (profile) {
+                _userInfo.setUserProfile(profile);
+                return profile;
+              }),
+              // profileResponse.getOrElse(() => Profile.empty()),
               walletResponse.getOrElse(() => Wallet.empty()),
               curatorInfoResponse.getOrElse(() => CuratorModel.empty()),
             ),

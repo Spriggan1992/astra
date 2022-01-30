@@ -52,9 +52,7 @@ class SearchRepository extends ISearchRepository {
             'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
         savedAt: '',
         showInfo: true,
-
         isMutualLike: false,
-
         profilePhotos: [
           ImageModel(imageUrl: 'assets/girl.png'),
           ImageModel(imageUrl: 'assets/girl.png'),
@@ -90,7 +88,6 @@ class SearchRepository extends ISearchRepository {
             'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
         savedAt: '',
         showInfo: false,
-        isMutualLike: false,
         profilePhotos: [
           ImageModel(imageUrl: 'assets/girl.png'),
           ImageModel(imageUrl: 'assets/girl.png'),

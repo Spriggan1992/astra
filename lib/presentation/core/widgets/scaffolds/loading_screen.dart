@@ -1,3 +1,4 @@
+import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
 import 'package:flutter/material.dart';
 
 /// Defines screen, when data loading.
@@ -9,7 +10,7 @@ class LoadingScreen extends StatelessWidget {
     return const Scaffold(
       body: Align(
         alignment: Alignment.center,
-        child: CircularProgressIndicator(),
+        child: PlatformActivityIndicator(),
       ),
     );
   }
