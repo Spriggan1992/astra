@@ -2,18 +2,20 @@ part of 'search_bloc.dart';
 
 @freezed
 class SearchState with _$SearchState {
-  
-  const factory SearchState ({
+  const factory SearchState({
     /// Initial state, hiden profile state, nolikes state and success state
-    required SearchStateType stateType, 
+    required SearchStateType stateType,
 
-     /// A flag that responsible for displaying error message.
+    /// A flag that responsible for displaying error message.
     required String errorMessage,
 
-    //List of applicants 
-    required List<Profile> applicants,  
+    //List of applicants
+    required List<Profile> applicants,
+  }) = _SearchState;
 
-  }) =_SearchState; 
-
-  factory SearchState.initial() =>const SearchState(applicants: [], stateType: SearchStateType.initial, errorMessage: ''); 
+  factory SearchState.initial() => const SearchState(
+        applicants: [],
+        stateType: SearchStateType.initial,
+        errorMessage: '',
+      );
 }

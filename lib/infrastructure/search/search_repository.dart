@@ -1,5 +1,9 @@
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
+import 'package:astra_app/infrastructure/core/http/endpoints.dart';
+import 'package:astra_app/infrastructure/core/services/images/i_chache_image_service.dart';
+import 'package:astra_app/infrastructure/core/utils/make_request.dart';
+import 'package:astra_app/infrastructure/profile/DTOs/profile_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -13,90 +17,72 @@ class SearchRepository extends ISearchRepository {
   ///Dio client
   final Dio _dio;
 
-  SearchRepository(this._dio);
+  /// Service for caching network images.
+  final ICacheImageService _cacheImageService;
+
+  SearchRepository(this._dio, this._cacheImageService);
 
   @override
   Future<Either<AstraFailure, List<Profile>>> getApplicants() async {
-    try {
-      final _applicants = getProfileList();
-      return right(_applicants);
-    } catch (e) {
-      return left(const AstraFailure.api(100));
-    }
+    final result = await makeRequest<List<Profile>>(() async {
+      List<Profile> _profiles = [];
+      final response = await _dio.get(Endpoints.user.feed);
+      for (var item in response.data) {
+        final profile = ProfileDTO.fromJson(item).toDomain();
+        final imageModels = await _getImageModels(profile.profilePhotos);
+        final updatedProfile = profile.copyWith(profilePhotos: imageModels);
+        _profiles.add(updatedProfile);
+      }
+      return _profiles;
+    });
+    return result.fold((l) => left(l), (r) => right(r));
   }
 
-  static List<Profile> getProfileList() {
-    return [
-      const Profile(
-        firstname: 'Мария',
-        age: 25,
-        city: 'Москва',
-        country: 'Россия',
-        id: 1,
-        curatorId: 1,
-        status: 'married',
-        lastname: 'Мария',
-        createdAt: '',
-        curatorPhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-        ],
-        draft: true,
-        gender: 'Женский',
-        haveChild: true,
-        height: 180,
-        isActive: true,
-        isHidden: false,
-        phoneNumber: '',
-        profileInfo:
-            'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
-        savedAt: '',
-        showInfo: true,
-        isMutualLike: false,
-        profilePhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-        ],
-      ),
-      const Profile(
-        firstname: 'Лена',
-        age: 25,
-        city: 'Москва',
-        country: 'Россия',
-        id: 1,
-        curatorId: 1,
-        status: 'married',
-        lastname: 'Лена',
-        createdAt: '',
-        isMutualLike: false,
-        curatorPhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-        ],
-        draft: false,
-        gender: 'Женский',
-        haveChild: true,
-        height: 180,
-        isActive: true,
-        isHidden: false,
-        phoneNumber: '',
-        profileInfo:
-            'На свете нет ни одного человека, который бы не мечтал. Я не стала исключением, в моей голове создавались образы прекрасного будущего.dsa..',
-        savedAt: '',
-        showInfo: false,
-        profilePhotos: [
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-          ImageModel(imageUrl: 'assets/girl.png'),
-        ],
-      ),
-    ];
+  Future<List<ImageModel>> _getImageModels(List<ImageModel> value) async {
+    List<ImageModel> images = [];
+    for (var e in value) {
+      final compressedImages =
+          await _cacheImageService.getCompressedFileImage(e.imageUrl);
+      images.add(ImageModel(
+          imageUrl: e.imageUrl, id: e.id, compressedImages: compressedImages));
+    }
+    return images;
+  }
+
+  @override
+  Future<Either<AstraFailure, Unit>> toLike(int id) async {
+    final result = await makeRequest<Unit>(() async {
+      await _dio.post(Endpoints.feed.like(id));
+      return unit;
+    });
+    return result.fold((failure) => left(failure), (_) => right(_));
+  }
+
+
+  @override
+  Future<Either<AstraFailure, Unit>> toBlock(int id) async {
+    final result = await makeRequest<Unit>(() async {
+      await _dio.post(Endpoints.feed.block(id));
+    });
+    return result.fold((failure) => left(failure), (_) => right(_));
+  }
+
+  @override
+  Future<Either<AstraFailure, Unit>> toReject(int id) async {
+    final result = await makeRequest<Unit>(() async {
+      await _dio.post(Endpoints.feed.nope(id));
+    });
+
+    return result.fold((failure) => left(failure), (_) => right(_));
+  }
+
+  @override
+  Future<Either<AstraFailure, Unit>> toThink(int id) async {
+    final result = await makeRequest<Unit>(() async {
+      await _dio.post(Endpoints.feed.think(id));
+      return unit;
+    });
+    return result.fold((failure) => left(failure), (_) => right(_));
+
   }
 }

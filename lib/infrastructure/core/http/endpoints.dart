@@ -49,6 +49,7 @@ class _ShopEndpoints {
 
 class _ProfileEndpoints {
   String get account => _address + "user/account/";
+  String get feed => _address + "user/feed/";
   String get accountShort => _address + "user/account/min/";
   String get hideAccount => _address + "user/account/hidden/";
   String get showAccount => _address + "user/account/unhidden/";

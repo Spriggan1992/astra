@@ -1,5 +1,11 @@
 enum SearchStateType {
   initial,
+  failure,
+  noInternetConnection,
+  unexpectedError,
   success,
-  failure
+  successLike,
+  successBlock,
+  successReject,
+  successThink,
 }
