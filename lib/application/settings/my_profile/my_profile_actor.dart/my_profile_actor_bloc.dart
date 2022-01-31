@@ -6,7 +6,6 @@ import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:astra_app/domain/store/models/wallet.dart';
-import 'package:astra_app/infrastructure/core/services/images/compressed_images.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -117,10 +116,7 @@ class MyProfileActorBloc
           if (imagesResult != null) {
             final images = imagesResult
                 .map(
-                  (e) => ImageModel(
-                      compressedImages:
-                          CompressedImages(fullImage: File(e.path)),
-                      imageUrl: ""),
+                  (e) => ImageModel(fileImage: File(e.path), imageUrl: ""),
                 )
                 .toList();
             emit(state.copyWith(selectedImages: images));

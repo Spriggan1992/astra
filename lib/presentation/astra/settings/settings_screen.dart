@@ -67,7 +67,7 @@ class SettingsScreenBodyContent extends StatelessWidget {
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   leading: AstraFileImage(
-                    image: profile.avatar.compressedImages!.thumbnail!,
+                    image: profile.avatar.fileImage!,
                     height: 60,
                     width: 60,
                   ),

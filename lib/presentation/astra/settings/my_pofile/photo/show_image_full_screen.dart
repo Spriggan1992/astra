@@ -49,7 +49,7 @@ class ShowImageFullScreen extends StatelessWidget {
                         itemCount: state.images.length,
                         itemBuilder: (context, index) {
                           return Image.file(
-                            state.images[index].compressedImages!.fullImage!,
+                            state.images[index].fileImage!,
                             fit: BoxFit.cover,
                           );
                         },

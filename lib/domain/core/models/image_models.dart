@@ -1,4 +1,5 @@
-import 'package:astra_app/infrastructure/core/services/images/compressed_images.dart';
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'image_models.freezed.dart';
 
@@ -14,7 +15,7 @@ class ImageModel with _$ImageModel {
     required String imageUrl,
 
     /// Compressed images
-    CompressedImages? compressedImages,
+    File? fileImage,
   }) = _ImageModel;
   factory ImageModel.empty() => const ImageModel(
         imageUrl: '',

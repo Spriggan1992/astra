@@ -12,11 +12,11 @@ class ImagePickerRepository extends IImagePickerRepository {
 
   @override
   Future<XFile?> getImg(ImageSource source) async {
-    return _picker.pickImage(source: source);
+    return _picker.pickImage(source: source, imageQuality: 50);
   }
 
   @override
   Future<List<XFile>?> getImgs() async {
-    return _picker.pickMultiImage();
+    return _picker.pickMultiImage(imageQuality: 50);
   }
 }

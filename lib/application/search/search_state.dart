@@ -9,7 +9,7 @@ class SearchState with _$SearchState {
     /// A flag that responsible for displaying error message.
     required String errorMessage,
 
-    //List of applicants
+    /// List of applicants
     required List<Profile> applicants,
   }) = _SearchState;
 

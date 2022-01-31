@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:astra_app/infrastructure/core/services/images/compressed_images.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/infrastructure/core/http/endpoints.dart';
@@ -34,15 +33,13 @@ class ImageDTO with _$ImageDTO {
 
   /// Return converted DTO from from domain.
   factory ImageDTO.fromDomain(ImageModel _) {
-    return ImageDTO(
-      imagePath: _.compressedImages!.fullImage!.path,
-    );
+    return ImageDTO(imagePath: _.fileImage!.path);
   }
 
   /// Convert DTO to domain.
   ImageModel toDomain() => ImageModel(
         id: id,
         imageUrl: "${Endpoints.imageAdress}$imageUrl",
-        compressedImages: const CompressedImages(),
+        fileImage: null,
       );
 }

@@ -36,11 +36,10 @@ class _SearchScreenState extends State<SearchScreen> {
       );
     }
     _matchEngine = MatchEngine(swipeItems: swipeItems);
-     
-     if(_applicants.isNotEmpty){
-       _lastProfile = _applicants.last;
-     }
-   
+
+    if (_applicants.isNotEmpty) {
+      _lastProfile = _applicants.last;
+    }
 
     super.initState();
   }
@@ -79,17 +78,16 @@ class _SearchScreenState extends State<SearchScreen> {
             onTap: () {
               context.navigateTo(const FavoritesRouter());
             },
-            fileImage: (_lastProfile==Profile.empty())?null:Image.file(_lastProfile
-                    .profilePhotos.first.compressedImages!.fullImage!)
-                .image,
+            fileImage: (_lastProfile == Profile.empty())
+                ? null
+                : Image.file(_lastProfile.profilePhotos.first.fileImage!).image,
           ),
           SwipeCards(
             matchEngine: _matchEngine,
             onStackFinished: () {},
             itemBuilder: (context, index) {
               final Profile _currentProfile = swipeItems[index].content;
-              final _thumbnail = _currentProfile
-                  .profilePhotos.first.compressedImages!.thumbnail;
+              final _thumbnail = _currentProfile.profilePhotos.first.fileImage;
               return SearchCard(
                 profile: _currentProfile,
                 onClose: () {

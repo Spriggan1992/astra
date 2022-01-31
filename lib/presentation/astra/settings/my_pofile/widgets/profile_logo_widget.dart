@@ -31,8 +31,7 @@ class ProfileLogoScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: AstraFileImage(
-                    image:
-                        addedImg ?? images.first.compressedImages!.thumbnail!,
+                    image: addedImg ?? images.first.fileImage!,
                     width: 130,
                   ),
                 ),
@@ -72,14 +71,14 @@ class ProfileLogoScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.center,
                         child: AstraFileImage(
-                          image: images[1].compressedImages!.thumbnail!,
+                          image: images[1].fileImage!,
                         ),
                       ),
                       const SizedBox(width: 40),
                       Align(
                         alignment: Alignment.center,
                         child: AstraFileImage(
-                          image: images[2].compressedImages!.thumbnail!,
+                          image: images[2].fileImage!,
                         ),
                       ),
                     ],
@@ -87,7 +86,7 @@ class ProfileLogoScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: AstraFileImage(
-                      image: images.first.compressedImages!.thumbnail!,
+                      image: images.first.fileImage!,
                       width: 130,
                     ),
                   ),

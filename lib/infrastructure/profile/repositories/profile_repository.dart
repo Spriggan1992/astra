@@ -113,12 +113,12 @@ class ProfileRepository implements IProfileRepository {
     final result = await makeRequest<CuratorModel>(() async {
       final response = await _dio.get(Endpoints.user.getCurator);
       final curator = CuratorDTO.fromJson(response.data).toDomain();
-      final curatorPhoto = await _cacheImageService
-          .getCompressedFileImage(curator.profilePhoto.imageUrl);
+      final curatorPhoto =
+          await _cacheImageService.getFileImage(curator.profilePhoto.imageUrl);
       final updatedCurator = curator.copyWith(
           profilePhoto: ImageModel(
               imageUrl: curator.profilePhoto.imageUrl,
-              compressedImages: curatorPhoto));
+              fileImage: curatorPhoto));
       return updatedCurator;
     });
     return result.fold((l) => left(l), (r) => right(r));
@@ -132,8 +132,8 @@ class ProfileRepository implements IProfileRepository {
       data.files.add(MapEntry(
           _images,
           await MultipartFile.fromFile(
-            e.compressedImages!.fullImage!.path,
-            filename: e.compressedImages!.fullImage!.path,
+            e.fileImage!.path,
+            filename: e.fileImage!.path,
           )));
     }
     return data;
@@ -142,21 +142,19 @@ class ProfileRepository implements IProfileRepository {
   Future<List<ImageModel>> _getImageModels(List<ImageModel> value) async {
     List<ImageModel> images = [];
     for (var e in value) {
-      final compressedImages =
-          await _cacheImageService.getCompressedFileImage(e.imageUrl);
-      images.add(ImageModel(
-          imageUrl: e.imageUrl, id: e.id, compressedImages: compressedImages));
+      final imageFile = await _cacheImageService.getFileImage(e.imageUrl);
+      images.add(
+          ImageModel(imageUrl: e.imageUrl, id: e.id, fileImage: imageFile));
     }
     return images;
   }
 
   Future<ImageModel> _getImageModel(ImageModel value) async {
-    final compressedImages = await _cacheImageService
-        .getCompressedFileImage(value.imageUrl, isFullImage: false);
+    final imageFile = await _cacheImageService.getFileImage(value.imageUrl);
     final image = value.copyWith(
       id: value.id,
       imageUrl: value.imageUrl,
-      compressedImages: compressedImages,
+      fileImage: imageFile,
     );
     return image;
   }

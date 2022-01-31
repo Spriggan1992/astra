@@ -42,9 +42,9 @@ class SearchRepository extends ISearchRepository {
     List<ImageModel> images = [];
     for (var e in value) {
       final compressedImages =
-          await _cacheImageService.getCompressedFileImage(e.imageUrl);
+          await _cacheImageService.getFileImage(e.imageUrl);
       images.add(ImageModel(
-          imageUrl: e.imageUrl, id: e.id, compressedImages: compressedImages));
+          imageUrl: e.imageUrl, id: e.id, fileImage: compressedImages));
     }
     return images;
   }
@@ -57,7 +57,6 @@ class SearchRepository extends ISearchRepository {
     });
     return result.fold((failure) => left(failure), (_) => right(_));
   }
-
 
   @override
   Future<Either<AstraFailure, Unit>> toBlock(int id) async {
@@ -83,6 +82,5 @@ class SearchRepository extends ISearchRepository {
       return unit;
     });
     return result.fold((failure) => left(failure), (_) => right(_));
-
   }
 }

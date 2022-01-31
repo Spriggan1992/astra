@@ -31,7 +31,7 @@ class CuratorListTile extends StatelessWidget {
           child: Row(
             children: [
               AstraFileImage(
-                image: curator.profilePhoto.compressedImages!.thumbnail!,
+                image: curator.profilePhoto.fileImage!,
                 height: 48,
                 width: 48,
                 border: null,

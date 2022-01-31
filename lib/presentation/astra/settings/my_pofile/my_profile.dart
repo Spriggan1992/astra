@@ -130,8 +130,7 @@ class MyProfileScreenContent extends StatelessWidget {
                           return ProfileLogoScreen(
                             images: profile.profilePhotos,
                             addedImg: state.selectedImages.isNotEmpty
-                                ? state.selectedImages[0].compressedImages
-                                    ?.fullImage
+                                ? state.selectedImages[0].fileImage
                                 : null,
                             isEditMode: state.isEditMode,
                             onPickImage: () {
