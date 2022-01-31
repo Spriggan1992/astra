@@ -58,6 +58,7 @@ class SearchRepository extends ISearchRepository {
     return result.fold((failure) => left(failure), (_) => right(_));
   }
 
+
   @override
   Future<Either<AstraFailure, Unit>> toBlock(int id) async {
     final result = await makeRequest<Unit>(() async {
@@ -82,5 +83,6 @@ class SearchRepository extends ISearchRepository {
       return unit;
     });
     return result.fold((failure) => left(failure), (_) => right(_));
+
   }
 }

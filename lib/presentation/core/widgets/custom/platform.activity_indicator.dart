@@ -4,15 +4,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PlatformActivityIndicator extends StatelessWidget {
-  const PlatformActivityIndicator({Key? key}) : super(key: key);
+  final bool isCapertinoDarkTheme;
+  final Color? materialIndicatorColor;
+  const PlatformActivityIndicator(
+      {Key? key,
+      this.isCapertinoDarkTheme = false,
+      this.materialIndicatorColor})
+      : super(key: key);
 
   /// Индикатор загрузки платформы, на которой запущено приложение
   @override
   Widget build(BuildContext context) {
-    //final platformInfo = PlatformInfo();
     final ios = Platform.isIOS || Platform.isMacOS;
     return ios
-        ? const CupertinoActivityIndicator()
-        : const CircularProgressIndicator();
+        ? CupertinoTheme(
+            data: CupertinoTheme.of(context).copyWith(
+                brightness:
+                    isCapertinoDarkTheme ? Brightness.dark : Brightness.light),
+            child: const CupertinoActivityIndicator())
+        : CircularProgressIndicator(color: materialIndicatorColor);
   }
 }

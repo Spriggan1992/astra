@@ -30,6 +30,7 @@ class PasswordScreen extends StatelessWidget {
         listener: (context, state) {
           if (state.isSuseccfullySignIn) {
             context.read<AuthBloc>().add(const AuthEvent.authCheckRequested());
+            context.router.navigate(SplashScreenRoute(isLoading: true));
             FocusScope.of(context).unfocus();
           }
           if (state.redirectToConfirmePassword) {
