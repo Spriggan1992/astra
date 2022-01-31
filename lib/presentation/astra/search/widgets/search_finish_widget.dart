@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 
 /// Displayed if there are no profiles left
 class SearchFinishWidget extends StatelessWidget {
-  const SearchFinishWidget({Key? key, this.onTap}) : super(key: key);
+  const SearchFinishWidget({Key? key, this.onTap, this.fileImage}) : super(key: key);
   
    /// Event handler on tap go to favorites
   final VoidCallback? onTap;
+   /// Image provider. In this case resposible for showing image stored on device.
+  final ImageProvider<Object>? fileImage;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: Image.asset('assets/girl.png').image, fit: BoxFit.cover),
+              image: fileImage ?? Image.asset('assets/girl.png').image, fit: BoxFit.cover),
         ),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

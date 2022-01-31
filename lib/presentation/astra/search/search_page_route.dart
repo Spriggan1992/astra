@@ -2,6 +2,7 @@ import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/application/search/search_state_type.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,8 +23,9 @@ class SearchPageRoute extends StatelessWidget {
         } else if (state.stateType == SearchStateType.success) {
           return SearchScreen(applicants: state.applicants);
         } else {
-          return Scaffold(
-            body: Text(state.errorMessage),
+          return ErrorScreen(
+            errorTitle: state.errorMessage,
+            onTryAgain: (){},
           );
         }
       },

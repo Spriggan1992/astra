@@ -18,7 +18,7 @@ class ApplicantScreen extends StatelessWidget {
   final Profile applicant;
 
   /// Applicant main profile image
-  final String image; 
+  final ImageProvider image; 
   
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class ApplicantScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: Image.asset(image).image,
+              image: image,
               fit: BoxFit.cover),
         ),
         padding: const EdgeInsets.all(16),

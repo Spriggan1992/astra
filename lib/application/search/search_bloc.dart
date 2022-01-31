@@ -15,25 +15,101 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ISearchRepository _searchApi;
 
   SearchBloc(this._searchApi) : super(SearchState.initial()) {
-    on<SearchEvent>((event, emit) async {
-      await event.map(loadData: (e) async {
-        await Future.delayed(const Duration(seconds: 2)); 
-        final response = await _searchApi.getApplicants();
-        response.fold(
-          (failure) => emit(
-            state.copyWith(
-              stateType: SearchStateType.failure,
-              errorMessage: '$e',
-            ),
-          ),
-          (r) => emit(
-            state.copyWith(
-                stateType: SearchStateType.success,
-                applicants: r,
-                errorMessage: ''),
-          ),
+    on<SearchEvent>(
+      (event, emit) async {
+        await event.map(
+          loadData: (e) async {
+            final response = await _searchApi.getApplicants();
+            response.fold(
+              (failure) => failure.map(
+                api: (_) =>
+                    state.copyWith(stateType: SearchStateType.unexpectedError),
+                noConnection: (_) => state.copyWith(
+                    stateType: SearchStateType.noInternetConnection),
+              ),
+              (r) => emit(
+                state.copyWith(
+                  stateType: SearchStateType.success,
+                  applicants: r,
+                  errorMessage: '',
+                ),
+              ),
+            );
+          },
+          block: (e) async {
+            final response = await _searchApi.toBlock(e.id);
+            response.fold(
+              (failure) => failure.map(
+                api: (_) =>
+                    state.copyWith(stateType: SearchStateType.unexpectedError),
+                noConnection: (_) => state.copyWith(
+                    stateType: SearchStateType.noInternetConnection),
+              ),
+              (r) {
+                emit(
+                  state.copyWith(
+                    stateType: SearchStateType.successBlock,
+                  ),
+                );
+              },
+            );
+          },
+          like: (e) async {
+            final response = await _searchApi.toLike(e.id);
+            response.fold(
+              (failure) => failure.map(
+                api: (_) =>
+                    state.copyWith(stateType: SearchStateType.unexpectedError),
+                noConnection: (_) => state.copyWith(
+                    stateType: SearchStateType.noInternetConnection),
+              ),
+              (r) {
+                emit(
+                  state.copyWith(
+                    stateType: SearchStateType.successBlock,
+                  ),
+                );
+              },
+            );
+          },
+          reject: (e) async {
+            final response = await _searchApi.toReject(e.id);
+            response.fold(
+              (failure) => failure.map(
+                api: (_) =>
+                    state.copyWith(stateType: SearchStateType.unexpectedError),
+                noConnection: (_) => state.copyWith(
+                    stateType: SearchStateType.noInternetConnection),
+              ),
+              (r) {
+                emit(
+                  state.copyWith(
+                    stateType: SearchStateType.successBlock,
+                  ),
+                );
+              },
+            );
+          },
+          think: (e) async {
+            final response = await _searchApi.toThink(e.id);
+            response.fold(
+              (failure) => failure.map(
+                api: (_) =>
+                    state.copyWith(stateType: SearchStateType.unexpectedError),
+                noConnection: (_) => state.copyWith(
+                    stateType: SearchStateType.noInternetConnection),
+              ),
+              (r) {
+                emit(
+                  state.copyWith(
+                    stateType: SearchStateType.successBlock,
+                  ),
+                );
+              },
+            );
+          },
         );
-      });
-    });
+      },
+    );
   }
 }
