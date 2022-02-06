@@ -15,7 +15,7 @@ class SearchFinishWidget extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: fileImage ?? Image.asset('assets/girl.png').image, fit: BoxFit.cover),
+              image: (fileImage!=null) ?fileImage! : Image.asset('assets/girl.png').image, fit: BoxFit.cover),
         ),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

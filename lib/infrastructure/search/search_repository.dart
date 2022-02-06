@@ -62,6 +62,7 @@ class SearchRepository extends ISearchRepository {
   Future<Either<AstraFailure, Unit>> toBlock(int id) async {
     final result = await makeRequest<Unit>(() async {
       await _dio.post(Endpoints.feed.block(id));
+      return unit;
     });
     return result.fold((failure) => left(failure), (_) => right(_));
   }
@@ -70,6 +71,7 @@ class SearchRepository extends ISearchRepository {
   Future<Either<AstraFailure, Unit>> toReject(int id) async {
     final result = await makeRequest<Unit>(() async {
       await _dio.post(Endpoints.feed.nope(id));
+      return unit; 
     });
 
     return result.fold((failure) => left(failure), (_) => right(_));

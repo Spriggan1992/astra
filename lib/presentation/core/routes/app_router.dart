@@ -9,7 +9,7 @@ import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/astra/settings/about/about_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/photo/image_pick_screen.dart';
-import 'package:astra_app/presentation/astra/settings/my_pofile/photo/show_image_full_screen.dart';
+import 'package:astra_app/presentation/core/widgets/screens/show_image_full_screen.dart';
 import 'package:astra_app/presentation/astra/settings/promocode/promocode_screen.dart';
 import 'package:astra_app/presentation/astra/settings/settings_screen.dart';
 import 'package:astra_app/presentation/astra/settings/support/support_screen.dart';

@@ -25,6 +25,7 @@ class BaseErrorScreen extends StatelessWidget {
             baseTitle,
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 8),
           action
         ],
       ),

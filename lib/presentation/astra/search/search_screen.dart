@@ -1,4 +1,3 @@
-import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/search/sympathy/sympathy_dialog.dart';
@@ -7,8 +6,9 @@ import 'package:astra_app/presentation/astra/search/widgets/search_finish_widget
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe_cards/draggable_card.dart';
 import 'package:swipe_cards/swipe_cards.dart';
+
+import '../../../application/search/search_action/search_action_bloc.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key, required this.applicants}) : super(key: key);
@@ -25,14 +25,15 @@ class _SearchScreenState extends State<SearchScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   Profile _lastProfile = Profile.empty();
 
+  List<Profile> _applicants = [];
+
   @override
   void initState() {
-    final _applicants = widget.applicants;
+    _applicants = widget.applicants;
 
     for (var applicant in _applicants) {
       swipeItems.add(
-        SwipeItem(
-            content: applicant, onSlideUpdate: (SlideRegion? region) async {}),
+        SwipeItem(content: applicant),
       );
     }
     _matchEngine = MatchEngine(swipeItems: swipeItems);
@@ -85,6 +86,8 @@ class _SearchScreenState extends State<SearchScreen> {
           SwipeCards(
             matchEngine: _matchEngine,
             onStackFinished: () {},
+            upSwipeAllowed: false,
+            fillSpace: true,
             itemBuilder: (context, index) {
               final Profile _currentProfile = swipeItems[index].content;
               final _thumbnail = _currentProfile.profilePhotos.first.fileImage;
@@ -92,8 +95,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 profile: _currentProfile,
                 onClose: () {
                   _matchEngine.currentItem!.nope();
-                  getIt<SearchBloc>()
-                      .add(SearchEvent.reject(id: _currentProfile.id));
+                  getIt<SearchActionBloc>()
+                      .add(SearchActionEvent.reject(id: _currentProfile.id));
+                },
+                onTapPhoto: () {
+                  AutoRouter.of(context).push(ShowImageFullScreenRoute(
+                      images: _currentProfile.profilePhotos));
                 },
                 onTapInfo: () {
                   AutoRouter.of(context).push(
@@ -109,8 +116,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   } else {
                     _matchEngine.currentItem!.like();
                   }
-                  getIt<SearchBloc>()
-                      .add(SearchEvent.like(id: _currentProfile.id));
+                  getIt<SearchActionBloc>()
+                      .add(SearchActionEvent.like(id: _currentProfile.id));
                 },
               );
             },

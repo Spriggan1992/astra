@@ -1,3 +1,4 @@
+import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/base_error_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,14 @@ class ErrorScreen extends BaseErrorScreen {
           errorTitle,
           GestureDetector(
             onTap: onTryAgain,
-            child: const Text('Попробовать снова'),
+            child: const Text(
+              'Попробовать снова',
+              style: TextStyle(
+                color: AstraColors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         );
 }

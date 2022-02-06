@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:astra_app/application/search/search_state_type.dart';
+import 'package:astra_app/application/core/enums/search_state_type.dart';
 import 'package:astra_app/domain/search/repositories/i_search_repository.dart';
 
 part 'search_bloc.freezed.dart';
@@ -19,93 +19,46 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       (event, emit) async {
         await event.map(
           loadData: (e) async {
+            bool _hidenProfile = false;
+
+            if (e.profile != null) {
+              if (e.profile!.isHidden) {
+                _hidenProfile = true;
+              }
+            }
+            emit(
+              state.copyWith(
+                stateType: SearchStateType.initial,
+                applicants: [],
+                isHidenProfile: false,
+              ),
+            );
+
             final response = await _searchApi.getApplicants();
             response.fold(
               (failure) => failure.map(
-                api: (_) =>
-                    state.copyWith(stateType: SearchStateType.unexpectedError),
-                noConnection: (_) => state.copyWith(
-                    stateType: SearchStateType.noInternetConnection),
+                api: (_) => emit(
+                  state.copyWith(
+                    stateType: SearchStateType.failure,
+                    isUnexpectedError: true,
+                    isHidenProfile: _hidenProfile,
+                  ),
+                ),
+                noConnection: (_) => emit(
+                  state.copyWith(
+                    stateType: SearchStateType.failure,
+                    isNoInternetConnection: true,
+                    isHidenProfile: _hidenProfile,
+                  ),
+                ),
               ),
               (r) => emit(
                 state.copyWith(
                   stateType: SearchStateType.success,
                   applicants: r,
-                  errorMessage: '',
+                  isHidenProfile: _hidenProfile,
                 ),
               ),
-            );
-          },
-          block: (e) async {
-            final response = await _searchApi.toBlock(e.id);
-            response.fold(
-              (failure) => failure.map(
-                api: (_) =>
-                    state.copyWith(stateType: SearchStateType.unexpectedError),
-                noConnection: (_) => state.copyWith(
-                    stateType: SearchStateType.noInternetConnection),
-              ),
-              (r) {
-                emit(
-                  state.copyWith(
-                    stateType: SearchStateType.successBlock,
-                  ),
-                );
-              },
-            );
-          },
-          like: (e) async {
-            final response = await _searchApi.toLike(e.id);
-            response.fold(
-              (failure) => failure.map(
-                api: (_) =>
-                    state.copyWith(stateType: SearchStateType.unexpectedError),
-                noConnection: (_) => state.copyWith(
-                    stateType: SearchStateType.noInternetConnection),
-              ),
-              (r) {
-                emit(
-                  state.copyWith(
-                    stateType: SearchStateType.successBlock,
-                  ),
-                );
-              },
-            );
-          },
-          reject: (e) async {
-            final response = await _searchApi.toReject(e.id);
-            response.fold(
-              (failure) => failure.map(
-                api: (_) =>
-                    state.copyWith(stateType: SearchStateType.unexpectedError),
-                noConnection: (_) => state.copyWith(
-                    stateType: SearchStateType.noInternetConnection),
-              ),
-              (r) {
-                emit(
-                  state.copyWith(
-                    stateType: SearchStateType.successBlock,
-                  ),
-                );
-              },
-            );
-          },
-          think: (e) async {
-            final response = await _searchApi.toThink(e.id);
-            response.fold(
-              (failure) => failure.map(
-                api: (_) =>
-                    state.copyWith(stateType: SearchStateType.unexpectedError),
-                noConnection: (_) => state.copyWith(
-                    stateType: SearchStateType.noInternetConnection),
-              ),
-              (r) {
-                emit(
-                  state.copyWith(
-                    stateType: SearchStateType.successBlock,
-                  ),
-                );
-              },
             );
           },
         );

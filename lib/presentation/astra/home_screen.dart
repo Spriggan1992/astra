@@ -1,6 +1,8 @@
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
+import 'package:astra_app/application/settings/my_profile/my_profile/my_profile_bloc.dart';
+import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/navigation_bar.dart';
@@ -61,7 +63,11 @@ void _loadDataWhenPressNavButton(
     BuildContext context, int index, List<PageRouteInfo<dynamic>> routes) {
   switch (index) {
     case 0:
-        BlocProvider.of<SearchBloc>(context).add(const SearchEvent.loadData());
+        Profile? _profile; 
+        getIt<MyProfileBloc>().state.mapOrNull(loadSuccess: (value) {
+           _profile = value.profile; 
+        });
+        BlocProvider.of<SearchBloc>(context).add(SearchEvent.loadData(profile: _profile));
       break;
     case 1:
       context.read<FavoriteBloc>().add(FavoriteEvent.loadedData(

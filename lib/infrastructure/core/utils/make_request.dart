@@ -27,5 +27,7 @@ Future<Either<AstraFailure, T>> makeRequest<T>(
       log("${e.message}: ${e.type}", level: 2);
       return left(const AstraFailure.api());
     }
+  }catch (e){
+    return left(const AstraFailure.api());
   }
 }

@@ -10,6 +10,8 @@
 .svn/
 *.g.dart
 *.freezed.dart
+*.gr.dart
+*.config.dart
 
 # IntelliJ related
 *.iml

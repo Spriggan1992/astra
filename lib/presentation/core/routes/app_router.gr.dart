@@ -26,8 +26,6 @@ import '../../astra/search/search_screen.dart' as _i17;
 import '../../astra/settings/about/about_screen.dart' as _i21;
 import '../../astra/settings/my_pofile/my_profile.dart' as _i20;
 import '../../astra/settings/my_pofile/photo/image_pick_screen.dart' as _i8;
-import '../../astra/settings/my_pofile/photo/show_image_full_screen.dart'
-    as _i9;
 import '../../astra/settings/promocode/promocode_screen.dart' as _i24;
 import '../../astra/settings/settings_screen.dart' as _i19;
 import '../../astra/settings/support/support_screen.dart' as _i22;
@@ -40,6 +38,7 @@ import '../../auth/phone_number_screen.dart' as _i2;
 import '../../auth/splash_screen.dart' as _i1;
 import '../../auth/widgets/finish_register_screen.dart' as _i7;
 import '../enums/store_screen_qualifier.dart' as _i30;
+import '../widgets/screens/show_image_full_screen.dart' as _i9;
 
 class AppRouter extends _i12.RootStackRouter {
   AppRouter([_i25.GlobalKey<_i25.NavigatorState>? navigatorKey])
@@ -96,7 +95,10 @@ class AppRouter extends _i12.RootStackRouter {
       final args = routeData.argsAs<ShowImageFullScreenRouteArgs>();
       return _i12.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i9.ShowImageFullScreen(key: args.key, images: args.images));
+          child: _i9.ShowImageFullScreen(
+              key: args.key,
+              images: args.images,
+              enableDeleteButton: args.enableDeleteButton));
     },
     UserFormScreenRoute.name: (routeData) {
       final args = routeData.argsAs<UserFormScreenRouteArgs>();
@@ -389,24 +391,32 @@ class ImagePickScreenRoute extends _i12.PageRouteInfo<void> {
 class ShowImageFullScreenRoute
     extends _i12.PageRouteInfo<ShowImageFullScreenRouteArgs> {
   ShowImageFullScreenRoute(
-      {_i25.Key? key, required List<_i26.ImageModel> images})
+      {_i25.Key? key,
+      required List<_i26.ImageModel> images,
+      bool enableDeleteButton = false})
       : super(ShowImageFullScreenRoute.name,
             path: '/show-image-full-screen',
-            args: ShowImageFullScreenRouteArgs(key: key, images: images));
+            args: ShowImageFullScreenRouteArgs(
+                key: key,
+                images: images,
+                enableDeleteButton: enableDeleteButton));
 
   static const String name = 'ShowImageFullScreenRoute';
 }
 
 class ShowImageFullScreenRouteArgs {
-  const ShowImageFullScreenRouteArgs({this.key, required this.images});
+  const ShowImageFullScreenRouteArgs(
+      {this.key, required this.images, this.enableDeleteButton = false});
 
   final _i25.Key? key;
 
   final List<_i26.ImageModel> images;
 
+  final bool enableDeleteButton;
+
   @override
   String toString() {
-    return 'ShowImageFullScreenRouteArgs{key: $key, images: $images}';
+    return 'ShowImageFullScreenRouteArgs{key: $key, images: $images, enableDeleteButton: $enableDeleteButton}';
   }
 }
 

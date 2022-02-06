@@ -13,6 +13,7 @@ class SearchCard extends StatelessWidget {
     required this.onClose,
     required this.onTapInfo,
     required this.onTapLike,
+    required this.onTapPhoto,
   }) : super(key: key);
 
   // final String desc;
@@ -27,15 +28,19 @@ class SearchCard extends StatelessWidget {
   /// Button click event handler to add applicant (swipe right).
   final VoidCallback onTapLike;
 
+  /// Button click event handler to add applicant (swipe right).
+  final VoidCallback? onTapPhoto;
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-      AstraNetworkImage(
-        imageUrl: profile.profilePhotos.first.imageUrl,
-        borderRadius: BorderRadius.circular(0),
-        border: Border.all(color: AstraColors.golden, width: 1.5),
-        fit: BoxFit.cover,
+    return Stack(children: [
+      GestureDetector(
+        onTap: onTapPhoto,
+        child: AstraNetworkImage(
+          imageUrl: profile.profilePhotos.first.imageUrl,
+          borderRadius: BorderRadius.circular(0),
+          fit: BoxFit.cover,
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(bottom: kToolbarHeight),
