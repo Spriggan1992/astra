@@ -1,5 +1,5 @@
 import 'package:astra_app/domain/auth/repositories/i_auth_api_service.dart';
-import 'package:astra_app/domain/core/user_info_service/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

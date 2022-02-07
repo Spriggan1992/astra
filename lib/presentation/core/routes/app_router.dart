@@ -1,8 +1,8 @@
+import 'package:astra_app/presentation/astra/chats/chat_screen/chat_screen.dart';
+import 'package:astra_app/presentation/astra/chats/chats_screen/chats_screen.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_screen.dart';
 import 'package:astra_app/presentation/astra/favorite/user_form/user_form_screen.dart';
 import 'package:astra_app/presentation/astra/home_screen.dart';
-import 'package:astra_app/presentation/astra/message/chat_screen.dart';
-import 'package:astra_app/presentation/astra/message/message_screen.dart';
 import 'package:astra_app/presentation/astra/search/applicants/applicant_screen.dart';
 import 'package:astra_app/presentation/astra/search/search_page_route.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
@@ -35,6 +35,7 @@ import 'package:auto_route/auto_route.dart';
     MaterialRoute(page: ImagePickScreen),
     MaterialRoute(page: ShowImageFullScreen),
     MaterialRoute(page: UserFormScreen),
+    MaterialRoute(page: ChatScreen),
     AutoRoute(
       path: '',
       page: HomeScreen,
@@ -59,11 +60,11 @@ import 'package:auto_route/auto_route.dart';
           initial: true,
         ),
         AutoRoute(
-          path: 'message',
-          name: 'MessageRouter',
-          page: MessageScreen,
+          path: 'chats',
+          name: 'ChatsRouter',
+          page: EmptyRouterPage,
           children: [
-            AutoRoute(path: '', page: MessageChatScreen),
+            AutoRoute(path: '', page: ChatsScreen),
           ],
         ),
         AutoRoute(

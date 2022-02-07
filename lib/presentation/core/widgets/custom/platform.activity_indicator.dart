@@ -22,6 +22,7 @@ class PlatformActivityIndicator extends StatelessWidget {
                 brightness:
                     isCapertinoDarkTheme ? Brightness.dark : Brightness.light),
             child: const CupertinoActivityIndicator())
-        : CircularProgressIndicator(color: materialIndicatorColor);
+        : Center(
+            child: CircularProgressIndicator(color: materialIndicatorColor));
   }
 }

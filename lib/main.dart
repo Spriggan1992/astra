@@ -18,7 +18,12 @@ Future<void> _appInitializer() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection(Environment.prod);
   await getIt<SembastDatabase>().init();
-  getIt<Dio>().interceptors.add(getIt<DioInterceptor>());
+  getIt<Dio>()
+    ..options = BaseOptions(
+      connectTimeout: 5000,
+      receiveTimeout: 3000,
+    )
+    ..interceptors.add(getIt<DioInterceptor>());
   getIt.registerSingleton<AppRouter>(AppRouter());
   BlocOverrides.runZoned(() => runApp(const AstraApp()),
       blocObserver: SimpleBlocObserver());

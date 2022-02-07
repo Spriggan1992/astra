@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/core/user_info_service/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:injectable/injectable.dart';
 

@@ -8,18 +8,17 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:auto_route/auto_route.dart' as _i13;
 import 'package:flutter/material.dart' as _i25;
 
+import '../../../domain/chats/chats_model.dart' as _i28;
 import '../../../domain/core/models/image_models.dart' as _i26;
 import '../../../domain/profile/models/profile.dart' as _i27;
-import '../../../infrastructure/chat/models/chat/chat.dart' as _i28;
-import '../../../infrastructure/chat/models/chat/message.dart' as _i29;
-import '../../astra/favorite/favorite_screen.dart' as _i13;
+import '../../astra/chats/chat_screen/chat_screen.dart' as _i11;
+import '../../astra/chats/chats_screen/chats_screen.dart' as _i18;
+import '../../astra/favorite/favorite_screen.dart' as _i14;
 import '../../astra/favorite/user_form/user_form_screen.dart' as _i10;
-import '../../astra/home_screen.dart' as _i11;
-import '../../astra/message/chat_screen.dart' as _i18;
-import '../../astra/message/message_screen.dart' as _i14;
+import '../../astra/home_screen.dart' as _i12;
 import '../../astra/search/applicants/applicant_screen.dart' as _i16;
 import '../../astra/search/search_page_route.dart' as _i15;
 import '../../astra/search/search_screen.dart' as _i17;
@@ -37,46 +36,46 @@ import '../../auth/password_screen.dart' as _i5;
 import '../../auth/phone_number_screen.dart' as _i2;
 import '../../auth/splash_screen.dart' as _i1;
 import '../../auth/widgets/finish_register_screen.dart' as _i7;
-import '../enums/store_screen_qualifier.dart' as _i30;
+import '../enums/store_screen_qualifier.dart' as _i29;
 import '../widgets/screens/show_image_full_screen.dart' as _i9;
 
-class AppRouter extends _i12.RootStackRouter {
+class AppRouter extends _i13.RootStackRouter {
   AppRouter([_i25.GlobalKey<_i25.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i12.PageFactory> pagesMap = {
+  final Map<String, _i13.PageFactory> pagesMap = {
     SplashScreenRoute.name: (routeData) {
       final args = routeData.argsAs<SplashScreenRouteArgs>(
           orElse: () => const SplashScreenRouteArgs());
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i1.SplashScreen(key: args.key, isLoading: args.isLoading));
     },
     PhoneNumberScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i2.PhoneNumberScreen());
     },
     HowToGetClubScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i3.HowToGetClubScreen());
     },
     CodeScreenRoute.name: (routeData) {
       final args = routeData.argsAs<CodeScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i4.CodeScreen(key: args.key, phoneNumber: args.phoneNumber));
     },
     PasswordScreenRoute.name: (routeData) {
       final args = routeData.argsAs<PasswordScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i5.PasswordScreen(
               key: args.key, phoneNumber: args.phoneNumber, code: args.code));
     },
     ConfirmPasswordScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ConfirmPasswordScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i6.ConfirmPasswordScreen(
               key: args.key,
@@ -84,16 +83,16 @@ class AppRouter extends _i12.RootStackRouter {
               confirmePassword: args.confirmePassword));
     },
     FinishRegisterScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i7.FinishRegisterScreen());
     },
     ImagePickScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i8.ImagePickScreen());
     },
     ShowImageFullScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ShowImageFullScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i9.ShowImageFullScreen(
               key: args.key,
@@ -102,137 +101,141 @@ class AppRouter extends _i12.RootStackRouter {
     },
     UserFormScreenRoute.name: (routeData) {
       final args = routeData.argsAs<UserFormScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i10.UserFormScreen(key: args.key, profile: args.profile));
     },
+    ChatScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<ChatScreenRouteArgs>();
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i11.ChatScreen(key: args.key, chatModel: args.chatModel));
+    },
     HomeScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.HomeScreen());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i12.HomeScreen());
     },
     SearchRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i12.EmptyRouterPage());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i13.EmptyRouterPage());
     },
     FavoritesRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i13.FavoriteScreen());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i14.FavoriteScreen());
     },
-    MessageRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i14.MessageScreen());
+    ChatsRouter.name: (routeData) {
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i13.EmptyRouterPage());
     },
     SettingsRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i12.EmptyRouterPage());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i13.EmptyRouterPage());
     },
     SearchPageRouteRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i15.SearchPageRoute());
     },
     ApplicantScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ApplicantScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i16.ApplicantScreen(
               key: args.key, applicant: args.applicant, image: args.image));
     },
     SearchScreenRoute.name: (routeData) {
       final args = routeData.argsAs<SearchScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i17.SearchScreen(key: args.key, applicants: args.applicants));
     },
-    MessageChatScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<MessageChatScreenRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i18.MessageChatScreen(
-              key: args.key, chat: args.chat, lastMessage: args.lastMessage));
+    ChatsScreenRoute.name: (routeData) {
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i18.ChatsScreen());
     },
     SettingsScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i19.SettingsScreen());
     },
     MyProfileScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i20.MyProfileScreen());
     },
     AboutScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i21.AboutScreen());
     },
     SupportScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i22.SupportScreen());
     },
     StoreScreenRoute.name: (routeData) {
       final args = routeData.argsAs<StoreScreenRouteArgs>(
           orElse: () => const StoreScreenRouteArgs());
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i23.StoreScreen(
               key: args.key, storeQualifer: args.storeQualifer));
     },
     PromocodeScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i24.PromocodeScreen());
     }
   };
 
   @override
-  List<_i12.RouteConfig> get routes => [
-        _i12.RouteConfig(SplashScreenRoute.name, path: '/'),
-        _i12.RouteConfig(PhoneNumberScreenRoute.name,
+  List<_i13.RouteConfig> get routes => [
+        _i13.RouteConfig(SplashScreenRoute.name, path: '/'),
+        _i13.RouteConfig(PhoneNumberScreenRoute.name,
             path: '/phone-number-screen'),
-        _i12.RouteConfig(HowToGetClubScreenRoute.name,
+        _i13.RouteConfig(HowToGetClubScreenRoute.name,
             path: '/how-to-get-club-screen'),
-        _i12.RouteConfig(CodeScreenRoute.name, path: '/code-screen'),
-        _i12.RouteConfig(PasswordScreenRoute.name, path: '/password-screen'),
-        _i12.RouteConfig(ConfirmPasswordScreenRoute.name,
+        _i13.RouteConfig(CodeScreenRoute.name, path: '/code-screen'),
+        _i13.RouteConfig(PasswordScreenRoute.name, path: '/password-screen'),
+        _i13.RouteConfig(ConfirmPasswordScreenRoute.name,
             path: '/confirm-password-screen'),
-        _i12.RouteConfig(FinishRegisterScreenRoute.name,
+        _i13.RouteConfig(FinishRegisterScreenRoute.name,
             path: '/finish-register-screen'),
-        _i12.RouteConfig(ImagePickScreenRoute.name, path: '/image-pick-screen'),
-        _i12.RouteConfig(ShowImageFullScreenRoute.name,
+        _i13.RouteConfig(ImagePickScreenRoute.name, path: '/image-pick-screen'),
+        _i13.RouteConfig(ShowImageFullScreenRoute.name,
             path: '/show-image-full-screen'),
-        _i12.RouteConfig(UserFormScreenRoute.name, path: '/user-form-screen'),
-        _i12.RouteConfig(HomeScreenRoute.name, path: '', children: [
-          _i12.RouteConfig(SearchRouter.name,
+        _i13.RouteConfig(UserFormScreenRoute.name, path: '/user-form-screen'),
+        _i13.RouteConfig(ChatScreenRoute.name, path: '/chat-screen'),
+        _i13.RouteConfig(HomeScreenRoute.name, path: '', children: [
+          _i13.RouteConfig(SearchRouter.name,
               path: 'searche',
               parent: HomeScreenRoute.name,
               children: [
-                _i12.RouteConfig(SearchPageRouteRoute.name,
+                _i13.RouteConfig(SearchPageRouteRoute.name,
                     path: '', parent: SearchRouter.name),
-                _i12.RouteConfig(ApplicantScreenRoute.name,
+                _i13.RouteConfig(ApplicantScreenRoute.name,
                     path: ':applicantScreen', parent: SearchRouter.name),
-                _i12.RouteConfig(SearchScreenRoute.name,
+                _i13.RouteConfig(SearchScreenRoute.name,
                     path: ':searchScreen', parent: SearchRouter.name)
               ]),
-          _i12.RouteConfig(FavoritesRouter.name,
+          _i13.RouteConfig(FavoritesRouter.name,
               path: '', parent: HomeScreenRoute.name),
-          _i12.RouteConfig(MessageRouter.name,
-              path: 'message',
+          _i13.RouteConfig(ChatsRouter.name,
+              path: 'chats',
               parent: HomeScreenRoute.name,
               children: [
-                _i12.RouteConfig(MessageChatScreenRoute.name,
-                    path: '', parent: MessageRouter.name)
+                _i13.RouteConfig(ChatsScreenRoute.name,
+                    path: '', parent: ChatsRouter.name)
               ]),
-          _i12.RouteConfig(SettingsRouter.name,
+          _i13.RouteConfig(SettingsRouter.name,
               path: 'settings',
               parent: HomeScreenRoute.name,
               children: [
-                _i12.RouteConfig(SettingsScreenRoute.name,
+                _i13.RouteConfig(SettingsScreenRoute.name,
                     path: '', parent: SettingsRouter.name),
-                _i12.RouteConfig(MyProfileScreenRoute.name,
+                _i13.RouteConfig(MyProfileScreenRoute.name,
                     path: ':myProfileScreen', parent: SettingsRouter.name),
-                _i12.RouteConfig(AboutScreenRoute.name,
+                _i13.RouteConfig(AboutScreenRoute.name,
                     path: ':aboutScreen', parent: SettingsRouter.name),
-                _i12.RouteConfig(SupportScreenRoute.name,
+                _i13.RouteConfig(SupportScreenRoute.name,
                     path: ':supportScreen', parent: SettingsRouter.name),
-                _i12.RouteConfig(StoreScreenRoute.name,
+                _i13.RouteConfig(StoreScreenRoute.name,
                     path: ':store', parent: SettingsRouter.name),
-                _i12.RouteConfig(PromocodeScreenRoute.name,
+                _i13.RouteConfig(PromocodeScreenRoute.name,
                     path: ':promocode', parent: SettingsRouter.name)
               ])
         ])
@@ -241,7 +244,7 @@ class AppRouter extends _i12.RootStackRouter {
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashScreenRoute extends _i12.PageRouteInfo<SplashScreenRouteArgs> {
+class SplashScreenRoute extends _i13.PageRouteInfo<SplashScreenRouteArgs> {
   SplashScreenRoute({_i25.Key? key, bool isLoading = false})
       : super(SplashScreenRoute.name,
             path: '/',
@@ -265,7 +268,7 @@ class SplashScreenRouteArgs {
 
 /// generated route for
 /// [_i2.PhoneNumberScreen]
-class PhoneNumberScreenRoute extends _i12.PageRouteInfo<void> {
+class PhoneNumberScreenRoute extends _i13.PageRouteInfo<void> {
   const PhoneNumberScreenRoute()
       : super(PhoneNumberScreenRoute.name, path: '/phone-number-screen');
 
@@ -274,7 +277,7 @@ class PhoneNumberScreenRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.HowToGetClubScreen]
-class HowToGetClubScreenRoute extends _i12.PageRouteInfo<void> {
+class HowToGetClubScreenRoute extends _i13.PageRouteInfo<void> {
   const HowToGetClubScreenRoute()
       : super(HowToGetClubScreenRoute.name, path: '/how-to-get-club-screen');
 
@@ -283,7 +286,7 @@ class HowToGetClubScreenRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.CodeScreen]
-class CodeScreenRoute extends _i12.PageRouteInfo<CodeScreenRouteArgs> {
+class CodeScreenRoute extends _i13.PageRouteInfo<CodeScreenRouteArgs> {
   CodeScreenRoute({_i25.Key? key, required String phoneNumber})
       : super(CodeScreenRoute.name,
             path: '/code-screen',
@@ -307,7 +310,7 @@ class CodeScreenRouteArgs {
 
 /// generated route for
 /// [_i5.PasswordScreen]
-class PasswordScreenRoute extends _i12.PageRouteInfo<PasswordScreenRouteArgs> {
+class PasswordScreenRoute extends _i13.PageRouteInfo<PasswordScreenRouteArgs> {
   PasswordScreenRoute(
       {_i25.Key? key, required String phoneNumber, String? code})
       : super(PasswordScreenRoute.name,
@@ -337,7 +340,7 @@ class PasswordScreenRouteArgs {
 /// generated route for
 /// [_i6.ConfirmPasswordScreen]
 class ConfirmPasswordScreenRoute
-    extends _i12.PageRouteInfo<ConfirmPasswordScreenRouteArgs> {
+    extends _i13.PageRouteInfo<ConfirmPasswordScreenRouteArgs> {
   ConfirmPasswordScreenRoute(
       {_i25.Key? key,
       required String phoneNumber,
@@ -370,7 +373,7 @@ class ConfirmPasswordScreenRouteArgs {
 
 /// generated route for
 /// [_i7.FinishRegisterScreen]
-class FinishRegisterScreenRoute extends _i12.PageRouteInfo<void> {
+class FinishRegisterScreenRoute extends _i13.PageRouteInfo<void> {
   const FinishRegisterScreenRoute()
       : super(FinishRegisterScreenRoute.name, path: '/finish-register-screen');
 
@@ -379,7 +382,7 @@ class FinishRegisterScreenRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.ImagePickScreen]
-class ImagePickScreenRoute extends _i12.PageRouteInfo<void> {
+class ImagePickScreenRoute extends _i13.PageRouteInfo<void> {
   const ImagePickScreenRoute()
       : super(ImagePickScreenRoute.name, path: '/image-pick-screen');
 
@@ -389,7 +392,7 @@ class ImagePickScreenRoute extends _i12.PageRouteInfo<void> {
 /// generated route for
 /// [_i9.ShowImageFullScreen]
 class ShowImageFullScreenRoute
-    extends _i12.PageRouteInfo<ShowImageFullScreenRouteArgs> {
+    extends _i13.PageRouteInfo<ShowImageFullScreenRouteArgs> {
   ShowImageFullScreenRoute(
       {_i25.Key? key,
       required List<_i26.ImageModel> images,
@@ -422,7 +425,7 @@ class ShowImageFullScreenRouteArgs {
 
 /// generated route for
 /// [_i10.UserFormScreen]
-class UserFormScreenRoute extends _i12.PageRouteInfo<UserFormScreenRouteArgs> {
+class UserFormScreenRoute extends _i13.PageRouteInfo<UserFormScreenRouteArgs> {
   UserFormScreenRoute({_i25.Key? key, required _i27.Profile profile})
       : super(UserFormScreenRoute.name,
             path: '/user-form-screen',
@@ -445,44 +448,68 @@ class UserFormScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i11.HomeScreen]
-class HomeScreenRoute extends _i12.PageRouteInfo<void> {
-  const HomeScreenRoute({List<_i12.PageRouteInfo>? children})
+/// [_i11.ChatScreen]
+class ChatScreenRoute extends _i13.PageRouteInfo<ChatScreenRouteArgs> {
+  ChatScreenRoute({_i25.Key? key, required _i28.ChatModel chatModel})
+      : super(ChatScreenRoute.name,
+            path: '/chat-screen',
+            args: ChatScreenRouteArgs(key: key, chatModel: chatModel));
+
+  static const String name = 'ChatScreenRoute';
+}
+
+class ChatScreenRouteArgs {
+  const ChatScreenRouteArgs({this.key, required this.chatModel});
+
+  final _i25.Key? key;
+
+  final _i28.ChatModel chatModel;
+
+  @override
+  String toString() {
+    return 'ChatScreenRouteArgs{key: $key, chatModel: $chatModel}';
+  }
+}
+
+/// generated route for
+/// [_i12.HomeScreen]
+class HomeScreenRoute extends _i13.PageRouteInfo<void> {
+  const HomeScreenRoute({List<_i13.PageRouteInfo>? children})
       : super(HomeScreenRoute.name, path: '', initialChildren: children);
 
   static const String name = 'HomeScreenRoute';
 }
 
 /// generated route for
-/// [_i12.EmptyRouterPage]
-class SearchRouter extends _i12.PageRouteInfo<void> {
-  const SearchRouter({List<_i12.PageRouteInfo>? children})
+/// [_i13.EmptyRouterPage]
+class SearchRouter extends _i13.PageRouteInfo<void> {
+  const SearchRouter({List<_i13.PageRouteInfo>? children})
       : super(SearchRouter.name, path: 'searche', initialChildren: children);
 
   static const String name = 'SearchRouter';
 }
 
 /// generated route for
-/// [_i13.FavoriteScreen]
-class FavoritesRouter extends _i12.PageRouteInfo<void> {
+/// [_i14.FavoriteScreen]
+class FavoritesRouter extends _i13.PageRouteInfo<void> {
   const FavoritesRouter() : super(FavoritesRouter.name, path: '');
 
   static const String name = 'FavoritesRouter';
 }
 
 /// generated route for
-/// [_i14.MessageScreen]
-class MessageRouter extends _i12.PageRouteInfo<void> {
-  const MessageRouter({List<_i12.PageRouteInfo>? children})
-      : super(MessageRouter.name, path: 'message', initialChildren: children);
+/// [_i13.EmptyRouterPage]
+class ChatsRouter extends _i13.PageRouteInfo<void> {
+  const ChatsRouter({List<_i13.PageRouteInfo>? children})
+      : super(ChatsRouter.name, path: 'chats', initialChildren: children);
 
-  static const String name = 'MessageRouter';
+  static const String name = 'ChatsRouter';
 }
 
 /// generated route for
-/// [_i12.EmptyRouterPage]
-class SettingsRouter extends _i12.PageRouteInfo<void> {
-  const SettingsRouter({List<_i12.PageRouteInfo>? children})
+/// [_i13.EmptyRouterPage]
+class SettingsRouter extends _i13.PageRouteInfo<void> {
+  const SettingsRouter({List<_i13.PageRouteInfo>? children})
       : super(SettingsRouter.name, path: 'settings', initialChildren: children);
 
   static const String name = 'SettingsRouter';
@@ -490,7 +517,7 @@ class SettingsRouter extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.SearchPageRoute]
-class SearchPageRouteRoute extends _i12.PageRouteInfo<void> {
+class SearchPageRouteRoute extends _i13.PageRouteInfo<void> {
   const SearchPageRouteRoute() : super(SearchPageRouteRoute.name, path: '');
 
   static const String name = 'SearchPageRouteRoute';
@@ -499,7 +526,7 @@ class SearchPageRouteRoute extends _i12.PageRouteInfo<void> {
 /// generated route for
 /// [_i16.ApplicantScreen]
 class ApplicantScreenRoute
-    extends _i12.PageRouteInfo<ApplicantScreenRouteArgs> {
+    extends _i13.PageRouteInfo<ApplicantScreenRouteArgs> {
   ApplicantScreenRoute(
       {_i25.Key? key,
       required _i27.Profile applicant,
@@ -530,7 +557,7 @@ class ApplicantScreenRouteArgs {
 
 /// generated route for
 /// [_i17.SearchScreen]
-class SearchScreenRoute extends _i12.PageRouteInfo<SearchScreenRouteArgs> {
+class SearchScreenRoute extends _i13.PageRouteInfo<SearchScreenRouteArgs> {
   SearchScreenRoute({_i25.Key? key, required List<_i27.Profile> applicants})
       : super(SearchScreenRoute.name,
             path: ':searchScreen',
@@ -553,40 +580,16 @@ class SearchScreenRouteArgs {
 }
 
 /// generated route for
-/// [_i18.MessageChatScreen]
-class MessageChatScreenRoute
-    extends _i12.PageRouteInfo<MessageChatScreenRouteArgs> {
-  MessageChatScreenRoute(
-      {_i25.Key? key,
-      required _i28.Chat chat,
-      required _i29.Message lastMessage})
-      : super(MessageChatScreenRoute.name,
-            path: '',
-            args: MessageChatScreenRouteArgs(
-                key: key, chat: chat, lastMessage: lastMessage));
+/// [_i18.ChatsScreen]
+class ChatsScreenRoute extends _i13.PageRouteInfo<void> {
+  const ChatsScreenRoute() : super(ChatsScreenRoute.name, path: '');
 
-  static const String name = 'MessageChatScreenRoute';
-}
-
-class MessageChatScreenRouteArgs {
-  const MessageChatScreenRouteArgs(
-      {this.key, required this.chat, required this.lastMessage});
-
-  final _i25.Key? key;
-
-  final _i28.Chat chat;
-
-  final _i29.Message lastMessage;
-
-  @override
-  String toString() {
-    return 'MessageChatScreenRouteArgs{key: $key, chat: $chat, lastMessage: $lastMessage}';
-  }
+  static const String name = 'ChatsScreenRoute';
 }
 
 /// generated route for
 /// [_i19.SettingsScreen]
-class SettingsScreenRoute extends _i12.PageRouteInfo<void> {
+class SettingsScreenRoute extends _i13.PageRouteInfo<void> {
   const SettingsScreenRoute() : super(SettingsScreenRoute.name, path: '');
 
   static const String name = 'SettingsScreenRoute';
@@ -594,7 +597,7 @@ class SettingsScreenRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.MyProfileScreen]
-class MyProfileScreenRoute extends _i12.PageRouteInfo<void> {
+class MyProfileScreenRoute extends _i13.PageRouteInfo<void> {
   const MyProfileScreenRoute()
       : super(MyProfileScreenRoute.name, path: ':myProfileScreen');
 
@@ -603,7 +606,7 @@ class MyProfileScreenRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i21.AboutScreen]
-class AboutScreenRoute extends _i12.PageRouteInfo<void> {
+class AboutScreenRoute extends _i13.PageRouteInfo<void> {
   const AboutScreenRoute() : super(AboutScreenRoute.name, path: ':aboutScreen');
 
   static const String name = 'AboutScreenRoute';
@@ -611,7 +614,7 @@ class AboutScreenRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i22.SupportScreen]
-class SupportScreenRoute extends _i12.PageRouteInfo<void> {
+class SupportScreenRoute extends _i13.PageRouteInfo<void> {
   const SupportScreenRoute()
       : super(SupportScreenRoute.name, path: ':supportScreen');
 
@@ -620,11 +623,11 @@ class SupportScreenRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.StoreScreen]
-class StoreScreenRoute extends _i12.PageRouteInfo<StoreScreenRouteArgs> {
+class StoreScreenRoute extends _i13.PageRouteInfo<StoreScreenRouteArgs> {
   StoreScreenRoute(
       {_i25.Key? key,
-      _i30.StoreScreenQualifier storeQualifer =
-          _i30.StoreScreenQualifier.storeSettings})
+      _i29.StoreScreenQualifier storeQualifer =
+          _i29.StoreScreenQualifier.storeSettings})
       : super(StoreScreenRoute.name,
             path: ':store',
             args: StoreScreenRouteArgs(key: key, storeQualifer: storeQualifer));
@@ -634,11 +637,11 @@ class StoreScreenRoute extends _i12.PageRouteInfo<StoreScreenRouteArgs> {
 
 class StoreScreenRouteArgs {
   const StoreScreenRouteArgs(
-      {this.key, this.storeQualifer = _i30.StoreScreenQualifier.storeSettings});
+      {this.key, this.storeQualifer = _i29.StoreScreenQualifier.storeSettings});
 
   final _i25.Key? key;
 
-  final _i30.StoreScreenQualifier storeQualifer;
+  final _i29.StoreScreenQualifier storeQualifer;
 
   @override
   String toString() {
@@ -648,7 +651,7 @@ class StoreScreenRouteArgs {
 
 /// generated route for
 /// [_i24.PromocodeScreen]
-class PromocodeScreenRoute extends _i12.PageRouteInfo<void> {
+class PromocodeScreenRoute extends _i13.PageRouteInfo<void> {
   const PromocodeScreenRoute()
       : super(PromocodeScreenRoute.name, path: ':promocode');
 
