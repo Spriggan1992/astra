@@ -103,8 +103,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => _i26.PromocodeBloc(get<_i14.IPromocodeRepository>()));
   gh.factory<_i27.SearchActionBloc>(
       () => _i27.SearchActionBloc(get<_i16.ISearchRepository>()));
-  gh.factory<_i28.SearchBloc>(
-      () => _i28.SearchBloc(get<_i16.ISearchRepository>()));
+  gh.factory<_i28.SearchBloc>(() => _i28.SearchBloc(
+      get<_i16.ISearchRepository>(), get<_i22.IUserInfoService>()));
   gh.lazySingleton<_i29.SembastDatabase>(() => appInjectableModule.sembastDb);
   gh.factory<_i30.SettingsBloc>(
       () => _i30.SettingsBloc(get<_i12.IProfileRepository>()));

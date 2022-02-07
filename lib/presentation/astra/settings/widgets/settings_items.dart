@@ -72,7 +72,9 @@ class SettingsItems extends StatelessWidget {
             size: 28,
           ),
           title: 'Обучение',
-          onTap: () {},
+          onTap: () {
+            AutoRouter.of(context).push(CoachScreenRoute(size: MediaQuery.of(context).size)); 
+          },
         ),
         ProfileItem(
           icon: const SvgIcon(

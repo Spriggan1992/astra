@@ -43,12 +43,9 @@ class SearchPageRoute extends StatelessWidget {
           return ErrorScreen(
             errorTitle: _errorMessage,
             onTryAgain: () {
-              Profile? _profile;
-              getIt<MyProfileBloc>().state.mapOrNull(loadSuccess: (value) {
-                _profile = value.profile;
-              });
+             
               BlocProvider.of<SearchBloc>(context)
-                  .add(SearchEvent.loadData(profile: _profile));
+                  .add(const SearchEvent.loadData());
             },
           );
         } else {
@@ -108,8 +105,8 @@ class SearchPageRoute extends StatelessWidget {
       },
     );
 
-    /// If result == true, go to store.
-    /// If result == false , go back
+    /// If result == true, [Отмена], go to store.
+    /// If result == false [Включить] , go back
     if (result) {
       context.navigateTo(const FavoritesRouter());
     } else {

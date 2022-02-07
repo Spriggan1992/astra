@@ -7,6 +7,7 @@ import 'package:astra_app/presentation/astra/search/applicants/applicant_screen.
 import 'package:astra_app/presentation/astra/search/search_page_route.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/astra/settings/about/about_screen.dart';
+import 'package:astra_app/presentation/astra/settings/coach/coach_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/photo/image_pick_screen.dart';
 import 'package:astra_app/presentation/core/widgets/screens/show_image_full_screen.dart';
@@ -35,6 +36,7 @@ import 'package:auto_route/auto_route.dart';
     MaterialRoute(page: ImagePickScreen),
     MaterialRoute(page: ShowImageFullScreen),
     MaterialRoute(page: UserFormScreen),
+     MaterialRoute(page: CoachScreen),
     AutoRoute(
       path: '',
       page: HomeScreen,

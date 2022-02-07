@@ -23,6 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
   List<SwipeItem> swipeItems = <SwipeItem>[];
   late MatchEngine _matchEngine;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
   Profile _lastProfile = Profile.empty();
 
   List<Profile> _applicants = [];
