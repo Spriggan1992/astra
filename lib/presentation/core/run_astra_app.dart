@@ -6,30 +6,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/auth/auth/auth_bloc.dart';
 import '../../injection.dart';
+import 'widgets/custom/restart_widget.dart';
 
 // This widget is the root of your application.
 class AstraApp extends StatelessWidget {
   const AstraApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
+    return RestartWidget(
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
+          ),
+          BlocProvider<SearchBloc>(
+            create: (context) => getIt<SearchBloc>(),
+          ),
+          BlocProvider<SearchActionBloc>(
+            create: (context) => getIt<SearchActionBloc>(),
+          ),
+        ],
+        child: MaterialApp.router(
+          theme: AppTheme.lightTheme,
+          routerDelegate: getIt<AppRouter>().delegate(),
+          routeInformationParser: getIt<AppRouter>().defaultRouteParser(),
+          debugShowCheckedModeBanner: false,
         ),
-        BlocProvider<SearchBloc>(
-          create: (context) => getIt<SearchBloc>(),
-        ),
-        BlocProvider<SearchActionBloc>(
-          create: (context) => getIt<SearchActionBloc>(),
-        ),
-      ],
-      child: MaterialApp.router(
-        theme: AppTheme.lightTheme,
-        routerDelegate: getIt<AppRouter>().delegate(),
-        routeInformationParser: getIt<AppRouter>().defaultRouteParser(),
-        debugShowCheckedModeBanner: false,
       ),
     );
   }

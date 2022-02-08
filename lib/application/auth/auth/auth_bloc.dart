@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:astra_app/domain/auth/repositories/i_auth_api_service.dart';
 import 'package:astra_app/domain/core/services/i_curator_info_service.dart';
 import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';

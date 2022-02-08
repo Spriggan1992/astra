@@ -6,11 +6,17 @@ class Endpoints {
   static get feed => _FeedEndpoints();
   static get shop => _ShopEndpoints();
   static get user => _ProfileEndpoints();
+  static get signals => _SignalsEndpoints();
   static get imageAdress => relevantAdress;
 }
 
 final String _address = ServerAddress().relevant;
 final String relevantAdress = ServerAddress().imageAdress;
+
+class _SignalsEndpoints {
+  String get users => _address + "user/signal/topic/profile/";
+  String get chats => _address + "user/signal/topic/chat/";
+}
 
 class _AuthEndpoints {
   String get checkPhone => _address + "user/auth/check/phone/";
