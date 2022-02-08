@@ -33,21 +33,22 @@ class CoachTile extends StatelessWidget {
           children: [
             Text(
               title,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 color: AstraColors.white,
-                fontSize: 12.0,
+                fontSize: 16.0,
               
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 30.0),
+              padding: const EdgeInsets.only(bottom: 20.0),
               child: Text(
                 subtitle,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: AstraColors.white06,
-                  fontSize: 12,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),

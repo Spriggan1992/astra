@@ -5,7 +5,9 @@ import 'package:astra_app/presentation/astra/favorite/favorite_info_card.dart';
 import 'package:astra_app/presentation/astra/favorite/info_button.dart';
 import 'package:astra_app/presentation/astra/settings/coach/coach_tile.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,18 +41,20 @@ class _CoachScreenState extends State<CoachScreen> {
     profile = getIt<IUserInfoService>().userProfile;
 
     _fullImage = Image.file(profile.profilePhotos.first.fileImage!).image;
+
     _initCoachTargets();
     _initCoachMark();
 
-    WidgetsBinding.instance?.addPostFrameCallback(_showDialog);
+    WidgetsBinding.instance?.addPostFrameCallback(_showCoachDialog);
     super.initState();
   }
 
-  void _showDialog(_) async {
+  void _showCoachDialog(_) async {
     Future.delayed(const Duration(milliseconds: 500));
 
     final result = await showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (_) {
         return DialogTwoActions(
           content: const Text(
@@ -101,8 +105,47 @@ class _CoachScreenState extends State<CoachScreen> {
     }
   }
 
+  void _showEndCoachDialog() async {
+    final result = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        return DialogOneAction(
+          content: const Text(
+            'Поздравляем вы прошли обучение!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: AstraColors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          action: TextButton(
+            child: const Text(
+              'ОК',
+              maxLines: 2,
+              style: TextStyle(
+                color: AstraColors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            onPressed: () {
+              AutoRouter.of(context).pop(true);
+            },
+          ),
+        );
+      },
+    );
+
+    /// If result == true, [ОК], go to settings screen.
+    if (result) {
+      AutoRouter.of(context).pop();
+    }
+  }
+
   void showTutorial() {
-    tutorialCoachMark..show();
+    tutorialCoachMark.show();
   }
 
   void _initCoachTargets() {
@@ -111,6 +154,7 @@ class _CoachScreenState extends State<CoachScreen> {
         identify: "Target 1",
         keyTarget: key1,
         alignSkip: Alignment.topRight,
+        enableOverlayTab: false,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -131,6 +175,7 @@ class _CoachScreenState extends State<CoachScreen> {
         identify: "Target 2",
         keyTarget: key2,
         alignSkip: Alignment.topRight,
+        enableOverlayTab: false,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -166,6 +211,7 @@ class _CoachScreenState extends State<CoachScreen> {
         identify: "Target 3",
         keyTarget: key3,
         alignSkip: Alignment.topRight,
+        enableOverlayTab: false,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -182,13 +228,15 @@ class _CoachScreenState extends State<CoachScreen> {
         ],
       ),
     );
-
     targets.add(
       TargetFocus(
         identify: "Target 5",
         keyTarget: key4,
         alignSkip: Alignment.topRight,
         shape: ShapeLightFocus.RRect,
+        paddingFocus: 0,
+        radius: 10,
+        enableOverlayTab: false,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -212,6 +260,7 @@ class _CoachScreenState extends State<CoachScreen> {
         keyTarget: key5,
         alignSkip: Alignment.topRight,
         shape: ShapeLightFocus.Circle,
+        enableOverlayTab: false,
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
@@ -231,14 +280,16 @@ class _CoachScreenState extends State<CoachScreen> {
   }
 
   void _initCoachMark() {
-    tutorialCoachMark = TutorialCoachMark(
-      context,
-      targets: targets,
-      colorShadow: AstraColors.darkGrey,
-      textSkip: "X",
-      paddingFocus: 10,
-      opacityShadow: 0.8,
-    );
+    tutorialCoachMark = TutorialCoachMark(context,
+        targets: targets,
+        colorShadow: AstraColors.darkGrey,
+        textSkip: "X",
+        paddingFocus: 0,
+        opacityShadow: 0.8, onSkip: () {
+      AutoRouter.of(context).pop();
+    }, onFinish: () async {
+      _showEndCoachDialog();
+    });
   }
 
   @override
@@ -318,12 +369,17 @@ class _CoachScreenState extends State<CoachScreen> {
             height: kToolbarHeight,
             child: AppBar(
               centerTitle: true,
-              title: const Text(
-                'Обучение',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+              title: TextButton(
+                onPressed: () {
+                  tutorialCoachMark.show();
+                },
+                child: const Text(
+                  'Обучение',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               backgroundColor: Colors.transparent,
