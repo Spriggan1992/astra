@@ -71,11 +71,10 @@ void _loadDataWhenPressNavButton(
     BuildContext context, int index, List<PageRouteInfo<dynamic>> routes) {
   switch (index) {
     case 0:
-        Profile? _profile;
-        getIt<MyProfileBloc>().state.mapOrNull(loadSuccess: (value) {
-           _profile = value.profile;
-        });
-        BlocProvider.of<SearchBloc>(context).add(SearchEvent.loadData(profile: _profile));
+
+      BlocProvider.of<SearchBloc>(context)
+          .add(const SearchEvent.loadData());
+
       break;
     case 1:
       context.read<FavoriteBloc>().add(FavoriteEvent.loadedData(

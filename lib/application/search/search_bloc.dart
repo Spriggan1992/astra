@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/user_info_service/i_user_unfo_service.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,19 +14,14 @@ part 'search_state.dart';
 @injectable
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ISearchRepository _searchApi;
-
-  SearchBloc(this._searchApi) : super(SearchState.initial()) {
+  final IUserInfoService _user;
+  SearchBloc(this._searchApi, this._user) : super(SearchState.initial()) {
     on<SearchEvent>(
       (event, emit) async {
         await event.map(
           loadData: (e) async {
-            bool _hidenProfile = false;
+            bool _hidenProfile = _user.userProfile.isHidden;
 
-            if (e.profile != null) {
-              if (e.profile!.isHidden) {
-                _hidenProfile = true;
-              }
-            }
             emit(
               state.copyWith(
                 stateType: SearchStateType.initial,
