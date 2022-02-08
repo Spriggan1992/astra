@@ -1,40 +1,41 @@
-import 'package:astra_app/infrastructure/chat/models/chat/chat.dart';
-import 'package:astra_app/infrastructure/chat/models/chat/message.dart';
+import 'package:astra_app/domain/chats/chats_model.dart';
+import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-class MessageLitTile extends StatelessWidget {
-  const MessageLitTile({
+/// Represent element of chats list.
+class ChatListItem extends StatelessWidget {
+  const ChatListItem(
+    this.chat, {
     Key? key,
-    required this.selected,
-    required this.onTap,
-    required this.chat,
-    required this.lastMessage,
-    required this.countOfunreadMessages,
   }) : super(key: key);
 
-  final bool selected;
-  final VoidCallback onTap;
-  final Chat chat;
-  final Message lastMessage;
-  final int countOfunreadMessages;
+  /// Information about chat.
+  final ChatModel chat;
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      color: (selected) ? const Color.fromRGBO(240, 241, 243, 1) : Colors.white,
+    return InkWell(
+      onTap: () {
+        context.router.push(ChatScreenRoute(
+          chatModel: chat,
+        ));
+      },
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ListTile(
-            onTap: onTap,
-            // isThreeLine: true,
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            leading: CircleAvatar(
-              backgroundImage: Image.asset('assets/right_girl.png').image,
+            leading: AstraNetworkImage(
+              height: 56,
+              width: 56,
+              boxShape: BoxShape.circle,
+              fit: BoxFit.cover,
+              imageUrl: chat.userPhoto.imageUrl,
             ),
             title: Text(
-              lastMessage.sender,
+              chat.userName,
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
@@ -42,7 +43,7 @@ class MessageLitTile extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              lastMessage.text,
+              chat.lastMessage,
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
@@ -53,14 +54,14 @@ class MessageLitTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(lastMessage.time.toString()),
+                Text(chat.time),
                 Visibility(
-                  visible: selected,
+                  visible: chat.lastMessage.isNotEmpty,
                   child: CircleAvatar(
                     maxRadius: 10,
                     backgroundColor: AstraColors.blue06,
                     child: Text(
-                      "$countOfunreadMessages",
+                      "${chat.newMessageCount}",
                       style: const TextStyle(
                         color: AstraColors.white,
                         fontSize: 8,
@@ -72,7 +73,11 @@ class MessageLitTile extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(color: AstraColors.black01)
+          Divider(
+            height: 1,
+            color: AstraColors.dividerColor,
+            indent: MediaQuery.of(context).size.width * 0.22,
+          ),
         ],
       ),
     );

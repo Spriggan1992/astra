@@ -1,3 +1,4 @@
+import 'package:astra_app/application/chats/chats_bloc.dart';
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
@@ -15,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 const routes = [
   SearchRouter(),
   FavoritesRouter(),
-  MessageRouter(),
+  ChatsRouter(),
   SettingsRouter(),
 ];
 
@@ -24,9 +25,16 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          getIt<FavoriteBloc>()..add(const FavoriteEvent.loadedData()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              getIt<FavoriteBloc>()..add(const FavoriteEvent.loadedData()),
+        ),
+        BlocProvider(
+          create: (context) => getIt<ChatsBloc>(),
+        ),
+      ],
       child: AutoTabsScaffold(
         extendBody: true,
         resizeToAvoidBottomInset: false,
@@ -63,8 +71,10 @@ void _loadDataWhenPressNavButton(
     BuildContext context, int index, List<PageRouteInfo<dynamic>> routes) {
   switch (index) {
     case 0:
+
       BlocProvider.of<SearchBloc>(context)
           .add(const SearchEvent.loadData());
+
       break;
     case 1:
       context.read<FavoriteBloc>().add(FavoriteEvent.loadedData(
@@ -72,7 +82,7 @@ void _loadDataWhenPressNavButton(
               context.read<FavoriteBloc>().state.favoriteType.index)));
       break;
     case 2:
-      //Update data here
+      context.read<ChatsBloc>().add(const ChatsEvent.chatsLoaded());
       break;
   }
 }

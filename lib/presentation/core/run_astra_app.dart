@@ -1,4 +1,3 @@
-import 'package:astra_app/application/chat/chat_list/chat_list_cubit.dart';
 import 'package:astra_app/application/search/search_action/search_action_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
@@ -18,9 +17,6 @@ class AstraApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
-        ),
-        BlocProvider(
-          create: (context) => ChatListCubit(),
         ),
         BlocProvider<SearchBloc>(
           create: (context) => getIt<SearchBloc>(),

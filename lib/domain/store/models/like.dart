@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/core/extensions.dart/extension.dart';
+import 'package:astra_app/domain/core/extensions/ending_extesion.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'like.freezed.dart';
 

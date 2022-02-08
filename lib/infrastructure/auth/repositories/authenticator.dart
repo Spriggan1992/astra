@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:astra_app/domain/auth/failures/auth_failure.dart';
 import 'package:astra_app/infrastructure/auth/DTOs/token.dart';
 import 'package:astra_app/infrastructure/auth/extentions/dio_extensions.dart';
@@ -15,7 +14,7 @@ import 'package:http/http.dart' as http;
 const _access = 'access';
 const _refresh = 'refresh';
 
-/// Autherization service.
+/// Authorization service.
 @lazySingleton
 class Authenticator {
   /// Secure storage instance.
@@ -23,7 +22,7 @@ class Authenticator {
 
   Authenticator(this._secureStorage);
 
-  /// Get signedin token.
+  /// Get signed in token.
   ///
   /// Return null if will be thrown [PlatformException] and [FormatException].
   Future<Token?> getSignedToken() async {

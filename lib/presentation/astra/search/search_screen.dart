@@ -62,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
     //go to store
     if (result) {
-      context.navigateTo(const MessageRouter());
+      context.navigateTo(const ChatsRouter());
     }
     //go back
     else {
