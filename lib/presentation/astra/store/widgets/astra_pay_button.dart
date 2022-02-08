@@ -26,13 +26,13 @@ class AstraPayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        aPayButton(context, state),
-        gPayButton(context, state),
+        _aPayButton(context, state),
+        _gPayButton(context, state),
       ],
     );
   }
 
-  Widget aPayButton(BuildContext context, StoreActorState state) {
+  Widget _aPayButton(BuildContext context, StoreActorState state) {
     return Column(
       children: List.generate(
         state.likes.length,
@@ -65,7 +65,7 @@ class AstraPayButton extends StatelessWidget {
     );
   }
 
-  Widget gPayButton(BuildContext context, StoreActorState state) {
+  Widget _gPayButton(BuildContext context, StoreActorState state) {
     return Column(
       children: List.generate(
         state.likes.length,
