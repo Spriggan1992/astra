@@ -39,11 +39,13 @@ class AstraPayButton extends StatelessWidget {
           context: context,
           state: state,
           onApplePayResult: onApplePayResult,
+          onPressed: onPressed,
         ),
         _GPayButton(
           context: context,
           state: state,
           onGooglePayResult: onGooglePayResult,
+          onPressed: onPressed,
         ),
       ],
     );
