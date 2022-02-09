@@ -4,10 +4,19 @@ import 'package:pay/pay.dart';
 import 'dart:developer';
 
 class AstraPayButton extends StatelessWidget {
+  /// BuildContext [context]
   final BuildContext context;
+
+  /// The StoreActorState [state]
   final StoreActorState state;
+
+  /// The callback that is called when Apple Pay payment processed
   final ValueSetter<Map<String, dynamic>> onApplePayResult;
+
+  /// The callback that is called when Google Pay payment processed
   final ValueSetter<Map<String, dynamic>> onGooglePayResult;
+
+  /// The callback that is called when the button is tapped.
   final VoidCallback? onPressed;
 
   /// Implements ApplePay & GooglePay buttons and renders proper button
@@ -26,13 +35,37 @@ class AstraPayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _aPayButton(context, state),
-        _gPayButton(context, state),
+        _APayButton(
+          context: context,
+          state: state,
+          onApplePayResult: onApplePayResult,
+        ),
+        _GPayButton(
+          context: context,
+          state: state,
+          onGooglePayResult: onGooglePayResult,
+        ),
       ],
     );
   }
+}
 
-  Widget _aPayButton(BuildContext context, StoreActorState state) {
+class _APayButton extends StatelessWidget {
+  final BuildContext context;
+  final StoreActorState state;
+  final ValueSetter<Map<String, dynamic>> onApplePayResult;
+  final VoidCallback? onPressed;
+
+  const _APayButton({
+    Key? key,
+    required this.context,
+    required this.state,
+    required this.onApplePayResult,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: List.generate(
         state.likes.length,
@@ -64,8 +97,24 @@ class AstraPayButton extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _gPayButton(BuildContext context, StoreActorState state) {
+class _GPayButton extends StatelessWidget {
+  final BuildContext context;
+  final StoreActorState state;
+  final ValueSetter<Map<String, dynamic>> onGooglePayResult;
+  final VoidCallback? onPressed;
+
+  const _GPayButton({
+    Key? key,
+    required this.context,
+    required this.state,
+    required this.onGooglePayResult,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: List.generate(
         state.likes.length,

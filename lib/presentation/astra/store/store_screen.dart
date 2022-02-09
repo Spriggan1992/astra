@@ -110,10 +110,11 @@ class StoreScreenContent extends StatelessWidget {
             ),
             const AstraCheckBox(),
             const Divider(
-                color: AstraColors.dividerColor,
-                thickness: 1,
-                endIndent: 25,
-                indent: 25),
+              color: AstraColors.dividerColor,
+              thickness: 1,
+              endIndent: 25,
+              indent: 25,
+            ),
             const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -122,7 +123,10 @@ class StoreScreenContent extends StatelessWidget {
                 children: [
                   const Text(
                     'К оплате',
-                    style: TextStyle(color: AstraColors.black, fontSize: 18),
+                    style: TextStyle(
+                      color: AstraColors.black,
+                      fontSize: 18,
+                    ),
                   ),
                   BlocBuilder<StoreActorBloc, StoreActorState>(
                     buildWhen: (p, c) => p.like != c.like,
@@ -130,7 +134,9 @@ class StoreScreenContent extends StatelessWidget {
                       return Text(
                         state.like.price.toString(),
                         style: const TextStyle(
-                            color: AstraColors.black, fontSize: 18),
+                          color: AstraColors.black,
+                          fontSize: 18,
+                        ),
                       );
                     },
                   ),
@@ -139,15 +145,16 @@ class StoreScreenContent extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             BlocBuilder<StoreActorBloc, StoreActorState>(
-                builder: (context, state) {
-              return AstraPayButton(
-                context: context,
-                state: state,
-                onApplePayResult: onApplePayResult,
-                onGooglePayResult: onGooglePayResult,
-                onPressed: onBtnPressed,
-              );
-            }),
+              builder: (context, state) {
+                return AstraPayButton(
+                  context: context,
+                  state: state,
+                  onApplePayResult: onApplePayResult,
+                  onGooglePayResult: onGooglePayResult,
+                  onPressed: onBtnPressed,
+                );
+              },
+            ),
           ],
         ),
       ),
