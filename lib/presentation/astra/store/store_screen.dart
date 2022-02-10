@@ -1,9 +1,9 @@
 import 'package:astra_app/application/settings/store/store_actor/store_actor_bloc.dart';
 import 'package:astra_app/application/settings/store/store_bloc.dart';
 import 'package:astra_app/injection.dart';
+import 'package:astra_app/presentation/astra/store/widgets/astra_pay_button.dart';
 import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/buttons/astra_gradient_button.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/store_dialog.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
@@ -11,15 +11,17 @@ import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dar
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:developer';
 
 import 'widgets/astra_check_box.dart';
 import 'widgets/grouped_selected_like_packages.dart';
 
 class StoreScreen extends StatelessWidget {
   /// Current screen qualifier
-  final StoreScreenQualifier storeQualifer;
+  final StoreScreenQualifier storeQualifier;
+
   const StoreScreen(
-      {Key? key, this.storeQualifer = StoreScreenQualifier.storeSettings})
+      {Key? key, this.storeQualifier = StoreScreenQualifier.storeSettings})
       : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class StoreScreen extends StatelessWidget {
             loadSuccess: (state) => BlocProvider(
               create: (context) => getIt<StoreActorBloc>()
                 ..add(StoreActorEvent.initialized(state.likes)),
-              child: StoreScreenContent(storeQualifer: storeQualifer),
+              child: StoreScreenContent(storeQualifier: storeQualifier),
             ),
             loadFailure: (_) => ErrorScreen(
               onTryAgain: () {},
@@ -47,14 +49,16 @@ class StoreScreen extends StatelessWidget {
 }
 
 class StoreScreenContent extends StatelessWidget {
-  final StoreScreenQualifier storeQualifer;
-  const StoreScreenContent({Key? key, required this.storeQualifer})
+  final StoreScreenQualifier storeQualifier;
+
+  const StoreScreenContent({Key? key, required this.storeQualifier})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async =>
-          storeQualifer == StoreScreenQualifier.storeSettings,
+          storeQualifier == StoreScreenQualifier.storeSettings,
       child: Scaffold(
         appBar: AstraAppBar(
           onPressed: () {
@@ -104,12 +108,13 @@ class StoreScreenContent extends StatelessWidget {
                 selectedLike: state.like,
               ),
             ),
-            const AstraChekBox(),
+            const AstraCheckBox(),
             const Divider(
-                color: AstraColors.dividerColor,
-                thickness: 1,
-                endIndent: 25,
-                indent: 25),
+              color: AstraColors.dividerColor,
+              thickness: 1,
+              endIndent: 25,
+              indent: 25,
+            ),
             const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -118,7 +123,10 @@ class StoreScreenContent extends StatelessWidget {
                 children: [
                   const Text(
                     'К оплате',
-                    style: TextStyle(color: AstraColors.black, fontSize: 18),
+                    style: TextStyle(
+                      color: AstraColors.black,
+                      fontSize: 18,
+                    ),
                   ),
                   BlocBuilder<StoreActorBloc, StoreActorState>(
                     buildWhen: (p, c) => p.like != c.like,
@@ -126,7 +134,9 @@ class StoreScreenContent extends StatelessWidget {
                       return Text(
                         state.like.price.toString(),
                         style: const TextStyle(
-                            color: AstraColors.black, fontSize: 18),
+                          color: AstraColors.black,
+                          fontSize: 18,
+                        ),
                       );
                     },
                   ),
@@ -134,13 +144,30 @@ class StoreScreenContent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
-            AstraGradientButton(
-              onTap: () {},
-              title: 'Google Pay',
-            )
+            BlocBuilder<StoreActorBloc, StoreActorState>(
+              builder: (context, state) {
+                return AstraPayButton(
+                  context: context,
+                  state: state,
+                  onApplePayResult: onApplePayResult,
+                  onGooglePayResult: onGooglePayResult,
+                  onPressed: onBtnPressed,
+                );
+              },
+            ),
           ],
         ),
       ),
     );
+  }
+
+  onBtnPressed() => log("Button pressed", name: "on pressed");
+
+  void onGooglePayResult(paymentResult) {
+    log("$paymentResult", name: "gpay payment results");
+  }
+
+  void onApplePayResult(paymentResult) {
+    log("$paymentResult", name: "apay payment result");
   }
 }

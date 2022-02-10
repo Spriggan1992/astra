@@ -10,7 +10,7 @@ class GroupedSelectedLikePackages extends StatelessWidget {
   /// Selected like.
   final Like selectedLike;
 
-  /// Event handler of celecting like package.
+  /// Event handler of selecting like package.
   final Function(Like) onSelectLike;
   const GroupedSelectedLikePackages(
       {Key? key,

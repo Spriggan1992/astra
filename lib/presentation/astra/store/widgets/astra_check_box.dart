@@ -1,17 +1,17 @@
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
-/// Simple checknox.
-class AstraChekBox extends StatefulWidget {
-  const AstraChekBox({
+/// Simple checkbox.
+class AstraCheckBox extends StatefulWidget {
+  const AstraCheckBox({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<AstraChekBox> createState() => _AstraChekBoxState();
+  State<AstraCheckBox> createState() => _AstraCheckBoxState();
 }
 
-class _AstraChekBoxState extends State<AstraChekBox> {
+class _AstraCheckBoxState extends State<AstraCheckBox> {
   bool chekBoxValue = false;
 
   @override

@@ -9,9 +9,9 @@
 .history
 .svn/
 *.g.dart
-*.freezed.dart
 *.gr.dart
-*.config.dart
+*.freezed.dart
+pubspec.lock
 
 # IntelliJ related
 *.iml
