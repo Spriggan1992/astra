@@ -1,28 +1,19 @@
-import 'package:astra_app/presentation/astra/settings/about/politics_screen.dart';
+import 'package:astra_app/presentation/core/widgets/logo.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 
 import 'about_button.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key}) : super(key: key);
 
-  static const String routeName = '/aboutscreen';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const AboutScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AstraAppBar(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        onPressed: () => context.router.pop(),
         title: 'О приложении',
       ),
       body: Column(
@@ -33,39 +24,43 @@ class AboutScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/logo_t.png'),
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 4,
+                height: MediaQuery.of(context).size.height / 5,
+                child: const Logo(),
+              ),
               const SizedBox(width: 25),
               const Text(
                 'ООО Пабло \nВерсия 1.0.0',
                 style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 30),
           AboutButton(
-            onTap: () {},
+            onTap: () => context.router.push(PoliticsScreenRoute(
+              title: "Пользовательское соглашение",
+              uri: "http://92.255.108.56:8000/info/end-user-license/",
+            )),
             title: 'Пользовательское соглашение',
           ),
           AboutButton(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const PoliticsScreen();
-                  },
-                ),
-              );
-            },
+            onTap: () => context.router.push(PoliticsScreenRoute(
+              title: "Политика конфиденциальности",
+              uri: "http://92.255.108.56:8000/info/confidential/",
+            )),
             title: 'Политика конфиденциальности',
           ),
           AboutButton(
-            onTap: () {},
-            title: 'Положение по обработке \nперсональных данных',
-            isBigButton: true,
+            onTap: () => context.router.push(PoliticsScreenRoute(
+              title: "Положение по обработке персональных данных",
+              uri: "http://92.255.108.56:8000/info/personal-data/",
+            )),
+            title: 'Положение по обработке персональных данных',
           ),
         ],
       ),

@@ -2,20 +2,19 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
 class AboutButton extends StatelessWidget {
-  const AboutButton(
-      {Key? key,
-      required this.title,
-      required this.onTap,
-      this.isBigButton = false})
-      : super(key: key);
+  const AboutButton({
+    Key? key,
+    required this.title,
+    required this.onTap,
+  }) : super(key: key);
 
   final String title;
   final VoidCallback onTap;
-  final bool isBigButton;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 70),
       child: OutlinedButton(
         onPressed: onTap,
         child: Align(
@@ -32,7 +31,7 @@ class AboutButton extends StatelessWidget {
           padding: MaterialStateProperty.all(
             const EdgeInsets.all(20),
           ),
-          elevation: MaterialStateProperty.all(2),
+          elevation: MaterialStateProperty.all(3),
           side: MaterialStateProperty.all(
             BorderSide.none,
           ),
@@ -40,12 +39,6 @@ class AboutButton extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           ),
           backgroundColor: MaterialStateProperty.all(Colors.white),
-          minimumSize: MaterialStateProperty.all(Size(
-              MediaQuery.of(context).size.width / 1.5,
-              (isBigButton) ? 66 : 50)),
-          maximumSize: MaterialStateProperty.all(Size(
-              MediaQuery.of(context).size.width / 1.5,
-              (isBigButton) ? 75 : 55)),
         ),
       ),
     );
