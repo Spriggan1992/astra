@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/core/user_info_service/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_info_card.dart';
