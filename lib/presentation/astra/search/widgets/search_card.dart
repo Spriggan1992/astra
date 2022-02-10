@@ -1,11 +1,10 @@
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_info_card.dart';
 import 'package:astra_app/presentation/astra/favorite/info_button.dart';
-import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+/// Search card for every applicant 
 class SearchCard extends StatelessWidget {
   const SearchCard({
     Key? key,

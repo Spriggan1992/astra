@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:astra_app/presentation/core/theming/gradients.dart';
+import 'package:astra_app/presentation/core/widgets/custom/blur_mask.dart';
 import 'package:astra_app/presentation/core/widgets/custom/radiant_gradient_mask.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
@@ -32,33 +31,30 @@ class InfoButton extends StatelessWidget {
   final double iconSize;
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    return BlurMask(
       borderRadius: BorderRadius.circular(12),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-        child: Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-          child: OutlineGradientButton(
-            onTap: onTap,
-            child: RadiantGradientMask(
-              colors: Gradients.goldenGradient,
-              child: Icon(
-                icon,
-                color: Colors.white,
-                size: iconSize,
-              ),
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+        child: OutlineGradientButton(
+          onTap: onTap,
+          child: RadiantGradientMask(
+            colors: Gradients.goldenGradient,
+            child: Icon(
+              icon,
+              color: Colors.white,
+              size: iconSize,
             ),
-            inkWell: true,
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: Gradients.goldenGradient,
-            ),
-            strokeWidth: 1,
-            radius: const Radius.circular(12),
           ),
+          inkWell: true,
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: Gradients.goldenGradient,
+          ),
+          strokeWidth: 1,
+          radius: const Radius.circular(12),
         ),
       ),
     );
