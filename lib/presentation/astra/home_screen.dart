@@ -3,9 +3,14 @@ import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/application/settings/my_profile/my_profile/my_profile_bloc.dart';
+import 'package:astra_app/application/user/user_cubit.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
+import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
+import 'package:astra_app/presentation/core/widgets/custom/restart_widget.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/navigation_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +18,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide NavigationBar;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-const routes = [
+const _routes = [
   SearchRouter(),
   FavoritesRouter(),
   ChatsRouter(),
@@ -34,32 +39,60 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<ChatsBloc>(),
         ),
+        BlocProvider(
+          create: (context) => getIt<UserCubit>()..subscribeToUpdateUser(),
+        ),
       ],
-      child: AutoTabsScaffold(
-        extendBody: true,
-        resizeToAvoidBottomInset: false,
-        routes: routes,
-        bottomNavigationBuilder: (navContext, tabsRouter) {
-          return NavigationBar(
-            onTap: (index) {
-              tabsRouter.setActiveIndex(index);
-              _loadDataWhenPressNavButton(navContext, index, routes);
+      child: BlocConsumer<UserCubit, UserState>(
+        listener: (context, state) {
+          if (state.isUnexpectedError) {
+            showDialog(
+                barrierColor: AstraColors.black01,
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => DialogOneAction(
+                    content: const Text(
+                      'Не удалось синхронизировать данные с сервером.\nПриложение будет перезагружено',
+                      textAlign: TextAlign.center,
+                    ),
+                    action: DialogActionButton(
+                      title: "Ок",
+                      buttonStyle:
+                          TextButton.styleFrom(primary: AstraColors.blue),
+                      onClick: () {
+                        RestartWidget.restartApp(context);
+                      },
+                    )));
+          }
+        },
+        builder: (context, state) {
+          return AutoTabsScaffold(
+            extendBody: true,
+            resizeToAvoidBottomInset: false,
+            routes: _routes,
+            bottomNavigationBuilder: (navContext, tabsRouter) {
+              return NavigationBar(
+                onTap: (index) {
+                  tabsRouter.setActiveIndex(index);
+                  _loadDataWhenPressNavButton(navContext, index, _routes);
+                },
+                currentIndex: tabsRouter.activeIndex,
+                items: [
+                  NavigationBarItem(
+                    icon: Icons.search,
+                  ),
+                  NavigationBarItem(
+                    icon: CupertinoIcons.person_2_fill,
+                  ),
+                  NavigationBarItem(
+                    icon: CupertinoIcons.envelope,
+                  ),
+                  NavigationBarItem(
+                    icon: CupertinoIcons.settings,
+                  )
+                ],
+              );
             },
-            currentIndex: tabsRouter.activeIndex,
-            items: [
-              NavigationBarItem(
-                icon: Icons.search,
-              ),
-              NavigationBarItem(
-                icon: CupertinoIcons.person_2_fill,
-              ),
-              NavigationBarItem(
-                icon: CupertinoIcons.envelope,
-              ),
-              NavigationBarItem(
-                icon: CupertinoIcons.settings,
-              )
-            ],
           );
         },
       ),
@@ -71,9 +104,7 @@ void _loadDataWhenPressNavButton(
     BuildContext context, int index, List<PageRouteInfo<dynamic>> routes) {
   switch (index) {
     case 0:
-
-      BlocProvider.of<SearchBloc>(context)
-          .add(const SearchEvent.loadData());
+      BlocProvider.of<SearchBloc>(context).add(const SearchEvent.loadData());
 
       break;
     case 1:

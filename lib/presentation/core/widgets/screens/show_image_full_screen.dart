@@ -13,12 +13,13 @@ import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.d
 class ShowImageFullScreen extends StatelessWidget {
   /// Images.
   final List<ImageModel> images;
+
   /// A Flag to enable or disable delete button
   final bool enableDeleteButton;
   const ShowImageFullScreen({
     Key? key,
     required this.images,
-    this.enableDeleteButton =false,
+    this.enableDeleteButton = false,
   }) : super(key: key);
 
   @override
@@ -73,8 +74,8 @@ class ShowImageFullScreen extends StatelessWidget {
                                         onPressed: () async {
                                           await showDialog(
                                             context: context,
-                                            builder:
-                                                (BuildContext showDilogcontext) {
+                                            builder: (BuildContext
+                                                showDilogcontext) {
                                               return DialogTwoActions(
                                                 content: const Text(
                                                   "Вы точно хотите удалить\nфотографию?",
@@ -92,9 +93,8 @@ class ShowImageFullScreen extends StatelessWidget {
                                                     BlocProvider.of<
                                                                 FullScreenImageBloc>(
                                                             context)
-                                                        .add(
-                                                            const FullScreenImageEvent
-                                                                .imagesDeleted());
+                                                        .add(const FullScreenImageEvent
+                                                            .imagesDeleted());
                                                     context.router.pop();
                                                   },
                                                   buttonStyle:

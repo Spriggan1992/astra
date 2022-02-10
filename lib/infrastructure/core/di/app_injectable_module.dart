@@ -1,4 +1,7 @@
 import 'package:astra_app/infrastructure/core/database/sembast/sembast_database.dart';
+import 'package:astra_app/infrastructure/core/services/subscription_service/subscription_connection_settings.dart';
+import 'package:astra_app/infrastructure/core/services/subscription_service/subscription_service.dart';
+import 'package:dart_amqp/dart_amqp.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,4 +35,9 @@ abstract class AppInjectableModule {
   /// Initialized manager for caching network images.
   @lazySingleton
   DefaultCacheManager get cacheManager => DefaultCacheManager();
+
+  /// Initialized client for Advanced Message Queuing Protocol.
+  @lazySingleton
+  Client get ampqClient =>
+      Client(settings: SubscriptionConnectionSetings.settings);
 }

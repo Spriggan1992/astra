@@ -143,6 +143,7 @@ class MyProfileScreenContent extends StatelessWidget {
                                   .push(
                                     ShowImageFullScreenRoute(
                                       images: profile.profilePhotos,
+                                      enableDeleteButton: true,
                                     ),
                                   )
                                   .then((_) => context
