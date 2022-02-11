@@ -10,10 +10,13 @@ import 'package:swipable_stack/swipable_stack.dart';
 
 import 'widgets/search_finish_widget.dart';
 
-/// Main search screen. 
+/// Main search screen.
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key, required this.applicants}) : super(key: key);
-  
+  const SearchScreen({
+    Key? key,
+    required this.applicants,
+  }) : super(key: key);
+
   /// List of applicants.
   final List<Profile> applicants;
 
@@ -89,14 +92,17 @@ class _SearchScreenState extends State<SearchScreen> {
                   controller.rewind();
                 },
                 onTapPhoto: () {
-                  AutoRouter.of(context).push(ShowImageFullScreenRoute(
-                      images: _currentProfile.profilePhotos));
+                  context.router.push(
+                    ShowImageFullScreenRoute(
+                        images: _currentProfile.profilePhotos),
+                  );
                 },
                 onTapInfo: () {
-                  AutoRouter.of(context).push(
+                  context.router.push(
                     ApplicantScreenRoute(
-                        applicant: _currentProfile,
-                        image: Image.file(_thumbnail!).image),
+                      applicant: _currentProfile,
+                      image: Image.file(_thumbnail!).image,
+                    ),
                   );
                 },
                 onTapLike: () async {

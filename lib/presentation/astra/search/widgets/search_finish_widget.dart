@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 
 /// Displayed if there are no profiles left
 class SearchFinishWidget extends StatelessWidget {
-  const SearchFinishWidget({Key? key, this.onTap, this.fileImage})
-      : super(key: key);
+  const SearchFinishWidget({
+    Key? key,
+    this.onTap,
+    this.fileImage,
+  }) : super(key: key);
+
   /// Event handler on tap go to favorites
   final VoidCallback? onTap;
 

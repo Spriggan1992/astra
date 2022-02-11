@@ -1,7 +1,5 @@
 import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/application/core/enums/search_state_type.dart';
-import 'package:astra_app/application/settings/my_profile/my_profile/my_profile_bloc.dart';
-import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
@@ -11,8 +9,6 @@ import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/erro
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../injection.dart';
 
 /// Search bloc router to show screen quess from the state
 class SearchPageRoute extends StatelessWidget {
@@ -85,7 +81,7 @@ class SearchPageRoute extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              AutoRouter.of(context).pop(false);
+              context.router.pop(false);
             },
           ),
           action2: TextButton(
@@ -98,7 +94,7 @@ class SearchPageRoute extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              AutoRouter.of(context).pop(true);
+             context.router.pop(true);
             },
           ),
         );
