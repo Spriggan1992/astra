@@ -17,7 +17,7 @@ class SearchScreen extends StatefulWidget {
     required this.applicants,
   }) : super(key: key);
 
-  /// List of applicants.
+  /// List of [Profile]
   final List<Profile> applicants;
 
   @override
