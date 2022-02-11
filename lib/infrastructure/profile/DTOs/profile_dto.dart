@@ -78,6 +78,12 @@ class ProfileDTO with _$ProfileDTO {
 
     /// A flag responsible for showing mutual sympathy.
     @JsonKey(name: 'is_mutual_like') required final bool isMutualLike,
+
+     /// A curator first name.
+    @JsonKey(name: 'curator_firstname') required final String curatorFirstName,
+
+     /// A curator last name.
+    @JsonKey(name: 'curator_lastname') required final String curatorLastName,
   }) = _ProfileDTO;
 
   /// Return converted DTO from from domain.
@@ -107,6 +113,8 @@ class ProfileDTO with _$ProfileDTO {
       isHidden: _.isHidden,
       showInfo: _.showInfo,
       isMutualLike: _.isMutualLike,
+      curatorFirstName: _.curatorFirstName,
+      curatorLastName: _.curatorLastName,
     );
   }
 
@@ -135,6 +143,8 @@ class ProfileDTO with _$ProfileDTO {
         showInfo: showInfo,
         isMutualLike: isMutualLike,
         isStopList: false,
+        curatorFirstName: curatorFirstName,
+        curatorLastName: curatorLastName,
       );
 
   /// Return converted DTO from json.

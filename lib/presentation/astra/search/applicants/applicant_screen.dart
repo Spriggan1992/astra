@@ -12,13 +12,14 @@ import 'widgets/curator_tail.dart';
 
 /// Applicant screen, shows the detail info about applicant
 class ApplicantScreen extends StatelessWidget {
-  const ApplicantScreen({Key? key, required this.applicant, required this.image}) : super(key: key);
+  const ApplicantScreen({Key? key, required this.applicant, required this.image, required this.curatorImage}) : super(key: key);
 
   /// Applicant data 
   final Profile applicant;
 
   /// Applicant main profile image
   final ImageProvider image; 
+  final ImageProvider? curatorImage; 
   
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class ApplicantScreen extends StatelessWidget {
                   AutoRouter.of(context).pop();
                 }),
             const SizedBox(height: 16),
-            const CuratorTile(),
+            CuratorTile(curatorFullName: applicant.curatorFullName,curatorImage: curatorImage!),
             const SizedBox(height: 48),
             ApplicantElevatedButton(
               onClick: () {
