@@ -4,9 +4,12 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:auto_route/auto_route.dart';
 
 class PoliticsScreen extends StatelessWidget {
+  /// Title displaying at the header of the screen
   final String title;
+  /// URL address of the target page.
   final String uri;
 
+  /// Screen displaying documents through webview
   const PoliticsScreen({
     Key? key,
     required this.title,

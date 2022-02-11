@@ -2,13 +2,16 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
 class AboutButton extends StatelessWidget {
+  /// Custom button
   const AboutButton({
     Key? key,
     required this.title,
     required this.onTap,
   }) : super(key: key);
 
+  /// Text displayed on the button
   final String title;
+  /// Callback that is called when button is pressed
   final VoidCallback onTap;
 
   @override

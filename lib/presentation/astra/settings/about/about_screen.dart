@@ -8,6 +8,7 @@ import 'about_button.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key}) : super(key: key);
+  static const String _baseUri = "http://92.255.108.56:8000/info";
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +45,21 @@ class AboutScreen extends StatelessWidget {
           AboutButton(
             onTap: () => context.router.push(PoliticsScreenRoute(
               title: "Пользовательское соглашение",
-              uri: "http://92.255.108.56:8000/info/end-user-license/",
+              uri: "$_baseUri/end-user-license/",
             )),
             title: 'Пользовательское соглашение',
           ),
           AboutButton(
             onTap: () => context.router.push(PoliticsScreenRoute(
               title: "Политика конфиденциальности",
-              uri: "http://92.255.108.56:8000/info/confidential/",
+              uri: "$_baseUri/confidential/",
             )),
             title: 'Политика конфиденциальности',
           ),
           AboutButton(
             onTap: () => context.router.push(PoliticsScreenRoute(
               title: "Положение по обработке персональных данных",
-              uri: "http://92.255.108.56:8000/info/personal-data/",
+              uri: "$_baseUri/personal-data/",
             )),
             title: 'Положение по обработке персональных данных',
           ),
