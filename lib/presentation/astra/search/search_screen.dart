@@ -1,18 +1,23 @@
+import 'package:astra_app/application/search/search_action/search_action_bloc.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/search/sympathy/sympathy_dialog.dart';
 import 'package:astra_app/presentation/astra/search/widgets/search_card.dart';
-import 'package:astra_app/presentation/astra/search/widgets/search_finish_widget.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe_cards/swipe_cards.dart';
+import 'package:swipable_stack/swipable_stack.dart';
 
-import '../../../application/search/search_action/search_action_bloc.dart';
+import 'widgets/search_finish_widget.dart';
 
+/// Main search screen.
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key, required this.applicants}) : super(key: key);
+  const SearchScreen({
+    Key? key,
+    required this.applicants,
+  }) : super(key: key);
 
+  /// List of [Profile]
   final List<Profile> applicants;
 
   @override
@@ -20,30 +25,16 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<SwipeItem> swipeItems = <SwipeItem>[];
-  late MatchEngine _matchEngine;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-
-  Profile _lastProfile = Profile.empty();
-
-  List<Profile> _applicants = [];
+  final controller = SwipableStackController();
+  Profile lastProfile = Profile.empty();
 
   @override
   void initState() {
-    _applicants = widget.applicants;
-
-    for (var applicant in _applicants) {
-      swipeItems.add(
-        SwipeItem(content: applicant),
-      );
-    }
-    _matchEngine = MatchEngine(swipeItems: swipeItems);
-
-    if (_applicants.isNotEmpty) {
-      _lastProfile = _applicants.last;
-    }
-
     super.initState();
+
+    if (widget.applicants.isNotEmpty) {
+      lastProfile = widget.applicants.last;
+    }
   }
 
   void _showSympathyDialog(
@@ -54,8 +45,8 @@ class _SearchScreenState extends State<SearchScreen> {
       builder: (context) {
         return SympathyDialog(
           image: image,
-          onClose: () => Navigator.of(context).pop(false),
-          onWrite: () => Navigator.of(context).pop(true),
+          onClose: () => context.router.pop(false),
+          onWrite: () => context.router.pop(true),
         );
       },
     );
@@ -66,48 +57,52 @@ class _SearchScreenState extends State<SearchScreen> {
     }
     //go back
     else {
-      _matchEngine.currentItem!.like();
+      controller.next(swipeDirection: SwipeDirection.right);
+      controller.rewind();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       body: Stack(
         children: [
           SearchFinishWidget(
             onTap: () {
               context.navigateTo(const FavoritesRouter());
             },
-            fileImage: (_lastProfile == Profile.empty())
+            fileImage: (lastProfile == Profile.empty())
                 ? null
-                : Image.file(_lastProfile.profilePhotos.first.fileImage!).image,
+                : Image.file(lastProfile.profilePhotos.first.fileImage!).image,
           ),
-          SwipeCards(
-            matchEngine: _matchEngine,
-            onStackFinished: () {},
-            upSwipeAllowed: false,
-            fillSpace: true,
-            itemBuilder: (context, index) {
-              final Profile _currentProfile = swipeItems[index].content;
+          SwipableStack(
+            controller: controller,
+            itemCount: widget.applicants.length,
+            builder: (context, properties) {
+              final Profile _currentProfile =
+                  widget.applicants[properties.index];
               final _thumbnail = _currentProfile.profilePhotos.first.fileImage;
               return SearchCard(
                 profile: _currentProfile,
                 onClose: () {
-                  _matchEngine.currentItem!.nope();
                   getIt<SearchActionBloc>()
                       .add(SearchActionEvent.reject(id: _currentProfile.id));
+
+                  controller.next(swipeDirection: SwipeDirection.left);
+                  controller.rewind();
                 },
                 onTapPhoto: () {
-                  AutoRouter.of(context).push(ShowImageFullScreenRoute(
-                      images: _currentProfile.profilePhotos));
+                  context.router.push(
+                    ShowImageFullScreenRoute(
+                        images: _currentProfile.profilePhotos),
+                  );
                 },
                 onTapInfo: () {
-                  AutoRouter.of(context).push(
+                  context.router.push(
                     ApplicantScreenRoute(
-                        applicant: _currentProfile,
-                        image: Image.file(_thumbnail!).image),
+                      applicant: _currentProfile,
+                      image: Image.file(_thumbnail!).image,
+                    ),
                   );
                 },
                 onTapLike: () async {
@@ -115,7 +110,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     _showSympathyDialog(
                         context, _currentProfile, Image.file(_thumbnail!));
                   } else {
-                    _matchEngine.currentItem!.like();
+                    controller.next(swipeDirection: SwipeDirection.right);
+                    controller.rewind();
                   }
                   getIt<SearchActionBloc>()
                       .add(SearchActionEvent.like(id: _currentProfile.id));
