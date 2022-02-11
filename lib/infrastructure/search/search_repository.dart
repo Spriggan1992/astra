@@ -30,7 +30,10 @@ class SearchRepository extends ISearchRepository {
       for (var item in response.data) {
         final profile = ProfileDTO.fromJson(item).toDomain();
         final imageModels = await _getImageModels(profile.profilePhotos);
-        final updatedProfile = profile.copyWith(profilePhotos: imageModels);
+        final curatorPhotos = await _getImageModels(profile.curatorPhotos);
+
+        final updatedProfile = profile.copyWith(
+            profilePhotos: imageModels, curatorPhotos: curatorPhotos);
         _profiles.add(updatedProfile);
       }
       return _profiles;
@@ -71,7 +74,7 @@ class SearchRepository extends ISearchRepository {
   Future<Either<AstraFailure, Unit>> toReject(int id) async {
     final result = await makeRequest<Unit>(() async {
       await _dio.post(Endpoints.feed.nope(id));
-      return unit; 
+      return unit;
     });
 
     return result.fold((failure) => left(failure), (_) => right(_));

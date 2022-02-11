@@ -82,6 +82,8 @@ class _SearchScreenState extends State<SearchScreen> {
               final Profile _currentProfile =
                   widget.applicants[properties.index];
               final _thumbnail = _currentProfile.profilePhotos.first.fileImage;
+              final _curatorImage =
+                  _currentProfile.curatorPhotos.first.fileImage;
               return SearchCard(
                 profile: _currentProfile,
                 onClose: () {
@@ -102,6 +104,9 @@ class _SearchScreenState extends State<SearchScreen> {
                     ApplicantScreenRoute(
                       applicant: _currentProfile,
                       image: Image.file(_thumbnail!).image,
+                      curatorImage: (_curatorImage != null)
+                          ? Image.file(_curatorImage).image
+                          : Image.asset('assets/girl.png').image,
                     ),
                   );
                 },

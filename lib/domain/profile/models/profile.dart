@@ -72,6 +72,12 @@ class Profile with _$Profile {
 
     /// A flag responsible for showing mutual sympathy.
     required final bool isMutualLike,
+
+    /// A curator first name.
+    required final String curatorFirstName,
+
+    /// A curator last name.
+    required final String curatorLastName,
     bool? isStopList,
   }) = _Profile;
 
@@ -86,29 +92,35 @@ class Profile with _$Profile {
 
   String get curatorInfo => '$country, $city';
 
+  /// Get curator full name.
+  String get curatorFullName => '$curatorFirstName $curatorLastName';
+
   /// Emty profile.
   factory Profile.empty() => const Profile(
-      id: 0,
-      curatorId: 0,
-      phoneNumber: "",
-      firstname: "",
-      lastname: "",
-      age: 0,
-      height: 0,
-      gender: "",
-      status: "",
-      haveChild: false,
-      country: "",
-      city: "",
-      profilePhotos: [],
-      curatorPhotos: [],
-      profileInfo: "",
-      createdAt: "",
-      savedAt: "",
-      isActive: false,
-      draft: false,
-      isHidden: false,
-      showInfo: false,
-      isMutualLike: false,
-      isStopList: false);
+        id: 0,
+        curatorId: 0,
+        phoneNumber: "",
+        firstname: "",
+        lastname: "",
+        age: 0,
+        height: 0,
+        gender: "",
+        status: "",
+        haveChild: false,
+        country: "",
+        city: "",
+        profilePhotos: [],
+        curatorPhotos: [],
+        profileInfo: "",
+        createdAt: "",
+        savedAt: "",
+        isActive: false,
+        draft: false,
+        isHidden: false,
+        showInfo: false,
+        isMutualLike: false,
+        isStopList: false,
+        curatorFirstName: "",
+        curatorLastName: "",
+      );
 }

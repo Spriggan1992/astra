@@ -3,9 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Temporary Curator tile widget to display
-/// Need to redo when we get data from the API
+
 class CuratorTile extends StatelessWidget {
-  const CuratorTile({Key? key}) : super(key: key);
+  const CuratorTile({
+    Key? key,
+    required this.curatorFullName,
+    required this.curatorImage,
+  }) : super(key: key);
+
+  /// A Curator full name.
+  final String curatorFullName;
+
+  /// A curator image.
+  final ImageProvider curatorImage;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +40,7 @@ class CuratorTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: Image.asset('assets/right_girl.png').image,
+                      image: curatorImage,
                       filterQuality: FilterQuality.none,
                       fit: BoxFit.cover,
                     ),
@@ -40,16 +50,16 @@ class CuratorTile extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'Алексей Муховец',
-                      style: TextStyle(
+                      curatorFullName,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: AstraColors.white,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Куратор',
                       style: TextStyle(
                         fontSize: 12,
