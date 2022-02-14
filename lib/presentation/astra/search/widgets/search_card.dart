@@ -4,7 +4,8 @@ import 'package:astra_app/presentation/astra/favorite/info_button.dart';
 import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-/// Search card for every applicant 
+
+/// Search card for every applicant
 class SearchCard extends StatelessWidget {
   const SearchCard({
     Key? key,
@@ -37,7 +38,7 @@ class SearchCard extends StatelessWidget {
         onTap: onTapPhoto,
         child: AstraNetworkImage(
           imageUrl: profile.profilePhotos.first.imageUrl,
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(16),
           fit: BoxFit.cover,
         ),
       ),
