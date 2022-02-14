@@ -22,10 +22,11 @@ class SubscriptionService {
   /// Consumer.
   Consumer? _consumer;
   // A controller with the stream it controls.
-  final StreamController _controller = StreamController.broadcast();
+  final StreamController<AmqpMessage> _controller =
+      StreamController.broadcast();
 
   /// Subscription for listening signals.
-  Stream get subscribtion => _controller.stream;
+  Stream<AmqpMessage> get subscribtion => _controller.stream;
 
   /// Explicit initialization of [SubscriptionService].
   Future<void> init() async {
@@ -39,7 +40,7 @@ class SubscriptionService {
   Future<void> _listenSignals() async {
     _consumer!.listen(
       (message) {
-        _controller.sink.add(message.payloadAsString);
+        _controller.sink.add(message);
       },
     );
   }

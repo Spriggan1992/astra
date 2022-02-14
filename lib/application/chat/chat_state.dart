@@ -3,21 +3,18 @@ part of 'chat_bloc.dart';
 /// Represent chat states.
 @freezed
 class ChatState with _$ChatState {
-  const factory ChatState({
-    /// Loading states.
-    required LoadingStates loadingStates,
+  /// Initial states loaded.
+  const factory ChatState.initial() = _Initial;
 
-    /// Chat messages.
-    required List<MessageModel> chatMessages,
+  /// Progress loading states.
+  const factory ChatState.loadInProgress() = _LoadInProgress;
 
-    /// Flag responsible internet connection state.
-    required bool hasConnection,
-  }) = _ChatState;
+  /// Successfule loaded data state.
+  ///
+  /// Keep state of [chatMessages] if loaded successfully.
+  const factory ChatState.loadSuccess(List<MessageModel> chatMessages) =
+      _LoadSuccess;
 
-  /// Initial constructor of [ChatState].
-  factory ChatState.initial() => const ChatState(
-        loadingStates: LoadingStates.initial,
-        chatMessages: [],
-        hasConnection: true,
-      );
+  /// Unsuccessfully loaded data state.
+  const factory ChatState.loadFailure(AstraFailure failure) = _LoadFailure;
 }

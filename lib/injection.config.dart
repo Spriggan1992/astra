@@ -13,61 +13,59 @@ import 'package:image_picker/image_picker.dart' as _i35;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i42;
 
-import 'application/auth/auth/auth_bloc.dart' as _i67;
+import 'application/auth/auth/auth_bloc.dart' as _i66;
 import 'application/auth/code/code_bloc.dart' as _i5;
-import 'application/auth/confirm_password/confirm_password_bloc.dart' as _i69;
-import 'application/auth/password/password_bloc.dart' as _i65;
-import 'application/auth/phone/phone_bloc.dart' as _i66;
-import 'application/chat/chat_bloc.dart' as _i68;
-import 'application/chats/chats_bloc.dart' as _i48;
-import 'application/favorite/favorite_actor/favorite_actor_bloc.dart' as _i50;
-import 'application/favorite/favorite_bloc.dart' as _i51;
+import 'application/auth/confirm_password/confirm_password_bloc.dart' as _i67;
+import 'application/auth/password/password_bloc.dart' as _i64;
+import 'application/auth/phone/phone_bloc.dart' as _i65;
+import 'application/chat/chat_bloc.dart' as _i48;
+import 'application/chat/chat_wathcer/chat_watcher_bloc.dart' as _i49;
+import 'application/chats/chats_bloc.dart' as _i50;
+import 'application/chats/chats_watcher/chats_watcher_bloc.dart' as _i51;
+import 'application/favorite/favorite_actor/favorite_actor_bloc.dart' as _i53;
+import 'application/favorite/favorite_bloc.dart' as _i54;
 import 'application/promocode/promocode_bloc.dart' as _i37;
 import 'application/search/search_action/search_action_bloc.dart' as _i38;
 import 'application/search/search_bloc.dart' as _i39;
 import 'application/settings/my_profile/full_screen_image.dart/full_screen_image_bloc.dart'
-    as _i52;
+    as _i55;
 import 'application/settings/my_profile/my_profile/my_profile_bloc.dart'
     as _i36;
 import 'application/settings/my_profile/my_profile_actor.dart/my_profile_actor_bloc.dart'
-    as _i64;
+    as _i63;
 import 'application/settings/settings/settings_bloc.dart' as _i41;
 import 'application/settings/store/store_actor/store_actor_bloc.dart' as _i43;
 import 'application/settings/store/store_bloc.dart' as _i44;
 import 'application/settings/support/clip_board/clip_board_cubit.dart' as _i4;
 import 'application/settings/support/support_bloc.dart' as _i45;
 import 'application/user/user_cubit.dart' as _i46;
-import 'domain/auth/repositories/i_auth_api_service.dart' as _i53;
-import 'domain/auth/repositories/i_local_storage.dart' as _i61;
+import 'domain/auth/repositories/i_auth_api_service.dart' as _i56;
+import 'domain/auth/repositories/i_local_storage.dart' as _i60;
 import 'domain/chats/i_chat_repository.dart' as _i11;
-import 'domain/chats/i_chat_service.dart' as _i57;
 import 'domain/chats/i_chats_repository.dart' as _i13;
 import 'domain/core/repositories/i_update_user_repository.dart' as _i31;
 import 'domain/core/services/i_curator_info_service.dart' as _i15;
 import 'domain/core/services/i_ineternet_connection_status.dart' as _i19;
 import 'domain/core/services/i_user_unfo_service.dart' as _i33;
 import 'domain/favorites/repositories/i_favorites_repository.dart' as _i17;
-import 'domain/image_picker/reopositories/i_image_picker.dart' as _i59;
+import 'domain/image_picker/reopositories/i_image_picker.dart' as _i58;
 import 'domain/profile/repositories/i_profile_repository.dart' as _i21;
 import 'domain/promocode/i_promocode_repository.dart' as _i23;
 import 'domain/search/repositories/i_search_repository.dart' as _i25;
 import 'domain/store/repositories/i_store_reposytory.dart' as _i29;
-import 'infrastructure/auth/repositories/auth_api_service.dart' as _i54;
+import 'infrastructure/auth/repositories/auth_api_service.dart' as _i57;
 import 'infrastructure/auth/repositories/authenticator.dart' as _i47;
-import 'infrastructure/auth/repositories/local_storage.dart' as _i62;
-import 'infrastructure/chats/repositories/chat_local_storage.dart' as _i56;
+import 'infrastructure/auth/repositories/local_storage.dart' as _i61;
 import 'infrastructure/chats/repositories/chat_repository.dart' as _i12;
 import 'infrastructure/chats/repositories/chats_repository.dart' as _i14;
-import 'infrastructure/chats/repositories/i_chat_local_storage.dart' as _i55;
-import 'infrastructure/chats/services/chat_service.dart' as _i58;
 import 'infrastructure/core/database/secure_strorage/i_secure_storage.dart'
     as _i27;
 import 'infrastructure/core/database/secure_strorage/secure_storage.dart'
     as _i28;
 import 'infrastructure/core/database/sembast/sembast_database.dart' as _i40;
-import 'infrastructure/core/di/app_injectable_module.dart' as _i70;
-import 'infrastructure/core/http/dio_interceptor.dart' as _i49;
-import 'infrastructure/core/repositories/local_repository.dart' as _i63;
+import 'infrastructure/core/di/app_injectable_module.dart' as _i68;
+import 'infrastructure/core/http/dio_interceptor.dart' as _i52;
+import 'infrastructure/core/repositories/local_repository.dart' as _i62;
 import 'infrastructure/core/repositories/update_user_repository.dart' as _i32;
 import 'infrastructure/core/services/curator_info_service/curator_info_service.dart'
     as _i16;
@@ -79,7 +77,7 @@ import 'infrastructure/core/services/user_info_service.dart/user_info_service.da
     as _i34;
 import 'infrastructure/favorites/repositories/favorites_repository.dart'
     as _i18;
-import 'infrastructure/image_picker/image_picker.dart' as _i60;
+import 'infrastructure/image_picker/image_picker.dart' as _i59;
 import 'infrastructure/profile/repositories/profile_repository.dart' as _i22;
 import 'infrastructure/promocode/promocode_repository.dart' as _i24;
 import 'infrastructure/search/search_repository.dart' as _i26;
@@ -151,43 +149,42 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i21.IProfileRepository>()));
   gh.lazySingleton<_i47.Authenticator>(
       () => _i47.Authenticator(get<_i27.ISecureStorage>()));
-  gh.factory<_i48.ChatsBloc>(
-      () => _i48.ChatsBloc(get<_i13.IChatsRepository>()));
-  gh.lazySingleton<_i49.DioInterceptor>(
-      () => _i49.DioInterceptor(get<_i7.Dio>(), get<_i47.Authenticator>()));
-  gh.factory<_i50.FavoriteActorBloc>(
-      () => _i50.FavoriteActorBloc(get<_i17.IFavoritesRepository>()));
-  gh.factory<_i51.FavoriteBloc>(
-      () => _i51.FavoriteBloc(get<_i17.IFavoritesRepository>()));
-  gh.factory<_i52.FullScreenImageBloc>(
-      () => _i52.FullScreenImageBloc(get<_i21.IProfileRepository>()));
-  gh.lazySingleton<_i53.IAuthApiService>(() => _i54.AuthApiService(
+  gh.factory<_i48.ChatBloc>(() => _i48.ChatBloc(get<_i11.IChatRepository>()));
+  gh.factory<_i49.ChatWatcherBloc>(() => _i49.ChatWatcherBloc(
+      get<_i19.IInternetConnectionService>(), get<_i11.IChatRepository>()));
+  gh.factory<_i50.ChatsBloc>(
+      () => _i50.ChatsBloc(get<_i13.IChatsRepository>()));
+  gh.factory<_i51.ChatsWatcherBloc>(
+      () => _i51.ChatsWatcherBloc(get<_i13.IChatsRepository>()));
+  gh.lazySingleton<_i52.DioInterceptor>(
+      () => _i52.DioInterceptor(get<_i7.Dio>(), get<_i47.Authenticator>()));
+  gh.factory<_i53.FavoriteActorBloc>(
+      () => _i53.FavoriteActorBloc(get<_i17.IFavoritesRepository>()));
+  gh.factory<_i54.FavoriteBloc>(
+      () => _i54.FavoriteBloc(get<_i17.IFavoritesRepository>()));
+  gh.factory<_i55.FullScreenImageBloc>(
+      () => _i55.FullScreenImageBloc(get<_i21.IProfileRepository>()));
+  gh.lazySingleton<_i56.IAuthApiService>(() => _i57.AuthApiService(
       get<_i7.Dio>(), get<_i27.ISecureStorage>(), get<_i47.Authenticator>()));
-  gh.lazySingleton<_i55.IChatLocalStorage>(
-      () => _i56.ChatLocalStorage(get<_i40.SembastDatabase>()));
-  gh.lazySingleton<_i57.IChatService>(
-      () => _i58.ChatService(get<_i47.Authenticator>()));
-  gh.lazySingleton<_i59.IImagePickerRepository>(
-      () => _i60.ImagePickerRepository(get<_i35.ImagePicker>()));
-  gh.lazySingleton<_i61.ILocalStorage>(
-      () => _i62.LocalStorage(get<_i40.SembastDatabase>()));
-  gh.lazySingleton<_i63.LocalRepository>(
-      () => _i63.LocalRepository(get<_i42.SharedPreferences>()));
-  gh.factory<_i64.MyProfileActorBloc>(() => _i64.MyProfileActorBloc(
-      get<_i21.IProfileRepository>(), get<_i59.IImagePickerRepository>()));
-  gh.factory<_i65.PasswordBloc>(
-      () => _i65.PasswordBloc(get<_i53.IAuthApiService>()));
-  gh.factory<_i66.PhoneBloc>(() => _i66.PhoneBloc(get<_i53.IAuthApiService>()));
-  gh.factory<_i67.AuthBloc>(() => _i67.AuthBloc(
-      get<_i53.IAuthApiService>(),
+  gh.lazySingleton<_i58.IImagePickerRepository>(
+      () => _i59.ImagePickerRepository(get<_i35.ImagePicker>()));
+  gh.lazySingleton<_i60.ILocalStorage>(
+      () => _i61.LocalStorage(get<_i40.SembastDatabase>()));
+  gh.lazySingleton<_i62.LocalRepository>(
+      () => _i62.LocalRepository(get<_i42.SharedPreferences>()));
+  gh.factory<_i63.MyProfileActorBloc>(() => _i63.MyProfileActorBloc(
+      get<_i21.IProfileRepository>(), get<_i58.IImagePickerRepository>()));
+  gh.factory<_i64.PasswordBloc>(
+      () => _i64.PasswordBloc(get<_i56.IAuthApiService>()));
+  gh.factory<_i65.PhoneBloc>(() => _i65.PhoneBloc(get<_i56.IAuthApiService>()));
+  gh.factory<_i66.AuthBloc>(() => _i66.AuthBloc(
+      get<_i56.IAuthApiService>(),
       get<_i21.IProfileRepository>(),
       get<_i33.IUserInfoService>(),
       get<_i15.ICuratorInfoService>()));
-  gh.factory<_i68.ChatBloc>(() => _i68.ChatBloc(get<_i11.IChatRepository>(),
-      get<_i57.IChatService>(), get<_i19.IInternetConnectionService>()));
-  gh.factory<_i69.ConfirmPasswordBloc>(
-      () => _i69.ConfirmPasswordBloc(get<_i53.IAuthApiService>()));
+  gh.factory<_i67.ConfirmPasswordBloc>(
+      () => _i67.ConfirmPasswordBloc(get<_i56.IAuthApiService>()));
   return get;
 }
 
-class _$AppInjectableModule extends _i70.AppInjectableModule {}
+class _$AppInjectableModule extends _i68.AppInjectableModule {}

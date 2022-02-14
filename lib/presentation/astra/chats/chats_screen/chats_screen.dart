@@ -1,4 +1,6 @@
 import 'package:astra_app/application/chats/chats_bloc.dart';
+import 'package:astra_app/application/chats/chats_watcher/chats_watcher_bloc.dart';
+import 'package:astra_app/injection.dart';
 
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
@@ -19,7 +21,11 @@ class ChatsScreen extends StatelessWidget {
           loadFailure: (_) => ErrorScreen(onTryAgain: () {}),
           loadInProgress: (_) => const LoadingScreen(),
           loadSuccess: (state) {
-            return ChatsScreenContent(state.chats);
+            return BlocProvider(
+              create: (context) => getIt<ChatsWatcherBloc>()
+                ..add(const ChatsWatcherEvent.watchStarted()),
+              child: ChatsScreenContent(state.chats),
+            );
           },
         );
       },

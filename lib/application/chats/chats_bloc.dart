@@ -14,7 +14,6 @@ part 'chats_bloc.freezed.dart';
 @injectable
 class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
   final IChatsRepository _chatRepository;
-
   ChatsBloc(this._chatRepository) : super(const ChatsState.initial()) {
     on<ChatsEvent>(
       (event, emit) async {

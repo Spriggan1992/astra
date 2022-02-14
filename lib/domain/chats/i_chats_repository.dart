@@ -6,4 +6,10 @@ import 'package:dartz/dartz.dart';
 abstract class IChatsRepository {
   /// Get chats for the current user
   Future<Either<AstraFailure, List<ChatModel>>> getChats();
+
+  /// Subscribes to receive changes in chats.
+  Stream<Either<AstraFailure, dynamic>> subscribeToChatsUpdates();
+
+  /// Dispose data if service don't use anymore.
+  Future<void> dispose();
 }

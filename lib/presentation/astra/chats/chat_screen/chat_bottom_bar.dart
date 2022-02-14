@@ -1,3 +1,4 @@
+import 'package:astra_app/application/chat/chat_wathcer/chat_watcher_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:astra_app/application/chat/chat_bloc.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
@@ -38,7 +39,7 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
       ),
       child: Padding(
         padding: const EdgeInsets.all(8),
-        child: BlocSelector<ChatBloc, ChatState, bool>(
+        child: BlocSelector<ChatWatcherBloc, ChatWatcherState, bool>(
           selector: (state) => state.hasConnection,
           builder: (context, hasConnection) {
             return Row(
@@ -78,8 +79,8 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
                   onTap: () {
                     if (_controller.text.isNotEmpty && hasConnection) {
                       context
-                          .read<ChatBloc>()
-                          .add(ChatEvent.sendMessage(_controller.text));
+                          .read<ChatWatcherBloc>()
+                          .add(ChatWatcherEvent.messageSent(_controller.text));
                       _controller.text = '';
                     }
                   },

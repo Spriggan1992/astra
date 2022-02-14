@@ -31,7 +31,8 @@ class UpdateUserRepository implements IUpdateUserRepository {
       List<String> topics) async* {
     final _subscriptionService = SubscriptionService(topics);
     await _subscriptionService.init();
-    yield* _subscriptionService.subscribtion.map((event) => right(event));
+    yield* _subscriptionService.subscribtion
+        .map((event) => right(event.payloadAsString));
   }
 
   @override

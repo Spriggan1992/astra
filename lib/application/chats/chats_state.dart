@@ -10,7 +10,7 @@ class ChatsState with _$ChatsState {
 
   /// Successfule loaded data state.
   ///
-  /// Keep state of [Profile] if loaded successfully.
+  /// Keep state of [chats] if loaded successfully.
   const factory ChatsState.loadSuccess(List<ChatModel> chats) = LoadSuccess;
 
   /// Unsuccessfully loaded data state.
