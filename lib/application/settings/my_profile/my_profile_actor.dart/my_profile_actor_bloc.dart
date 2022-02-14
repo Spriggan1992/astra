@@ -19,17 +19,16 @@ class MyProfileActorBloc
     extends Bloc<MyProfileActorEvent, MyProfileActorState> {
   final IProfileRepository _profileRepository;
   final IImagePickerRepository _imagePicker;
-  MyProfileActorBloc(this._profileRepository, this._imagePicker)
-      : super(MyProfileActorState.initial()) {
+  MyProfileActorBloc(
+    this._profileRepository,
+    this._imagePicker,
+  ) : super(MyProfileActorState.initial()) {
     on<MyProfileActorEvent>(
       (event, emit) async {
         await event.map(initialized: (e) async {
           emit(state.copyWith(isLoading: true));
           emit(state.copyWith(
-              profile: e.profile,
-              walletInfo: e.walletInfo,
-              curatorInfo: e.curatorInfo));
-          emit(state.copyWith(isLoading: false));
+              profile: e.profile, walletInfo: e.walletInfo, isLoading: false));
         }, descriptionChanged: (e) async {
           emit(
             state.copyWith(

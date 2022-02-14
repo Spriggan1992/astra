@@ -15,5 +15,5 @@ class SupportState with _$SupportState {
       _LoadSuccess;
 
   /// Unsuccessfully loaded data state.
-  const factory SupportState.loadFailure() = _LoadFailure;
+  const factory SupportState.loadFailure(AstraFailure failure) = _LoadFailure;
 }

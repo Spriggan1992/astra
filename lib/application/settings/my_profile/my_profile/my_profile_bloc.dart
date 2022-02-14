@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
@@ -24,26 +25,27 @@ class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
         emit(const MyProfileState.loadInProgress());
 
         final profileResponse = await _profileRepo.getProfile();
-        final walletResponse = await _storeRepository.getMyWallet();
         final curatorInfoResponse = await _profileRepo.getCuratorInfo();
+        final walletResponse = await _storeRepository.getMyWallet();
 
-        if (profileResponse.isRight() &&
-            walletResponse.isRight() &&
-            curatorInfoResponse.isRight()) {
-          emit(
-            MyProfileState.loadSuccess(
-              profileResponse.fold((failure) => Profile.empty(), (profile) {
-                _userInfo.setUserProfile(profile);
-                return profile;
-              }),
-              // profileResponse.getOrElse(() => Profile.empty()),
-              walletResponse.getOrElse(() => Wallet.empty()),
-              curatorInfoResponse.getOrElse(() => CuratorModel.empty()),
-            ),
-          );
-        } else {
-          emit(const MyProfileState.loadFailure());
-        }
+        profileResponse.fold(
+          (failure) => emit(MyProfileState.loadFailure(failure)),
+          (profile) async {
+            _userInfo.setUserProfile(profile);
+            walletResponse.fold(
+              (failure) => emit(
+                MyProfileState.loadFailure(failure),
+              ),
+              (wallet) {
+                curatorInfoResponse
+                    .fold((failure) => MyProfileState.loadFailure(failure),
+                        (curator) {
+                  emit(MyProfileState.loadSuccess(profile, wallet, curator));
+                });
+              },
+            );
+          },
+        );
       });
     });
   }

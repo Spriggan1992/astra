@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -15,11 +16,12 @@ class SupportBloc extends Bloc<SupportEvent, SupportState> {
     on<SupportEvent>((event, emit) async {
       await event.map(supportLoaded: (e) async {
         final response = await _profileRepository.getCuratorInfo();
-        emit(response.fold(
-            (failure) => failure.map(
-                api: (_) => const SupportState.loadFailure(),
-                noConnection: (_) => const SupportState.loadFailure()),
-            (curatorInfo) => SupportState.loadSuccess(curatorInfo)));
+        emit(
+          response.fold(
+            (failure) => SupportState.loadFailure(failure),
+            (curatorInfo) => SupportState.loadSuccess(curatorInfo),
+          ),
+        );
       });
     });
   }

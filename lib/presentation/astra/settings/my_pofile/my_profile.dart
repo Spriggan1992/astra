@@ -8,7 +8,7 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -27,35 +27,40 @@ class MyProfileScreen extends HookWidget {
       child: BlocBuilder<MyProfileBloc, MyProfileState>(
         builder: (context, state) {
           return state.map(
-              initial: (_) => Container(),
-              loadInProgress: (_) => const LoadingScreen(),
-              loadSuccess: (state) => BlocProvider(
-                    create: (context) => getIt<MyProfileActorBloc>()
-                      ..add(MyProfileActorEvent.initialized(
-                          state.profile, state.walletInfo, state.curatorInfo)),
-                    child:
-                        BlocListener<MyProfileActorBloc, MyProfileActorState>(
-                      listener: (context, state) {
-                        if (state.isShowNoInternetConnectionError) {
-                          showSnackBar(context);
-                        }
-                        if (state.isSuccessfullySubmitted) {
-                          context
-                              .read<MyProfileBloc>()
-                              .add(const MyProfileEvent.profileLoaded());
-                        }
-                      },
-                      child: MyProfileScreenContent(
-                        profile: state.profile,
-                        curator: state.curatorInfo,
-                      ),
-                    ),
-                  ),
-              loadFailure: (e) => ErrorScreen(onTryAgain: () {
+            initial: (_) => Container(),
+            loadInProgress: (_) => const LoadingScreen(),
+            loadSuccess: (state) => BlocProvider(
+              create: (context) => getIt<MyProfileActorBloc>()
+                ..add(
+                  MyProfileActorEvent.initialized(
+                      state.profile, state.walletInfo, state.curatorInfo),
+                ),
+              child: BlocListener<MyProfileActorBloc, MyProfileActorState>(
+                listener: (context, state) {
+                  if (state.isShowNoInternetConnectionError) {
+                    showSnackBar(context);
+                  }
+                  if (state.isSuccessfullySubmitted) {
                     context
                         .read<MyProfileBloc>()
                         .add(const MyProfileEvent.profileLoaded());
-                  }));
+                  }
+                },
+                child: MyProfileScreenContent(
+                  profile: state.profile,
+                  curator: state.curatorInfo,
+                ),
+              ),
+            ),
+            loadFailure: (state) => ErrorScreen(
+              failure: state.failure,
+              onTryAgain: () {
+                context
+                    .read<MyProfileBloc>()
+                    .add(const MyProfileEvent.profileLoaded());
+              },
+            ),
+          );
         },
       ),
     );

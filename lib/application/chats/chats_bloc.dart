@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:astra_app/domain/chats/chats_model.dart';
 import 'package:astra_app/domain/chats/i_chats_repository.dart';
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -22,8 +23,12 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
             emit(const ChatsState.loadInProgress());
             await Future.delayed(const Duration(milliseconds: 500));
             final response = await _chatRepository.getChats();
-            emit(response.fold((failure) => const ChatsState.loadFailure(),
-                (chats) => ChatsState.loadSuccess(chats)));
+            emit(
+              response.fold(
+                (failure) => ChatsState.loadFailure(failure),
+                (chats) => ChatsState.loadSuccess(chats),
+              ),
+            );
           },
         );
       },

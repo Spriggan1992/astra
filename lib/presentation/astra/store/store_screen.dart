@@ -5,7 +5,7 @@ import 'package:astra_app/presentation/astra/store/widgets/astra_pay_button.dart
 import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/store_dialog.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:auto_route/auto_route.dart';
@@ -38,8 +38,11 @@ class StoreScreen extends StatelessWidget {
                 ..add(StoreActorEvent.initialized(state.likes)),
               child: StoreScreenContent(storeQualifier: storeQualifier),
             ),
-            loadFailure: (_) => ErrorScreen(
-              onTryAgain: () {},
+            loadFailure: (stateFauilure) => ErrorScreen(
+              failure: stateFauilure.failure,
+              onTryAgain: () {
+                context.read<StoreBloc>().add(const StoreEvent.initialized());
+              },
             ),
           );
         },

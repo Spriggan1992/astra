@@ -17,5 +17,5 @@ class MyProfileState with _$MyProfileState {
       _LoadSuccess;
 
   /// Unsuccessfully loaded data state.
-  const factory MyProfileState.loadFailure() = _LoadFailure;
+  const factory MyProfileState.loadFailure(AstraFailure failure) = _LoadFailure;
 }

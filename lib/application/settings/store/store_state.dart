@@ -15,5 +15,5 @@ class StoreState with _$StoreState {
   const factory StoreState.loadSuccess(List<Like> likes) = _LoadSuccess;
 
   /// Unsuccessfully loaded data state.
-  const factory StoreState.loadFailure() = _LoadFailure;
+  const factory StoreState.loadFailure(AstraFailure failure) = _LoadFailure;
 }

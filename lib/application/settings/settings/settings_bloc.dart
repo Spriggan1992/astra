@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/profile/models/profile_short_model.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
@@ -21,9 +22,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
             final response = await _profileRepo.getProfileShort();
             emit(
               response.fold(
-                (l) => const SettingsState.loadFailure(),
-                (r) {
-                  return SettingsState.loadSuccess(r);
+                (failure) => SettingsState.loadFailure(failure),
+                (success) {
+                  return SettingsState.loadSuccess(success);
                 },
               ),
             );

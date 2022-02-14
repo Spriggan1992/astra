@@ -27,9 +27,6 @@ class MyProfileActorState with _$MyProfileActorState {
 
     /// Wallet info to display.
     required Wallet walletInfo,
-
-    /// State of curator information.
-    required CuratorModel curatorInfo,
   }) = _MyProfileActorState;
   factory MyProfileActorState.initial() => MyProfileActorState(
         isLoading: false,
@@ -40,6 +37,5 @@ class MyProfileActorState with _$MyProfileActorState {
         isSuccessfullySubmitted: false,
         selectedImages: [],
         walletInfo: Wallet.empty(),
-        curatorInfo: CuratorModel.empty(),
       );
 }

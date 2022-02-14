@@ -4,7 +4,7 @@ import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/settings/widgets/settings_items.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/images/astra_file_image.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +28,7 @@ class SettingsScreen extends StatelessWidget {
             initial: (_) => Container(),
             loadInProgress: (_) => const LoadingScreen(),
             loadFailure: (state) => ErrorScreen(
+              failure: state.failure,
               onTryAgain: () => context.read<SettingsBloc>()
                 ..add(const SettingsEvent.profileLoaded()),
             ),

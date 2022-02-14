@@ -7,7 +7,6 @@ import 'package:astra_app/presentation/astra/settings/coach/coach_tile.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
-import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

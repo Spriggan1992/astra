@@ -1,11 +1,12 @@
 import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/application/core/enums/search_state_type.dart';
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,18 +29,11 @@ class SearchPageRoute extends StatelessWidget {
         if (state.stateType == SearchStateType.success) {
           return SearchScreen(applicants: state.applicants);
         } else if (state.stateType == SearchStateType.failure) {
-          String _errorMessage = '';
-
-          if (state.isNoInternetConnection) {
-            _errorMessage = 'Отсутствует подключение к интернету';
-          } else {
-            _errorMessage = '';
-          }
-
           return ErrorScreen(
-            errorTitle: _errorMessage,
+            failure: state.isUnexpectedError
+                ? const AstraFailure.api()
+                : const AstraFailure.noConnection(),
             onTryAgain: () {
-             
               BlocProvider.of<SearchBloc>(context)
                   .add(const SearchEvent.loadData());
             },
@@ -94,7 +88,7 @@ class SearchPageRoute extends StatelessWidget {
               ),
             ),
             onPressed: () {
-             context.router.pop(true);
+              context.router.pop(true);
             },
           ),
         );

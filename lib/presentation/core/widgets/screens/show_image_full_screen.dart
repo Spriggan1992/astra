@@ -2,6 +2,7 @@ import 'package:astra_app/application/settings/my_profile/full_screen_image.dart
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,17 @@ class ShowImageFullScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<FullScreenImageBloc>()
         ..add(FullScreenImageEvent.initialized(images)),
-      child: BlocBuilder<FullScreenImageBloc, FullScreenImageState>(
+      child: BlocConsumer<FullScreenImageBloc, FullScreenImageState>(
+        listener: (context, state) {
+          if (state.isShowNoInternetConnectionError) {
+            showSnackBar(context);
+          }
+          if (state.isShowUnexpactedError) {
+            showSnackBar(context,
+                title:
+                    'Произошла непредвиденная ошибка.\nОбратитесь в службу поддеркию.');
+          }
+        },
         builder: (context, state) {
           return GestureDetector(
             onTap: () => context

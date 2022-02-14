@@ -14,5 +14,5 @@ class ChatsState with _$ChatsState {
   const factory ChatsState.loadSuccess(List<ChatModel> chats) = LoadSuccess;
 
   /// Unsuccessfully loaded data state.
-  const factory ChatsState.loadFailure() = _LoadFailure;
+  const factory ChatsState.loadFailure(AstraFailure failure) = _LoadFailure;
 }

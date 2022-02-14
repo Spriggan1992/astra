@@ -1,12 +1,13 @@
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_actor/favorite_actor_bloc.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/favorite/tab_item.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,14 +23,15 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteBloc, FavoriteState>(
       builder: (context, state) {
-        if (state.isNoInternetConnection) {
+        if (state.isNoInternetConnection || state.isUnexpectedError) {
           return ErrorScreen(
+            failure: state.isNoInternetConnection
+                ? const AstraFailure.noConnection()
+                : const AstraFailure.api(),
             onTryAgain: () {
               BlocProvider.of<FavoriteBloc>(context)
                   .add(const FavoriteEvent.loadedData());
             },
-            errorTitle:
-                'Ошибка с соединением.\nПроверьте подключение к интернету.',
           );
         }
         return BlocProvider(

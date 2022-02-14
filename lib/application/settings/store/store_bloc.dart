@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/domain/store/models/like.dart';
 import 'package:astra_app/domain/store/repositories/i_store_reposytory.dart';
 import 'package:bloc/bloc.dart';
@@ -18,8 +19,12 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       await event.map(initialized: (e) async {
         emit(const StoreState.loadInProgress());
         final response = await _storeRepository.getLikePackages();
-        emit(response.fold((failure) => const StoreState.loadFailure(),
-            (success) => StoreState.loadSuccess(success)));
+        emit(
+          response.fold(
+            (failure) => StoreState.loadFailure(failure),
+            (success) => StoreState.loadSuccess(success),
+          ),
+        );
       });
     });
   }

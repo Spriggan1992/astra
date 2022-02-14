@@ -1,6 +1,5 @@
 import 'package:astra_app/infrastructure/core/database/sembast/sembast_database.dart';
 import 'package:astra_app/infrastructure/core/services/subscription_service/subscription_connection_settings.dart';
-import 'package:astra_app/infrastructure/core/services/subscription_service/subscription_service.dart';
 import 'package:dart_amqp/dart_amqp.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';

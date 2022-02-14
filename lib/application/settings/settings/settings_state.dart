@@ -16,5 +16,5 @@ class SettingsState with _$SettingsState {
       _LoadSuccess;
 
   /// Unsuccessfully loaded data state.
-  const factory SettingsState.loadFailure() = _LoadFailure;
+  const factory SettingsState.loadFailure(AstraFailure failure) = _LoadFailure;
 }

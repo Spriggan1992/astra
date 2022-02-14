@@ -1,13 +1,11 @@
 import 'package:astra_app/application/chat/chat_bloc.dart';
 import 'package:astra_app/application/chat/chat_wathcer/chat_watcher_bloc.dart';
-import 'package:astra_app/application/core/enums/loading_states.dart';
 import 'package:astra_app/domain/chats/chats_model.dart';
 import 'package:astra_app/domain/chats/message_model.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
 import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/error_screen.dart';
+import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,17 +36,20 @@ class ChatScreen extends StatelessWidget {
           return state.map(
             initial: (_) => const SizedBox.shrink(),
             loadInProgress: (_) => const LoadingScreen(),
-            loadFailure: (state) => state.failure.map(
-              api: (_) => ErrorScreen(
-                  errorTitle: 'Что то пошло не так....', onTryAgain: () {}),
-              noConnection: (_) => ErrorScreen(
-                  errorTitle: 'Отсутствует подключение к интернету',
-                  onTryAgain: () {}),
+            loadFailure: (state) => ErrorScreen(
+              failure: state.failure,
+              onTryAgain: () {
+                context
+                    .read<ChatBloc>()
+                    .add(ChatEvent.chatHistoryLoaded(chatModel.id));
+              },
             ),
             loadSuccess: (state) => BlocProvider(
               create: (context) => getIt<ChatWatcherBloc>()
-                ..add(ChatWatcherEvent.initialized(
-                    chatModel.id, state.chatMessages)),
+                ..add(
+                  ChatWatcherEvent.initialized(
+                      chatModel.id, state.chatMessages),
+                ),
               child: ChatScreenContent(chatModel: chatModel),
             ),
           );

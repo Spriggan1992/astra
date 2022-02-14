@@ -15,7 +15,10 @@ part 'search_state.dart';
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ISearchRepository _searchApi;
   final IUserInfoService _user;
-  SearchBloc(this._searchApi, this._user) : super(SearchState.initial()) {
+  SearchBloc(
+    this._searchApi,
+    this._user,
+  ) : super(SearchState.initial()) {
     on<SearchEvent>(
       (event, emit) async {
         await event.map(

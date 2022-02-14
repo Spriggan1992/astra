@@ -1,3 +1,4 @@
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/base_error_screen.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ const _error = 'Попробовать снова';
 
 /// Defines screen, that usually showing she get unexpected failure.
 class ErrorScreen extends BaseErrorScreen {
+  final AstraFailure failure;
+
   /// Error title to display.
   final String errorTitle;
 
@@ -14,10 +17,11 @@ class ErrorScreen extends BaseErrorScreen {
   ErrorScreen({
     Key? key,
     this.errorTitle = _error,
+    required this.failure,
     required this.onTryAgain,
   }) : super(
           key,
-          errorTitle,
+          _getErrorMessage(failure),
           GestureDetector(
             onTap: onTryAgain,
             child: const Text(
@@ -30,4 +34,12 @@ class ErrorScreen extends BaseErrorScreen {
             ),
           ),
         );
+}
+
+String _getErrorMessage(AstraFailure failure) {
+  if (failure == const AstraFailure.api()) {
+    return 'Что то пошло не так...';
+  } else {
+    return 'Ошибка с соединением.\nПроверьте подключение к интернету.';
+  }
 }

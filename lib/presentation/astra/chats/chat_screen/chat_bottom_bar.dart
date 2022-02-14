@@ -1,6 +1,5 @@
 import 'package:astra_app/application/chat/chat_wathcer/chat_watcher_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:astra_app/application/chat/chat_bloc.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

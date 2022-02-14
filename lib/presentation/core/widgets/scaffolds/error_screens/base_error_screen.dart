@@ -16,19 +16,22 @@ class BaseErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            baseTitle,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          action
-        ],
-      ),
-    ));
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              baseTitle,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            action
+          ],
+        ),
+      )),
+    );
   }
 }
