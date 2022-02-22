@@ -15,5 +15,10 @@
         "**/*.g.dart": true
     },
     "explorerExclude.backup": null,
-    "hide-files.files": []
+    "hide-files.files": [],
+    "cSpell.words": [
+        "autofocus",
+        "Promocode",
+        "Промокод"
+    ]
 }

@@ -1,7 +1,9 @@
+import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_two_actions.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 /// Represent dialog layout of unsuccessfully submitted promo code.
@@ -39,11 +41,16 @@ class PromocodeDialogFailure extends StatelessWidget {
       ),
       action1: DialogActionButton(
         title: 'Отмена',
-        onClick: () {},
+        onClick: () {
+          context.router.pop();
+        },
       ),
       action2: DialogActionButton(
         title: 'Куратор',
-        onClick: () {},
+        onClick: () async {
+          await context.router.pop();
+          context.router.replace(const SupportScreenRoute());
+        },
       ),
     );
   }

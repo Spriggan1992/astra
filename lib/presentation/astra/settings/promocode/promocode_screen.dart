@@ -1,8 +1,10 @@
 import 'package:astra_app/application/promocode/promocode_bloc.dart';
 import 'package:astra_app/injection.dart';
+import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_elevated_button.dart';
 import 'package:astra_app/presentation/core/widgets/custom/keyboard_visibility.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +36,12 @@ class PromocodeScreen extends StatelessWidget {
               builder: (context) =>
                   PromocodeDialogSuccess(state.promocodeModel.getLikes),
             );
+          }
+          if (state.isNoConnectionError) {
+            showSnackBar(context);
+          }
+          if (state.isUnexpectedError) {
+            showSnackBar(context, title: 'Что-то пошло не так....');
           }
         },
         child: KeyboardDismisser(
@@ -90,14 +98,14 @@ class PromocodeScreen extends StatelessWidget {
                     child: (isVisible) =>
                         BlocBuilder<PromocodeBloc, PromocodeState>(
                       buildWhen: (p, c) =>
-                          p.textInputIsVaslid != c.textInputIsVaslid ||
+                          p.textInputIsValid != c.textInputIsValid ||
                           p.isLoading != c.isLoading,
                       builder: (context, state) {
                         return Padding(
                           padding: EdgeInsets.only(bottom: isVisible ? 0 : 56),
                           child: AstraElevatedButton(
                             isLoading: state.isLoading,
-                            isEnableButton: state.textInputIsVaslid,
+                            isEnableButton: state.textInputIsValid,
                             title: 'Продолжить',
                             onClick: () {
                               context

@@ -7,6 +7,8 @@ class Endpoints {
   static get shop => _ShopEndpoints();
   static get user => _ProfileEndpoints();
   static get signals => _SignalsEndpoints();
+  static get promocode => _PromocodeEndpoints();
+
   static get imageAdress => relevantAdress;
 }
 
@@ -69,4 +71,8 @@ class _ProfileEndpoints {
   String get getStatuses => _address + "user/account/info/status/";
   String get getCurator => _address + "user/account/curator/";
   String get refreshToken => _address + "users/auth/jwt/refresh/";
+}
+
+class _PromocodeEndpoints {
+  String get activate => _address + "promocodes/activate/";
 }

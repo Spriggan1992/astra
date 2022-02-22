@@ -10,15 +10,15 @@ part 'promocode_bloc.freezed.dart';
 
 @injectable
 class PromocodeBloc extends Bloc<PromocodeEvent, PromocodeState> {
-  final IPromocodeRepository _promocodeReposytory;
-  PromocodeBloc(this._promocodeReposytory) : super(PromocodeState.initial()) {
+  final IPromocodeRepository _promocodeRepository;
+  PromocodeBloc(this._promocodeRepository) : super(PromocodeState.initial()) {
     on<PromocodeEvent>((event, emit) async {
       await event.map(
         codeSubmitted: (e) async {
-          if (state.textInputIsVaslid) {
+          if (state.textInputIsValid) {
             emit(state.copyWith(isLoading: true));
-            final response =
-                await _promocodeReposytory.sendPromocode(state.promocode);
+            final response = await _promocodeRepository
+                .sendPromocode(PromocodeModel(code: state.promocode));
             emit(response.fold(
                 (failure) => failure.map(
                     api: (_) => state.copyWith(isUnexpectedError: true),
@@ -40,10 +40,10 @@ class PromocodeBloc extends Bloc<PromocodeEvent, PromocodeState> {
           }
         },
         promocodeChanged: (e) async {
-          final isValid = e.promocode.length >= 14;
+          final isValid = e.promocode.isNotEmpty;
           emit(state.copyWith(
             promocode: e.promocode,
-            textInputIsVaslid: isValid,
+            textInputIsValid: isValid,
           ));
         },
       );

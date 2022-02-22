@@ -1,6 +1,7 @@
 import 'package:astra_app/presentation/astra/settings/promocode/constants.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 final _defaultBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(14),
@@ -20,7 +21,7 @@ class PromocodeTextField extends StatefulWidget {
   /// The event handler for changing the value entered in the text field.
   final Function(String) onChange;
 
-  /// The flag responsiblke for showing error if promocode is not valid.
+  /// The flag responsible for showing error if promocode is not valid.
   final bool isShowError;
   const PromocodeTextField({
     Key? key,
@@ -39,7 +40,7 @@ class _PromocodeTextFieldState extends State<PromocodeTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: true,
-      inputFormatters: [maskPromocodeFormatter],
+      inputFormatters: [filteringTextInputFormatter],
       controller: _controller,
       onChanged: (value) {
         _controller.value = TextEditingValue(

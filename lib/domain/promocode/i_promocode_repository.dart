@@ -6,5 +6,5 @@ import 'package:dartz/dartz.dart';
 abstract class IPromocodeRepository {
   /// Send promocode to the server.
   Future<Either<PromocodeFailure, PromocodeModel>> sendPromocode(
-      String promocode);
+      PromocodeModel promocode);
 }

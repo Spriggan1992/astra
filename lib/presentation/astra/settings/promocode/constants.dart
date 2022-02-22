@@ -1,9 +1,5 @@
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:flutter/services.dart';
 
-/// Mask for promocode text field.
-final maskPromocodeFormatter = MaskTextInputFormatter(
-  mask: '####-####-####',
-  filter: {
-    "#": RegExp(r'^[a-zA-Z0-9_.-]*$'),
-  },
-);
+/// A input formatter that only allows characters matching a pattern..
+final filteringTextInputFormatter =
+    FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9_.-]*$'));

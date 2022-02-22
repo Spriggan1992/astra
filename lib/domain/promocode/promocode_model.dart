@@ -7,18 +7,18 @@ part 'promocode_model.freezed.dart';
 class PromocodeModel with _$PromocodeModel {
   const PromocodeModel._();
   const factory PromocodeModel({
-    required bool isActivated,
-    required String code,
-    required int likes,
+    /// Promocode.
+    String? code,
+
+    /// Amount of likes.
+    int? likesAmount,
   }) = _PromocodeModel;
 
   /// Empty promocode.
   factory PromocodeModel.empty() => const PromocodeModel(
-        isActivated: false,
-        code: '',
-        likes: 0,
+        likesAmount: 0,
       );
 
   /// Gets likes from promo code that will be put on account.
-  String get getLikes => '$likes ${likes.likeEnding}';
+  String get getLikes => '$likesAmount ${likesAmount?.likeEnding ?? 0}';
 }

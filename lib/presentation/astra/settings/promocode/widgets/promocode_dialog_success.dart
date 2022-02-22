@@ -1,3 +1,4 @@
+import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/gradients.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
@@ -39,6 +40,7 @@ class PromocodeDialogSuccess extends StatelessWidget {
         title: 'Отлично!',
         onClick: () {
           context.router.pop();
+          context.router.navigate(const SettingsRouter());
         },
       ),
     );
