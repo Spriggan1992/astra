@@ -1,3 +1,4 @@
+import 'package:astra_app/application/search/profile_properties/profile_properties_bloc.dart';
 import 'package:astra_app/application/search/search_action/search_action_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
@@ -25,6 +26,9 @@ class AstraApp extends StatelessWidget {
           ),
           BlocProvider<SearchActionBloc>(
             create: (context) => getIt<SearchActionBloc>(),
+          ),
+           BlocProvider<ProfilePropertiesBloc>(
+            create: (context) => getIt<ProfilePropertiesBloc>(),
           ),
         ],
         child: MaterialApp.router(

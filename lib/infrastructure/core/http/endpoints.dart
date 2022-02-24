@@ -71,6 +71,7 @@ class _ProfileEndpoints {
   String get getStatuses => _address + "user/account/info/status/";
   String get getCurator => _address + "user/account/curator/";
   String get refreshToken => _address + "users/auth/jwt/refresh/";
+  String properties(int id) => _address + "user/profile/$id/info/full";
 }
 
 class _PromocodeEndpoints {

@@ -3,6 +3,7 @@ import 'package:astra_app/presentation/astra/chats/chats_screen/chats_screen.dar
 import 'package:astra_app/presentation/astra/favorite/favorite_screen.dart';
 import 'package:astra_app/presentation/astra/favorite/user_form/user_form_screen.dart';
 import 'package:astra_app/presentation/astra/home_screen.dart';
+import 'package:astra_app/presentation/astra/search/applicants/applicant_detail_screen.dart';
 import 'package:astra_app/presentation/astra/search/applicants/applicant_screen.dart';
 import 'package:astra_app/presentation/astra/search/search_page_route.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
@@ -38,11 +39,8 @@ import 'package:auto_route/auto_route.dart';
     MaterialRoute(page: ImagePickScreen),
     MaterialRoute(page: ShowImageFullScreen),
     MaterialRoute(page: UserFormScreen),
-
-     MaterialRoute(page: CoachScreen),
-
+    MaterialRoute(page: CoachScreen),
     MaterialRoute(page: ChatScreen),
-
     AutoRoute(
       path: '',
       page: HomeScreen,
@@ -86,7 +84,11 @@ import 'package:auto_route/auto_route.dart';
             AutoRoute(path: ':supportScreen', page: SupportScreen),
             AutoRoute(path: ':store', page: StoreScreen),
             AutoRoute(path: ':promocode', page: PromocodeScreen),
+
+            AutoRoute(path: ':applicantDetailScreen', page: ApplicantDetailScreen),
+
              AutoRoute(path: ':applicationForm', page: ApplicationFormScreen),
+
           ],
         ),
       ],
