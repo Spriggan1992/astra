@@ -8,6 +8,7 @@ import 'package:astra_app/presentation/astra/search/search_page_route.dart';
 import 'package:astra_app/presentation/astra/search/search_screen.dart';
 import 'package:astra_app/presentation/astra/settings/about/about_screen.dart';
 import 'package:astra_app/presentation/astra/settings/about/politics_screen.dart';
+import 'package:astra_app/presentation/astra/settings/application_form/application_form_screen.dart';
 import 'package:astra_app/presentation/astra/settings/coach/coach_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/photo/image_pick_screen.dart';
@@ -85,6 +86,7 @@ import 'package:auto_route/auto_route.dart';
             AutoRoute(path: ':supportScreen', page: SupportScreen),
             AutoRoute(path: ':store', page: StoreScreen),
             AutoRoute(path: ':promocode', page: PromocodeScreen),
+             AutoRoute(path: ':applicationForm', page: ApplicationFormScreen),
           ],
         ),
       ],

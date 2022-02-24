@@ -44,7 +44,9 @@ class SettingsItems extends StatelessWidget {
             height: 20,
           ),
           title: 'Моя анкета',
-          onTap: () {},
+          onTap: () {
+            context.router.push(const ApplicationFormScreenRoute());
+          },
         ),
         ProfileItem(
           icon: const Icon(
