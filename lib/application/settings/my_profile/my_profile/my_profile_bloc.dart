@@ -1,5 +1,5 @@
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
-import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_cache_user_service.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
@@ -17,7 +17,7 @@ part 'my_profile_bloc.freezed.dart';
 class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
   final IStoreReposytory _storeRepository;
   final IProfileRepository _profileRepo;
-  final IUserInfoService _userInfo;
+  final ICacheUserService _userInfo;
   MyProfileBloc(this._profileRepo, this._storeRepository, this._userInfo)
       : super(const MyProfileState.initial()) {
     on<MyProfileEvent>((event, emit) async {

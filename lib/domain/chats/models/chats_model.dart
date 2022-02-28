@@ -25,6 +25,9 @@ class ChatModel with _$ChatModel {
 
     /// Number of unread messages to display.
     required int newMessageCount,
+
+    /// The flag responsible for whether the user online or not.
+    required bool isOnline,
   }) = _ChatModel;
 
   /// Empty .
@@ -35,6 +38,7 @@ class ChatModel with _$ChatModel {
         lastMessage: '',
         lastMessageTime: null,
         newMessageCount: 0,
+        isOnline: false,
       );
 
   /// Get time as `hour:minute`.

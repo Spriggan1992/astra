@@ -1,7 +1,7 @@
 import 'package:astra_app/domain/profile/models/profile.dart';
 
 /// Describes the user information service.
-abstract class IUserInfoService {
+abstract class ICacheUserService {
   /// Returns user profile.
   Profile get userProfile;
 

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:astra_app/domain/promocode/promocode_failure.dart';
-import 'package:astra_app/infrastructure/auth/extentions/dio_extensions.dart';
+import 'package:astra_app/infrastructure/auth/extensions/dio_extensions.dart';
 import 'package:astra_app/infrastructure/promocode/extensions/failure_response_mapper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';

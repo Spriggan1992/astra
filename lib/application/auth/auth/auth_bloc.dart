@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:astra_app/application/user/user_bloc.dart';
 import 'package:astra_app/domain/auth/repositories/i_auth_api_service.dart';
 import 'package:astra_app/domain/core/services/i_curator_info_service.dart';
-import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_cache_user_service.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
+import 'package:astra_app/injection.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,10 +16,11 @@ part 'auth_bloc.freezed.dart';
 
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final IUserInfoService _userService;
+  final ICacheUserService _userService;
   final ICuratorInfoService _curatorService;
   final IProfileRepository _profileRepository;
   final IAuthApiService _apiService;
+  UserBloc _userBloc = getIt<UserBloc>();
   AuthBloc(
     this._apiService,
     this._profileRepository,
@@ -38,8 +41,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(
                 profileResponse.fold(
                   (failure) => const AuthState.unauthenticated(),
-                  (proifile) {
-                    _userService.setUserProfile(proifile);
+                  (profile) {
+                    _userService.setUserProfile(profile);
                     curatorResponse.fold(
                       (failure) => const AuthState.unauthenticated(),
                       (curator) => _curatorService.setCuratorProfile(curator),
@@ -53,8 +56,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             }
           },
           signedOut: (e) async {
-            await _apiService.signOut();
             emit(const AuthState.unauthenticated());
+            await _apiService.signOut();
           },
         );
       },

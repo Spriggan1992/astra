@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_cache_user_service.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,7 +14,7 @@ part 'search_state.dart';
 @injectable
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ISearchRepository _searchApi;
-  final IUserInfoService _user;
+  final ICacheUserService _user;
   SearchBloc(
     this._searchApi,
     this._user,

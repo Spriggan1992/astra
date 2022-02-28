@@ -3,7 +3,7 @@ abstract class IInternetConnectionService {
   /// Subscribe to listen stream if there has internet connection.
   Stream<bool> subscribeConnection();
 
-  /// Get true if hase internet connection.
+  /// Get true if has internet connection.
   bool get hasConnection;
 
   /// Dispose [InternetConnectionChecker].

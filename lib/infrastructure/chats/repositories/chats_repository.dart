@@ -1,7 +1,9 @@
-import 'package:astra_app/domain/chats/chats_model.dart';
-import 'package:astra_app/domain/chats/i_chats_repository.dart';
-import 'package:astra_app/domain/core/models/subscription_model.dart';
-import 'package:astra_app/domain/core/models/subscription_topics_model.dart';
+import 'dart:developer';
+
+import 'package:astra_app/domain/chats/models/chats_model.dart';
+import 'package:astra_app/domain/chats/repositories/i_chats_repository.dart';
+import 'package:astra_app/domain/core/models/subscriptions/subscription_model.dart';
+import 'package:astra_app/domain/core/models/subscriptions/subscription_topics_model.dart';
 import 'package:astra_app/infrastructure/chats/DTOs/chat_dto.dart';
 import 'package:astra_app/infrastructure/core/DTOs/subscription_topics_dto.dart';
 import 'package:astra_app/infrastructure/core/http/endpoints.dart';
@@ -23,31 +25,39 @@ class ChatsRepository implements IChatsRepository {
   ChatsRepository(this._dio);
   @override
   Future<Either<AstraFailure, List<ChatModel>>> getChats() async {
-    final result = await makeRequest<List<ChatModel>>(() async {
+    return await makeRequest<List<ChatModel>>(() async {
       final response = await _dio.get(Endpoints.chat.chats);
       return (response.data as List<dynamic>)
           .map((e) => ChatDTO.fromJson(e).toDomain())
           .toList();
     });
-    return result.fold((failure) => left(failure), (profile) => right(profile));
   }
 
   @override
   Stream<Either<AstraFailure, dynamic>> subscribeToChatsUpdates() async* {
-    final topicks = await _getTopicks();
-    yield* topicks.fold((failure) async* {
+    final topics = await _getTopics();
+    yield* topics.fold((failure) async* {
       left(failure);
     }, (subscriptionTopicsModel) async* {
       _subscriptionService =
           SubscriptionService(subscriptionTopicsModel.topics);
       await _subscriptionService!.init();
-      yield* _subscriptionService!.subscribtion.map((snapshot) {
+      yield* _subscriptionService!.subscription.map((snapshot) {
+        log(snapshot.payloadAsString, name: 'SNAPSHOT');
         return right(SubscriptionModel<Unit>(topicName: snapshot.routingKey!));
       });
     });
   }
 
-  Future<Either<AstraFailure, SubscriptionTopicsModel>> _getTopicks() async {
+  @override
+  Future<Either<AstraFailure, Unit>> deleteChat(int chatId) async {
+    return await makeRequest<Unit>(() async {
+      await _dio.delete(Endpoints.chat.deleteChat(chatId));
+      return unit;
+    });
+  }
+
+  Future<Either<AstraFailure, SubscriptionTopicsModel>> _getTopics() async {
     return await makeRequest<SubscriptionTopicsModel>(() async {
       final response = await _dio.post(Endpoints.signals.chats);
       return SubscriptionTopicsDTO.fromJson(response.data).toDomain();

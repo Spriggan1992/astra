@@ -1,12 +1,9 @@
 import 'dart:io';
-
-import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_cache_user_service.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/search/applicants/applicant_screen.dart';
 import 'package:astra_app/presentation/astra/settings/application_form/widgets/application_form_card.dart';
-
-
 import 'package:flutter/material.dart';
 
 /// Defines application form screen
@@ -18,7 +15,7 @@ class ApplicationFormScreen extends StatefulWidget {
 }
 
 class _ApplicationFormScreenState extends State<ApplicationFormScreen> {
-  final Profile profile = getIt<IUserInfoService>().userProfile;
+  final Profile profile = getIt<ICacheUserService>().userProfile;
 
   File? profileImage;
   File? curatorImage;
@@ -41,19 +38,19 @@ class _ApplicationFormScreenState extends State<ApplicationFormScreen> {
                 MaterialPageRoute(
                   builder: (_) {
                     return ApplicantScreen(
-                        applicant: profile, // //
-
-                        image: (profileImage == null)
-                            ? Image.asset('assets/girl.png').image
-                            : Image.file(profileImage!).image,
-                        curatorImage: (curatorImage == null)
-                            ? Image.asset('assets/girl.png').image
-                            : Image.file(curatorImage!).image);
+                      applicant: profile,
+                      image: (profileImage == null)
+                          ? Image.asset('assets/girl.png').image
+                          : Image.file(profileImage!).image,
+                      curatorImage: (curatorImage == null)
+                          ? Image.asset('assets/girl.png').image
+                          : Image.file(curatorImage!).image,
+                    );
                   },
                 ),
               );
             },
-            profile: getIt<IUserInfoService>().userProfile,
+            profile: getIt<ICacheUserService>().userProfile,
           ),
           AnimatedOpacity(
             opacity: 1,

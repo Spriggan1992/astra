@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:astra_app/domain/chats/chats_model.dart';
-import 'package:astra_app/domain/chats/i_chats_repository.dart';
+import 'package:astra_app/domain/chats/models/chats_model.dart';
+import 'package:astra_app/domain/chats/repositories/i_chats_repository.dart';
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -26,7 +26,11 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
             emit(
               response.fold(
                 (failure) => ChatsState.loadFailure(failure),
-                (chats) => ChatsState.loadSuccess(chats),
+                (chats) {
+                  final updatedChats = chats.sorted(
+                      (a, b) => b.newMessageCount.compareTo(a.newMessageCount));
+                  return ChatsState.loadSuccess(updatedChats);
+                },
               ),
             );
           },

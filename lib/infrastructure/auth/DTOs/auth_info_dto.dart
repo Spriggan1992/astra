@@ -11,7 +11,7 @@ part 'auth_info_dto.g.dart';
 class AuthInfoDTO with _$AuthInfoDTO {
   const AuthInfoDTO._();
   const factory AuthInfoDTO({
-    /// Phone numberfor sending to server.
+    /// Phone number for sending to server.
     @JsonKey(name: 'phone_number') required String phoneNumber,
 
     /// Password for sending to server.

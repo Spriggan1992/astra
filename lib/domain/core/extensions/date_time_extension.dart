@@ -18,7 +18,7 @@ extension DateTimeToString on DateTime {
   }
 
   /// Convert date time to day and mounth.
-  String get dateTimeTodayAnMounth {
+  String get dateTimeTodayAnMounts {
     String value = '';
     switch (month) {
       case 1:

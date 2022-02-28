@@ -1,9 +1,6 @@
-import 'package:astra_app/application/search/profile_properties/profile_properties_bloc.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
-import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/search/applicants/applicant_detail_screen.dart';
 import 'package:astra_app/presentation/astra/search/applicants/widgets/applicant_main_card.dart';
-import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -14,21 +11,21 @@ import 'widgets/curator_tail.dart';
 
 /// Applicant screen, shows the detail info about applicant
 class ApplicantScreen extends StatelessWidget {
-  const ApplicantScreen(
-      {Key? key,
-      required this.applicant,
-      required this.image,
-      required this.curatorImage})
-      : super(key: key);
-
   /// Applicant data
   final Profile applicant;
 
   /// Applicant main profile image
   final ImageProvider image;
 
-  /// Currator image.
+  /// Curator image.
   final ImageProvider? curatorImage;
+
+  const ApplicantScreen({
+    Key? key,
+    required this.applicant,
+    required this.image,
+    required this.curatorImage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

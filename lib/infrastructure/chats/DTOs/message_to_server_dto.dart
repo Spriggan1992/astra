@@ -4,11 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'message_to_server_dto.freezed.dart';
 part 'message_to_server_dto.g.dart';
 
-///Defines
+/// Defines message data transfer object for sending to server.
 @freezed
 class MessageToServerDTO with _$MessageToServerDTO {
   const MessageToServerDTO._();
   const factory MessageToServerDTO({
+    /// Message for sending to server.
     @JsonKey(name: 'message') required String message,
   }) = _MessageToServerDTO;
 

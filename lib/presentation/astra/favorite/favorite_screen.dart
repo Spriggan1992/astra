@@ -71,7 +71,7 @@ class _FavoriteScreenContentState extends State<FavoriteScreenContent>
     _controller.index = 1;
     _controller.addListener(() {
       BlocProvider.of<FavoriteBloc>(context).add(FavoriteEvent.loadedData(
-          favoriteType: getFavoiteType(_controller.index)));
+          favoriteType: getFavoriteType(_controller.index)));
     });
   }
 

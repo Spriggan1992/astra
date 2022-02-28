@@ -26,7 +26,7 @@ class SubscriptionService {
       StreamController.broadcast();
 
   /// Subscription for listening signals.
-  Stream<AmqpMessage> get subscribtion => _controller.stream;
+  Stream<AmqpMessage> get subscription => _controller.stream;
 
   /// Explicit initialization of [SubscriptionService].
   Future<void> init() async {

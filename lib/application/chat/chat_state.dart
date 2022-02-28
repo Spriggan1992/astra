@@ -9,10 +9,10 @@ class ChatState with _$ChatState {
   /// Progress loading states.
   const factory ChatState.loadInProgress() = _LoadInProgress;
 
-  /// Successfule loaded data state.
+  /// Successfully loaded data state.
   ///
   /// Keep state of [chatMessages] if loaded successfully.
-  const factory ChatState.loadSuccess(List<MessageModel> chatMessages) =
+  const factory ChatState.loadSuccess(PaginationChatModel chatMessages) =
       _LoadSuccess;
 
   /// Unsuccessfully loaded data state.

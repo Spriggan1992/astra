@@ -35,7 +35,8 @@ class AstraColors {
   static const Color blackMetallic09 = Color.fromRGBO(0, 0, 0, 0.9);
   static const Color dialogContent = Color(0xFFA0A0A0);
   static const Color messageBoxColor = Color.fromRGBO(28, 45, 82, 0.1);
-
   static const Color promocodeScreenTextFieldColor =
       Color.fromRGBO(29, 46, 86, 0.05);
+  static const Color hasMessageColor = Color(0xFFF0F1F3);
+  static const Color onlineStatus = Colors.green;
 }

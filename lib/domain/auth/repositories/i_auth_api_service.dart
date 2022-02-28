@@ -10,10 +10,10 @@ abstract class IAuthApiService {
   /// Sign in user in the system.
   Future<Either<AuthFailure, Unit>> signIn(AuthInfo authInfo);
 
-  /// Checkt if user is sign in.
+  /// Checks if user is sign in.
   Future<bool> isSignIn();
 
-  /// Check [phone] if number has aready been registerd.
+  /// Check [phone] if number has already been registered.
   Future<Either<AuthFailure, bool>> checkPhoneNumber(String phone);
 
   /// Sign out user.

@@ -38,5 +38,5 @@ abstract class AppInjectableModule {
   /// Initialized client for Advanced Message Queuing Protocol.
   @lazySingleton
   Client get ampqClient =>
-      Client(settings: SubscriptionConnectionSetings.settings);
+      Client(settings: SubscriptionConnectionSettings.settings);
 }

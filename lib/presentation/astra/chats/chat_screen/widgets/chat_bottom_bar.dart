@@ -48,6 +48,7 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
                     padding: const EdgeInsets.only(left: 5),
                     child: Form(
                       child: TextFormField(
+                        maxLines: null,
                         style: const TextStyle(color: AstraColors.white),
                         readOnly: !hasConnection,
                         controller: _controller,

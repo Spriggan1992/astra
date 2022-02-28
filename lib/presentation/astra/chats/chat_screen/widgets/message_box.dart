@@ -1,17 +1,10 @@
-import 'package:astra_app/domain/chats/message_model.dart';
+import 'package:astra_app/domain/chats/models/message_model.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Represent message box  that contains message from users.
 class MessageBox extends StatelessWidget {
-  const MessageBox({
-    Key? key,
-    required this.messageModel,
-    required this.isMe,
-    required this.isLoadingMessage,
-  }) : super(key: key);
-
   /// Flag responsible for showing loading message indicator.
   final bool isLoadingMessage;
 
@@ -21,20 +14,28 @@ class MessageBox extends StatelessWidget {
   /// Message information.
   final MessageModel messageModel;
 
+  const MessageBox({
+    Key? key,
+    required this.messageModel,
+    required this.isMe,
+    required this.isLoadingMessage,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Align(
-      alignment: isMe ? Alignment.centerLeft : Alignment.centerRight,
+      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
-            color: isMe ? AstraColors.messageBoxColor : AstraColors.blue),
+          borderRadius: BorderRadius.circular(14),
+          color: isMe ? AstraColors.blue : AstraColors.messageBoxColor,
+        ),
         margin: EdgeInsets.only(
           top: 8,
           bottom: 8,
-          left: isMe ? 16 : screenWidth * 0.2,
-          right: isMe ? screenWidth * 0.2 : 16,
+          left: isMe ? screenWidth * 0.2 : 16,
+          right: isMe ? 16 : screenWidth * 0.2,
         ),
         padding: const EdgeInsets.all(8),
         child: Wrap(
@@ -43,7 +44,7 @@ class MessageBox extends StatelessWidget {
             Text(
               messageModel.messageText,
               style: TextStyle(
-                color: isMe ? AstraColors.black : AstraColors.white,
+                color: isMe ? AstraColors.white : AstraColors.black,
               ),
             ),
             Padding(
@@ -51,7 +52,7 @@ class MessageBox extends StatelessWidget {
               child: Text(
                 messageModel.time,
                 style: TextStyle(
-                  color: isMe ? AstraColors.black06 : AstraColors.white05,
+                  color: isMe ? AstraColors.white05 : AstraColors.black06,
                 ),
               ),
             ),

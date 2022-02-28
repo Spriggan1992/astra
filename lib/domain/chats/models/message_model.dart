@@ -19,7 +19,7 @@ class MessageModel with _$MessageModel {
     /// Flag indicating that the message was posted by the current user.
     required bool isMe,
 
-    /// Flag responsible for showing indicator of laoding message.
+    /// Flag responsible for showing indicator of loading message.
     required bool loadingMessageState,
   }) = _MessageModel;
 
@@ -45,13 +45,13 @@ class MessageModel with _$MessageModel {
   String get time => messageTime?.dateTimeToStringTime ?? '';
 
   /// Get time when message was posted.
-  String get gropuedTimePostedMessage {
+  String get groupedTimePostedMessage {
     if (messageTime!.isToday) {
       return 'Сегодня';
     } else if (messageTime!.isYesterday) {
       return 'Вчера';
     } else {
-      return '${messageTime!.day} ${messageTime?.dateTimeTodayAnMounth}';
+      return '${messageTime!.day} ${messageTime?.dateTimeTodayAnMounts}';
     }
   }
 }

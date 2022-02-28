@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:astra_app/domain/auth/failures/auth_failure.dart';
 import 'package:astra_app/infrastructure/auth/DTOs/token.dart';
-import 'package:astra_app/infrastructure/auth/extentions/dio_extensions.dart';
+import 'package:astra_app/infrastructure/auth/extensions/dio_extensions.dart';
 import 'package:astra_app/infrastructure/core/database/secure_strorage/i_secure_storage.dart';
 import 'package:astra_app/infrastructure/core/http/endpoints.dart';
 import 'package:dartz/dartz.dart';

@@ -1,5 +1,5 @@
-import 'package:astra_app/domain/chats/i_chat_repository.dart';
-import 'package:astra_app/domain/chats/message_model.dart';
+import 'package:astra_app/domain/chats/models/pagination_chat_model.dart';
+import 'package:astra_app/domain/chats/repositories/i_chat_repository.dart';
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,9 +20,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         await event.map(
           chatHistoryLoaded: (e) async {
             emit(const ChatState.loadInProgress());
-            final response = await _chatRepository.getChatHisory(e.chatId);
-            emit(response.fold((failure) => ChatState.loadFailure(failure),
-                (messages) => ChatState.loadSuccess(messages)));
+            final response = await _chatRepository.getChatHistory(e.chatId);
+            emit(
+              response.fold(
+                (failure) => ChatState.loadFailure(failure),
+                (paginationModel) => ChatState.loadSuccess(paginationModel),
+              ),
+            );
           },
         );
       },

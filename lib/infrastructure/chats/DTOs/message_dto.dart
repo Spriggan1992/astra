@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:astra_app/domain/chats/message_model.dart';
+import 'package:astra_app/domain/chats/models/message_model.dart';
 import 'package:astra_app/infrastructure/chats/extensions/string_to_date.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'message_dto.freezed.dart';

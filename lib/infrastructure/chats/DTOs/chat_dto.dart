@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:astra_app/domain/chats/chats_model.dart';
+import 'package:astra_app/domain/chats/models/chats_model.dart';
 import 'package:astra_app/infrastructure/chats/extensions/string_to_date.dart';
 import 'package:astra_app/infrastructure/core/DTOs/image_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -29,16 +29,21 @@ class ChatDTO with _$ChatDTO {
 
     /// Number of unread messages.
     @JsonKey(name: 'new_message_count') required int newMEssageCount,
+
+    /// The flag responsible for whether the user online or not.
+    @JsonKey(name: 'is_online') required bool? isOnline,
   }) = _ChatDTO;
 
 // Convert DTO to domain.
   ChatModel toDomain() => ChatModel(
-      id: id,
-      userName: userName,
-      userPhoto: userPhoto.toDomain(),
-      lastMessage: lastMessage ?? '',
-      lastMessageTime: lastMessageTime?.stringToDateTime,
-      newMessageCount: newMEssageCount);
+        id: id,
+        userName: userName,
+        userPhoto: userPhoto.toDomain(),
+        lastMessage: lastMessage ?? '',
+        lastMessageTime: lastMessageTime?.stringToDateTime,
+        newMessageCount: newMEssageCount,
+        isOnline: isOnline ?? false,
+      );
 
 // Return converted DTO from json.
   factory ChatDTO.fromJson(Map<String, dynamic> json) =>

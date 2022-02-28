@@ -2,14 +2,19 @@ part of 'chat_watcher_bloc.dart';
 
 @freezed
 class ChatWatcherEvent with _$ChatWatcherEvent {
-  /// Subscription initialoization event.
+  /// Subscription initialization event.
   const factory ChatWatcherEvent.initialized(
-      int chatId, List<MessageModel> messages) = _Initialized;
+    ChatModel chatModel,
+    PaginationChatModel paginationResult,
+  ) = _Initialized;
 
   /// Starts to watch chats updates event.
   const factory ChatWatcherEvent.chatStartedWatch() = _ChatWatched;
 
-  /// Start to watch internet status connection event.
+  /// Load next messages event.
+  const factory ChatWatcherEvent.nextMessagesLoaded() = _NextPageLoaded;
+
+  /// Starts to watch internet status connection event.
   const factory ChatWatcherEvent.internetConnectionStartedWatch() =
       _InternetConnectionWatchedWatched;
 
@@ -20,14 +25,18 @@ class ChatWatcherEvent with _$ChatWatcherEvent {
 
   /// Change status internet connection event.
   ///
-  /// The [hasConnection] responsable that there has internet connection.
+  /// The [hasConnection] responsible that there has internet connection.
   const factory ChatWatcherEvent.internetConnectionStatusConnectionChanged(
       bool hasConnection) = _SubscribeToInternetConnectionStatus;
 
-  /// Recived chat event.
-  ///
-  /// The [messageOrFailure] contains `SubscriptionModel` requiest was success, or `AstraFailure` if failure.
-  const factory ChatWatcherEvent.chatRecived(
-      Either<AstraFailure, SubscriptionModel<MessageModel>>
-          messageOrFailure) = _ChatRecived;
+  /// Received chat event.
+  const factory ChatWatcherEvent.chatReceived(
+      SubscriptionMessageModel message) = _ChatReceived;
+
+  /// Received chat event.
+  const factory ChatWatcherEvent.chatRead() = _ChatRead;
+
+  /// Received user status online event.
+  const factory ChatWatcherEvent.statusOnlineReceived(
+      SubscriptionStatusOnlineModel onlineStatus) = _StatusOnlineReceived;
 }

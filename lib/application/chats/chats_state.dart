@@ -8,7 +8,7 @@ class ChatsState with _$ChatsState {
   /// Progress loading states.
   const factory ChatsState.loadInProgress() = LoadInProgress;
 
-  /// Successfule loaded data state.
+  /// Successfully loaded data state.
   ///
   /// Keep state of [chats] if loaded successfully.
   const factory ChatsState.loadSuccess(List<ChatModel> chats) = LoadSuccess;

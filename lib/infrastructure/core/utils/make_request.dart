@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
-import 'package:astra_app/infrastructure/auth/extentions/dio_extensions.dart';
+import 'package:astra_app/infrastructure/auth/extensions/dio_extensions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -16,7 +16,7 @@ Future<Either<AstraFailure, T>> makeRequest<T>(
 ) async {
   try {
     final response = await callback();
-    log("$response", name: "sucess_response");
+    log("$response", name: "success_response");
     return right(response);
   } on DioError catch (e) {
     log("${e.message}: ${e.type}; response: ${e.response}", level: 2);
@@ -28,6 +28,7 @@ Future<Either<AstraFailure, T>> makeRequest<T>(
       return left(const AstraFailure.api());
     }
   } catch (e) {
+    log(e.toString(), level: 2);
     return left(const AstraFailure.api());
   }
 }

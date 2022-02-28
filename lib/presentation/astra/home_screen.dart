@@ -2,11 +2,12 @@ import 'package:astra_app/application/chats/chats_bloc.dart';
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
-import 'package:astra_app/application/user/user_cubit.dart';
+import 'package:astra_app/application/user/user_bloc.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
+import 'package:astra_app/presentation/core/widgets/custom/app_system_manager.dart';
 import 'package:astra_app/presentation/core/widgets/custom/restart_widget.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/navigation_bar.dart';
@@ -38,10 +39,11 @@ class HomeScreen extends StatelessWidget {
           create: (context) => getIt<ChatsBloc>(),
         ),
         BlocProvider(
-          create: (context) => getIt<UserCubit>()..subscribeToUpdateUser(),
+          create: (context) =>
+              getIt<UserBloc>()..add(const UserEvent.initialized()),
         ),
       ],
-      child: BlocConsumer<UserCubit, UserState>(
+      child: BlocConsumer<UserBloc, UserState>(
         listener: (context, state) {
           if (state.isUnexpectedError) {
             showDialog(
@@ -64,33 +66,35 @@ class HomeScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return AutoTabsScaffold(
-            extendBody: true,
-            resizeToAvoidBottomInset: false,
-            routes: _routes,
-            bottomNavigationBuilder: (navContext, tabsRouter) {
-              return NavigationBar(
-                onTap: (index) {
-                  tabsRouter.setActiveIndex(index);
-                  _loadDataWhenPressNavButton(navContext, index, _routes);
-                },
-                currentIndex: tabsRouter.activeIndex,
-                items: [
-                  NavigationBarItem(
-                    icon: Icons.search,
-                  ),
-                  NavigationBarItem(
-                    icon: CupertinoIcons.person_2_fill,
-                  ),
-                  NavigationBarItem(
-                    icon: CupertinoIcons.envelope,
-                  ),
-                  NavigationBarItem(
-                    icon: CupertinoIcons.settings,
-                  )
-                ],
-              );
-            },
+          return AppSystemManager(
+            child: AutoTabsScaffold(
+              extendBody: true,
+              resizeToAvoidBottomInset: false,
+              routes: _routes,
+              bottomNavigationBuilder: (navContext, tabsRouter) {
+                return NavigationBar(
+                  onTap: (index) {
+                    tabsRouter.setActiveIndex(index);
+                    _loadDataWhenPressNavButton(navContext, index, _routes);
+                  },
+                  currentIndex: tabsRouter.activeIndex,
+                  items: [
+                    NavigationBarItem(
+                      icon: Icons.search,
+                    ),
+                    NavigationBarItem(
+                      icon: CupertinoIcons.person_2_fill,
+                    ),
+                    NavigationBarItem(
+                      icon: CupertinoIcons.envelope,
+                    ),
+                    NavigationBarItem(
+                      icon: CupertinoIcons.settings,
+                    )
+                  ],
+                );
+              },
+            ),
           );
         },
       ),
@@ -107,7 +111,7 @@ void _loadDataWhenPressNavButton(
       break;
     case 1:
       context.read<FavoriteBloc>().add(FavoriteEvent.loadedData(
-          favoriteType: getFavoiteType(
+          favoriteType: getFavoriteType(
               context.read<FavoriteBloc>().state.favoriteType.index)));
       break;
     case 2:
@@ -116,7 +120,7 @@ void _loadDataWhenPressNavButton(
   }
 }
 
-FavoriteScreenType getFavoiteType(int index) {
+FavoriteScreenType getFavoriteType(int index) {
   FavoriteScreenType type = FavoriteScreenType.likesForYou;
   switch (index) {
     case 0:

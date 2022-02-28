@@ -1,8 +1,8 @@
 import 'package:astra_app/infrastructure/core/services/subscription_service/subscription_service.dart';
 import 'package:dart_amqp/dart_amqp.dart';
 
-/// Represent stttings connection for [SubscriptionService].
-class SubscriptionConnectionSetings {
+/// Represent settings connection for [SubscriptionService].
+class SubscriptionConnectionSettings {
   /// Connection settings.
   static final ConnectionSettings settings = ConnectionSettings(
     host: '92.255.108.56',

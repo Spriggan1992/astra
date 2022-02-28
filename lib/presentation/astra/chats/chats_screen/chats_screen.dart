@@ -28,7 +28,7 @@ class ChatsScreen extends StatelessWidget {
           loadSuccess: (state) {
             return BlocProvider(
               create: (context) => getIt<ChatsWatcherBloc>()
-                ..add(const ChatsWatcherEvent.watchStarted()),
+                ..add(ChatsWatcherEvent.initialized(state.chats)),
               child: ChatsScreenContent(state.chats),
             );
           },

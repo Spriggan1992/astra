@@ -18,6 +18,7 @@ final String relevantAdress = ServerAddress().imageAdress;
 class _SignalsEndpoints {
   String get users => _address + "user/signal/topic/profile/";
   String get chats => _address + "user/signal/topic/chat/";
+  String chat(int chatId) => _address + "user/signal/topic/chat/$chatId/";
 }
 
 class _AuthEndpoints {
@@ -33,7 +34,9 @@ class _ChatEndpoints {
   String get chats => _address + "user/chat/";
   String getMessages(int id) => _address + "user/chat/$id/";
   String sendMessage(int id) => _address + "user/chat/$id/send/";
+  String deleteChat(int id) => _address + "user/chat/delete/$id/";
   String get curatorChat => _address + "user/chat/curator/";
+  String read(int id) => _address + "user/chat/$id/read/";
 }
 
 class _FeedEndpoints {
@@ -57,6 +60,7 @@ class _ShopEndpoints {
 
 class _ProfileEndpoints {
   String get account => _address + "user/account/";
+  String get online => _address + "user/account/online/";
   String get feed => _address + "user/feed/";
   String get accountShort => _address + "user/account/min/";
   String get hideAccount => _address + "user/account/hidden/";

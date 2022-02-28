@@ -46,7 +46,7 @@ import 'package:auto_route/auto_route.dart';
       page: HomeScreen,
       children: [
         AutoRoute(
-          path: 'searche',
+          path: 'search',
           name: 'SearchRouter',
           page: EmptyRouterPage,
           children: [

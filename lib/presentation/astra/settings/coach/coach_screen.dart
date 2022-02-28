@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/core/services/i_user_unfo_service.dart';
+import 'package:astra_app/domain/core/services/i_cache_user_service.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_info_card.dart';
@@ -37,7 +37,7 @@ class _CoachScreenState extends State<CoachScreen> {
 
   @override
   void initState() {
-    profile = getIt<IUserInfoService>().userProfile;
+    profile = getIt<ICacheUserService>().userProfile;
 
     _fullImage = Image.file(profile.profilePhotos.first.fileImage!).image;
 

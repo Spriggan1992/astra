@@ -7,18 +7,38 @@ class ChatWatcherState with _$ChatWatcherState {
     required LoadingStates loadingStates,
 
     /// Chat messages.
-    required List<MessageModel> chatMessages,
+    required PaginationChatModel paginationResult,
 
     /// Chat id.
     required int chatId,
 
     /// Flag responsible internet connection state.
     required bool hasConnection,
+
+    /// Flag responsible whether messages already loaded or not.
+    required bool isNextMessagesLoaded,
+
+    /// Flag responsible for whether can load next messages or not.
+    required bool isAvailableToLoad,
+
+    /// Topic for subscribe to listen change online status.
+    required String topicOnlineStatus,
+
+    /// Whether the target user is online or not.
+    required bool isOnline,
+
+    /// The parameter of offset of messages loaded.
+    required int offset,
   }) = _ChatWatcherState;
-  factory ChatWatcherState.initila() => const ChatWatcherState(
+  factory ChatWatcherState.initial() => ChatWatcherState(
         loadingStates: LoadingStates.initial,
-        chatMessages: [],
+        paginationResult: PaginationChatModel.empty(),
         chatId: 0,
         hasConnection: true,
+        isNextMessagesLoaded: false,
+        isAvailableToLoad: true,
+        topicOnlineStatus: '',
+        isOnline: false,
+        offset: 0,
       );
 }
