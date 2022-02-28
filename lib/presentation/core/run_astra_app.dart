@@ -27,9 +27,6 @@ class AstraApp extends StatelessWidget {
           BlocProvider<SearchActionBloc>(
             create: (context) => getIt<SearchActionBloc>(),
           ),
-           BlocProvider<ProfilePropertiesBloc>(
-            create: (context) => getIt<ProfilePropertiesBloc>(),
-          ),
         ],
         child: MaterialApp.router(
           theme: AppTheme.lightTheme,

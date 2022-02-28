@@ -6,6 +6,7 @@ import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/search/applicants/applicant_screen.dart';
 import 'package:astra_app/presentation/astra/settings/application_form/widgets/application_form_card.dart';
 
+
 import 'package:flutter/material.dart';
 
 /// Defines application form screen

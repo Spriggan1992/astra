@@ -57,9 +57,6 @@ class ApplicantScreen extends StatelessWidget {
             const SizedBox(height: 48),
             ApplicantElevatedButton(
               onClick: () {
-                getIt<ProfilePropertiesBloc>()
-                    .add(ProfilePropertiesEvent.load(applicant.id));
-
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (_) {
@@ -70,14 +67,6 @@ class ApplicantScreen extends StatelessWidget {
                     },
                   ),
                 );
-
-                ///TODO Убрать комментарий и использовать код в комменте. Но сейчас почему то выходить ошибка.
-                // context.router.push(
-                //   ApplicantDetailScreenRoute(
-                //     applicant: applicant,
-                //     image: image,
-                //   ),
-                // );
               },
               isEnableButton: applicant.showInfo,
             ),

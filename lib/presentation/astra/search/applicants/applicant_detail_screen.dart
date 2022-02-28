@@ -28,69 +28,75 @@ class ApplicantDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AstraColors.blackMetallic07,
-        centerTitle: true,
-        title: const Text(
-          'Подробная анкета',
-          style: TextStyle(color: AstraColors.white, fontSize: 17),
+    return BlocProvider<ProfilePropertiesBloc>(
+      create: (context) => getIt<ProfilePropertiesBloc>()
+        ..add(
+          ProfilePropertiesEvent.load(applicant.id),
         ),
-        leading: IconButton(
-          onPressed: () {
-            context.router.pop();
-          },
-          icon: const Icon(Icons.arrow_back_ios, color: AstraColors.white),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AstraColors.blackMetallic07,
+          centerTitle: true,
+          title: const Text(
+            'Подробная анкета',
+            style: TextStyle(color: AstraColors.white, fontSize: 17),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              context.router.pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios, color: AstraColors.white),
+          ),
         ),
-      ),
-      body: BlocBuilder<ProfilePropertiesBloc, ProfilePropertiesState>(
-        builder: (context, state) {
-          if (state.stateType == SearchStateType.success) {
-            return state.profileProperties.isEmpty
-                ? const Center(child: Text('Список пуст.'))
-                : DecoratedBox(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: image,
-                        fit: BoxFit.cover,
+        body: BlocBuilder<ProfilePropertiesBloc, ProfilePropertiesState>(
+          builder: (context, state) {
+            if (state.stateType == SearchStateType.success) {
+              return state.profileProperties.isEmpty
+                  ? const Center(child: Text('Список пуст.'))
+                  : DecoratedBox(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: image,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.only(
-                          top: 16, left: 15, right: 15, bottom: 60),
-                      itemCount: state.profileProperties.length,
-                      itemBuilder: (context, index) {
-                        final additionalInfo = state.profileProperties[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 8.0, bottom: 16),
-                          child: ApplicantInfoCard(
-                            title: additionalInfo.title,
-                            desc: additionalInfo.value,
-                          ),
-                        );
-                      },
-                    ),
-                  );
-          } else if (state.stateType == SearchStateType.failure) {
-            return ErrorScreen(
-              failure: state.isUnexpectedError
-                  ? const AstraFailure.api()
-                  : const AstraFailure.noConnection(),
-              onTryAgain: () {
-                getIt<ProfilePropertiesBloc>()
-                    .add(ProfilePropertiesEvent.load(applicant.id));
-              },
-            );
-          } else {
-            return const Scaffold(
-              body: Center(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.only(
+                            top: 16, left: 15, right: 15, bottom: 60),
+                        itemCount: state.profileProperties.length,
+                        itemBuilder: (context, index) {
+                          final additionalInfo = state.profileProperties[index];
+                          return Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, bottom: 16),
+                            child: ApplicantInfoCard(
+                              title: additionalInfo.title,
+                              desc: additionalInfo.value,
+                            ),
+                          );
+                        },
+                      ),
+                    );
+            } else if (state.stateType == SearchStateType.failure) {
+              return ErrorScreen(
+                failure: state.isUnexpectedError
+                    ? const AstraFailure.api()
+                    : const AstraFailure.noConnection(),
+                onTryAgain: () {
+                  context
+                      .read<ProfilePropertiesBloc>()
+                      .add(ProfilePropertiesEvent.load(applicant.id));
+                },
+              );
+            } else {
+              return const Center(
                 child: PlatformActivityIndicator(),
-              ),
-            );
-          }
-        },
+              );
+            }
+          },
+        ),
       ),
     );
   }

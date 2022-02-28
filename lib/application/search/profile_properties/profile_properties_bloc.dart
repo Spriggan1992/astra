@@ -13,7 +13,7 @@ part 'profile_properties_bloc.freezed.dart';
 @injectable
 class ProfilePropertiesBloc
     extends Bloc<ProfilePropertiesEvent, ProfilePropertiesState> {
-  /// ProfilePropertiesRepository api.      
+  /// ProfilePropertiesRepository api.
   IProfilePropertiesRepository _api;
   ProfilePropertiesBloc(this._api) : super(ProfilePropertiesState.initial()) {
     on<ProfilePropertiesEvent>(
@@ -25,7 +25,6 @@ class ProfilePropertiesBloc
                 stateType: SearchStateType.initial,
               ),
             );
-
             final response = await _api.getProfileProperties(e.id);
             response.fold(
               (failure) => failure.map(
