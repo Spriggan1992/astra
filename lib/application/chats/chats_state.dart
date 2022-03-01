@@ -2,17 +2,19 @@ part of 'chats_bloc.dart';
 
 @freezed
 class ChatsState with _$ChatsState {
-  /// Initial states loaded.
-  const factory ChatsState.initial() = _Initial;
+  const factory ChatsState({
+    /// List of chat models.
+    required List<ChatModel> chats,
+    required ChatLoadingStatuses loadingStatuses,
 
-  /// Progress loading states.
-  const factory ChatsState.loadInProgress() = LoadInProgress;
+    /// Status of deleting chat.
+    required DeleteStatus deleteStatus,
+  }) = _ChatsWatcherState;
 
-  /// Successfully loaded data state.
-  ///
-  /// Keep state of [chats] if loaded successfully.
-  const factory ChatsState.loadSuccess(List<ChatModel> chats) = LoadSuccess;
-
-  /// Unsuccessfully loaded data state.
-  const factory ChatsState.loadFailure(AstraFailure failure) = _LoadFailure;
+  /// Initial state when bloc will be initialized.
+  factory ChatsState.initial() => const ChatsState(
+        chats: [],
+        deleteStatus: DeleteStatus.initial,
+        loadingStatuses: ChatLoadingStatuses.initial,
+      );
 }

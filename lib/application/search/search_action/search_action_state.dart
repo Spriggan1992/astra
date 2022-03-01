@@ -22,7 +22,7 @@ class SearchActionState with _$SearchActionState {
 
   // Initial states loaded.
   factory SearchActionState.initial() => const SearchActionState(
-        searchActionType: SearchActionType.unknoun,
+        searchActionType: SearchActionType.unknown,
         isLoading: false,
         isNoInternetConnection: false,
         isUnexpectedError: false,

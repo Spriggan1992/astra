@@ -1,5 +1,4 @@
 import 'package:astra_app/application/chats/chats_bloc.dart';
-import 'package:astra_app/application/chats/chats_watcher/chats_watcher_bloc.dart';
 import 'package:astra_app/domain/chats/models/chats_model.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
@@ -105,18 +104,14 @@ class ChatListItem extends StatelessWidget {
   }
 
   Future<void> _navigateToChatScreen(BuildContext context) async {
-    context
-        .read<ChatsWatcherBloc>()
-        .add(const ChatsWatcherEvent.chatsUnsubscribed());
+    context.read<ChatsBloc>().add(const ChatsEvent.chatsUnsubscribed());
     context.router
         .push(
       ChatScreenRoute(chatModel: chat),
     )
         .then((_) {
-      context.read<ChatsBloc>().add(const ChatsEvent.chatsLoaded());
-      context
-          .read<ChatsWatcherBloc>()
-          .add(ChatsWatcherEvent.initialized(chats));
+      context.read<ChatsBloc>().add(const ChatsEvent.chatsUpdated());
+      context.read<ChatsBloc>().add(const ChatsEvent.initialized());
     });
   }
 }

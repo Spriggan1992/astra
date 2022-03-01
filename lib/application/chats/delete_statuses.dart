@@ -7,5 +7,5 @@ enum DeleteStatus {
   success,
 
   /// Status of unsuccessfully deleted chat.
-  unsuccess,
+  failure,
 }

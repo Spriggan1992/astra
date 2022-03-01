@@ -1,12 +1,9 @@
 import 'package:astra_app/application/chats/chats_bloc.dart';
-import 'package:astra_app/application/chats/chats_watcher/chats_watcher_bloc.dart';
-import 'package:astra_app/injection.dart';
+import 'package:astra_app/application/chats/delete_statuses.dart';
 
-import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'chats_screen_content.dart';
+import 'chats_content.dart';
 
 /// Represent screens with displaying chats.
 class ChatsScreen extends StatelessWidget {
@@ -14,26 +11,32 @@ class ChatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatsBloc, ChatsState>(
-      builder: (context, state) {
-        return state.map(
-          initial: (_) => Container(),
-          loadFailure: (state) => ErrorScreen(
-            failure: state.failure,
-            onTryAgain: () {
-              context.read<ChatsBloc>().add(const ChatsEvent.chatsLoaded());
-            },
-          ),
-          loadInProgress: (_) => const LoadingScreen(),
-          loadSuccess: (state) {
-            return BlocProvider(
-              create: (context) => getIt<ChatsWatcherBloc>()
-                ..add(ChatsWatcherEvent.initialized(state.chats)),
-              child: ChatsScreenContent(state.chats),
-            );
-          },
-        );
-      },
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 1,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: Text(
+          'Сообщения',
+          style: Theme.of(context).textTheme.headline6!.copyWith(
+                color: const Color.fromRGBO(31, 31, 31, 1),
+                fontSize: 17,
+              ),
+        ),
+      ),
+      body: BlocConsumer<ChatsBloc, ChatsState>(
+        listener: (context, state) {
+          if (state.deleteStatus == DeleteStatus.failure) {
+            context.read<ChatsBloc>().add(const ChatsEvent.chatsUpdated());
+          }
+        },
+        builder: (context, state) {
+          return RefreshIndicator(
+              onRefresh: () async =>
+                  context.read<ChatsBloc>().add(const ChatsEvent.chatsLoaded()),
+              child: ChatsContent(state: state));
+        },
+      ),
     );
   }
 }

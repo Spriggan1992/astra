@@ -1,14 +1,17 @@
-
-/// [SearchActionState] - manages states of the SearchActionBloc 
-/// [liked] - user tapped like button.
-/// [blocked] - user tapped block button, to block an applicant.
-/// [rejected] - user tapped reject button.
-/// [thought] - thought state.
-/// [unknoun] - unknoun state. User has not done anything yet.
-enum SearchActionType{
+/// Manages states of the SearchActionBloc
+enum SearchActionType {
+  /// Applicant will be putted to category `Ваши лайки`.
   liked,
+
+  /// Applicant will be blocked.
   blocked,
+
+  /// Applicant will be putted to category `Стоп лист`.
   rejected,
+
+  /// Applicant will be putted to category `Подумать`.
   thought,
-  unknoun, 
+
+  ///  User has not done anything yet.
+  unknown,
 }

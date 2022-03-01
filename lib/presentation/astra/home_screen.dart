@@ -116,6 +116,7 @@ void _loadDataWhenPressNavButton(
       break;
     case 2:
       context.read<ChatsBloc>().add(const ChatsEvent.chatsLoaded());
+      context.read<ChatsBloc>().add(const ChatsEvent.initialized());
       break;
   }
 }
