@@ -1,19 +1,11 @@
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/theming/gradients.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class HowToGetClubScreen extends StatelessWidget {
   const HowToGetClubScreen({Key? key}) : super(key: key);
-
-  static const String routeName = '/howtogetclub';
-
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const HowToGetClubScreen(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +51,7 @@ class HowToGetClubScreen extends StatelessWidget {
                     'Регистарция платная. \nВ стоимость входит: заполнение вместе с вами расширенной анкеты, составление психологического профиля, работа видазжиста и фотографа (2-3 фото из нашей студии в профиле обязательны).',
                   ),
                   _buildLineText(
-                    ' Связаться с нами можно по телефону: \n +7 (999) 123-45-67 */',
+                    ' Связаться с нами можно по телефону: \n +7 (999) 123-45-67',
                   ),
                 ],
               ),
@@ -69,9 +61,7 @@ class HowToGetClubScreen extends StatelessWidget {
             iconColor: AstraColors.white02,
             elevation: 0,
             bgColor: Colors.transparent,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: () => context.router.pop(),
           ),
         ],
       ),

@@ -1,6 +1,5 @@
 import 'package:astra_app/application/auth/auth/auth_bloc.dart';
-import 'package:astra_app/application/user/user_bloc.dart';
-import 'package:astra_app/injection.dart';
+import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/gradients.dart';
 import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
@@ -13,7 +12,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SplashScreen extends StatelessWidget {
   /// Flag responsible for showing download indicator.
   final bool isLoading;
+
   const SplashScreen({Key? key, this.isLoading = false}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     FocusScope.of(context).unfocus();
@@ -22,14 +23,35 @@ class SplashScreen extends StatelessWidget {
         BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             state.maybeMap(
-                orElse: () {},
-                initial: (_) {},
-                authenticated: (_) {
-                  AutoRouter.of(context).push(const HomeScreenRoute());
-                },
-                unauthenticated: (_) {
-                  AutoRouter.of(context).push(const PhoneNumberScreenRoute());
-                });
+              orElse: () {},
+              initial: (_) {},
+              authenticated: (state) {
+                if (!state.isFirstAuth) {
+                  context.router.push(
+                    StoreScreenRoute(
+                      storeQualifier:
+                          StoreScreenQualifier.storeAfterRegistration,
+                    ),
+                  );
+                } else {
+                  if (state.hasLikes) {
+                    context.router.push(
+                      const HomeScreenRoute(),
+                    );
+                  } else {
+                    context.router.push(
+                      StoreScreenRoute(
+                        storeQualifier:
+                            StoreScreenQualifier.storeAfterRegistration,
+                      ),
+                    );
+                  }
+                }
+              },
+              unauthenticated: (_) {
+                context.router.replace(const EnterScreenRoute());
+              },
+            );
           },
         ),
       ],
@@ -49,9 +71,11 @@ class SplashScreen extends StatelessWidget {
               const Logo(logoWithText: true),
               const SizedBox(height: 40),
               Visibility(
-                  visible: isLoading,
-                  child: const PlatformActivityIndicator(
-                      isCapertinoDarkTheme: true)),
+                visible: isLoading,
+                child: const PlatformActivityIndicator(
+                  isCupertinoDarkTheme: true,
+                ),
+              ),
             ],
           ),
         ),

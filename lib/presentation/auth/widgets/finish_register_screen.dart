@@ -1,7 +1,10 @@
+import 'package:astra_app/application/auth/auth/auth_bloc.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_button.dart';
+import 'package:astra_app/presentation/core/widgets/logo.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FinishRegisterScreen extends StatelessWidget {
   const FinishRegisterScreen({Key? key}) : super(key: key);
@@ -26,7 +29,11 @@ class FinishRegisterScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/logo.png'),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 4,
+              height: MediaQuery.of(context).size.height / 5,
+              child: const Logo(logoWithText: true),
+            ),
             Stack(
               children: [
                 Padding(
@@ -48,14 +55,15 @@ class FinishRegisterScreen extends StatelessWidget {
               ],
             ),
             const Text(
-              'Доступ к анкетам \nпользователя открыт!',
+              'Доступ к анкетам \nпользователей открыт!',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white),
             ),
             AstraButton(
               title: 'Начать просмотр',
               onTap: () {
-                AutoRouter.of(context).push(const HomeScreenRoute());
+                context.read<AuthBloc>().add(const AuthEvent.firstAuthSet());
+                context.router.push(const HomeScreenRoute());
               },
             ),
           ],

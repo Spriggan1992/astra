@@ -1,4 +1,5 @@
 import 'package:astra_app/application/chat/chat_wathcer/chat_watcher_bloc.dart';
+import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,15 +20,12 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color.fromRGBO(217, 191, 131, 0.8),
-        ),
-        borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(32),
           topRight: Radius.circular(32),
         ),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [
             Color.fromRGBO(30, 49, 90, 1),
             Color.fromRGBO(24, 38, 71, 1),
@@ -45,7 +43,7 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Form(
                       child: TextFormField(
                         maxLines: null,
@@ -84,15 +82,14 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
                       _controller.text = '';
                     }
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(5.0),
                     child: CircleAvatar(
-                      backgroundColor: const Color.fromRGBO(251, 251, 251, 0.2),
+                      backgroundColor: Color.fromRGBO(251, 251, 251, 0.2),
                       radius: 16,
-                      child: Image.asset(
-                        'assets/paper_plane.png',
-                        color: Colors.white,
-                        scale: 0.9,
+                      child: SvgIcon(
+                        height: 24,
+                        asset: 'assets/icons/paper-plane.svg',
                       ),
                     ),
                   ),

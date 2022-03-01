@@ -2,7 +2,7 @@ part of 'code_bloc.dart';
 
 @freezed
 class CodeEvent with _$CodeEvent {
-  /// Screen initialoization event.
+  /// Screen initialization event.
   const factory CodeEvent.initialized(String phoneNumber) = _Initialized;
 
   /// Code change event.

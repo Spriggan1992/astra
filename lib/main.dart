@@ -25,6 +25,5 @@ Future<void> _appInitializer() async {
     )
     ..interceptors.add(getIt<DioInterceptor>());
   getIt.registerSingleton<AppRouter>(AppRouter());
-  BlocOverrides.runZoned(() => runApp(const AstraApp()),
-      blocObserver: SimpleBlocObserver());
+  BlocOverrides.runZoned(() => runApp(const AstraApp()));
 }

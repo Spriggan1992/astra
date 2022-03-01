@@ -27,7 +27,9 @@
         "pofile",
         "politicsscreen",
         "Promocode",
+        "RGBO",
         "Sembast",
+        "unfocus",
         "wathcer"
     ],
     "dart.flutterSdkPath": "/Users/romankozlov/fvm/versions/2.10.2"

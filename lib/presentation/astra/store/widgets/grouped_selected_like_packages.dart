@@ -25,7 +25,8 @@ class GroupedSelectedLikePackages extends StatelessWidget {
         children: likes
             .map((item) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: AstraBorderredButton(
+                  child: AstraBorderedButton(
+                    enableRippleEffect: false,
                     onTap: () => onSelectLike(item),
                     title: item.likeInfo,
                     withBorder: item.id != selectedLike.id,

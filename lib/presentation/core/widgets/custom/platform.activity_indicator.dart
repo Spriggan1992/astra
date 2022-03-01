@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PlatformActivityIndicator extends StatelessWidget {
-  final bool isCapertinoDarkTheme;
+  final bool isCupertinoDarkTheme;
   final Color? materialIndicatorColor;
   const PlatformActivityIndicator(
       {Key? key,
-      this.isCapertinoDarkTheme = false,
+      this.isCupertinoDarkTheme = false,
       this.materialIndicatorColor})
       : super(key: key);
 
@@ -20,7 +20,7 @@ class PlatformActivityIndicator extends StatelessWidget {
         ? CupertinoTheme(
             data: CupertinoTheme.of(context).copyWith(
                 brightness:
-                    isCapertinoDarkTheme ? Brightness.dark : Brightness.light),
+                    isCupertinoDarkTheme ? Brightness.dark : Brightness.light),
             child: const CupertinoActivityIndicator())
         : Center(
             child: CircularProgressIndicator(color: materialIndicatorColor));

@@ -19,10 +19,10 @@ class PasswordState with _$PasswordState {
     required bool isSignIn,
 
     /// A flag that responsible that user successfully signed in.
-    required bool isSuseccfullySignIn,
+    required bool isSuccessfullySignIn,
 
     /// A flag that responsible for redirect to [ConfirmPasswordScreen].
-    required bool redirectToConfirmePassword,
+    required bool redirectToConfirmPassword,
 
     /// A flag responsible fo loading data.
     required bool isLoading,
@@ -41,8 +41,8 @@ class PasswordState with _$PasswordState {
         isEnableBtn: false,
         errorMessage: '',
         isSignIn: false,
-        isSuseccfullySignIn: false,
-        redirectToConfirmePassword: false,
+        isSuccessfullySignIn: false,
+        redirectToConfirmPassword: false,
         isLoading: false,
         isNoConnection: false,
       );

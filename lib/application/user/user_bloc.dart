@@ -40,6 +40,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                 noConnection: (_) => null,
               ),
               (subscriptionTopics) {
+                _subscription = null;
                 _subscription = _updateUserRepo
                     .subscribeToUserUpdate(subscriptionTopics.topics)
                     .listen(
@@ -65,14 +66,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               },
             );
           },
+          userUpdatesUnsubscribed: (e) async {
+            await _subscription!.cancel();
+            await _updateUserRepo.dispose();
+          },
           userStatusOnlineUpdated: (e) async {
             final response = await _updateUserRepo.updatedUserOnlineStatus(
                 UserOnlineStatusModel(isOnline: e.isOnline));
-            response.fold((l) => emit(state.copyWith(isUnexpectedError: true)),
-                (r) {
-              log('Successfully send status', name: 'User online status');
-              emit(state.copyWith(isOnline: r.isOnline));
-            });
+            response.fold(
+              (l) => emit(state.copyWith(isUnexpectedError: true)),
+              (r) {
+                log('Successfully send status', name: 'User online status');
+                emit(state.copyWith(isOnline: r.isOnline));
+              },
+            );
           },
         );
       },
@@ -81,7 +88,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   @override
   Future<void> close() async {
     await _subscription!.cancel();
-    await _updateUserRepo.dispose();
     return super.close();
   }
 }

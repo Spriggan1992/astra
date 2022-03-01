@@ -15,7 +15,7 @@ part 'my_profile_bloc.freezed.dart';
 
 @injectable
 class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
-  final IStoreReposytory _storeRepository;
+  final IStoreRepository _storeRepository;
   final IProfileRepository _profileRepo;
   final ICacheUserService _userInfo;
   MyProfileBloc(this._profileRepo, this._storeRepository, this._userInfo)

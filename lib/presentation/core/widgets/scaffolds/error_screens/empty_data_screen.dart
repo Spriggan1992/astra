@@ -6,7 +6,7 @@ class EmptyDataScreen extends BaseErrorScreen {
   final VoidCallback? onClick;
   EmptyDataScreen({
     Key? key,
-    this.title = 'Список пусе',
+    this.title = 'Список пуст',
     this.onClick,
   }) : super(
           key,

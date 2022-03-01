@@ -37,7 +37,7 @@ class MessageBox extends StatelessWidget {
           left: isMe ? screenWidth * 0.2 : 16,
           right: isMe ? 16 : screenWidth * 0.2,
         ),
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.only(top: 12, left: 12, right: 8, bottom: 8),
         child: Wrap(
           alignment: WrapAlignment.end,
           children: [

@@ -17,33 +17,41 @@ class PasswordScreen extends StatelessWidget {
   /// A phone number for signin/signup.
   final String phoneNumber;
 
-  /// A code fore confirme registration.
+  /// A code fore confirm registration.
   final String? code;
+
   const PasswordScreen({Key? key, required this.phoneNumber, this.code})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<PasswordBloc>()
-        ..add(PasswordEvent.initialized(phoneNumber, code)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<PasswordBloc>()
+            ..add(PasswordEvent.initialized(phoneNumber, code)),
+        ),
+      ],
       child: BlocListener<PasswordBloc, PasswordState>(
         listener: (context, state) {
-          if (state.isSuseccfullySignIn) {
+          if (state.isSuccessfullySignIn) {
             context.read<AuthBloc>().add(const AuthEvent.authCheckRequested());
+            // context.read<AuthBloc>().add(const AuthEvent.firstAuthSet());
             context.router.navigate(SplashScreenRoute(isLoading: true));
             FocusScope.of(context).unfocus();
           }
-          if (state.redirectToConfirmePassword) {
-            AutoRouter.of(context).push(ConfirmPasswordScreenRoute(
-                phoneNumber: state.phoneNumber,
-                confirmePassword: state.password));
+          if (state.redirectToConfirmPassword) {
+            context.router.push(ConfirmPasswordScreenRoute(
+              phoneNumber: state.phoneNumber,
+              confirmPassword: state.password,
+            ));
           }
           if (state.isNoConnection) {
             showSnackBar(context);
           }
         },
         child: ScreenContent(
-          onBackPresed: () => context.router.pop(),
+          onBackPressed: () => context.router.pop(),
           title: code == null ? "Введите пароль" : "Задайте пароль",
           textFieldContent: BlocBuilder<PasswordBloc, PasswordState>(
               buildWhen: (p, c) =>
@@ -76,7 +84,7 @@ class PasswordScreen extends StatelessWidget {
                   onClick: () {
                     context
                         .read<PasswordBloc>()
-                        .add(const PasswordEvent.pressedButn());
+                        .add(const PasswordEvent.pressedButton());
                   },
                 );
               }),

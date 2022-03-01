@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:astra_app/application/core/extensions/sort_chats.dart';
 import 'package:astra_app/domain/chats/models/chats_model.dart';
 import 'package:astra_app/domain/chats/repositories/i_chats_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -28,7 +29,6 @@ class ChatsWatcherBloc extends Bloc<ChatsWatcherEvent, ChatsWatcherState> {
           watchStarted: (e) async {
             _subscription =
                 _chatsRepository.subscribeToChatsUpdates().listen((snapshot) {
-              log(snapshot.toString(), name: 'chats or failure');
               add(const ChatsWatcherEvent.chatsUpdated());
             });
           },
@@ -37,8 +37,7 @@ class ChatsWatcherBloc extends Bloc<ChatsWatcherEvent, ChatsWatcherState> {
             response.fold(
               (_) => null,
               (chats) {
-                final updatedChats = chats.sorted(
-                    (a, b) => b.newMessageCount.compareTo(a.newMessageCount));
+                final updatedChats = chats.sortChats;
                 emit(state.copyWith(chats: updatedChats));
               },
             );

@@ -1,8 +1,10 @@
+import 'package:astra_app/application/auth/auth/auth_bloc.dart';
 import 'package:astra_app/application/settings/store/store_actor/store_actor_bloc.dart';
 import 'package:astra_app/application/settings/store/store_bloc.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/store/widgets/astra_pay_button.dart';
 import 'package:astra_app/presentation/core/enums/store_screen_qualifier.dart';
+import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/store_dialog.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
@@ -13,21 +15,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:developer';
 
-import 'widgets/astra_check_box.dart';
 import 'widgets/grouped_selected_like_packages.dart';
 
+/// Represent store screen.
 class StoreScreen extends StatelessWidget {
-  /// Current screen qualifier
+  /// Current screen qualifier. Determines from what place store was navigated
+  /// from settings or from login
   final StoreScreenQualifier storeQualifier;
 
-  const StoreScreen(
-      {Key? key, this.storeQualifier = StoreScreenQualifier.storeSettings})
-      : super(key: key);
+  const StoreScreen({
+    Key? key,
+    this.storeQualifier = StoreScreenQualifier.storeSettings,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<StoreBloc>()..add(const StoreEvent.initialized()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) =>
+              getIt<StoreBloc>()..add(const StoreEvent.initialized()),
+        ),
+      ],
       child: BlocBuilder<StoreBloc, StoreState>(
         builder: (context, state) {
           return state.map(
@@ -38,8 +47,8 @@ class StoreScreen extends StatelessWidget {
                 ..add(StoreActorEvent.initialized(state.likes)),
               child: StoreScreenContent(storeQualifier: storeQualifier),
             ),
-            loadFailure: (stateFauilure) => ErrorScreen(
-              failure: stateFauilure.failure,
+            loadFailure: (stateFailure) => ErrorScreen(
+              failure: stateFailure.failure,
               onTryAgain: () {
                 context.read<StoreBloc>().add(const StoreEvent.initialized());
               },
@@ -64,9 +73,10 @@ class StoreScreenContent extends StatelessWidget {
           storeQualifier == StoreScreenQualifier.storeSettings,
       child: Scaffold(
         appBar: AstraAppBar(
-          onPressed: () {
-            context.router.pop();
-          },
+          onPressed:
+              storeQualifier == StoreScreenQualifier.storeAfterRegistration
+                  ? null
+                  : () => context.router.pop(),
           title: 'Магазин',
           elevation: 0.3,
           actions: [
@@ -80,7 +90,7 @@ class StoreScreenContent extends StatelessWidget {
                 );
               },
               icon: const Icon(
-                Icons.error_outline,
+                Icons.info_outline,
                 size: 25,
                 color: Color.fromRGBO(24, 24, 24, 0.6),
               ),
@@ -111,7 +121,8 @@ class StoreScreenContent extends StatelessWidget {
                 selectedLike: state.like,
               ),
             ),
-            const AstraCheckBox(),
+            // const AstraCheckBox(), // TODO don't delete while we don't decide what if we need this feature.
+            const SizedBox(height: 24),
             const Divider(
               color: AstraColors.dividerColor,
               thickness: 1,
@@ -149,15 +160,67 @@ class StoreScreenContent extends StatelessWidget {
             const SizedBox(height: 40),
             BlocBuilder<StoreActorBloc, StoreActorState>(
               builder: (context, state) {
-                return AstraPayButton(
-                  context: context,
-                  state: state,
-                  onApplePayResult: onApplePayResult,
-                  onGooglePayResult: onGooglePayResult,
-                  onPressed: onBtnPressed,
+                return BlocBuilder<AuthBloc, AuthState>(
+                  builder: (ctx, st) {
+                    return st.maybeMap(
+                      orElse: () => const SizedBox.shrink(),
+                      authenticated: (authState) => AstraPayButton(
+                        context: context,
+                        state: state,
+                        onApplePayResult: (payResult) {
+                          log(payResult.toString(), name: "APay result");
+                          authState.isFirstAuth
+                              ? context.router.push(const HomeScreenRoute())
+                              : context.router
+                                  .push(const FinishRegisterScreenRoute());
+                          context
+                              .read<AuthBloc>()
+                              .add(const AuthEvent.firstAuthSet());
+                        },
+                        onGooglePayResult: (payResult) {
+                          log(payResult.toString(), name: "GPay result");
+                          authState.isFirstAuth
+                              ? context.router.push(const HomeScreenRoute())
+                              : context.router
+                                  .push(const FinishRegisterScreenRoute());
+                          context
+                              .read<AuthBloc>()
+                              .add(const AuthEvent.firstAuthSet());
+                        },
+                        onPressed: onBtnPressed,
+                      ),
+                    );
+                  },
                 );
               },
             ),
+            const SizedBox(height: 20),
+            if (storeQualifier == StoreScreenQualifier.storeAfterRegistration)
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () => SizedBox.shrink(),
+                    authenticated: (state) => TextButton(
+                      onPressed: () async {
+                        state.isFirstAuth
+                            ? context.router.push(const HomeScreenRoute())
+                            : context.router
+                                .push(const FinishRegisterScreenRoute());
+                        context
+                            .read<AuthBloc>()
+                            .add(const AuthEvent.firstAuthSet());
+                      },
+                      child: const Text(
+                        "Позже",
+                        style: TextStyle(
+                          color: AstraColors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
           ],
         ),
       ),
@@ -165,12 +228,4 @@ class StoreScreenContent extends StatelessWidget {
   }
 
   onBtnPressed() => log("Button pressed", name: "on pressed");
-
-  void onGooglePayResult(paymentResult) {
-    log("$paymentResult", name: "gpay payment results");
-  }
-
-  void onApplePayResult(paymentResult) {
-    log("$paymentResult", name: "apay payment result");
-  }
 }

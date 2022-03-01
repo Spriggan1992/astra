@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:astra_app/application/core/extensions/sort_chats.dart';
 import 'package:astra_app/domain/chats/models/chats_model.dart';
 import 'package:astra_app/domain/chats/repositories/i_chats_repository.dart';
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
@@ -27,8 +28,7 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
               response.fold(
                 (failure) => ChatsState.loadFailure(failure),
                 (chats) {
-                  final updatedChats = chats.sorted(
-                      (a, b) => b.newMessageCount.compareTo(a.newMessageCount));
+                  final updatedChats = chats.sortChats;
                   return ChatsState.loadSuccess(updatedChats);
                 },
               ),

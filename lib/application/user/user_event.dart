@@ -8,6 +8,9 @@ class UserEvent with _$UserEvent {
   /// Start to watch updates user info event.
   const factory UserEvent.userUpdatesWatched() = _UserUpdatesWatched;
 
+  /// Unsubscribe update user event.
+  const factory UserEvent.userUpdatesUnsubscribed() = _Unsubscribed;
+
   /// Connection to the websocket channel event.
   const factory UserEvent.userStatusOnlineUpdated(bool isOnline) =
       _UserOnlineStatusConnected;

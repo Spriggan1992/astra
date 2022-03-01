@@ -1,4 +1,5 @@
-import 'package:astra_app/application/search/profile_properties/profile_properties_bloc.dart';
+import 'dart:developer';
+
 import 'package:astra_app/application/search/search_action/search_action_bloc.dart';
 import 'package:astra_app/application/search/search_bloc.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
@@ -12,6 +13,7 @@ import 'widgets/custom/restart_widget.dart';
 // This widget is the root of your application.
 class AstraApp extends StatelessWidget {
   const AstraApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return RestartWidget(
@@ -36,43 +38,5 @@ class AstraApp extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class SimpleBlocObserver extends BlocObserver {
-  @override
-  void onCreate(BlocBase bloc) {
-    print('created $bloc');
-    super.onCreate(bloc);
-  }
-
-  @override
-  void onEvent(Bloc bloc, Object? event) {
-    print(event);
-    super.onEvent(bloc, event);
-  }
-
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    print(change);
-    super.onChange(bloc, change);
-  }
-
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    print(transition);
-    super.onTransition(bloc, transition);
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print(error);
-    super.onError(bloc, error, stackTrace);
-  }
-
-  @override
-  void onClose(BlocBase bloc) {
-    print('closed $bloc');
-    super.onClose(bloc);
   }
 }

@@ -7,7 +7,8 @@ class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
 
   /// State of authenticated user.
-  const factory AuthState.authenticated() = _Authenticated;
+  const factory AuthState.authenticated(bool hasLikes, bool isFirstAuth) =
+      _Authenticated;
 
   /// State of unauthenticated user.
   const factory AuthState.unauthenticated() = _Unauthenticated;

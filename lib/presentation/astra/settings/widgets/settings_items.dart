@@ -17,6 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsItems extends StatelessWidget {
   final ProfileShortModel profile;
+
   const SettingsItems({
     Key? key,
     required this.profile,
@@ -41,6 +42,9 @@ class SettingsItems extends StatelessWidget {
             listener: (context, state) {
               if (!state.isOnline &&
                   context.read<LogoutCubit>().state.canLogout) {
+                context
+                    .read<UserBloc>()
+                    .add(const UserEvent.userUpdatesUnsubscribed());
                 context.read<AuthBloc>().add(const AuthEvent.signedOut());
               }
             },

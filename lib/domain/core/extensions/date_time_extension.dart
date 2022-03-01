@@ -1,7 +1,15 @@
 /// Represent [DateTime] converter.
 extension DateTimeToString on DateTime {
   /// Convert [DateTime] to string representation time as hours and time.
-  String get dateTimeToStringTime => '$hour:$minute';
+  String get dateTimeToStringTime => '$hour:${_getMinutes()}';
+
+  String _getMinutes() {
+    if (minute < 10) {
+      return '0$minute';
+    } else {
+      return minute.toString();
+    }
+  }
 
   /// Returns true if dateTime is today.
   bool get isToday {

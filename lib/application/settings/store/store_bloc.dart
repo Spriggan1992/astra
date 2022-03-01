@@ -13,7 +13,7 @@ part 'store_bloc.freezed.dart';
 @injectable
 class StoreBloc extends Bloc<StoreEvent, StoreState> {
   /// Store api repository.
-  final IStoreReposytory _storeRepository;
+  final IStoreRepository _storeRepository;
   StoreBloc(this._storeRepository) : super(const StoreState.initial()) {
     on<StoreEvent>((event, emit) async {
       await event.map(initialized: (e) async {

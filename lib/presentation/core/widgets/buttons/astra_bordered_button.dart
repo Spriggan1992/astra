@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 
-class AstraBorderredButton extends StatelessWidget {
+/// Represent button with border.
+class AstraBorderedButton extends StatelessWidget {
+  /// Button title to display.
   final String title;
+
+  /// Whether to show border.
   final bool withBorder;
+
+  /// Button click event handler.
   final VoidCallback onTap;
 
-  const AstraBorderredButton(
-      {Key? key,
-      required this.title,
-      required this.withBorder,
-      required this.onTap})
-      : super(key: key);
+  /// Whether to show ripple effect when press on button.
+  final bool enableRippleEffect;
+
+  const AstraBorderedButton({
+    Key? key,
+    required this.title,
+    required this.withBorder,
+    required this.onTap,
+    this.enableRippleEffect = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +34,9 @@ class AstraBorderredButton extends StatelessWidget {
             fontSize: 18),
       ),
       style: ButtonStyle(
+        splashFactory: enableRippleEffect
+            ? InkRipple.splashFactory
+            : NoSplash.splashFactory,
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),

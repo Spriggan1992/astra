@@ -9,11 +9,11 @@ class ScreenContent extends StatelessWidget {
   /// A text field to display.
   final Widget textFieldContent;
 
-  /// Botton widget.
+  /// Button widget.
   final Widget button;
 
   /// App bar backpress click event handler.
-  final VoidCallback? onBackPresed;
+  final VoidCallback? onBackPressed;
 
   /// A notification message to display.
   final Widget? notificationMessageContent;
@@ -24,7 +24,7 @@ class ScreenContent extends StatelessWidget {
     required this.textFieldContent,
     required this.button,
     this.notificationMessageContent,
-    this.onBackPresed,
+    this.onBackPressed,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class ScreenContent extends StatelessWidget {
     return Scaffold(
       appBar: AstraAppBar(
         elevation: 0,
-        onPressed: onBackPresed ?? () {},
+        onPressed: onBackPressed ?? () {},
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),

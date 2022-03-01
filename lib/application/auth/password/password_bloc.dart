@@ -19,7 +19,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
           emit(
             state.copyWith(
               code: e.code,
-              phoneNumber: e.phoneNumber,
+              phoneNumber: e.phoneNumber.replaceAll(RegExp(r'[^\d]'), ""),
               isSignIn: isSignIn,
             ),
           );
@@ -34,12 +34,12 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
             ),
           );
         },
-        pressedButn: (e) async {
+        pressedButton: (e) async {
           if (state.isSignIn) {
             emit(state.copyWith(isLoading: true));
             final response = await _apiService.signIn(
               AuthInfo(
-                phoneNumber: state.phoneNumber,
+                phoneNumber: state.phoneNumber.replaceAll(RegExp(r'[^\d]'), ""),
                 password: state.password,
               ),
             );
@@ -53,20 +53,20 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
                 noConnection: (_) => emit(state.copyWith(isNoConnection: true)),
                 orElse: () {},
               ),
-              (suscess) => emit(
+              (success) => emit(
                 state.copyWith(
-                  isSuseccfullySignIn: response.isRight(),
+                  isSuccessfullySignIn: response.isRight(),
                 ),
               ),
             );
             emit(state.copyWith(
               isLoading: false,
               isNoConnection: false,
-              isSuseccfullySignIn: false,
+              isSuccessfullySignIn: false,
             ));
           } else {
             emit(
-              state.copyWith(redirectToConfirmePassword: true),
+              state.copyWith(redirectToConfirmPassword: true),
             );
           }
         },

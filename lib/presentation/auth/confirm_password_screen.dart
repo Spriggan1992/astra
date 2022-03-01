@@ -13,17 +13,17 @@ class ConfirmPasswordScreen extends StatelessWidget {
   /// A phone number for signin/signup.
   final String phoneNumber;
 
-  /// A password for confirmetion of registration.
-  final String confirmePassword;
+  /// A password for confirmation of registration.
+  final String confirmPassword;
 
   const ConfirmPasswordScreen(
-      {Key? key, required this.phoneNumber, required this.confirmePassword})
+      {Key? key, required this.phoneNumber, required this.confirmPassword})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<ConfirmPasswordBloc>()
-        ..add(ConfirmPasswordEvent.initialized(phoneNumber, confirmePassword)),
+        ..add(ConfirmPasswordEvent.initialized(phoneNumber, confirmPassword)),
       child: BlocConsumer<ConfirmPasswordBloc, ConfirmPasswordState>(
         listener: (context, state) {
           if (state.isSuccessfullySubmitted) {

@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Shared preferances repository.
+/// Shared preferences repository.
 @lazySingleton
 class LocalRepository {
   final SharedPreferences _pref;

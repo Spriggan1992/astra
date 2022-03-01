@@ -5,7 +5,7 @@ import 'package:astra_app/domain/store/models/wallet_history.dart';
 import 'package:dartz/dartz.dart';
 
 /// Describe store api service.
-abstract class IStoreReposytory {
+abstract class IStoreRepository {
   /// Get like packages.
   Future<Either<AstraFailure, List<Like>>> getLikePackages();
 

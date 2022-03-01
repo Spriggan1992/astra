@@ -23,7 +23,7 @@ class CodeScreen extends StatelessWidget {
       child: BlocBuilder<CodeBloc, CodeState>(
         builder: (context, state) {
           return ScreenContent(
-            onBackPresed: () => context.router.pop(),
+            onBackPressed: () => context.router.pop(),
             title: "Код из сообщения",
             textFieldContent: PinCodeField(
               isError: state.isShowErrorMessage,

@@ -55,11 +55,9 @@ class ChatWatcherBloc extends Bloc<ChatWatcherEvent, ChatWatcherState> {
                             loadingStates: LoadingStates.noConnectionFailure)),
                     (subscription) {
                   if (subscription is SubscriptionMessageModel) {
-                    log(snapshot.toString(), name: 'subModelOrFailure 1');
                     add(ChatWatcherEvent.chatReceived(subscription));
                   }
                   if (subscription is SubscriptionStatusOnlineModel) {
-                    log(snapshot.toString(), name: 'subModelOrFailure 2');
                     add(ChatWatcherEvent.statusOnlineReceived(subscription));
                   }
                 });

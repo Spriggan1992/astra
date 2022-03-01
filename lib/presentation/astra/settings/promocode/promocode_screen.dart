@@ -27,8 +27,9 @@ class PromocodeScreen extends StatelessWidget {
         listener: (context, state) {
           if (state.isNotValid) {
             showDialog(
-                context: context,
-                builder: (context) => const PromocodeDialogFailure());
+              context: context,
+              builder: (context) => const PromocodeDialogFailure(),
+            );
           }
           if (state.isSuccess) {
             showDialog(
@@ -93,7 +94,7 @@ class PromocodeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  KayboardVisibility(
+                  KeyboardVisibility(
                     scaffoldContext: context,
                     child: (isVisible) =>
                         BlocBuilder<PromocodeBloc, PromocodeState>(

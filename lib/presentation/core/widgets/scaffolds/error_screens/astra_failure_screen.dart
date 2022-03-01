@@ -40,6 +40,6 @@ String _getErrorMessage(AstraFailure failure) {
   if (failure == const AstraFailure.api()) {
     return 'Что то пошло не так...';
   } else {
-    return 'Ошибка с соединением.\nПроверьте подключение к интернету.';
+    return 'Ошибка соединения.\nПроверьте подключение к интернету.';
   }
 }

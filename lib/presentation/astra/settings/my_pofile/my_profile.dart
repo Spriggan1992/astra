@@ -215,7 +215,9 @@ class MyProfileScreenContent extends StatelessWidget {
                                 MyProfileActorState>(
                               builder: (context, state) {
                                 return Text(
-                                  state.walletInfo.amount.toString(),
+                                  state.walletInfo.amount < 0
+                                      ? '0'
+                                      : state.walletInfo.amount.toString(),
                                   style: const TextStyle(
                                     color: AstraColors.black,
                                     fontSize: 15,

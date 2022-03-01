@@ -1,15 +1,20 @@
+import 'dart:developer';
+
 import 'package:astra_app/domain/auth/repositories/i_auth_api_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'phone_event.dart';
+
 part 'phone_state.dart';
+
 part 'phone_bloc.freezed.dart';
 
 @injectable
 class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
   final IAuthApiService _apiService;
+
   PhoneBloc(this._apiService) : super(PhoneState.initial()) {
     on<PhoneEvent>((event, emit) async {
       await event.map(
@@ -26,16 +31,18 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
         changedTextValue: (e) async {
           emit(
             state.copyWith(
-                phoneNumber: e.value,
-                isEnableBtn: e.value.length == 11,
-                redirectConfirmCode: false,
-                redirectToPasswordScreen: false),
+              phoneNumber: e.value,
+              isEnableBtn: e.value.length == 17,
+              redirectConfirmCode: false,
+              redirectToPasswordScreen: false,
+            ),
           );
         },
         pressedBtn: (e) async {
           emit(state.copyWith(isLoading: true));
+          log(state.phoneNumber, name: "phone");
           final hasAlreadyRegistered = await _apiService.checkPhoneNumber(
-            state.phoneNumber,
+            state.phoneNumber.replaceAll(RegExp(r'[^\d]'), ""),
           );
           emit(
             hasAlreadyRegistered.fold(
@@ -52,13 +59,16 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
               ),
             ),
           );
-          emit(state.copyWith(
-              isEnableBtn: state.phoneNumber.length == 11,
-              phoneNumber: state.phoneNumber,
+          emit(
+            state.copyWith(
+              isEnableBtn: state.phoneNumber.length == 17,
+              phoneNumber: state.phoneNumber.replaceAll(RegExp(r'[^\d]'), ""),
               redirectConfirmCode: false,
               redirectToPasswordScreen: false,
               isNoConnection: false,
-              isLoading: false));
+              isLoading: false,
+            ),
+          );
         },
       );
     });

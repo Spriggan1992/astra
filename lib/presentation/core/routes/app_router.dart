@@ -13,6 +13,7 @@ import 'package:astra_app/presentation/astra/settings/application_form/applicati
 import 'package:astra_app/presentation/astra/settings/coach/coach_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/photo/image_pick_screen.dart';
+import 'package:astra_app/presentation/auth/enter_screen.dart';
 import 'package:astra_app/presentation/core/widgets/screens/show_image_full_screen.dart';
 import 'package:astra_app/presentation/astra/settings/promocode/promocode_screen.dart';
 import 'package:astra_app/presentation/astra/settings/settings_screen.dart';
@@ -30,6 +31,7 @@ import 'package:auto_route/auto_route.dart';
 @MaterialAutoRouter(
   routes: [
     MaterialRoute(page: SplashScreen, initial: true, path: '/'),
+    MaterialRoute(page: EnterScreen),
     MaterialRoute(page: PhoneNumberScreen),
     MaterialRoute(page: HowToGetClubScreen),
     MaterialRoute(page: CodeScreen),
@@ -41,6 +43,8 @@ import 'package:auto_route/auto_route.dart';
     MaterialRoute(page: UserFormScreen),
     MaterialRoute(page: CoachScreen),
     MaterialRoute(page: ChatScreen),
+    MaterialRoute(page: PoliticsScreen),
+    MaterialRoute(page: StoreScreen),
     AutoRoute(
       path: '',
       page: HomeScreen,
@@ -80,15 +84,10 @@ import 'package:auto_route/auto_route.dart';
             AutoRoute(path: '', page: SettingsScreen),
             AutoRoute(path: ':myProfileScreen', page: MyProfileScreen),
             AutoRoute(path: ':aboutScreen', page: AboutScreen),
-            AutoRoute(path: ':politicsscreen', page: PoliticsScreen),
             AutoRoute(path: ':supportScreen', page: SupportScreen),
-            AutoRoute(path: ':store', page: StoreScreen),
             AutoRoute(path: ':promocode', page: PromocodeScreen),
-
             AutoRoute(path: ':applicantDetailScreen', page: ApplicantDetailScreen),
-
-             AutoRoute(path: ':applicationForm', page: ApplicationFormScreen),
-
+            AutoRoute(path: ':applicationForm', page: ApplicationFormScreen),
           ],
         ),
       ],
