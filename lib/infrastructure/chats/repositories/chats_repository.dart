@@ -34,18 +34,13 @@ class ChatsRepository implements IChatsRepository {
   }
 
   @override
-  Stream<Either<AstraFailure, dynamic>> subscribeToChatsUpdates() async* {
-    final topics = await _getTopics();
-    yield* topics.fold((failure) async* {
-      left(failure);
-    }, (subscriptionTopicsModel) async* {
-      _subscriptionService =
-          SubscriptionService(subscriptionTopicsModel.topics);
-      await _subscriptionService!.init();
-      yield* _subscriptionService!.subscription.map((snapshot) {
-        log(snapshot.payloadAsString, name: 'SNAPSHOT');
-        return right(SubscriptionModel<Unit>(topicName: snapshot.routingKey!));
-      });
+  Stream<Either<AstraFailure, SubscriptionModel<Unit>>> subscribeToChatsUpdates(
+      SubscriptionTopicsModel topicsModel) async* {
+    _subscriptionService = SubscriptionService(topicsModel.topics);
+    await _subscriptionService!.init();
+    yield* _subscriptionService!.subscription.map((snapshot) {
+      log(snapshot.payloadAsString, name: 'SNAPSHOT');
+      return right(SubscriptionModel<Unit>(topicName: snapshot.routingKey!));
     });
   }
 
@@ -57,7 +52,8 @@ class ChatsRepository implements IChatsRepository {
     });
   }
 
-  Future<Either<AstraFailure, SubscriptionTopicsModel>> _getTopics() async {
+  @override
+  Future<Either<AstraFailure, SubscriptionTopicsModel>> getTopics() async {
     return await makeRequest<SubscriptionTopicsModel>(() async {
       final response = await _dio.post(Endpoints.signals.chats);
       return SubscriptionTopicsDTO.fromJson(response.data).toDomain();

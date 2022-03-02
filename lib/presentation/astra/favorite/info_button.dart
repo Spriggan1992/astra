@@ -4,7 +4,7 @@ import 'package:astra_app/presentation/core/widgets/custom/radiant_gradient_mask
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 
-/// Representы info button for showing info or make decision.
+/// Represent info button for showing info or make decision.
 class InfoButton extends StatelessWidget {
   const InfoButton({
     Key? key,

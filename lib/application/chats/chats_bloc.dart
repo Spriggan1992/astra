@@ -25,11 +25,24 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
             add(const ChatsEvent.watchStarted());
           },
           watchStarted: (e) async {
-            _subscription = _chatsRepository.subscribeToChatsUpdates().listen(
-              (snapshot) {
-                add(const ChatsEvent.chatsUpdated());
-              },
-            );
+            final response = await _chatsRepository.getTopics();
+            response.fold(
+                (failure) => emit(failure.map(
+                    api: (_) => state.copyWith(
+                        loadingStatuses: ChatLoadingStatuses.unexpectedFailure),
+                    noConnection: (_) => state.copyWith(
+                        loadingStatuses: ChatLoadingStatuses
+                            .connectionFailure))), (topicModel) {
+              if (topicModel.topics.isNotEmpty) {
+                _subscription = null;
+                _subscription =
+                    _chatsRepository.subscribeToChatsUpdates(topicModel).listen(
+                  (snapshot) {
+                    add(const ChatsEvent.chatsUpdated());
+                  },
+                );
+              }
+            });
           },
           chatsUpdated: (e) async {
             final response = await _chatsRepository.getChats();
