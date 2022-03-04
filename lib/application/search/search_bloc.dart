@@ -23,13 +23,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       (event, emit) async {
         await event.map(
           loadData: (e) async {
-            bool _hidenProfile = _user.userProfile.isHidden;
+            bool _hiddenProfile = _user.userProfile.isHidden;
 
             emit(
               state.copyWith(
                 stateType: SearchStateType.initial,
                 applicants: [],
-                isHidenProfile: false,
+                isHiddenProfile: false,
               ),
             );
 
@@ -40,14 +40,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                   state.copyWith(
                     stateType: SearchStateType.failure,
                     isUnexpectedError: true,
-                    isHidenProfile: _hidenProfile,
+                    isHiddenProfile: _hiddenProfile,
                   ),
                 ),
                 noConnection: (_) => emit(
                   state.copyWith(
                     stateType: SearchStateType.failure,
                     isNoInternetConnection: true,
-                    isHidenProfile: _hidenProfile,
+                    isHiddenProfile: _hiddenProfile,
                   ),
                 ),
               ),
@@ -55,7 +55,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                 state.copyWith(
                   stateType: SearchStateType.success,
                   applicants: r,
-                  isHidenProfile: _hidenProfile,
+                  isHiddenProfile: _hiddenProfile,
                 ),
               ),
             );

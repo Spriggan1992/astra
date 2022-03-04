@@ -6,14 +6,15 @@ class SearchState with _$SearchState {
     /// Initial state, success state, and error states
     required SearchStateType stateType,
 
-     /// Flag, responsible to showing error when no internet connection.
-    required bool isHidenProfile,
+    /// Flag, responsible to showing error when no internet connection.
+    required bool isHiddenProfile,
 
-     /// Flag, responsible to showing error when no internet connection.
+    /// Flag, responsible to showing error when no internet connection.
     required bool isNoInternetConnection,
 
     /// Flag, responsible to showing unexpected error.
     required bool isUnexpectedError,
+
     /// List of applicants
     required List<Profile> applicants,
   }) = _SearchState;
@@ -23,6 +24,6 @@ class SearchState with _$SearchState {
         stateType: SearchStateType.initial,
         isNoInternetConnection: false,
         isUnexpectedError: false,
-        isHidenProfile: false,
+        isHiddenProfile: false,
       );
 }

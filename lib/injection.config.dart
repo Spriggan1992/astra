@@ -13,36 +13,37 @@ import 'package:image_picker/image_picker.dart' as _i41;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i50;
 
-import 'application/auth/auth/auth_bloc.dart' as _i75;
+import 'application/auth/auth/auth_bloc.dart' as _i76;
 import 'application/auth/code/code_bloc.dart' as _i5;
-import 'application/auth/confirm_password/confirm_password_bloc.dart' as _i76;
-import 'application/auth/password/password_bloc.dart' as _i73;
-import 'application/auth/phone/phone_bloc.dart' as _i74;
-import 'application/chat/chat_bloc.dart' as _i56;
-import 'application/chat/chat_wathcer/chat_watcher_bloc.dart' as _i57;
-import 'application/chats/chats_bloc.dart' as _i58;
-import 'application/favorite/favorite_actor/favorite_actor_bloc.dart' as _i60;
-import 'application/favorite/favorite_bloc.dart' as _i61;
+import 'application/auth/confirm_password/confirm_password_bloc.dart' as _i77;
+import 'application/auth/password/password_bloc.dart' as _i74;
+import 'application/auth/phone/phone_bloc.dart' as _i75;
+import 'application/chat/chat_bloc.dart' as _i57;
+import 'application/chat/chat_wathcer/chat_watcher_bloc.dart' as _i58;
+import 'application/chats/chats_bloc.dart' as _i59;
+import 'application/favorite/favorite_actor/favorite_actor_bloc.dart' as _i61;
+import 'application/favorite/favorite_bloc.dart' as _i62;
 import 'application/promocode/promocode_bloc.dart' as _i45;
 import 'application/search/profile_properties/profile_properties_bloc.dart'
     as _i44;
 import 'application/search/search_action/search_action_bloc.dart' as _i46;
 import 'application/search/search_bloc.dart' as _i47;
+import 'application/settings/application/application_cubit.dart' as _i55;
 import 'application/settings/logout/logout_cubit.dart' as _i42;
 import 'application/settings/my_profile/full_screen_image.dart/full_screen_image_bloc.dart'
-    as _i62;
+    as _i63;
 import 'application/settings/my_profile/my_profile/my_profile_bloc.dart'
     as _i43;
 import 'application/settings/my_profile/my_profile_actor.dart/my_profile_actor_bloc.dart'
-    as _i72;
+    as _i73;
 import 'application/settings/settings/settings_bloc.dart' as _i49;
 import 'application/settings/store/store_actor/store_actor_bloc.dart' as _i51;
 import 'application/settings/store/store_bloc.dart' as _i52;
 import 'application/settings/support/clip_board/clip_board_cubit.dart' as _i4;
 import 'application/settings/support/support_bloc.dart' as _i53;
 import 'application/user/user_bloc.dart' as _i54;
-import 'domain/auth/repositories/i_auth_api_service.dart' as _i63;
-import 'domain/auth/repositories/i_local_storage.dart' as _i67;
+import 'domain/auth/repositories/i_auth_api_service.dart' as _i64;
+import 'domain/auth/repositories/i_local_storage.dart' as _i68;
 import 'domain/chats/repositories/i_chat_repository.dart' as _i13;
 import 'domain/chats/repositories/i_chats_repository.dart' as _i15;
 import 'domain/core/repositories/i_first_auth_repository.dart' as _i21;
@@ -50,18 +51,18 @@ import 'domain/core/repositories/i_update_user_repository.dart' as _i39;
 import 'domain/core/services/i_cache_user_service.dart' as _i11;
 import 'domain/core/services/i_curator_info_service.dart' as _i17;
 import 'domain/core/services/i_ineternet_connection_status.dart' as _i23;
-import 'domain/core/services/i_user_online_service.dart' as _i69;
+import 'domain/core/services/i_user_online_service.dart' as _i70;
 import 'domain/favorites/repositories/i_favorites_repository.dart' as _i19;
-import 'domain/image_picker/reopositories/i_image_picker.dart' as _i65;
+import 'domain/image_picker/reopositories/i_image_picker.dart' as _i66;
 import 'domain/profile/repositories/i_profile_properties_repository.dart'
     as _i25;
 import 'domain/profile/repositories/i_profile_repository.dart' as _i27;
 import 'domain/promocode/i_promocode_repository.dart' as _i29;
 import 'domain/search/repositories/i_search_repository.dart' as _i31;
 import 'domain/store/repositories/i_store_reposytory.dart' as _i37;
-import 'infrastructure/auth/repositories/auth_api_service.dart' as _i64;
-import 'infrastructure/auth/repositories/authenticator.dart' as _i55;
-import 'infrastructure/auth/repositories/local_storage.dart' as _i68;
+import 'infrastructure/auth/repositories/auth_api_service.dart' as _i65;
+import 'infrastructure/auth/repositories/authenticator.dart' as _i56;
+import 'infrastructure/auth/repositories/local_storage.dart' as _i69;
 import 'infrastructure/chats/repositories/chat_repository.dart' as _i14;
 import 'infrastructure/chats/repositories/chats_repository.dart' as _i16;
 import 'infrastructure/core/database/secure_strorage/i_secure_storage.dart'
@@ -73,10 +74,10 @@ import 'infrastructure/core/database/shared_storage/i_shared_storage.dart'
     as _i35;
 import 'infrastructure/core/database/shared_storage/shared_storage.dart'
     as _i36;
-import 'infrastructure/core/di/app_injectable_module.dart' as _i77;
-import 'infrastructure/core/http/dio_interceptor.dart' as _i59;
+import 'infrastructure/core/di/app_injectable_module.dart' as _i78;
+import 'infrastructure/core/http/dio_interceptor.dart' as _i60;
 import 'infrastructure/core/repositories/first_auth_repository.dart' as _i22;
-import 'infrastructure/core/repositories/local_repository.dart' as _i71;
+import 'infrastructure/core/repositories/local_repository.dart' as _i72;
 import 'infrastructure/core/repositories/update_user_repository.dart' as _i40;
 import 'infrastructure/core/services/cache_user_service.dart/cache_user_service.dart'
     as _i12;
@@ -87,10 +88,10 @@ import 'infrastructure/core/services/images/i_chache_image_service.dart' as _i9;
 import 'infrastructure/core/services/internt_connection_service/internet_connection.dart'
     as _i24;
 import 'infrastructure/core/services/user_online_status_service/user_online_status_service.dart'
-    as _i70;
+    as _i71;
 import 'infrastructure/favorites/repositories/favorites_repository.dart'
     as _i20;
-import 'infrastructure/image_picker/image_picker.dart' as _i66;
+import 'infrastructure/image_picker/image_picker.dart' as _i67;
 import 'infrastructure/profile/repositories/profile_properties_repository.dart'
     as _i26;
 import 'infrastructure/profile/repositories/profile_repository.dart' as _i28;
@@ -170,46 +171,48 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i39.IUpdateUserRepository>(),
       get<_i27.IProfileRepository>(),
       get<_i11.ICacheUserService>()));
-  gh.lazySingleton<_i55.Authenticator>(
-      () => _i55.Authenticator(get<_i33.ISecureStorage>()));
-  gh.factory<_i56.ChatBloc>(() => _i56.ChatBloc(get<_i13.IChatRepository>()));
-  gh.factory<_i57.ChatWatcherBloc>(() => _i57.ChatWatcherBloc(
+  gh.factory<_i55.ApplicationCubit>(
+      () => _i55.ApplicationCubit(get<_i11.ICacheUserService>()));
+  gh.lazySingleton<_i56.Authenticator>(
+      () => _i56.Authenticator(get<_i33.ISecureStorage>()));
+  gh.factory<_i57.ChatBloc>(() => _i57.ChatBloc(get<_i13.IChatRepository>()));
+  gh.factory<_i58.ChatWatcherBloc>(() => _i58.ChatWatcherBloc(
       get<_i23.IInternetConnectionService>(), get<_i13.IChatRepository>()));
-  gh.factory<_i58.ChatsBloc>(
-      () => _i58.ChatsBloc(get<_i15.IChatsRepository>()));
-  gh.lazySingleton<_i59.DioInterceptor>(
-      () => _i59.DioInterceptor(get<_i7.Dio>(), get<_i55.Authenticator>()));
-  gh.factory<_i60.FavoriteActorBloc>(
-      () => _i60.FavoriteActorBloc(get<_i19.IFavoritesRepository>()));
-  gh.factory<_i61.FavoriteBloc>(
-      () => _i61.FavoriteBloc(get<_i19.IFavoritesRepository>()));
-  gh.factory<_i62.FullScreenImageBloc>(
-      () => _i62.FullScreenImageBloc(get<_i27.IProfileRepository>()));
-  gh.lazySingleton<_i63.IAuthApiService>(() => _i64.AuthApiService(
-      get<_i7.Dio>(), get<_i33.ISecureStorage>(), get<_i55.Authenticator>()));
-  gh.lazySingleton<_i65.IImagePickerRepository>(
-      () => _i66.ImagePickerRepository(get<_i41.ImagePicker>()));
-  gh.lazySingleton<_i67.ILocalStorage>(
-      () => _i68.LocalStorage(get<_i48.SembastDatabase>()));
-  gh.lazySingleton<_i69.IUserOnlineStatusService>(
-      () => _i70.UserOnlineStatusService(get<_i55.Authenticator>()));
-  gh.lazySingleton<_i71.LocalRepository>(
-      () => _i71.LocalRepository(get<_i50.SharedPreferences>()));
-  gh.factory<_i72.MyProfileActorBloc>(() => _i72.MyProfileActorBloc(
-      get<_i27.IProfileRepository>(), get<_i65.IImagePickerRepository>()));
-  gh.factory<_i73.PasswordBloc>(
-      () => _i73.PasswordBloc(get<_i63.IAuthApiService>()));
-  gh.factory<_i74.PhoneBloc>(() => _i74.PhoneBloc(get<_i63.IAuthApiService>()));
-  gh.factory<_i75.AuthBloc>(() => _i75.AuthBloc(
-      get<_i63.IAuthApiService>(),
+  gh.factory<_i59.ChatsBloc>(
+      () => _i59.ChatsBloc(get<_i15.IChatsRepository>()));
+  gh.lazySingleton<_i60.DioInterceptor>(
+      () => _i60.DioInterceptor(get<_i7.Dio>(), get<_i56.Authenticator>()));
+  gh.factory<_i61.FavoriteActorBloc>(
+      () => _i61.FavoriteActorBloc(get<_i19.IFavoritesRepository>()));
+  gh.factory<_i62.FavoriteBloc>(
+      () => _i62.FavoriteBloc(get<_i19.IFavoritesRepository>()));
+  gh.factory<_i63.FullScreenImageBloc>(
+      () => _i63.FullScreenImageBloc(get<_i27.IProfileRepository>()));
+  gh.lazySingleton<_i64.IAuthApiService>(() => _i65.AuthApiService(
+      get<_i7.Dio>(), get<_i33.ISecureStorage>(), get<_i56.Authenticator>()));
+  gh.lazySingleton<_i66.IImagePickerRepository>(
+      () => _i67.ImagePickerRepository(get<_i41.ImagePicker>()));
+  gh.lazySingleton<_i68.ILocalStorage>(
+      () => _i69.LocalStorage(get<_i48.SembastDatabase>()));
+  gh.lazySingleton<_i70.IUserOnlineStatusService>(
+      () => _i71.UserOnlineStatusService(get<_i56.Authenticator>()));
+  gh.lazySingleton<_i72.LocalRepository>(
+      () => _i72.LocalRepository(get<_i50.SharedPreferences>()));
+  gh.factory<_i73.MyProfileActorBloc>(() => _i73.MyProfileActorBloc(
+      get<_i27.IProfileRepository>(), get<_i66.IImagePickerRepository>()));
+  gh.factory<_i74.PasswordBloc>(
+      () => _i74.PasswordBloc(get<_i64.IAuthApiService>()));
+  gh.factory<_i75.PhoneBloc>(() => _i75.PhoneBloc(get<_i64.IAuthApiService>()));
+  gh.factory<_i76.AuthBloc>(() => _i76.AuthBloc(
+      get<_i64.IAuthApiService>(),
       get<_i27.IProfileRepository>(),
       get<_i11.ICacheUserService>(),
       get<_i17.ICuratorInfoService>(),
       get<_i21.IFirstAuthRepository>(),
       get<_i37.IStoreRepository>()));
-  gh.factory<_i76.ConfirmPasswordBloc>(
-      () => _i76.ConfirmPasswordBloc(get<_i63.IAuthApiService>()));
+  gh.factory<_i77.ConfirmPasswordBloc>(
+      () => _i77.ConfirmPasswordBloc(get<_i64.IAuthApiService>()));
   return get;
 }
 
-class _$AppInjectableModule extends _i77.AppInjectableModule {}
+class _$AppInjectableModule extends _i78.AppInjectableModule {}

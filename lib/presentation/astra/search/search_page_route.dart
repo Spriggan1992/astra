@@ -20,7 +20,7 @@ class SearchPageRoute extends StatelessWidget {
     return BlocConsumer<SearchBloc, SearchState>(
       listener: (context, listenState) {
         if (listenState.stateType == SearchStateType.success) {
-          if (listenState.isHidenProfile) {
+          if (listenState.isHiddenProfile) {
             showAstraAlertDialog(context);
           }
         }
@@ -49,7 +49,7 @@ class SearchPageRoute extends StatelessWidget {
     );
   }
 
-  /// Used when user profile is hiden
+  /// Used when user profile is hidden
   showAstraAlertDialog(BuildContext context) async {
     final result = await showDialog(
       context: context,
