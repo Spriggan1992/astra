@@ -35,7 +35,9 @@ class ProfileRepository implements IProfileRepository {
       final response = await _dio.get(Endpoints.user.account);
       final profile = ProfileDTO.fromJson(response.data).toDomain();
       final imageModels = await _getImageModels(profile.profilePhotos);
-      final updatedProfile = profile.copyWith(profilePhotos: imageModels);
+      final curatorPhotos = await _getImageModels(profile.curatorPhotos);
+      final updatedProfile = profile.copyWith(
+          profilePhotos: imageModels, curatorPhotos: curatorPhotos);
       return updatedProfile;
     });
     return result.fold((l) => left(l), (r) => right(r));
