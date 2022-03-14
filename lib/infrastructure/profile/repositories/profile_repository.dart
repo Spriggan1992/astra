@@ -39,86 +39,109 @@ class ProfileRepository implements IProfileRepository {
       final updatedProfile = profile.copyWith(
           profilePhotos: imageModels, curatorPhotos: curatorPhotos);
       return updatedProfile;
-    });
+    }, from: 'ProfileRepository, method: getProfile');
   }
 
   @override
   Future<Either<AstraFailure, ProfileShortModel>> getProfileShort() async {
-    return await makeRequest<ProfileShortModel>(() async {
-      final response = await _dio.get(Endpoints.user.accountShort);
-      final profileShort = ProfileShortDTO.fromJson(response.data).toDomain();
-      final image = await _getImageModel(profileShort.avatar);
-      final updatedProfile = profileShort.copyWith(avatar: image);
-      return updatedProfile;
-    });
+    return await makeRequest<ProfileShortModel>(
+      () async {
+        final response = await _dio.get(Endpoints.user.accountShort);
+        final profileShort = ProfileShortDTO.fromJson(response.data).toDomain();
+        final image = await _getImageModel(profileShort.avatar);
+        final updatedProfile = profileShort.copyWith(avatar: image);
+        return updatedProfile;
+      },
+      from: 'ProfileRepository, method: getProfileShort',
+    );
   }
 
   @override
   Future<Either<AstraFailure, bool>> updateShortInfo(String shortInfo) async {
-    final result = await makeRequest<bool>(() async {
-      final dto = {"info": shortInfo};
-      final response =
-          await _dio.post(Endpoints.user.updateShortInfo, data: dto);
-      return response.statusCode == 200;
-    });
-    return result.fold((l) => left(l), (r) => right(r));
+    return await makeRequest<bool>(
+      () async {
+        final dto = {"info": shortInfo};
+        final response =
+            await _dio.post(Endpoints.user.updateShortInfo, data: dto);
+        return response.statusCode == 200;
+      },
+      from: 'ProfileRepository, method: getProfileShort',
+    );
   }
 
   @override
   Future<Either<AstraFailure, bool>> showAccountInfo(bool isShowInfo) async {
-    return await makeRequest<bool>(() async {
-      final response = await _dio.post(
-        isShowInfo
-            ? Endpoints.user.showAccountInfo
-            : Endpoints.user.hideAccountInfo,
-      );
-      return response.statusCode == 200;
-    });
+    return await makeRequest<bool>(
+      () async {
+        final response = await _dio.post(
+          isShowInfo
+              ? Endpoints.user.showAccountInfo
+              : Endpoints.user.hideAccountInfo,
+        );
+        return response.statusCode == 200;
+      },
+      from: 'ProfileRepository, method: showAccountInfo',
+    );
   }
 
   @override
   Future<Either<AstraFailure, bool>> hideAccount(bool isHideAccount) async {
-    return await makeRequest<bool>(() async {
-      final response = await _dio.post(
-        isHideAccount ? Endpoints.user.hideAccount : Endpoints.user.showAccount,
-      );
-      return response.statusCode == 200;
-    });
+    return await makeRequest<bool>(
+      () async {
+        final response = await _dio.post(
+          isHideAccount
+              ? Endpoints.user.hideAccount
+              : Endpoints.user.showAccount,
+        );
+        return response.statusCode == 200;
+      },
+      from: 'ProfileRepository, method: hideAccount',
+    );
   }
 
   @override
   Future<Either<AstraFailure, bool>> addPhoto(List<ImageModel> images) async {
-    return await makeRequest<bool>(() async {
-      final formData = await _createFormData(images);
-      final response = await _dio.post(Endpoints.user.addPhoto, data: formData);
-      return response.statusCode == 200;
-    });
+    return await makeRequest<bool>(
+      () async {
+        final formData = await _createFormData(images);
+        final response =
+            await _dio.post(Endpoints.user.addPhoto, data: formData);
+        return response.statusCode == 200;
+      },
+      from: 'ProfileRepository, method: addPhoto',
+    );
   }
 
   @override
   Future<Either<AstraFailure, bool>> deletePhoto(ImageModel image) async {
-    return await makeRequest<bool>(() async {
-      final response = await _dio
-          .delete(Endpoints.user.deletePhoto, data: {'image_id': image.id});
-      return response.statusCode == 200;
-    });
+    return await makeRequest<bool>(
+      () async {
+        final response = await _dio
+            .delete(Endpoints.user.deletePhoto, data: {'image_id': image.id});
+        return response.statusCode == 200;
+      },
+      from: 'ProfileRepository, method: deletePhoto',
+    );
   }
 
   @override
   Future<Either<AstraFailure, CuratorModel>> getCuratorInfo() async {
-    return await makeRequest<CuratorModel>(() async {
-      final response = await _dio.get(Endpoints.user.getCurator);
-      final curator = CuratorDTO.fromJson(response.data).toDomain();
-      final curatorPhoto =
-          await _cacheImageService.getFileImage(curator.profilePhoto.imageUrl);
-      final updatedCurator = curator.copyWith(
-        profilePhoto: ImageModel(
-          imageUrl: curator.profilePhoto.imageUrl,
-          cachedImage: curatorPhoto.toDomain(),
-        ),
-      );
-      return updatedCurator;
-    });
+    return await makeRequest<CuratorModel>(
+      () async {
+        final response = await _dio.get(Endpoints.user.getCurator);
+        final curator = CuratorDTO.fromJson(response.data).toDomain();
+        final curatorPhoto = await _cacheImageService
+            .getFileImage(curator.profilePhoto.imageUrl);
+        final updatedCurator = curator.copyWith(
+          profilePhoto: ImageModel(
+            imageUrl: curator.profilePhoto.imageUrl,
+            cachedImage: curatorPhoto.toDomain(),
+          ),
+        );
+        return updatedCurator;
+      },
+      from: 'ProfileRepository, method: getCuratorInfo',
+    );
   }
 
   Future<FormData> _createFormData(List<ImageModel> images) async {

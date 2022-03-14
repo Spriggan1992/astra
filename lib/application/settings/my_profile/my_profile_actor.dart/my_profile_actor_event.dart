@@ -5,8 +5,9 @@ part of 'my_profile_actor_bloc.dart';
 class MyProfileActorEvent with _$MyProfileActorEvent {
   /// Screen initialization event.
   const factory MyProfileActorEvent.initialized(
-          Profile profile, Wallet walletInfo, CuratorModel curatorInfo) =
-      _Initialized;
+    Profile profile,
+    // CuratorModel curatorInfo,
+  ) = _Initialized;
 
   /// Profile description change event.
   const factory MyProfileActorEvent.descriptionChanged(String description) =

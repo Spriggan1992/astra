@@ -10,7 +10,6 @@ import 'package:astra_app/presentation/astra/settings/about/politics_screen.dart
 import 'package:astra_app/presentation/astra/settings/coach/coach_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_form/my_form_screen.dart';
 import 'package:astra_app/presentation/astra/settings/my_pofile/my_profile.dart';
-import 'package:astra_app/presentation/astra/settings/my_pofile/photo/image_pick_screen.dart';
 import 'package:astra_app/presentation/auth/enter_screen.dart';
 import 'package:astra_app/presentation/core/widgets/screens/show_image_full_screen.dart';
 import 'package:astra_app/presentation/astra/settings/promocode/promocode_screen.dart';
@@ -38,7 +37,6 @@ import 'package:auto_route/auto_route.dart';
     AutoRoute(page: PasswordScreen),
     AutoRoute(page: ConfirmPasswordScreen),
     AutoRoute(page: FinishRegisterScreen),
-    AutoRoute(page: ImagePickScreen),
     AutoRoute(page: ShowImageFullScreen),
     AutoRoute(page: CoachScreen),
     AutoRoute(page: PoliticsScreen),

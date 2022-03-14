@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/core/models/image_models.dart';
+import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/images/astra_file_image.dart';
@@ -6,21 +6,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Represent widget that display information about curator.
-class CuratorListTile extends StatelessWidget {
-  const CuratorListTile({
+class SupportCuratorListTile extends StatelessWidget {
+  const SupportCuratorListTile({
     Key? key,
     required this.trailingRadius,
     required this.onPressed,
-    required this.curatorPhoto,
-    required this.curatorFullName,
-    // required this.curator,
+    required this.curator,
   }) : super(key: key);
 
-  /// Curator photo to display.
-  final ImageModel curatorPhoto;
-
-  /// The curator full name to display.
-  final String curatorFullName;
+  /// Curator  information.
+  final CuratorModel curator;
 
   /// Button click  event handler.
   final VoidCallback onPressed;
@@ -37,7 +32,7 @@ class CuratorListTile extends StatelessWidget {
           child: Row(
             children: [
               AstraFileImage(
-                image: curatorPhoto,
+                image: curator.profilePhoto,
                 height: 48,
                 width: 48,
                 border: false,
@@ -48,7 +43,7 @@ class CuratorListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    curatorFullName,
+                    curator.curatorFullname,
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

@@ -1,4 +1,6 @@
 import 'package:astra_app/application/settings/my_profile/full_screen_image.dart/full_screen_image_bloc.dart';
+import 'package:astra_app/application/settings/my_profile/my_profile/my_profile_bloc.dart';
+import 'package:astra_app/application/settings/my_profile/my_profile_actor.dart/my_profile_actor_bloc.dart';
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
@@ -18,6 +20,7 @@ class ShowImageFullScreen extends StatelessWidget {
 
   /// A Flag to enable or disable delete button
   final bool enableDeleteButton;
+
   const ShowImageFullScreen({
     Key? key,
     required this.images,
@@ -26,9 +29,16 @@ class ShowImageFullScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<FullScreenImageBloc>()
-        ..add(FullScreenImageEvent.initialized(images)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<FullScreenImageBloc>()
+            ..add(FullScreenImageEvent.initialized(images)),
+        ),
+        BlocProvider(
+          create: (context) => getIt<MyProfileBloc>(),
+        ),
+      ],
       child: BlocConsumer<FullScreenImageBloc, FullScreenImageState>(
         listener: (context, state) {
           if (state.isShowNoInternetConnectionError) {
@@ -37,7 +47,7 @@ class ShowImageFullScreen extends StatelessWidget {
           if (state.isShowUnexpectedError) {
             showSnackBar(context,
                 title:
-                    'Произошла непредвиденная ошибка.\nОбратитесь в службу поддеркию.');
+                    'Произошла непредвиденная ошибка.\nОбратитесь в службу поддержки.');
           }
         },
         builder: (context, state) {
@@ -83,70 +93,81 @@ class ShowImageFullScreen extends StatelessWidget {
                             opacity: state.isHideAppbarAndBottomBar ? 0 : 1,
                             duration: const Duration(milliseconds: 100),
                             child: Container(
-                                color: const Color.fromRGBO(0, 0, 0, 0.2),
-                                height: 44,
-                                width: MediaQuery.of(context).size.width,
-                                child: state.currentImageIndex > 2
-                                    ? IconButton(
-                                        onPressed: () async {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (
-                                              BuildContext showDialogContext,
-                                            ) {
-                                              return DialogTwoActions(
-                                                content: const Text(
-                                                  "Вы точно хотите удалить\nфотографию?",
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                action1: DialogActionButton(
-                                                  title: 'Отмена',
-                                                  onClick: () => Navigator.of(
-                                                          showDialogContext)
-                                                      .pop(false),
-                                                ),
-                                                action2: DialogActionButton(
-                                                  title: 'Удалить',
-                                                  onClick: () {
-                                                    BlocProvider.of<
-                                                                FullScreenImageBloc>(
-                                                            context)
-                                                        .add(const FullScreenImageEvent
-                                                            .imagesDeleted());
-                                                    context.router.pop();
-                                                  },
-                                                  buttonStyle:
-                                                      TextButton.styleFrom(
-                                                          primary:
-                                                              AstraColors.red),
-                                                ),
+                              color: const Color.fromRGBO(0, 0, 0, 0.2),
+                              height: 44,
+                              width: MediaQuery.of(context).size.width,
+                              child: state.currentImageIndex > 2
+                                  ? IconButton(
+                                      onPressed: state.isHideAppbarAndBottomBar
+                                          ? null
+                                          : () async {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (
+                                                  BuildContext
+                                                      showDialogContext,
+                                                ) {
+                                                  return DialogTwoActions(
+                                                    content: const Text(
+                                                      "Вы точно хотите удалить\nфотографию?",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
+                                                    action1: DialogActionButton(
+                                                      title: 'Отмена',
+                                                      onClick: () =>
+                                                          showDialogContext
+                                                              .popRoute(false),
+                                                    ),
+                                                    action2: DialogActionButton(
+                                                      title: 'Удалить',
+                                                      onClick: () {
+                                                        context
+                                                            .read<
+                                                                FullScreenImageBloc>()
+                                                            .add(const FullScreenImageEvent
+                                                                .imagesDeleted());
+                                                        BlocProvider.of<
+                                                                    MyProfileBloc>(
+                                                                context)
+                                                            .add(const MyProfileEvent
+                                                                .profileLoaded());
+                                                        context.router.pop();
+                                                      },
+                                                      buttonStyle:
+                                                          TextButton.styleFrom(
+                                                        primary:
+                                                            AstraColors.red,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
                                               );
                                             },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          Icons.delete_outline,
-                                          color: Colors.white,
+                                      icon: const Icon(
+                                        Icons.delete_outline,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Text(
+                                          'Может удалить куратор',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600),
                                         ),
-                                      )
-                                    : Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: const [
-                                          Text(
-                                            'Может удалить куратор',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(width: 8),
-                                          SvgIcon(
-                                            asset: 'assets/icons/unlock.svg',
-                                            height: 25,
-                                          ),
-                                        ],
-                                      )),
+                                        SizedBox(width: 8),
+                                        SvgIcon(
+                                          asset: 'assets/icons/unlock.svg',
+                                          height: 25,
+                                        ),
+                                      ],
+                                    ),
+                            ),
                           ),
                         ),
                       ),
@@ -170,7 +191,7 @@ class ShowImageFullScreen extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         leading: IconButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            context.popRoute();
                           },
                           icon: const Icon(
                             Icons.arrow_back_ios_new,

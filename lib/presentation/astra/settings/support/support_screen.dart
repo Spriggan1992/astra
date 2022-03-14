@@ -2,7 +2,7 @@ import 'package:astra_app/application/settings/support/clip_board/clip_board_cub
 import 'package:astra_app/application/settings/support/support_bloc.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/injection.dart';
-import 'package:astra_app/presentation/astra/settings/my_pofile/widgets/profile_widgets.dart';
+import 'package:astra_app/presentation/astra/settings/support/support_curator_tile.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/astra_failure_screen.dart';
@@ -68,12 +68,11 @@ class SupportScreenContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CuratorListTile(
+            SupportCuratorListTile(
               curator: curatorInfo,
-              trailingRadius: 28,
+              trailingRadius: 24,
               onPressed: () {},
             ),
-
             const Padding(
               padding: EdgeInsets.only(top: 16, bottom: 16),
               child: Divider(
@@ -81,7 +80,6 @@ class SupportScreenContent extends StatelessWidget {
                 thickness: 1,
               ),
             ),
-            // const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
               decoration: BoxDecoration(

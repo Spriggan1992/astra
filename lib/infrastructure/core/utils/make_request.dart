@@ -11,12 +11,12 @@ typedef CallBackRequest<T> = Future<T> Function();
 /// Make http request.
 ///
 /// Returns [Either] there left is [AstraFailure] and right is [T].
-Future<Either<AstraFailure, T>> makeRequest<T>(
-  CallBackRequest callback,
-) async {
+Future<Either<AstraFailure, T>> makeRequest<T>(CallBackRequest callback,
+    {String? from}) async {
   try {
     final response = await callback();
-    log("$response", name: "success_response");
+    log("$response",
+        name: "success_response${from == null ? '' : "from: $from"}");
     return right(response);
   } on DioError catch (e) {
     log("${e.message}: ${e.type}; response: ${e.response}", level: 2);

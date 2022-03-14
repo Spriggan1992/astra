@@ -9,12 +9,13 @@ class MyProfileState with _$MyProfileState {
   /// Progress loading states.
   const factory MyProfileState.loadInProgress() = _LoadInProgress;
 
-  /// Successfule loaded data state.
+  /// Successfully loaded data state.
   ///
   /// Keep state of [Profile] if loaded successfully.
   const factory MyProfileState.loadSuccess(
-          Profile profile, Wallet walletInfo, CuratorModel curatorInfo) =
-      _LoadSuccess;
+    Profile profile,
+    // CuratorModel curatorInfo,
+  ) = _LoadSuccess;
 
   /// Unsuccessfully loaded data state.
   const factory MyProfileState.loadFailure(AstraFailure failure) = _LoadFailure;

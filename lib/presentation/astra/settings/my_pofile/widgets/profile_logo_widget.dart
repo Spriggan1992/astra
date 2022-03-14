@@ -20,7 +20,7 @@ class ProfileLogoScreen extends StatelessWidget {
   final VoidCallback? onShowImage;
   final bool isEditMode;
   final List<ImageModel> images;
-  final File? addedImg;
+  final ImageModel? addedImg;
   @override
   Widget build(BuildContext context) {
     return (isEditMode)
@@ -31,7 +31,7 @@ class ProfileLogoScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: AstraFileImage(
-                    image: images.first,
+                    image: addedImg ?? images.first,
                     width: 130,
                     height: 130,
                   ),

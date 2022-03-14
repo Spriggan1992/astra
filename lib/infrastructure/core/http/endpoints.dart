@@ -9,11 +9,11 @@ class Endpoints {
   static get signals => _SignalsEndpoints();
   static get promocode => _PromocodeEndpoints();
 
-  static get imageAddress => relevantAdress;
+  static get imageAddress => relevantAddress;
 }
 
 final String _address = ServerAddress().relevant;
-final String relevantAdress = ServerAddress().imageAdress;
+final String relevantAddress = ServerAddress().imageAddress;
 
 class _SignalsEndpoints {
   String get users => _address + "user/signal/topic/profile/";

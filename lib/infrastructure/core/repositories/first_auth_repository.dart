@@ -36,9 +36,4 @@ class FirstAuthRepository implements IFirstAuthRepository {
   Future<bool> _checkAuth(String storageKey) async {
     return await _storage.get(storageKey) == true;
   }
-
-  // @override
-  // Future<void> setNotFirstAuth() async {
-  //   await _storage.set(_key, false);
-  // }
 }

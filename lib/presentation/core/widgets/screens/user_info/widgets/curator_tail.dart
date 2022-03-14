@@ -40,7 +40,7 @@ class CuratorTile extends StatelessWidget {
                 children: [
                   AstraNetworkImage(
                     imageUrl: curatorImage.imageUrl,
-                    fileImage: curatorImage.cachedImage == null
+                    fileImage: curatorImage.cachedImage?.fullImage == null
                         ? null
                         : Image.file(
                             curatorImage.cachedImage!.fullImage!,

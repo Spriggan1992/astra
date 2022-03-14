@@ -143,10 +143,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i41.ImagePicker>(() => appInjectableModule.imagePicker);
   gh.factory<_i42.LogoutCubit>(() => _i42.LogoutCubit());
   gh.factory<_i42.LogoutState>(() => _i42.LogoutState(canLogout: get<bool>()));
-  gh.factory<_i43.MyProfileBloc>(() => _i43.MyProfileBloc(
-      get<_i27.IProfileRepository>(),
-      get<_i37.IStoreRepository>(),
-      get<_i11.ICacheUserService>()));
+  gh.factory<_i43.MyProfileBloc>(
+      () => _i43.MyProfileBloc(get<_i27.IProfileRepository>()));
   gh.factory<_i44.ProfilePropertiesBloc>(() =>
       _i44.ProfilePropertiesBloc(get<_i25.IProfilePropertiesRepository>()));
   gh.factory<_i45.PromocodeBloc>(

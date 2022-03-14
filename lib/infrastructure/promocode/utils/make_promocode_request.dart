@@ -13,12 +13,11 @@ typedef CallBackRequest<PromocodeModel> = Future<PromocodeModel> Function();
 ///
 /// Returns [Either] there left is [AstraFailure] and right is [T].
 Future<Either<PromocodeFailure, PromocodeModel>>
-    makePromocodeRequest<PromocodeModel>(
-  CallBackRequest callback,
-) async {
+    makePromocodeRequest<PromocodeModel>(CallBackRequest callback,
+        [String from = '']) async {
   try {
     final response = await callback();
-    log("$response", name: "success_response");
+    log("$response", name: "success_response, from: $from");
     return right(response);
   } on DioError catch (e) {
     log("${e.message}: ${e.type}; response: ${e.response}", level: 2);

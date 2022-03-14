@@ -22,10 +22,13 @@ class UpdateUserRepository implements IUpdateUserRepository {
 
   @override
   Future<Either<AstraFailure, SubscriptionTopicsModel>> getTopics() async {
-    return await makeRequest<SubscriptionTopicsModel>(() async {
-      final response = await _dio.post(Endpoints.signals.users);
-      return SubscriptionTopicsDTO.fromJson(response.data).toDomain();
-    });
+    return await makeRequest<SubscriptionTopicsModel>(
+      () async {
+        final response = await _dio.post(Endpoints.signals.users);
+        return SubscriptionTopicsDTO.fromJson(response.data).toDomain();
+      },
+      from: 'UpdateUserRepository, method: getTopics',
+    );
   }
 
   @override
@@ -40,11 +43,14 @@ class UpdateUserRepository implements IUpdateUserRepository {
   @override
   Future<Either<AstraFailure, UserOnlineStatusModel>> updatedUserOnlineStatus(
       UserOnlineStatusModel userOnlineStatus) async {
-    return await makeRequest<UserOnlineStatusModel>(() async {
-      final response = await _dio.post(Endpoints.user.online,
-          data: UserOnlineStatusDTO.fromDomain(userOnlineStatus));
-      return UserOnlineStatusDTO.fromJson(response.data).toDomain();
-    });
+    return await makeRequest<UserOnlineStatusModel>(
+      () async {
+        final response = await _dio.post(Endpoints.user.online,
+            data: UserOnlineStatusDTO.fromDomain(userOnlineStatus));
+        return UserOnlineStatusDTO.fromJson(response.data).toDomain();
+      },
+      from: 'UpdateUserRepository, method: updatedUserOnlineStatus',
+    );
   }
 
   @override

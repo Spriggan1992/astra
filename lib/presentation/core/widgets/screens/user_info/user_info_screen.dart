@@ -30,7 +30,8 @@ class UserInfoScreen extends StatelessWidget {
           AstraNetworkImage(
               imageUrl: applicant.profilePhotos.first.imageUrl,
               isOverlayBackground: true,
-              fileImage: applicant.profilePhotos.first.cachedImage == null
+              fileImage: applicant.profilePhotos.first.cachedImage?.fullImage ==
+                      null
                   ? null
                   : FileImage(
                       applicant.profilePhotos.first.cachedImage!.fullImage!)),

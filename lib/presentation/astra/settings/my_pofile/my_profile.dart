@@ -1,7 +1,6 @@
 import 'package:astra_app/application/search/search_action/search_action_bloc.dart';
 import 'package:astra_app/application/settings/my_profile/my_profile/my_profile_bloc.dart';
 import 'package:astra_app/application/settings/my_profile/my_profile_actor.dart/my_profile_actor_bloc.dart';
-import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
@@ -32,8 +31,7 @@ class MyProfileScreen extends StatelessWidget {
             loadSuccess: (state) => BlocProvider(
               create: (context) => getIt<MyProfileActorBloc>()
                 ..add(
-                  MyProfileActorEvent.initialized(
-                      state.profile, state.walletInfo, state.curatorInfo),
+                  MyProfileActorEvent.initialized(state.profile),
                 ),
               child: MultiBlocListener(
                 listeners: [
@@ -61,7 +59,6 @@ class MyProfileScreen extends StatelessWidget {
                 ],
                 child: MyProfileScreenContent(
                   profile: state.profile,
-                  curator: state.curatorInfo,
                 ),
               ),
             ),
@@ -83,11 +80,9 @@ class MyProfileScreen extends StatelessWidget {
 /// Defines content for MyProfileScreen.
 class MyProfileScreenContent extends StatefulWidget {
   final Profile profile;
-  final CuratorModel curator;
   const MyProfileScreenContent({
     Key? key,
     required this.profile,
-    required this.curator,
   }) : super(key: key);
 
   @override
@@ -153,8 +148,7 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                           return ProfileLogoScreen(
                             images: widget.profile.profilePhotos,
                             addedImg: state.selectedImages.isNotEmpty
-                                ? state.selectedImages[0].cachedImage!
-                                    .thumbnailImage
+                                ? state.selectedImages[0]
                                 : null,
                             isEditMode: state.isEditMode,
                             onPickImage: () {
@@ -163,17 +157,12 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                                   .add(const MyProfileActorEvent.imagesAdded());
                             },
                             onShowImage: () async {
-                              await AutoRouter.of(context)
-                                  .push(
-                                    ShowImageFullScreenRoute(
-                                      images: widget.profile.profilePhotos,
-                                      enableDeleteButton: true,
-                                    ),
-                                  )
-                                  .then((_) => context
-                                      .read<MyProfileBloc>()
-                                      .add(const MyProfileEvent
-                                          .profileLoaded()));
+                              await context.router.push(
+                                ShowImageFullScreenRoute(
+                                  images: widget.profile.profilePhotos,
+                                  enableDeleteButton: true,
+                                ),
+                              );
                             },
                           );
                         },
@@ -212,12 +201,12 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                         buildWhen: (p, c) =>
                             p.isEditMode != c.isEditMode ||
                             p.profile.profileInfo != c.profile.profileInfo,
-                        builder: (context, shotrInfostate) {
+                        builder: (context, shortInfoState) {
                           return ProfileTextField(
-                            isEditingMode: shotrInfostate.isEditMode,
+                            isEditingMode: shortInfoState.isEditMode,
                             description: widget.profile.profileInfo,
                             leftSymbols:
-                                shotrInfostate.profile.profileInfo.length,
+                                shortInfoState.profile.profileInfo.length,
                             onChanged: (value) {
                               context.read<MyProfileActorBloc>().add(
                                   MyProfileActorEvent.descriptionChanged(
@@ -243,9 +232,9 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                                 MyProfileActorState>(
                               builder: (context, state) {
                                 return Text(
-                                  state.walletInfo.amount < 0
+                                  state.profile.likeAmount < 0
                                       ? '0'
-                                      : state.walletInfo.amount.toString(),
+                                      : state.profile.likeAmount.toString(),
                                   style: const TextStyle(
                                     color: AstraColors.black,
                                     fontSize: 15,
@@ -295,7 +284,8 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                       const SizedBox(height: 12),
                       CuratorListTile(
                         trailingRadius: 20,
-                        curator: widget.curator,
+                        curatorPhoto: widget.profile.curatorPhotos.first,
+                        curatorFullName: widget.profile.curatorFullName,
                         onPressed: () {},
                       ),
                       const Padding(

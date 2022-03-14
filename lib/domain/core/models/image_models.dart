@@ -16,9 +16,12 @@ class ImageModel with _$ImageModel {
     /// Compressed images
     CachedFileImageModel? cachedImage,
   }) = _ImageModel;
+
+  /// Empty object.
   factory ImageModel.empty() => const ImageModel(
         imageUrl: '',
         cachedImage: null,
       );
+
   bool get imageUrlIsEmpty => imageUrl.isEmpty;
 }

@@ -27,9 +27,6 @@ class MyProfileActorState with _$MyProfileActorState {
 
     /// Selected images from gallery on device.
     required List<ImageModel> selectedImages,
-
-    /// Wallet info to display.
-    required Wallet walletInfo,
   }) = _MyProfileActorState;
   factory MyProfileActorState.initial() => MyProfileActorState(
         isLoading: false,
@@ -40,6 +37,5 @@ class MyProfileActorState with _$MyProfileActorState {
         isSuccessfullySubmitted: false,
         selectedImages: [],
         uploadImageLimited: false,
-        walletInfo: Wallet.empty(),
       );
 }
