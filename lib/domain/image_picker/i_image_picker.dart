@@ -1,10 +1,10 @@
 import 'package:image_picker/image_picker.dart';
 
-/// Desribe image picker service.
+/// Describes image picker service.
 abstract class IImagePickerRepository {
   /// Get image.
   Future<XFile?> getImg(ImageSource source);
 
   /// Get images.
-  Future<List<XFile>?> getImgs();
+  Future<List<XFile>?> getImages();
 }

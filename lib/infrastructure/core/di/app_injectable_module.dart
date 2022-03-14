@@ -27,7 +27,7 @@ abstract class AppInjectableModule {
   @lazySingleton
   Dio get dio => Dio();
 
-  /// Initizlized imagePicker service.
+  /// Initialized imagePicker service.
   @lazySingleton
   ImagePicker get imagePicker => ImagePicker();
 

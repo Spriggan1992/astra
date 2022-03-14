@@ -1,6 +1,5 @@
-import 'dart:developer';
-
-import 'package:astra_app/domain/favorites/repositories/i_favorites_repository.dart';
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
+import 'package:astra_app/domain/favorites/i_favorites_repository.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,34 +11,54 @@ part 'favorite_actor_bloc.freezed.dart';
 
 @injectable
 class FavoriteActorBloc extends Bloc<FavoriteActorEvent, FavoriteActorState> {
-  final IFavoritesRepository _favoritesApi;
-  FavoriteActorBloc(this._favoritesApi) : super(FavoriteActorState.initial()) {
-    on<FavoriteActorEvent>((event, emit) async {
-      await event.map(
-        initialized: (e) async {
-          log(e.toString(), name: 'profiles');
-          emit(state.copyWith(profiles: e.profiles, selectedProfiles: []));
-        },
-        removedFromStopList: (e) async {
-          emit(state.copyWith(isLoading: true));
-          final response = await _favoritesApi.toThink(e.profile.id);
-          emit(
+  final IFavoritesRepository _favoritesRepository;
+  FavoriteActorBloc(this._favoritesRepository)
+      : super(FavoriteActorState.initial()) {
+    on<FavoriteActorEvent>(
+      (event, emit) async {
+        await event.map(
+          initialized: (e) async {
+            emit(
+              state.copyWith(
+                profiles: e.profiles,
+                selectedProfiles: [],
+              ),
+            );
+          },
+          removedFromStopList: (e) async {
+            emit(state.copyWith(isLoading: true));
+            final response = await _favoritesRepository.toThink(e.profile.id);
             response.fold(
-              (failure) => failure.map(
-                  api: (_) => state.copyWith(isUnexpectedError: true),
-                  noConnection: (_) =>
-                      state.copyWith(isNoInternetConnection: true)),
+              (failure) => emit(_mapFailure(failure, state)),
               (_) {
                 List<Profile> selectedList = [];
                 selectedList.add(e.profile);
-                return state.copyWith(selectedProfiles: selectedList);
+                emit(state.copyWith(selectedProfiles: selectedList));
               },
-            ),
-          );
-          emit(state.copyWith(
-              isNoInternetConnection: false, isUnexpectedError: false));
-        },
-      );
-    });
+            );
+            emit(state.copyWith(
+                isNoInternetConnection: false, isUnexpectedError: false));
+          },
+          removedAllFromStopList: (e) async {
+            emit(state.copyWith(isLoading: true));
+            final response = await _favoritesRepository.removeAllFromStopList();
+            response.fold(
+              (failure) => emit(_mapFailure(failure, state)),
+              (_) {
+                List<Profile> selectedList = state.profiles;
+                emit(state.copyWith(selectedProfiles: selectedList));
+              },
+            );
+          },
+        );
+      },
+    );
   }
+}
+
+FavoriteActorState _mapFailure(AstraFailure failure, FavoriteActorState state) {
+  return failure.map(
+    api: (_) => state.copyWith(isUnexpectedError: true),
+    noConnection: (_) => state.copyWith(isNoInternetConnection: true),
+  );
 }

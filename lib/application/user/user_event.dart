@@ -14,4 +14,6 @@ class UserEvent with _$UserEvent {
   /// Connection to the websocket channel event.
   const factory UserEvent.userStatusOnlineUpdated(bool isOnline) =
       _UserOnlineStatusConnected;
+
+  const factory UserEvent.favoritesLoaded() = _FavoritesLoaded;
 }

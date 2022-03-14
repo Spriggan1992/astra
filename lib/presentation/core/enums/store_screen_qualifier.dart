@@ -3,6 +3,9 @@ enum StoreScreenQualifier {
   /// Store screen for settings.
   storeSettings,
 
-  /// Strore screen for after registration.
+  /// Store screen for after registration.
   storeAfterRegistration,
+
+  /// Store screen for search screen.
+  storeSearch,
 }

@@ -12,7 +12,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-/// Defines store reposytory.
+/// Defines store repository.
 @LazySingleton(as: IStoreRepository)
 class StoreRepository implements IStoreRepository {
   /// Dio client.

@@ -1,12 +1,13 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:astra_app/domain/favorites/match_status.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/infrastructure/core/DTOs/image_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profile_dto.freezed.dart';
 part 'profile_dto.g.dart';
 
-/// Represet profile data transfer object .
+/// Represent profile data transfer object .
 @freezed
 class ProfileDTO with _$ProfileDTO {
   const ProfileDTO._();
@@ -64,7 +65,7 @@ class ProfileDTO with _$ProfileDTO {
     /// Users saved account date.
     @JsonKey(name: 'saved_at') required final String savedAt,
 
-    /// A flag resposible for status of relationship in active.
+    /// A flag responsible for status of relationship in active.
     @JsonKey(name: 'is_active') required final bool isActive,
 
     /// ?
@@ -79,11 +80,17 @@ class ProfileDTO with _$ProfileDTO {
     /// A flag responsible for showing mutual sympathy.
     @JsonKey(name: 'is_mutual_like') required final bool isMutualLike,
 
-     /// A curator first name.
+    /// A curator first name.
     @JsonKey(name: 'curator_firstname') required final String curatorFirstName,
 
-     /// A curator last name.
+    /// A curator last name.
     @JsonKey(name: 'curator_lastname') required final String curatorLastName,
+
+    /// Amount of likes on account.
+    @JsonKey(name: 'likes_amount') required final int likeAmount,
+
+    /// Match status
+    @JsonKey(name: 'match') String? matchStatus,
   }) = _ProfileDTO;
 
   /// Return converted DTO from from domain.
@@ -114,6 +121,7 @@ class ProfileDTO with _$ProfileDTO {
       showInfo: _.showInfo,
       isMutualLike: _.isMutualLike,
       curatorFirstName: _.curatorFirstName,
+      likeAmount: 0,
       curatorLastName: _.curatorLastName,
     );
   }
@@ -145,7 +153,21 @@ class ProfileDTO with _$ProfileDTO {
         isStopList: false,
         curatorFirstName: curatorFirstName,
         curatorLastName: curatorLastName,
+        likeAmount: likeAmount,
+        matchStatus: _getMatchStatus(),
       );
+
+  MatchStatus _getMatchStatus() {
+    if (matchStatus == 'Успешно') {
+      return MatchStatus.success;
+    } else if (matchStatus == 'Ожидает отправителя') {
+      return MatchStatus.awaiting;
+    } else if (matchStatus == 'Пополните баланс') {
+      return MatchStatus.emptyBalance;
+    } else {
+      return MatchStatus.initial;
+    }
+  }
 
   /// Return converted DTO from json.
   factory ProfileDTO.fromJson(Map<String, dynamic> json) =>

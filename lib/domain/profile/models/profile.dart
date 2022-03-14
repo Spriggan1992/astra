@@ -1,8 +1,9 @@
 import 'package:astra_app/domain/core/models/image_models.dart';
+import 'package:astra_app/domain/favorites/match_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profile.freezed.dart';
 
-/// Represemt model(union) profile
+/// Represent model(union) profile
 @freezed
 class Profile with _$Profile {
   const Profile._();
@@ -43,7 +44,7 @@ class Profile with _$Profile {
     /// Users city to display.
     required final String city,
 
-    /// Users profile photos to diplsy.
+    /// Users profile photos to display.
     required final List<ImageModel> profilePhotos,
 
     /// Curators photos to display.
@@ -58,7 +59,7 @@ class Profile with _$Profile {
     /// Users saved account date to display.
     required final String savedAt,
 
-    /// A flag resposible for display status of relationship.
+    /// A flag responsible for display status of relationship.
     required final bool isActive,
 
     /// ?
@@ -78,7 +79,13 @@ class Profile with _$Profile {
 
     /// A curator last name.
     required final String curatorLastName,
+
+    /// Amount of likes on account.
+    required final int likeAmount,
+
+    /// Whether the applicant contains in `StopList` category.
     bool? isStopList,
+    required final MatchStatus matchStatus,
   }) = _Profile;
 
   /// Get user information.
@@ -95,32 +102,34 @@ class Profile with _$Profile {
   /// Get curator full name.
   String get curatorFullName => '$curatorFirstName $curatorLastName';
 
-  /// Emty profile.
+  /// Empty profile.
   factory Profile.empty() => const Profile(
         id: 0,
         curatorId: 0,
-        phoneNumber: "",
-        firstname: "",
-        lastname: "",
+        phoneNumber: '',
+        firstname: '',
+        lastname: '',
         age: 0,
         height: 0,
-        gender: "",
-        status: "",
+        gender: '',
+        status: '',
         haveChild: false,
-        country: "",
-        city: "",
+        country: '',
+        city: '',
         profilePhotos: [],
         curatorPhotos: [],
-        profileInfo: "",
-        createdAt: "",
-        savedAt: "",
+        profileInfo: '',
+        createdAt: '',
+        savedAt: '',
         isActive: false,
         draft: false,
         isHidden: false,
         showInfo: false,
         isMutualLike: false,
         isStopList: false,
-        curatorFirstName: "",
-        curatorLastName: "",
+        curatorFirstName: '',
+        curatorLastName: '',
+        likeAmount: 0,
+        matchStatus: MatchStatus.initial,
       );
 }

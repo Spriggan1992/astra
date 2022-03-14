@@ -1,7 +1,6 @@
 import 'package:astra_app/presentation/astra/settings/promocode/constants.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 final _defaultBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(14),

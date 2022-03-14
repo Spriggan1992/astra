@@ -19,19 +19,20 @@ class BaseErrorScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              baseTitle,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            action
-          ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                baseTitle,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              action
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }

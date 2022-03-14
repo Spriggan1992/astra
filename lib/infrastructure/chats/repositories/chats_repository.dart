@@ -61,6 +61,14 @@ class ChatsRepository implements IChatsRepository {
   }
 
   @override
+  Future<Either<AstraFailure, Unit>> openChat(int userId) async {
+    return await makeRequest<Unit>(() async {
+      await _dio.post(Endpoints.chat.openChat(userId));
+      return unit;
+    });
+  }
+
+  @override
   Future<void> dispose() async {
     await _subscriptionService?.dispose();
   }

@@ -13,7 +13,10 @@ class SplashScreen extends StatelessWidget {
   /// Flag responsible for showing download indicator.
   final bool isLoading;
 
-  const SplashScreen({Key? key, this.isLoading = false}) : super(key: key);
+  const SplashScreen({
+    Key? key,
+    this.isLoading = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class SplashScreen extends StatelessWidget {
               authenticated: (state) {
                 if (!state.isFirstAuth) {
                   context.router.push(
-                    StoreScreenRoute(
+                    CommonStoreScreenRouter(
                       storeQualifier:
                           StoreScreenQualifier.storeAfterRegistration,
                     ),
@@ -40,7 +43,7 @@ class SplashScreen extends StatelessWidget {
                     );
                   } else {
                     context.router.push(
-                      StoreScreenRoute(
+                      CommonStoreScreenRouter(
                         storeQualifier:
                             StoreScreenQualifier.storeAfterRegistration,
                       ),

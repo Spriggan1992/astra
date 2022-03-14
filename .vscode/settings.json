@@ -23,14 +23,22 @@
         "cupertino",
         "dartz",
         "DTOs",
+        "firstname",
         "fullscreen",
+        "lastname",
         "pofile",
         "politicsscreen",
         "Promocode",
+        "resposible",
         "RGBO",
         "Sembast",
+        "Swipable",
         "unfocus",
-        "wathcer"
+        "unnope",
+        "vsync",
+        "wathcer",
+        "Отмена",
+        "Подумать"
     ],
-    "dart.flutterSdkPath": "/Users/romankozlov/fvm/versions/2.10.2"
+    "dart.flutterSdkPath": "/Users/romankozlov/fvm/versions/2.10.3"
 }

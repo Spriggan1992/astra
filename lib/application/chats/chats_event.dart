@@ -19,4 +19,17 @@ class ChatsEvent with _$ChatsEvent {
 
   /// Chats unsubscribed event.
   const factory ChatsEvent.chatsUnsubscribed() = _ChatsUnsubscribed;
+
+  /// Chat created event.
+
+  const factory ChatsEvent.createChat(int userId) = _CreateChat;
+
+  /// Chat opened event.
+  const factory ChatsEvent.chatOpened(int userId) = _ChatOpened;
+
+  ///Chat existence check event
+  ///
+  /// The [userId] user identifier.
+  const factory ChatsEvent.existenceChatChecked(int userId) =
+      _ExistenceChatChecked;
 }

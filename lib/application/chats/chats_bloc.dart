@@ -1,10 +1,12 @@
 import 'dart:async';
 
-import 'package:astra_app/application/chats/chats_loading_statuses.dart';
-import 'package:astra_app/application/chats/delete_statuses.dart';
+import 'package:astra_app/application/chats/enums/chats_loading_statuses.dart';
+import 'package:astra_app/application/chats/enums/chat_opening_statuses.dart';
+import 'package:astra_app/application/chats/enums/delete_statuses.dart';
 import 'package:astra_app/application/core/extensions/sort_chats.dart';
 import 'package:astra_app/domain/chats/models/chats_model.dart';
 import 'package:astra_app/domain/chats/repositories/i_chats_repository.dart';
+import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -27,36 +29,34 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
           watchStarted: (e) async {
             final response = await _chatsRepository.getTopics();
             response.fold(
-                (failure) => emit(failure.map(
-                    api: (_) => state.copyWith(
-                        loadingStatuses: ChatLoadingStatuses.unexpectedFailure),
-                    noConnection: (_) => state.copyWith(
-                        loadingStatuses: ChatLoadingStatuses
-                            .connectionFailure))), (topicModel) {
-              if (topicModel.topics.isNotEmpty) {
-                _subscription = null;
-                _subscription =
-                    _chatsRepository.subscribeToChatsUpdates(topicModel).listen(
-                  (snapshot) {
-                    add(const ChatsEvent.chatsUpdated());
-                  },
-                );
-              }
-            });
+              (failure) => emit(_mapFailure(failure, state)),
+              (topicModel) {
+                if (topicModel.topics.isNotEmpty) {
+                  _subscription = null;
+                  _subscription = _chatsRepository
+                      .subscribeToChatsUpdates(topicModel)
+                      .listen(
+                    (snapshot) {
+                      add(const ChatsEvent.chatsUpdated());
+                    },
+                  );
+                }
+              },
+            );
           },
           chatsUpdated: (e) async {
             final response = await _chatsRepository.getChats();
             emit(
               response.fold(
-                (failure) => failure.map(
-                    api: (_) => state.copyWith(
-                        loadingStatuses: ChatLoadingStatuses.unexpectedFailure),
-                    noConnection: (_) => state.copyWith(
-                        loadingStatuses:
-                            ChatLoadingStatuses.connectionFailure)),
+                (failure) => _mapFailure(failure, state),
                 (chats) {
                   final updatedChats = chats.sortChats;
-                  return state.copyWith(chats: updatedChats);
+                  final hasNewMessage = updatedChats
+                      .any((element) => element.newMessageCount > 0);
+                  return state.copyWith(
+                    chats: updatedChats,
+                    hasNewMessage: hasNewMessage,
+                  );
                 },
               ),
             );
@@ -66,29 +66,25 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
             final response = await _chatsRepository.getChats();
             emit(
               response.fold(
-                (failure) => failure.map(
-                  api: (_) => state.copyWith(
-                      loadingStatuses: ChatLoadingStatuses.unexpectedFailure),
-                  noConnection: (_) => state.copyWith(
-                    loadingStatuses: ChatLoadingStatuses.connectionFailure,
-                  ),
-                ),
+                (failure) => _mapFailure(failure, state),
                 (chats) {
                   final updatedChats = chats.sortChats;
+                  final hasNewMessage = updatedChats
+                      .any((element) => element.newMessageCount > 0);
                   return state.copyWith(
-                      chats: updatedChats,
-                      loadingStatuses: ChatLoadingStatuses.success);
+                    chats: updatedChats,
+                    loadingStatuses: ChatLoadingStatuses.success,
+                    hasNewMessage: hasNewMessage,
+                  );
                 },
               ),
             );
           },
           chatDeleted: (e) async {
             final response = await _chatsRepository.deleteChat(e.chatId);
-            emit(
-              response.fold(
-                (l) => state.copyWith(deleteStatus: DeleteStatus.failure),
-                (r) => state.copyWith(deleteStatus: DeleteStatus.success),
-              ),
+            response.fold(
+              (l) => emit(state.copyWith(deleteStatus: DeleteStatus.failure)),
+              (r) => add(const ChatsEvent.chatsUpdated()),
             );
           },
           chatsUnsubscribed: (e) async {
@@ -96,14 +92,53 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
             _subscription = null;
             await _chatsRepository.dispose();
           },
+          existenceChatChecked: (e) async {
+            final chat =
+                state.chats.any((element) => element.userId == e.userId);
+            if (!chat) {
+              add(
+                ChatsEvent.createChat(e.userId),
+              );
+            } else {
+              emit(state.copyWith(
+                  chatOpeningStatuses: ChatOpeningStatuses.success));
+            }
+          },
+          createChat: (e) async {
+            emit(
+              state.copyWith(chatOpeningStatuses: ChatOpeningStatuses.loading),
+            );
+            final response = await _chatsRepository.openChat(e.userId);
+            response.fold(
+              (failure) => emit(state.copyWith(
+                  chatOpeningStatuses: ChatOpeningStatuses.failure)),
+              (_) => add(ChatsEvent.chatOpened(e.userId)),
+            );
+          },
+          chatOpened: (e) async {
+            emit(state.copyWith(
+                chatOpeningStatuses: ChatOpeningStatuses.success));
+            await Future.delayed(const Duration(milliseconds: 100));
+            emit(state.copyWith(
+                chatOpeningStatuses: ChatOpeningStatuses.initial));
+          },
         );
       },
     );
   }
   @override
   Future<void> close() async {
-    await _subscription!.cancel();
+    await _subscription?.cancel();
     await _chatsRepository.dispose();
     return super.close();
+  }
+
+  ChatsState _mapFailure(AstraFailure failure, ChatsState state) {
+    return failure.map(
+      api: (_) => state.copyWith(
+          loadingStatuses: ChatLoadingStatuses.unexpectedFailure),
+      noConnection: (_) => state.copyWith(
+          loadingStatuses: ChatLoadingStatuses.connectionFailure),
+    );
   }
 }

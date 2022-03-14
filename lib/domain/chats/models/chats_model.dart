@@ -11,6 +11,9 @@ class ChatModel with _$ChatModel {
     /// Identifier of chat.
     required int id,
 
+    /// Identifier of user.
+    required int userId,
+
     /// The user name to display.
     required String userName,
 
@@ -33,6 +36,7 @@ class ChatModel with _$ChatModel {
   /// Empty .
   factory ChatModel.empty() => ChatModel(
         id: 0,
+        userId: 0,
         userName: '',
         userPhoto: ImageModel.empty(),
         lastMessage: '',

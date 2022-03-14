@@ -9,7 +9,7 @@ class Endpoints {
   static get signals => _SignalsEndpoints();
   static get promocode => _PromocodeEndpoints();
 
-  static get imageAdress => relevantAdress;
+  static get imageAddress => relevantAdress;
 }
 
 final String _address = ServerAddress().relevant;
@@ -37,6 +37,7 @@ class _ChatEndpoints {
   String deleteChat(int id) => _address + "user/chat/delete/$id/";
   String get curatorChat => _address + "user/chat/curator/";
   String read(int id) => _address + "user/chat/$id/read/";
+  String openChat(int userId) => _address + "user/chat/with/$userId/";
 }
 
 class _FeedEndpoints {
@@ -45,10 +46,12 @@ class _FeedEndpoints {
   String nope(int id) => _address + "user/feed/nope/$id/";
   String think(int id) => _address + "user/feed/think/$id/";
   String block(int id) => _address + "user/feed/block/$id/";
+  String get allUsersToThink => _address + "user/feed/unnope/all/";
   String get getLikes => _address + "user/feed/like/";
   String get getWhoLike => _address + "user/feed/liked/";
   String get getThink => _address + "user/feed/think/";
   String get getNope => _address + "user/feed/nope/";
+  String get getMatch => _address + "user/feed/pair/";
 }
 
 class _ShopEndpoints {

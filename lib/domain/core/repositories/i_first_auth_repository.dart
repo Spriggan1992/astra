@@ -11,7 +11,4 @@ abstract class IFirstAuthRepository {
 
   /// Set first authorization.
   Future<void> setSecondAuth(bool value);
-
-  // /// Set
-  // Future<void> setNotFirstAuth();
 }

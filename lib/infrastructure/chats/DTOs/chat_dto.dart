@@ -15,6 +15,9 @@ class ChatDTO with _$ChatDTO {
     /// Identifier of chat.
     @JsonKey(name: 'id') required int id,
 
+    /// Identifier of user.
+    @JsonKey(name: 'with_profile_id') required int userId,
+
     /// The username with which the chat will be established,
     @JsonKey(name: 'with_profile_name') required String userName,
 
@@ -37,6 +40,7 @@ class ChatDTO with _$ChatDTO {
 // Convert DTO to domain.
   ChatModel toDomain() => ChatModel(
         id: id,
+        userId: userId,
         userName: userName,
         userPhoto: userPhoto.toDomain(),
         lastMessage: lastMessage ?? '',
@@ -50,7 +54,5 @@ class ChatDTO with _$ChatDTO {
       _$ChatDTOFromJson(json);
 
 // Convert object to json.
-  factory ChatDTO.toJson() {
-    return ChatDTO.toJson();
-  }
+  factory ChatDTO.toJson() => ChatDTO.toJson();
 }

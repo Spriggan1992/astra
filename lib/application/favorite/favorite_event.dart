@@ -7,4 +7,7 @@ class FavoriteEvent with _$FavoriteEvent {
   /// Loaded date based on [FavoriteScreenType].
   const factory FavoriteEvent.loadedData({FavoriteScreenType? favoriteType}) =
       _Started;
+
+  const factory FavoriteEvent.usersUpdated(FavoriteScreenType favoriteType) =
+      _UsersUpdated;
 }

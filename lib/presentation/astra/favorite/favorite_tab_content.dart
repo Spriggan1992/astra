@@ -1,9 +1,11 @@
+import 'package:astra_app/application/chats/chats_bloc.dart';
+import 'package:astra_app/application/chats/enums/chat_opening_statuses.dart';
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_actor/favorite_actor_bloc.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
+import 'package:astra_app/presentation/astra/favorite/utils/show_favorites_dialog.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
-import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
-import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
+import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/error_screens/empty_data_screen.dart';
 import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dart';
 import 'package:auto_route/auto_route.dart';
@@ -24,96 +26,101 @@ class FavoriteTabContent extends StatelessWidget {
   final FavoriteScreenType favoriteType;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoriteBloc, FavoriteState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return const LoadingScreen();
+    return BlocListener<ChatsBloc, ChatsState>(
+      listener: (context, state) {
+        if (state.chatOpeningStatuses == ChatOpeningStatuses.success) {
+          context.pushRoute(
+            const HomeScreenRoute(
+              children: [
+                ChatsTab(),
+              ],
+            ),
+          );
         }
-        if (state.isSuccess) {
-          return RefreshIndicator(
-            onRefresh: () async {
-              context.read<FavoriteBloc>().add(
-                  FavoriteEvent.loadedData(favoriteType: state.favoriteType));
-            },
-            child: state.profiles.isNotEmpty
-                ? GridView.builder(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemCount:
-                        state.profiles.isNotEmpty ? state.profiles.length : 1,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 20),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        if (state.chatOpeningStatuses == ChatOpeningStatuses.failure) {
+          showSnackBar(context);
+        }
+      },
+      child: BlocConsumer<FavoriteBloc, FavoriteState>(
+        listener: ((context, state) {
+          if (state.isSuccess) {
+            context
+                .read<FavoriteActorBloc>()
+                .add(FavoriteActorEvent.initialized(state.profiles));
+          }
+        }),
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const LoadingScreen();
+          }
+          if (state.isSuccess) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<FavoriteBloc>().add(
+                    FavoriteEvent.loadedData(favoriteType: state.favoriteType));
+              },
+              child: state.profiles.isNotEmpty
+                  ? GridView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount:
+                          state.profiles.isNotEmpty ? state.profiles.length : 1,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 20),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 8,
                         crossAxisCount: state.profiles.isEmpty ? 1 : 2,
-                        childAspectRatio: 1),
-                    itemBuilder: (context, index) {
-                      return BlocBuilder<FavoriteActorBloc, FavoriteActorState>(
-                        builder: (context, stateActor) {
-                          return FavoriteDetailWidget(
-                            profile: state.profiles[index],
-                            isRemovedFromStopList: stateActor.selectedProfiles
-                                .any((element) =>
-                                    element.id == state.profiles[index].id),
-                            favotieType: favoriteType,
-                            onTap: () {
-                              if (favoriteType == FavoriteScreenType.stopList) {
-                                showDialog(
-                                  context: context,
-                                  builder: (_) {
-                                    return DialogOneAction(
-                                      content: const Text(
-                                          'Пользователи пересен в раздел\n«подумать‎»',
-                                          textAlign: TextAlign.center),
-                                      action: DialogActionButton(
-                                        title: 'Продолжить',
-                                        onClick: () {
-                                          context.read<FavoriteActorBloc>().add(
-                                              FavoriteActorEvent
-                                                  .removedFromStopList(
-                                                      state.profiles[index]));
-                                          context.router.pop();
-                                        },
-                                      ),
-                                    );
-                                  },
-                                );
-                              } else {
-                                context.router.navigate(
-                                  UserFormScreenRoute(
-                                    profile: state.profiles[index],
-                                  ),
-                                );
-                              }
-                            },
-                          );
-                        },
-                      );
-                    },
-                  )
-                : CustomScrollView(
-                    slivers: [
-                      SliverFillRemaining(
-                        child: Center(
-                            child: _getErrorScreen(context, favoriteType)),
-                      )
-                    ],
-                  ),
-          );
-        }
-
-        return Container();
-      },
+                        childAspectRatio: 1,
+                      ),
+                      itemBuilder: (context, index) {
+                        return BlocBuilder<FavoriteActorBloc,
+                            FavoriteActorState>(
+                          builder: (context, stateActor) {
+                            return FavoriteDetailWidget(
+                              profile: state.profiles[index],
+                              isRemovedFromStopList:
+                                  stateActor.selectedProfiles.any(
+                                (element) =>
+                                    element.id == state.profiles[index].id,
+                              ),
+                              favoriteType: favoriteType,
+                              onTap: () => showFavoritesDialog(
+                                context,
+                                favoriteType,
+                                state.profiles,
+                                state.profiles[index],
+                                state.isHiddenProfile,
+                                state.isEmptyBalance,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    )
+                  : CustomScrollView(
+                      slivers: [
+                        SliverFillRemaining(
+                          child: Center(
+                              child: _getErrorScreen(context, favoriteType)),
+                        )
+                      ],
+                    ),
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 }
 
 Widget _getErrorScreen(
     BuildContext context, FavoriteScreenType favoriteScreenType) {
-  if (favoriteScreenType == FavoriteScreenType.yourLikes) {
+  if (favoriteScreenType == FavoriteScreenType.yoursLikes) {
     return EmptyDataScreen(
-        title: 'Список пуст,\nвы никого не лайкнули.',
-        onClick: () => context.router.navigate(const SearchRouter()));
+      title: 'Список пуст,\nвы никого не лайкнули.',
+      onClick: () => context.router.navigate(const SearchTab()),
+    );
   } else {
     return EmptyDataScreen();
   }

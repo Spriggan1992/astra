@@ -1,47 +1,82 @@
+import 'package:astra_app/domain/favorites/match_status.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
-import 'package:astra_app/presentation/astra/favorite/favorite_info_card.dart';
-import 'package:astra_app/presentation/core/theming/colors.dart';
-import 'package:astra_app/presentation/core/widgets/images/astra_network_image.dart';
-import 'package:astra_app/presentation/core/widgets/scaffolds/astra_appbar.dart';
+import 'package:astra_app/presentation/astra/settings/my_form/widgets/my_form_card.dart';
+import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
+import 'package:astra_app/presentation/core/utils/show_one_action_dialog.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+const _dialogMessage =
+    'Ваш партнёр тоже выбрал вас, но, к сожалению, пока не может перейти к общению, потому что пока его баланс\nмэтчей пуст. Когда ваши балансы будут положительны, ваш диалог начнётся автоматически';
+
+const _btnTitle = 'Спасибо, я буду ждать';
+
 /// Defines user form screen.
-class UserFormScreen extends StatelessWidget {
+class UsersFormScreen extends StatefulWidget {
+  final MatchStatus matchStatus;
+
   /// Users profile information.
   final Profile profile;
-  const UserFormScreen({
+
+  const UsersFormScreen({
     Key? key,
+    this.matchStatus = MatchStatus.initial,
     required this.profile,
   }) : super(key: key);
+
+  @override
+  State<UsersFormScreen> createState() => _UsersFormScreenState();
+}
+
+class _UsersFormScreenState extends State<UsersFormScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance?.addPostFrameCallback(
+      (_) {
+        if (widget.matchStatus == MatchStatus.awaiting) {
+          _showAlertDialog();
+        }
+      },
+    );
+    super.initState();
+  }
+
+  Future<void> _showAlertDialog() async {
+    showOneActionDialog(
+      context: context,
+      dialogTitle: _dialogMessage,
+      btnTitle: _btnTitle,
+      onClick: (dialogContext) => dialogContext.router.pop(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: const AstraAppBar(
+      appBar: AppBar(
+        centerTitle: true,
         elevation: 0,
-        bgColor: Colors.transparent,
-        iconColor: AstraColors.white,
-      ),
-      body: Stack(
-        children: [
-          AstraNetworkImage(
-            imageUrl: profile.profilePhotos.first.imageUrl,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            context.popRoute();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                FavoriteInfoCard(
-                  name: profile.firstname,
-                  location: profile.userLocation,
-                  description: profile.profileInfo,
-                ),
-              ],
+        ),
+      ),
+      body: MyFormCard(
+        onTap: () {
+          context.router.push(
+            FavoritesUserInfoRouter(
+              applicant: widget.profile,
             ),
-          )
-        ],
+          );
+        },
+        profile: widget.profile,
       ),
     );
   }

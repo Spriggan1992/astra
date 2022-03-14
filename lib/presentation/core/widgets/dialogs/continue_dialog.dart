@@ -2,9 +2,11 @@ import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
 class ContinueDialog extends StatelessWidget {
-  const ContinueDialog(
-      {Key? key, required this.content, required this.onContinue})
-      : super(key: key);
+  const ContinueDialog({
+    Key? key,
+    required this.content,
+    required this.onContinue,
+  }) : super(key: key);
 
   final String content;
   final VoidCallback onContinue;

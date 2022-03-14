@@ -6,11 +6,13 @@ class UserState with _$UserState {
     /// Flag responsible for showing error dialog when unexpected error happened.
     required bool isUnexpectedError,
     required bool isOnline,
+    required bool canUpdate,
   }) = _UserState;
 
   /// Initial state when bloc will be initialized.
   factory UserState.initial() => const UserState(
         isUnexpectedError: false,
         isOnline: false,
+        canUpdate: false,
       );
 }

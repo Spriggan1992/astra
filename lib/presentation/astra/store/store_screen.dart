@@ -63,20 +63,28 @@ class StoreScreen extends StatelessWidget {
 class StoreScreenContent extends StatelessWidget {
   final StoreScreenQualifier storeQualifier;
 
-  const StoreScreenContent({Key? key, required this.storeQualifier})
-      : super(key: key);
+  const StoreScreenContent({
+    Key? key,
+    required this.storeQualifier,
+  }) : super(key: key);
+
+  Function()? _navigateBack(BuildContext context) {
+    if (storeQualifier == StoreScreenQualifier.storeAfterRegistration) {
+      return null;
+    } else if (storeQualifier == StoreScreenQualifier.storeSearch) {
+      return () => context.navigateTo(const HomeScreenRoute());
+    } else {
+      return () => context.router.pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async =>
-          storeQualifier == StoreScreenQualifier.storeSettings,
+      onWillPop: () async => true,
       child: Scaffold(
         appBar: AstraAppBar(
-          onPressed:
-              storeQualifier == StoreScreenQualifier.storeAfterRegistration
-                  ? null
-                  : () => context.router.pop(),
+          onPressed: _navigateBack(context),
           title: 'Магазин',
           elevation: 0.3,
           actions: [

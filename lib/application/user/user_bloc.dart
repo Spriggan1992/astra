@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:astra_app/domain/core/models/user_online_status.model.dart';
 import 'package:astra_app/domain/core/repositories/i_update_user_repository.dart';
 import 'package:astra_app/domain/core/services/i_cache_user_service.dart';
-import 'package:astra_app/domain/core/services/i_user_online_service.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -35,8 +34,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           userUpdatesWatched: (e) async {
             final topics = await _updateUserRepo.getTopics();
             topics.fold(
-              (l) => l.map(
-                api: (_) => emit(state.copyWith(isUnexpectedError: true)),
+              (failure) => failure.map(
+                api: (_) => emit(
+                  state.copyWith(isUnexpectedError: true),
+                ),
                 noConnection: (_) => null,
               ),
               (subscriptionTopics) {
@@ -45,30 +46,36 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                     .subscribeToUserUpdate(subscriptionTopics.topics)
                     .listen(
                   (signal) async {
-                    signal.fold((l) async {
-                      emit(state.copyWith(isUnexpectedError: true));
-                      await Future.delayed(const Duration(milliseconds: 1000));
-                      emit(state.copyWith(isUnexpectedError: false));
-                    }, (r) async {
-                      log(_cacheUserService.userProfile.toString(),
-                          name: 'USER_UPDATED');
-                      final response = await _profileRepository.getProfile();
-                      response.fold(
-                        (l) => emit(state.copyWith(isUnexpectedError: true)),
-                        (profile) {
-                          _cacheUserService.setUserProfile(profile);
-                        },
-                      );
-                    });
+                    signal.fold(
+                      (l) async {
+                        emit(state.copyWith(isUnexpectedError: true));
+                        await Future.delayed(
+                            const Duration(milliseconds: 1000));
+                        emit(state.copyWith(isUnexpectedError: false));
+                      },
+                      (r) async {
+                        log(_cacheUserService.userProfile.toString(),
+                            name: 'USER_UPDATED');
+                        final response = await _profileRepository.getProfile();
+                        response.fold(
+                          (l) => emit(state.copyWith(isUnexpectedError: true)),
+                          (profile) {
+                            _cacheUserService.setUserProfile(profile);
+                          },
+                        );
+                        add(const UserEvent.favoritesLoaded());
+                      },
+                    );
                   },
                 );
                 emit(state.copyWith(isUnexpectedError: false));
               },
             );
           },
-          userUpdatesUnsubscribed: (e) async {
-            await _subscription!.cancel();
-            await _updateUserRepo.dispose();
+          favoritesLoaded: (e) async {
+            emit(state.copyWith(canUpdate: true));
+            await Future.delayed(const Duration(milliseconds: 1000));
+            emit(state.copyWith(canUpdate: false));
           },
           userStatusOnlineUpdated: (e) async {
             final response = await _updateUserRepo.updatedUserOnlineStatus(
@@ -80,6 +87,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                 emit(state.copyWith(isOnline: r.isOnline));
               },
             );
+          },
+          userUpdatesUnsubscribed: (e) async {
+            await _subscription!.cancel();
+            await _updateUserRepo.dispose();
           },
         );
       },

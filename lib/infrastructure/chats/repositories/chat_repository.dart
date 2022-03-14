@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:astra_app/domain/chats/models/pagination_chat_model.dart';
 import 'package:astra_app/domain/chats/repositories/i_chat_repository.dart';
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
@@ -54,14 +53,11 @@ class ChatRepository implements IChatRepository {
         await _subscriptionService!.init();
         yield* _subscriptionService!.subscription.map(
           (snapshot) {
-            log(snapshot.payloadAsString, name: "CHAT_SNAPSHOT 1");
             if (snapshot.payloadAsJson['chat_id'] != null) {
-              log(snapshot.payloadAsString, name: "CHAT_SNAPSHOT 2");
               return right(SubscriptionStatusOnlineModel(
                   topicName: snapshot.routingKey!,
                   isOnline: snapshot.payloadAsJson['is_online']));
             } else {
-              log(snapshot.payloadAsString, name: "CHAT_SNAPSHOT 3 ");
               return right(
                 SubscriptionMessageModel(
                   topicName: snapshot.routingKey!,

@@ -17,6 +17,9 @@ class SearchState with _$SearchState {
 
     /// List of applicants
     required List<Profile> applicants,
+
+    /// Whether the user has empty balance.
+    required bool isEmptyBalance,
   }) = _SearchState;
 
   factory SearchState.initial() => const SearchState(
@@ -25,5 +28,6 @@ class SearchState with _$SearchState {
         isNoInternetConnection: false,
         isUnexpectedError: false,
         isHiddenProfile: false,
+        isEmptyBalance: false,
       );
 }

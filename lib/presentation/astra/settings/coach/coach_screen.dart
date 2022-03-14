@@ -39,7 +39,8 @@ class _CoachScreenState extends State<CoachScreen> {
   void initState() {
     profile = getIt<ICacheUserService>().userProfile;
 
-    _fullImage = Image.file(profile.profilePhotos.first.fileImage!).image;
+    _fullImage =
+        Image.file(profile.profilePhotos.first.cachedImage!.fullImage!).image;
 
     _initCoachTargets();
     _initCoachMark();

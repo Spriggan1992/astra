@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:astra_app/domain/core/models/cached_file_image_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/infrastructure/core/http/endpoints.dart';
@@ -7,7 +8,7 @@ import 'package:astra_app/infrastructure/core/http/endpoints.dart';
 part 'image_dto.freezed.dart';
 part 'image_dto.g.dart';
 
-/// Represet image data transfer object.
+/// Represent image data transfer object.
 @freezed
 class ImageDTO with _$ImageDTO {
   const ImageDTO._();
@@ -33,13 +34,13 @@ class ImageDTO with _$ImageDTO {
 
   /// Return converted DTO from from domain.
   factory ImageDTO.fromDomain(ImageModel _) {
-    return ImageDTO(imagePath: _.fileImage!.path);
+    return ImageDTO(imagePath: _.cachedImage?.fullImage!.path);
   }
 
   /// Convert DTO to domain.
   ImageModel toDomain() => ImageModel(
         id: id,
-        imageUrl: "${Endpoints.imageAdress}$imageUrl",
-        fileImage: null,
+        imageUrl: "${Endpoints.imageAddress}$imageUrl",
+        cachedImage: CachedFileImageModel.empty(),
       );
 }

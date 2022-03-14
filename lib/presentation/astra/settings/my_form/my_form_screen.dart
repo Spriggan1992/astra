@@ -1,6 +1,7 @@
 import 'package:astra_app/application/settings/application/application_cubit.dart';
+import 'package:astra_app/domain/favorites/match_status.dart';
 import 'package:astra_app/injection.dart';
-import 'package:astra_app/presentation/astra/settings/application_form/widgets/application_form_card.dart';
+import 'package:astra_app/presentation/astra/settings/my_form/widgets/my_form_card.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/widgets/custom/platform.activity_indicator.dart';
 import 'package:auto_route/auto_route.dart';
@@ -8,8 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Defines application form screen
-class ApplicationFormScreen extends StatelessWidget {
-  const ApplicationFormScreen({Key? key}) : super(key: key);
+class MyFormScreen extends StatelessWidget {
+  final MatchStatus matchStatus;
+  const MyFormScreen({
+    Key? key,
+    this.matchStatus = MatchStatus.initial,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +26,11 @@ class ApplicationFormScreen extends StatelessWidget {
             if (state.isSuccess) {
               return Stack(
                 children: [
-                  ApplicationFormCard(
+                  MyFormCard(
                     onTap: () {
                       context.router.push(
-                        ApplicantScreenFromSettingsRouter(
+                        SettingsUserInfoScreenRouter(
                           applicant: state.profile,
-                          image: (state.profileImage == null)
-                              ? Image.asset('assets/girl.png').image
-                              : Image.file(state.profileImage!).image,
-                          curatorImage: (state.curatorImage == null)
-                              ? Image.asset('assets/girl.png').image
-                              : Image.file(state.curatorImage!).image,
                         ),
                       );
                     },
@@ -44,10 +43,11 @@ class ApplicationFormScreen extends StatelessWidget {
                       height: 80,
                       child: AppBar(
                         centerTitle: true,
+                        elevation: 0,
                         backgroundColor: Colors.transparent,
                         leading: IconButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            context.popRoute();
                           },
                           icon: const Icon(
                             Icons.arrow_back_ios_new,

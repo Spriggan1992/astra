@@ -21,7 +21,7 @@ typedef CallBackRequest<T> = Future<T> Function();
 /// Service of authorization api methods.
 @LazySingleton(as: IAuthApiService)
 class AuthApiService implements IAuthApiService {
-  /// Instance of the autherization service.
+  /// Instance of the authorization service.
   final Authenticator _authenticator;
 
   /// Instance ot the local storage.

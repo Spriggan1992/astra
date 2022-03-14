@@ -1,6 +1,5 @@
 import 'package:astra_app/application/promocode/promocode_bloc.dart';
 import 'package:astra_app/injection.dart';
-import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_elevated_button.dart';
 import 'package:astra_app/presentation/core/widgets/custom/keyboard_visibility.dart';

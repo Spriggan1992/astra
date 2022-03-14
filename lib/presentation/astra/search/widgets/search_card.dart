@@ -1,3 +1,4 @@
+import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/presentation/astra/favorite/favorite_info_card.dart';
 import 'package:astra_app/presentation/astra/favorite/info_button.dart';
@@ -7,79 +8,92 @@ import 'package:flutter/material.dart';
 
 /// Search card for every applicant
 class SearchCard extends StatelessWidget {
-  const SearchCard({
-    Key? key,
-    required this.profile,
-    required this.onClose,
-    required this.onTapInfo,
-    required this.onTapLike,
-    required this.onTapPhoto,
-  }) : super(key: key);
-
+  final FavoriteScreenType? favoriteType;
   // final String desc;
   final Profile profile;
 
   /// Button click event handler to swipe left.
-  final VoidCallback onClose;
+  final VoidCallback onTapDislike;
 
   /// Button click event handler to show information about applicant.
   final VoidCallback onTapInfo;
 
-  /// Button click event handler to add applicant (swipe right).
+  /// Question click event handler.
+  final VoidCallback onTapStop;
+
+  /// Like button click event handler.
   final VoidCallback onTapLike;
 
-  /// Button click event handler to add applicant (swipe right).
+  /// Dislike button click event handler.
   final VoidCallback? onTapPhoto;
+
+  const SearchCard({
+    Key? key,
+    required this.profile,
+    required this.onTapDislike,
+    required this.onTapInfo,
+    required this.onTapLike,
+    required this.onTapPhoto,
+    required this.onTapStop,
+    this.favoriteType,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      GestureDetector(
-        onTap: onTapPhoto,
-        child: AstraNetworkImage(
-          imageUrl: profile.profilePhotos.first.imageUrl,
-          borderRadius: BorderRadius.circular(16),
-          fit: BoxFit.cover,
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: onTapPhoto,
+          child: AstraNetworkImage(
+            imageUrl: profile.profilePhotos.first.imageUrl,
+            borderRadius: BorderRadius.circular(16),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(bottom: kToolbarHeight),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FavoriteInfoCard(
-              name: profile.firstname,
-              location: profile.userLocation,
-              description: profile.profileInfo,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InfoButton(
-                    onTap: onClose,
-                    icon: Icons.close,
-                  ),
-                  InfoButton(
-                    onTap: onTapInfo,
-                    icon: CupertinoIcons.question,
-                    iconSize: 30,
-                    height: 52,
-                    width: 90,
-                  ),
-                  InfoButton(
-                    onTap: onTapLike,
-                    icon: Icons.check,
-                  ),
-                ],
+        Padding(
+          padding: const EdgeInsets.only(bottom: kToolbarHeight),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FavoriteInfoCard(
+                name: profile.firstname,
+                location: profile.userLocation,
+                description: profile.profileInfo,
+                onCardTap: onTapInfo,
               ),
-            ),
-          ],
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InfoButton(
+                      onTap: onTapDislike,
+                      icon: Icons.close,
+                    ),
+                    Visibility(
+                      visible: favoriteType != FavoriteScreenType.think,
+                      child: InfoButton(
+                        onTap: onTapStop,
+                        icon: CupertinoIcons.question,
+                        iconSize: 30,
+                        height: 52,
+                        width: 90,
+                      ),
+                    ),
+                    InfoButton(
+                      onTap: onTapLike,
+                      icon: Icons.check,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }

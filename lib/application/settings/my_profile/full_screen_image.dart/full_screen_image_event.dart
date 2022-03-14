@@ -9,7 +9,7 @@ class FullScreenImageEvent with _$FullScreenImageEvent {
   const factory FullScreenImageEvent.imagesDeleted() = _ImagesDeleted;
 
   /// Images delete event.
-  const factory FullScreenImageEvent.curentImageIndexSet(int index) =
+  const factory FullScreenImageEvent.currentImageIndexSet(int index) =
       _CurentImageIndexSet;
 
   /// Appbar and bottombar hide event.

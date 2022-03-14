@@ -18,9 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AstraFailureTearOff {
   const _$AstraFailureTearOff();
 
-  _Api api([int? errorCode]) {
+  _Api api({int? errorCode, String? errorMessage}) {
     return _Api(
-      errorCode,
+      errorCode: errorCode,
+      errorMessage: errorMessage,
     );
   }
 
@@ -36,19 +37,19 @@ const $AstraFailure = _$AstraFailureTearOff();
 mixin _$AstraFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? errorCode) api,
+    required TResult Function(int? errorCode, String? errorMessage) api,
     required TResult Function() noConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? errorCode)? api,
+    TResult Function(int? errorCode, String? errorMessage)? api,
     TResult Function()? noConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? errorCode)? api,
+    TResult Function(int? errorCode, String? errorMessage)? api,
     TResult Function()? noConnection,
     required TResult orElse(),
   }) =>
@@ -94,7 +95,7 @@ class _$AstraFailureCopyWithImpl<$Res> implements $AstraFailureCopyWith<$Res> {
 abstract class _$ApiCopyWith<$Res> {
   factory _$ApiCopyWith(_Api value, $Res Function(_Api) then) =
       __$ApiCopyWithImpl<$Res>;
-  $Res call({int? errorCode});
+  $Res call({int? errorCode, String? errorMessage});
 }
 
 /// @nodoc
@@ -109,12 +110,17 @@ class __$ApiCopyWithImpl<$Res> extends _$AstraFailureCopyWithImpl<$Res>
   @override
   $Res call({
     Object? errorCode = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_Api(
-      errorCode == freezed
+      errorCode: errorCode == freezed
           ? _value.errorCode
           : errorCode // ignore: cast_nullable_to_non_nullable
               as int?,
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -122,14 +128,16 @@ class __$ApiCopyWithImpl<$Res> extends _$AstraFailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Api extends _Api {
-  const _$_Api([this.errorCode]) : super._();
+  const _$_Api({this.errorCode, this.errorMessage}) : super._();
 
   @override
   final int? errorCode;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'AstraFailure.api(errorCode: $errorCode)';
+    return 'AstraFailure.api(errorCode: $errorCode, errorMessage: $errorMessage)';
   }
 
   @override
@@ -137,12 +145,16 @@ class _$_Api extends _Api {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Api &&
-            const DeepCollectionEquality().equals(other.errorCode, errorCode));
+            const DeepCollectionEquality().equals(other.errorCode, errorCode) &&
+            const DeepCollectionEquality()
+                .equals(other.errorMessage, errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(errorCode));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(errorCode),
+      const DeepCollectionEquality().hash(errorMessage));
 
   @JsonKey(ignore: true)
   @override
@@ -152,30 +164,30 @@ class _$_Api extends _Api {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? errorCode) api,
+    required TResult Function(int? errorCode, String? errorMessage) api,
     required TResult Function() noConnection,
   }) {
-    return api(errorCode);
+    return api(errorCode, errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? errorCode)? api,
+    TResult Function(int? errorCode, String? errorMessage)? api,
     TResult Function()? noConnection,
   }) {
-    return api?.call(errorCode);
+    return api?.call(errorCode, errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? errorCode)? api,
+    TResult Function(int? errorCode, String? errorMessage)? api,
     TResult Function()? noConnection,
     required TResult orElse(),
   }) {
     if (api != null) {
-      return api(errorCode);
+      return api(errorCode, errorMessage);
     }
     return orElse();
   }
@@ -213,10 +225,11 @@ class _$_Api extends _Api {
 }
 
 abstract class _Api extends AstraFailure {
-  const factory _Api([int? errorCode]) = _$_Api;
+  const factory _Api({int? errorCode, String? errorMessage}) = _$_Api;
   const _Api._() : super._();
 
   int? get errorCode;
+  String? get errorMessage;
   @JsonKey(ignore: true)
   _$ApiCopyWith<_Api> get copyWith => throw _privateConstructorUsedError;
 }
@@ -261,7 +274,7 @@ class _$_NoConnection extends _NoConnection {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? errorCode) api,
+    required TResult Function(int? errorCode, String? errorMessage) api,
     required TResult Function() noConnection,
   }) {
     return noConnection();
@@ -270,7 +283,7 @@ class _$_NoConnection extends _NoConnection {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? errorCode)? api,
+    TResult Function(int? errorCode, String? errorMessage)? api,
     TResult Function()? noConnection,
   }) {
     return noConnection?.call();
@@ -279,7 +292,7 @@ class _$_NoConnection extends _NoConnection {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? errorCode)? api,
+    TResult Function(int? errorCode, String? errorMessage)? api,
     TResult Function()? noConnection,
     required TResult orElse(),
   }) {

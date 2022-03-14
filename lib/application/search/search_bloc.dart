@@ -24,7 +24,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         await event.map(
           loadData: (e) async {
             bool _hiddenProfile = _user.userProfile.isHidden;
-
             emit(
               state.copyWith(
                 stateType: SearchStateType.initial,
@@ -32,13 +31,16 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                 isHiddenProfile: false,
               ),
             );
-
             final response = await _searchApi.getApplicants();
+            await Future.delayed(const Duration(milliseconds: 500));
             response.fold(
               (failure) => failure.map(
-                api: (_) => emit(
+                api: (message) => emit(
                   state.copyWith(
-                    stateType: SearchStateType.failure,
+                    stateType: message.errorMessage != null &&
+                            message.errorMessage!.isNotEmpty
+                        ? SearchStateType.emptyBalance
+                        : SearchStateType.failure,
                     isUnexpectedError: true,
                     isHiddenProfile: _hiddenProfile,
                   ),
@@ -56,6 +58,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                   stateType: SearchStateType.success,
                   applicants: r,
                   isHiddenProfile: _hiddenProfile,
+                  isEmptyBalance: false,
                 ),
               ),
             );

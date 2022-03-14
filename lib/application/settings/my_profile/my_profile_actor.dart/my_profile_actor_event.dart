@@ -3,12 +3,12 @@ part of 'my_profile_actor_bloc.dart';
 /// MyProfileScreen state change events.
 @freezed
 class MyProfileActorEvent with _$MyProfileActorEvent {
-  /// Screen initialoization event.
+  /// Screen initialization event.
   const factory MyProfileActorEvent.initialized(
           Profile profile, Wallet walletInfo, CuratorModel curatorInfo) =
       _Initialized;
 
-  /// Profile descriptyion change event.
+  /// Profile description change event.
   const factory MyProfileActorEvent.descriptionChanged(String description) =
       _DescriptionChanged;
 
@@ -20,10 +20,10 @@ class MyProfileActorEvent with _$MyProfileActorEvent {
   const factory MyProfileActorEvent.accountVisibilityToggled() =
       _AccountToggled;
 
-  /// Toggle edititing mode.
+  /// Toggle editing mode.
   const factory MyProfileActorEvent.editModeToggled() = _EditModeToggled;
 
-  /// Submite changes event.
+  /// Submits changes event.
   const factory MyProfileActorEvent.changesSubmitted() = _ChanchesSubmitted;
 
   /// Images add event.

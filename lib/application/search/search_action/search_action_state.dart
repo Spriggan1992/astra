@@ -18,6 +18,9 @@ class SearchActionState with _$SearchActionState {
 
     /// Flag responsible for successfully posted data to server.
     required bool isSuccess,
+
+    /// Whether to can close dialog inform about empty balance.
+    required bool canCloseDialog,
   }) = _SearchActionState;
 
   // Initial states loaded.
@@ -27,5 +30,6 @@ class SearchActionState with _$SearchActionState {
         isNoInternetConnection: false,
         isUnexpectedError: false,
         isSuccess: false,
+        canCloseDialog: false,
       );
 }

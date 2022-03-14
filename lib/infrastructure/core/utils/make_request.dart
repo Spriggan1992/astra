@@ -24,8 +24,14 @@ Future<Either<AstraFailure, T>> makeRequest<T>(
       log("${e.message}: ${e.type}", level: 2);
       return left(const AstraFailure.noConnection());
     } else {
-      log("${e.message}: ${e.type}", level: 2);
-      return left(const AstraFailure.api());
+      if (e.response?.data['errorMessage'] == 'Пополните баланс.') {
+        log("${e.message}: ${e.type}", level: 2);
+        return left(
+            AstraFailure.api(errorMessage: e.response?.data['errorMessage']));
+      } else {
+        log("${e.message}: ${e.type}", level: 2);
+        return left(const AstraFailure.api());
+      }
     }
   } catch (e) {
     log(e.toString(), level: 2);

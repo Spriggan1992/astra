@@ -31,10 +31,10 @@ class UserOnlineStatusService implements IUserOnlineStatusService {
             name: 'USER_ONLINE_STATUS_EXCEPTION',
             level: 2,
             error: WebSocketChannelException);
-        return left(const AstraFailure.api(2));
+        return left(const AstraFailure.api(errorCode: 2));
       }
     } else {
-      return left(const AstraFailure.api(2));
+      return left(const AstraFailure.api(errorCode: 2));
     }
   }
 

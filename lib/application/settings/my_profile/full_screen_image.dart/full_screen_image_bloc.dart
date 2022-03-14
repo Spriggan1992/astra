@@ -29,7 +29,7 @@ class FullScreenImageBloc
             emit(
               response.fold(
                   (failure) => failure.map(
-                      api: (_) => state.copyWith(isShowUnexpactedError: true),
+                      api: (_) => state.copyWith(isShowUnexpectedError: true),
                       noConnection: (_) => state.copyWith(
                           isShowNoInternetConnectionError: true)), (_) {
                 final updatedImages = state.images
@@ -44,7 +44,7 @@ class FullScreenImageBloc
             );
             emit(state.copyWith(isLoading: false));
           },
-          curentImageIndexSet: (e) async {
+          currentImageIndexSet: (e) async {
             emit(state.copyWith(currentImageIndex: e.index));
           },
           appBarAndBottomBarHidden: (e) async {

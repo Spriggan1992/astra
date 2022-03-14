@@ -9,7 +9,7 @@ class SettingsState with _$SettingsState {
   /// Progress loading states.
   const factory SettingsState.loadInProgress() = _LoadInProgress;
 
-  /// Successfule loaded data state.
+  /// Successfully loaded data state.
   ///
   /// Keep state of [Profile] if loaded successfully.
   const factory SettingsState.loadSuccess(ProfileShortModel profile) =

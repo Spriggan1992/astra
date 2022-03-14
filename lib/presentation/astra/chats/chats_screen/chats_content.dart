@@ -1,5 +1,5 @@
-import 'package:astra_app/application/chats/chats_loading_statuses.dart';
 import 'package:astra_app/application/chats/chats_bloc.dart';
+import 'package:astra_app/application/chats/enums/chats_loading_statuses.dart';
 import 'package:astra_app/domain/core/failure/astra_failure.dart';
 import 'package:astra_app/presentation/astra/chats/chats_screen/chat_list_item.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
@@ -100,7 +100,11 @@ class ChatsContent extends StatelessWidget {
       } else {
         return CustomScrollView(
           slivers: [
-            SliverFillRemaining(child: Center(child: EmptyDataScreen())),
+            SliverFillRemaining(
+              child: Center(
+                child: EmptyDataScreen(),
+              ),
+            ),
           ],
         );
       }

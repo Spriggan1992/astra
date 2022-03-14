@@ -40,7 +40,7 @@ class PromocodeDialogSuccess extends StatelessWidget {
         title: 'Отлично!',
         onClick: () {
           context.router.pop();
-          context.router.navigate(const SettingsRouter());
+          context.router.navigate(const SettingsTab());
         },
       ),
     );

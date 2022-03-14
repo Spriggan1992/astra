@@ -76,7 +76,7 @@ class SettingsItems extends StatelessWidget {
                   ),
                   title: 'Моя анкета',
                   onTap: () {
-                    context.router.push(const ApplicationFormScreenRoute());
+                    context.router.push(MyFormScreenRoute());
                   },
                 ),
                 ProfileItem(
@@ -87,7 +87,7 @@ class SettingsItems extends StatelessWidget {
                   ),
                   title: 'Магазин',
                   onTap: () {
-                    AutoRouter.of(context).push(StoreScreenRoute());
+                    context.router.push(StoreScreenRoute());
                   },
                 ),
                 ProfileItem(

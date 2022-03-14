@@ -16,15 +16,12 @@ abstract class IFavoritesRepository {
   /// Get a list of users that the current user disliked.
   Future<Either<AstraFailure, List<Profile>>> getNope();
 
-  /// To like user.
-  Future<Either<AstraFailure, Unit>> toLike(int id);
+  /// Get a list of match users.
+  Future<Either<AstraFailure, List<Profile>>> getMatch();
 
   /// To think about user.
   Future<Either<AstraFailure, Unit>> toThink(int id);
 
-  /// To reject user.
-  Future<Either<AstraFailure, Unit>> toReject(int id);
-
-  /// To block user.
-  Future<Either<AstraFailure, Unit>> toBlock(int id);
+  /// Moved all users from `StopList` to `Think`.
+  Future<Either<AstraFailure, Unit>> removeAllFromStopList();
 }

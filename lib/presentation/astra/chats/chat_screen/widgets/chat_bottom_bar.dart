@@ -1,4 +1,4 @@
-import 'package:astra_app/application/chat/chat_wathcer/chat_watcher_bloc.dart';
+import 'package:astra_app/application/chat/chat_bloc.dart';
 import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
@@ -16,6 +16,12 @@ class ChatBottomBar extends StatefulWidget {
 
 class _ChatBottomBarState extends State<ChatBottomBar> {
   final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
       ),
       child: Padding(
         padding: const EdgeInsets.all(8),
-        child: BlocSelector<ChatWatcherBloc, ChatWatcherState, bool>(
+        child: BlocSelector<ChatBloc, ChatState, bool>(
           selector: (state) => state.hasConnection,
           builder: (context, hasConnection) {
             return Row(
@@ -77,8 +83,8 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
                   onTap: () {
                     if (_controller.text.isNotEmpty && hasConnection) {
                       context
-                          .read<ChatWatcherBloc>()
-                          .add(ChatWatcherEvent.messageSent(_controller.text));
+                          .read<ChatBloc>()
+                          .add(ChatEvent.messageSent(_controller.text));
                       _controller.text = '';
                     }
                   },

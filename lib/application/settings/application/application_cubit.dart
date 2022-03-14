@@ -22,10 +22,10 @@ class ApplicationCubit extends Cubit<ApplicationState> {
 
     profileImage = profile.userProfile.profilePhotos.isEmpty
         ? null
-        : profile.userProfile.profilePhotos.first.fileImage;
+        : profile.userProfile.profilePhotos.first.cachedImage!.fullImage;
     curatorImage = profile.userProfile.curatorPhotos.isEmpty
         ? null
-        : profile.userProfile.curatorPhotos.first.fileImage;
+        : profile.userProfile.curatorPhotos.first.cachedImage!.thumbnailImage;
 
     emit(
       state.copyWith(

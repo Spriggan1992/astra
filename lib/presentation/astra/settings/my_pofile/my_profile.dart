@@ -1,3 +1,4 @@
+import 'package:astra_app/application/search/search_action/search_action_bloc.dart';
 import 'package:astra_app/application/settings/my_profile/my_profile/my_profile_bloc.dart';
 import 'package:astra_app/application/settings/my_profile/my_profile_actor.dart/my_profile_actor_bloc.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
@@ -13,11 +14,10 @@ import 'package:astra_app/presentation/core/widgets/scaffolds/loading_screen.dar
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'widgets/profile_widgets.dart';
 
 /// Defines MyProfileScreen.
-class MyProfileScreen extends HookWidget {
+class MyProfileScreen extends StatelessWidget {
   const MyProfileScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -35,17 +35,30 @@ class MyProfileScreen extends HookWidget {
                   MyProfileActorEvent.initialized(
                       state.profile, state.walletInfo, state.curatorInfo),
                 ),
-              child: BlocListener<MyProfileActorBloc, MyProfileActorState>(
-                listener: (context, state) {
-                  if (state.isShowNoInternetConnectionError) {
-                    showSnackBar(context);
-                  }
-                  if (state.isSuccessfullySubmitted) {
-                    context
-                        .read<MyProfileBloc>()
-                        .add(const MyProfileEvent.profileLoaded());
-                  }
-                },
+              child: MultiBlocListener(
+                listeners: [
+                  BlocListener<MyProfileActorBloc, MyProfileActorState>(
+                    listener: (context, state) {
+                      if (state.isShowNoInternetConnectionError) {
+                        showSnackBar(context);
+                      }
+                      if (state.isSuccessfullySubmitted) {
+                        context
+                            .read<MyProfileBloc>()
+                            .add(const MyProfileEvent.profileLoaded());
+                      }
+                    },
+                  ),
+                  BlocListener<SearchActionBloc, SearchActionState>(
+                    listener: (context, state) {
+                      if (state.canCloseDialog) {
+                        context.read<MyProfileActorBloc>().add(
+                            const MyProfileActorEvent
+                                .accountVisibilityToggled());
+                      }
+                    },
+                  ),
+                ],
                 child: MyProfileScreenContent(
                   profile: state.profile,
                   curator: state.curatorInfo,
@@ -68,7 +81,7 @@ class MyProfileScreen extends HookWidget {
 }
 
 /// Defines content for MyProfileScreen.
-class MyProfileScreenContent extends StatelessWidget {
+class MyProfileScreenContent extends StatefulWidget {
   final Profile profile;
   final CuratorModel curator;
   const MyProfileScreenContent({
@@ -77,6 +90,11 @@ class MyProfileScreenContent extends StatelessWidget {
     required this.curator,
   }) : super(key: key);
 
+  @override
+  State<MyProfileScreenContent> createState() => _MyProfileScreenContentState();
+}
+
+class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyProfileActorBloc, MyProfileActorState>(
@@ -133,9 +151,10 @@ class MyProfileScreenContent extends StatelessWidget {
                             p.selectedImages != c.selectedImages,
                         builder: (context, state) {
                           return ProfileLogoScreen(
-                            images: profile.profilePhotos,
+                            images: widget.profile.profilePhotos,
                             addedImg: state.selectedImages.isNotEmpty
-                                ? state.selectedImages[0].fileImage
+                                ? state.selectedImages[0].cachedImage!
+                                    .thumbnailImage
                                 : null,
                             isEditMode: state.isEditMode,
                             onPickImage: () {
@@ -147,7 +166,7 @@ class MyProfileScreenContent extends StatelessWidget {
                               await AutoRouter.of(context)
                                   .push(
                                     ShowImageFullScreenRoute(
-                                      images: profile.profilePhotos,
+                                      images: widget.profile.profilePhotos,
                                       enableDeleteButton: true,
                                     ),
                                   )
@@ -187,7 +206,7 @@ class MyProfileScreenContent extends StatelessWidget {
                         builder: (context, shotrInfostate) {
                           return ProfileTextField(
                             isEditingMode: shotrInfostate.isEditMode,
-                            description: profile.profileInfo,
+                            description: widget.profile.profileInfo,
                             leftSymbols:
                                 shotrInfostate.profile.profileInfo.length,
                             onChanged: (value) {
@@ -266,8 +285,8 @@ class MyProfileScreenContent extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       CuratorListTile(
-                        trallingRadius: 20,
-                        curator: curator,
+                        trailingRadius: 20,
+                        curator: widget.curator,
                         onPressed: () {},
                       ),
                       const Padding(

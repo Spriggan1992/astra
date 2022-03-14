@@ -9,12 +9,12 @@ part 'profile_properties_event.dart';
 part 'profile_properties_state.dart';
 part 'profile_properties_bloc.freezed.dart';
 
-/// Profile proprties bloc for managing [ProfilePropertiesState] states.
+/// Profile properties bloc for managing [ProfilePropertiesState] states.
 @injectable
 class ProfilePropertiesBloc
     extends Bloc<ProfilePropertiesEvent, ProfilePropertiesState> {
-  /// ProfilePropertiesRepository api.
-  IProfilePropertiesRepository _api;
+  // Repository for profile properties.
+  final IProfilePropertiesRepository _api;
   ProfilePropertiesBloc(this._api) : super(ProfilePropertiesState.initial()) {
     on<ProfilePropertiesEvent>(
       (event, emit) async {

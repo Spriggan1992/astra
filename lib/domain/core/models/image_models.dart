@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:astra_app/domain/core/models/cached_file_image_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'image_models.freezed.dart';
 
@@ -11,15 +10,15 @@ class ImageModel with _$ImageModel {
     /// Image identifier
     int? id,
 
-    /// Imgae url to display.
+    /// Image url to display.
     required String imageUrl,
 
     /// Compressed images
-    File? fileImage,
+    CachedFileImageModel? cachedImage,
   }) = _ImageModel;
   factory ImageModel.empty() => const ImageModel(
         imageUrl: '',
+        cachedImage: null,
       );
   bool get imageUrlIsEmpty => imageUrl.isEmpty;
-  bool get imagePathIsEmpty => imageUrl.isEmpty;
 }

@@ -22,10 +22,10 @@ abstract class IProfileRepository {
   /// Add photo.
   Future<Either<AstraFailure, bool>> addPhoto(List<ImageModel> images);
 
-  // Future<Either<AstraFilure, dynamic>> updatePhoto();
+  // Future<Either<AstraFailure, dynamic>> updatePhoto();
   Future<Either<AstraFailure, bool>> deletePhoto(ImageModel image);
 
-  /// Updte users short info.
+  /// Update users short info.
   Future<Either<AstraFailure, bool>> updateShortInfo(String shortInfo);
 
   /// Get info about curator.

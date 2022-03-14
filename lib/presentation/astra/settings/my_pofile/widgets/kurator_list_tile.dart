@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 
 /// Represent widget that display information about curator.
 class CuratorListTile extends StatelessWidget {
-  const CuratorListTile(
-      {Key? key,
-      required this.trallingRadius,
-      required this.onPressed,
-      required this.curator})
-      : super(key: key);
+  const CuratorListTile({
+    Key? key,
+    required this.trailingRadius,
+    required this.onPressed,
+    required this.curator,
+  }) : super(key: key);
 
   /// Curator  information.
   final CuratorModel curator;
@@ -19,8 +19,8 @@ class CuratorListTile extends StatelessWidget {
   /// Button click  event handler.
   final VoidCallback onPressed;
 
-  /// Traling icon radius.
-  final double trallingRadius;
+  /// Trailing icon radius.
+  final double trailingRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,10 @@ class CuratorListTile extends StatelessWidget {
           child: Row(
             children: [
               AstraFileImage(
-                image: curator.profilePhoto.fileImage!,
+                image: curator.profilePhoto,
                 height: 48,
                 width: 48,
-                border: null,
+                border: false,
               ),
               const SizedBox(width: 20),
               Column(
@@ -67,11 +67,11 @@ class CuratorListTile extends StatelessWidget {
           child: GestureDetector(
             onTap: onPressed,
             child: CircleAvatar(
-              radius: trallingRadius,
+              radius: trailingRadius,
               backgroundColor: AstraColors.black,
               child: CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: trallingRadius - 1,
+                radius: trailingRadius - 1,
                 child: const Icon(CupertinoIcons.paperplane),
               ),
             ),

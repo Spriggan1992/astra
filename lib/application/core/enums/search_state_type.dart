@@ -1,9 +1,14 @@
-/// [SearchBloc] state managment.
-/// [initial] - Initial state.
-/// [failure] - Error state, except for [noInternetConnection] and [unexpectedError].
-/// [success] - Success state. Data successfully received from the server.
+/// Enumeration of search screen loading states.
 enum SearchStateType {
+  /// Initial state.
   initial,
+
+  /// Error state, except for [noInternetConnection] and [unexpectedError].
   failure,
+
+  /// Data successfully received from the server.
   success,
+
+  /// User has empty balance.
+  emptyBalance,
 }

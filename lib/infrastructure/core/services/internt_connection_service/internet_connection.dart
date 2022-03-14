@@ -5,7 +5,7 @@ import 'package:astra_app/domain/core/services/i_ineternet_connection_status.dar
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-/// Represent service for getiing information about an internet connection.
+/// Represent service for getting information about an internet connection.
 @LazySingleton(as: IInternetConnectionService)
 class InternetConnectionService implements IInternetConnectionService {
   bool _hasConnection = false;

@@ -4,20 +4,20 @@ part of 'my_profile_actor_bloc.dart';
 @freezed
 class MyProfileActorState with _$MyProfileActorState {
   const factory MyProfileActorState({
-    /// Todo
+    /// Whether to show progress loading data indicator.
     required bool isLoading,
 
     /// User profile information.
     required Profile profile,
 
-    /// A flag respnosible for showing or hiding edit mode.
+    /// A flag responsible for showing or hiding edit mode.
     required bool isEditMode,
 
-    /// A flag respnosible for showing or hiding error, when there no internet connection.
+    /// A flag responsible for showing or hiding error, when there no internet connection.
     required bool isShowNoInternetConnectionError,
 
-    /// A flag respnosible for showing or hiding error, when get unexpected exception.
-    required bool isShowUnexpactedError,
+    /// A flag responsible for showing or hiding error, when get unexpected exception.
+    required bool isShowUnexpectedError,
 
     /// A flag responsible for successfully or unsuccessfully submitted changed settings.
     required bool isSuccessfullySubmitted,
@@ -33,7 +33,7 @@ class MyProfileActorState with _$MyProfileActorState {
         profile: Profile.empty(),
         isEditMode: false,
         isShowNoInternetConnectionError: false,
-        isShowUnexpactedError: false,
+        isShowUnexpectedError: false,
         isSuccessfullySubmitted: false,
         selectedImages: [],
         walletInfo: Wallet.empty(),

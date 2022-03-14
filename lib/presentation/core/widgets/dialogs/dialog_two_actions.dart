@@ -11,6 +11,7 @@ class DialogTwoActions extends BaseDialog {
 
   /// Positive dialog action.
   final Widget action2;
+
   DialogTwoActions({
     Key? key,
     required this.content,

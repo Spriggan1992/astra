@@ -1,7 +1,7 @@
 import 'package:astra_app/domain/core/models/image_models.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/infrastructure/core/http/endpoints.dart';
-import 'package:astra_app/infrastructure/core/services/images/i_chache_image_service.dart';
+import 'package:astra_app/infrastructure/core/services/images/i_cache_image_service.dart';
 import 'package:astra_app/infrastructure/core/utils/make_request.dart';
 import 'package:astra_app/infrastructure/profile/DTOs/profile_dto.dart';
 import 'package:dartz/dartz.dart';
@@ -47,9 +47,19 @@ class SearchRepository extends ISearchRepository {
       final compressedImages =
           await _cacheImageService.getFileImage(e.imageUrl);
       images.add(ImageModel(
-          imageUrl: e.imageUrl, id: e.id, fileImage: compressedImages));
+          imageUrl: e.imageUrl,
+          id: e.id,
+          cachedImage: compressedImages.toDomain()));
     }
     return images;
+  }
+
+  @override
+  Future<Either<AstraFailure, bool>> showAccount() async {
+    return await makeRequest<bool>(() async {
+      final response = await _dio.post(Endpoints.user.showAccount);
+      return response.statusCode == 200;
+    });
   }
 
   @override

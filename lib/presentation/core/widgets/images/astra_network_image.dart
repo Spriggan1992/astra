@@ -1,3 +1,4 @@
+import 'package:astra_app/presentation/core/theming/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -25,11 +26,15 @@ class AstraNetworkImage extends StatelessWidget {
   /// Image background color.
   final Color? backgroundColor;
 
-  /// Image provider. In this case resposible for showing image stored on device.
+  /// Image provider. In this case responsible for showing image stored on device.
   final ImageProvider<Object>? fileImage;
 
   /// An immutable set of radii for each corner of a rectangle.
   final BorderRadius? borderRadius;
+
+  /// Whether to display background overlay on image.
+  final bool isOverlayBackground;
+
   const AstraNetworkImage({
     Key? key,
     required this.imageUrl,
@@ -41,13 +46,12 @@ class AstraNetworkImage extends StatelessWidget {
     this.backgroundColor,
     this.fileImage,
     this.borderRadius,
+    this.isOverlayBackground = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      // memCacheHeight: height!.toInt(),
-      // memCacheWidth: width!.toInt(),
       imageUrl: imageUrl ?? "",
       placeholder: (context, url) => Shimmer.fromColors(
         baseColor: const Color(0xFFEBEBF4),
@@ -68,6 +72,7 @@ class AstraNetworkImage extends StatelessWidget {
           boxShape: boxShape,
           borderRadius: borderRadius,
           fit: fit,
+          isOverlayBackground: isOverlayBackground,
           imageProvider: const AssetImage('assets/no-image.png')),
       imageBuilder: (context, imageProvider) => _ImageContainer(
         height: height,
@@ -76,25 +81,15 @@ class AstraNetworkImage extends StatelessWidget {
         boxShape: boxShape,
         borderRadius: borderRadius,
         fit: fit,
+        isOverlayBackground: isOverlayBackground,
         imageProvider: fileImage ?? imageProvider,
       ),
     );
   }
 }
 
-///  Image container for displaying network iimage.
+///  Image container for displaying network image.
 class _ImageContainer extends StatelessWidget {
-  const _ImageContainer({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.border,
-    required this.boxShape,
-    required this.fit,
-    required this.imageProvider,
-    this.borderRadius,
-  }) : super(key: key);
-
   /// Image container height.
   final double? height;
 
@@ -116,20 +111,45 @@ class _ImageContainer extends StatelessWidget {
   /// An immutable set of radii for each corner of a rectangle.
   final BorderRadius? borderRadius;
 
+  /// Whether to display background overlay on image.
+  final bool isOverlayBackground;
+
+  const _ImageContainer({
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.border,
+    required this.boxShape,
+    required this.fit,
+    required this.imageProvider,
+    required this.isOverlayBackground,
+    this.borderRadius,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height ?? MediaQuery.of(context).size.height,
-      width: width ?? MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        border: border,
-        borderRadius: borderRadius,
-        shape: boxShape ?? BoxShape.rectangle,
-        image: DecorationImage(
-          fit: fit ?? BoxFit.cover,
-          image: imageProvider,
+    return Stack(
+      children: [
+        Container(
+          height: height ?? MediaQuery.of(context).size.height,
+          width: width ?? MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            border: border,
+            borderRadius: borderRadius,
+            shape: boxShape ?? BoxShape.rectangle,
+            image: DecorationImage(
+              fit: fit ?? BoxFit.cover,
+              image: imageProvider,
+            ),
+          ),
         ),
-      ),
+        Visibility(
+          visible: isOverlayBackground,
+          child: Container(
+            color: AstraColors.black07,
+          ),
+        ),
+      ],
     );
   }
 }

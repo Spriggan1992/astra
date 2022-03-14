@@ -15,7 +15,7 @@ class FavoriteDetailWidget extends HookWidget {
     Key? key,
     required this.profile,
     required this.onTap,
-    required this.favotieType,
+    required this.favoriteType,
     this.isRemovedFromStopList = false,
   }) : super(key: key);
 
@@ -23,7 +23,7 @@ class FavoriteDetailWidget extends HookWidget {
   final Profile profile;
 
   /// Favorite screen type.
-  final FavoriteScreenType favotieType;
+  final FavoriteScreenType favoriteType;
 
   /// Сard click event handler.
   final VoidCallback onTap;
@@ -84,9 +84,9 @@ class FavoriteDetailWidget extends HookWidget {
             ],
           ),
           FavoriteActionIcon(
-            favotieType: favotieType,
+            favoriteType: favoriteType,
             isRemovedFromStopList: isRemovedFromStopList,
-            mutualSympathy: profile.isMutualLike,
+            matchStatus: profile.matchStatus,
           ),
         ],
       ),

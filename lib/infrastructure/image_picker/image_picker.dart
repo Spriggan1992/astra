@@ -1,4 +1,4 @@
-import 'package:astra_app/domain/image_picker/reopositories/i_image_picker.dart';
+import 'package:astra_app/domain/image_picker/i_image_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,7 +16,7 @@ class ImagePickerRepository extends IImagePickerRepository {
   }
 
   @override
-  Future<List<XFile>?> getImgs() async {
+  Future<List<XFile>?> getImages() async {
     return _picker.pickMultiImage(imageQuality: 50);
   }
 }

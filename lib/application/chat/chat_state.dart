@@ -1,20 +1,44 @@
 part of 'chat_bloc.dart';
 
-/// Represent chat states.
 @freezed
 class ChatState with _$ChatState {
-  /// Initial states loaded.
-  const factory ChatState.initial() = _Initial;
+  const factory ChatState({
+    /// Loading states.
+    required LoadingStates loadingStates,
 
-  /// Progress loading states.
-  const factory ChatState.loadInProgress() = _LoadInProgress;
+    /// Chat messages.
+    required PaginationChatModel paginationResult,
 
-  /// Successfully loaded data state.
-  ///
-  /// Keep state of [chatMessages] if loaded successfully.
-  const factory ChatState.loadSuccess(PaginationChatModel chatMessages) =
-      _LoadSuccess;
+    /// Chat id.
+    required int chatId,
 
-  /// Unsuccessfully loaded data state.
-  const factory ChatState.loadFailure(AstraFailure failure) = _LoadFailure;
+    /// Flag responsible internet connection state.
+    required bool hasConnection,
+
+    /// Flag responsible whether messages already loaded or not.
+    required bool isNextMessagesLoaded,
+
+    /// Flag responsible for whether can load next messages or not.
+    required bool isAvailableToLoad,
+
+    /// Topic for subscribe to listen change online status.
+    required String topicOnlineStatus,
+
+    /// Whether the target user is online or not.
+    required bool isOnline,
+
+    /// The parameter of offset of messages loaded.
+    required int offset,
+  }) = _ChatWatcherState;
+  factory ChatState.initial() => ChatState(
+        loadingStates: LoadingStates.initial,
+        paginationResult: PaginationChatModel.empty(),
+        chatId: 0,
+        hasConnection: true,
+        isNextMessagesLoaded: false,
+        isAvailableToLoad: true,
+        topicOnlineStatus: '',
+        isOnline: false,
+        offset: 0,
+      );
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:astra_app/domain/promocode/promocode_failure.dart';
 import 'package:astra_app/domain/promocode/promocode_model.dart';
 import 'package:astra_app/domain/promocode/i_promocode_repository.dart';

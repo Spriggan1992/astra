@@ -1,95 +1,138 @@
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
+import 'package:astra_app/domain/favorites/match_status.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/theming/icons/svg_icon.dart';
 import 'package:astra_app/presentation/core/widgets/custom/blur_mask.dart';
 import 'package:flutter/material.dart';
 
 /// Defines icon that responsible for doing action with user.
 class FavoriteActionIcon extends StatelessWidget {
-  /// A flag resposible for removing user from stop list.
+  /// A flag responsible for removing user from stop list.
   final bool isRemovedFromStopList;
 
   /// A flag responsible for users mutual sympathy.
-  final bool mutualSympathy;
+  final MatchStatus matchStatus;
 
   /// Favorite screen tab qualifier.
-  final FavoriteScreenType favotieType;
+  final FavoriteScreenType favoriteType;
 
-  const FavoriteActionIcon(
-      {Key? key,
-      required this.favotieType,
-      required this.mutualSympathy,
-      required this.isRemovedFromStopList})
-      : super(key: key);
+  const FavoriteActionIcon({
+    Key? key,
+    required this.favoriteType,
+    required this.matchStatus,
+    required this.isRemovedFromStopList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: mutualSympathy ||
-          favotieType == FavoriteScreenType.stopList ||
-          favotieType == FavoriteScreenType.think,
+      visible: favoriteType == FavoriteScreenType.match ||
+          favoriteType == FavoriteScreenType.stopList,
       child: Positioned(
         bottom: 24,
         right: 10,
-        child: _getFavoriteIcon(favotieType, isRemovedFromStopList),
+        child: _FavoriteRoundedBlurredIcon(
+          favoriteType: favoriteType,
+          matchStatus: matchStatus,
+          isRemovedFromStopList: isRemovedFromStopList,
+        ),
       ),
     );
   }
-
-  Widget _getFavoriteIcon(
-      FavoriteScreenType favoriteType, bool isRemovedFromStopList) {
-    if (favoriteType == FavoriteScreenType.likesForYou ||
-        favoriteType == FavoriteScreenType.yourLikes) {
-      return _FavoriteRoundedBluredIcon(
-        favoriteType: favoriteType,
-      );
-    } else if (favoriteType == FavoriteScreenType.stopList) {
-      if (isRemovedFromStopList) {
-        return _FavoriteRoundedBluredIcon(
-          icon: Icons.check,
-          favoriteType: favoriteType,
-        );
-      } else {
-        return _FavoriteRoundedBluredIcon(
-          icon: Icons.add,
-          favoriteType: favoriteType,
-        );
-      }
-    }
-    return const SizedBox.shrink();
-  }
 }
 
-class _FavoriteRoundedBluredIcon extends StatelessWidget {
+class _FavoriteRoundedBlurredIcon extends StatelessWidget {
+  final bool isRemovedFromStopList;
   final FavoriteScreenType favoriteType;
-  final IconData? icon;
-  const _FavoriteRoundedBluredIcon(
-      {Key? key, this.icon, required this.favoriteType})
-      : super(key: key);
+  final MatchStatus matchStatus;
+  const _FavoriteRoundedBlurredIcon({
+    Key? key,
+    required this.favoriteType,
+    required this.matchStatus,
+    this.isRemovedFromStopList = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlurMask(
       borderRadius: BorderRadius.circular(100),
       child: Container(
+        padding:
+            matchStatus == MatchStatus.success ? const EdgeInsets.all(8) : null,
         decoration: BoxDecoration(
             color: AstraColors.white03.withOpacity(0.1),
             border: Border.all(color: AstraColors.white03.withOpacity(0.2)),
             borderRadius: BorderRadius.circular(100)),
         height: 36,
         width: 36,
-        child: favoriteType == FavoriteScreenType.likesForYou ||
-                favoriteType == FavoriteScreenType.yourLikes ||
-                icon == null
-            ? Image.asset(
-                'assets/paper_plane.png',
-                color: Colors.white,
-                scale: 0.8,
-              )
-            : Icon(
-                icon,
-                color: AstraColors.white,
-              ),
+        child: _getIcon(),
       ),
     );
+  }
+
+  Widget _getIcon() {
+    if (favoriteType == FavoriteScreenType.match) {
+      return _MatchStatusIcon(matchStatus: matchStatus);
+    } else if (favoriteType == FavoriteScreenType.stopList) {
+      return _StopListIcon(
+        isRemovedFromStopList: isRemovedFromStopList,
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
+  }
+}
+
+class _MatchStatusIcon extends StatelessWidget {
+  final MatchStatus matchStatus;
+  const _MatchStatusIcon({
+    Key? key,
+    required this.matchStatus,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (matchStatus == MatchStatus.success) {
+      return const SvgIcon(
+        // color: Colors.w,
+        asset: 'assets/icons/paper-plane.svg',
+        height: 1,
+      );
+      // Image.asset(
+      //   'assets/paper_plane.png',
+      //   color: Colors.white,
+      //   scale: 0.8,
+      // );
+    } else {
+      return const Icon(
+        Icons.question_mark,
+        color: AstraColors.white,
+      );
+    }
+  }
+}
+
+class _StopListIcon extends StatelessWidget {
+  /// A flag responsible for removing user from stop list.
+  final bool isRemovedFromStopList;
+
+  const _StopListIcon({
+    Key? key,
+    required this.isRemovedFromStopList,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (isRemovedFromStopList) {
+      return const Icon(
+        Icons.check,
+        color: AstraColors.white,
+      );
+    } else {
+      return const Icon(
+        Icons.add,
+        color: AstraColors.white,
+      );
+    }
   }
 }

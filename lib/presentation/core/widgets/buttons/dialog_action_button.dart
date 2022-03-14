@@ -7,7 +7,7 @@ class DialogActionButton extends StatelessWidget {
   final String title;
 
   /// Button click event handler.
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
 
   /// The visual properties that most buttons have in common.
   final ButtonStyle? buttonStyle;

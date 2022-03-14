@@ -1,6 +1,5 @@
 import 'package:astra_app/domain/profile/models/profile.dart';
 
-
 import '../../core/failure/astra_failure.dart';
 import 'package:dartz/dartz.dart';
 
@@ -9,7 +8,7 @@ abstract class ISearchRepository {
   /// Gets list of applicants
   Future<Either<AstraFailure, List<Profile>>> getApplicants();
 
-   /// To like user.
+  /// To like user.
   Future<Either<AstraFailure, Unit>> toLike(int id);
 
   /// To think about user.
@@ -20,4 +19,9 @@ abstract class ISearchRepository {
 
   /// To block user.
   Future<Either<AstraFailure, Unit>> toBlock(int id);
+
+  /// Hide account.
+  ///
+  /// Account will be not visible for another users.
+  Future<Either<AstraFailure, bool>> showAccount();
 }

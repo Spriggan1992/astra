@@ -21,4 +21,9 @@ abstract class IChatsRepository {
 
   /// Dispose data if service don't use anymore.
   Future<void> dispose();
+
+  /// Open chat with user.
+  ///
+  /// Where [id] - user id.
+  Future<Either<AstraFailure, Unit>> openChat(int userId);
 }

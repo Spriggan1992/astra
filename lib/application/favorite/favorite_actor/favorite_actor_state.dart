@@ -1,6 +1,6 @@
 part of 'favorite_actor_bloc.dart';
 
-/// Definse states for favorite screen.
+/// Defines states for favorite screen.
 @freezed
 class FavoriteActorState with _$FavoriteActorState {
   const factory FavoriteActorState({
@@ -10,7 +10,7 @@ class FavoriteActorState with _$FavoriteActorState {
     /// Flag, responsible for removing user from stop list to the think category.
     required bool isRemovedFromStopList,
 
-    /// Flag, responsible showing unexpected error.
+    /// Flag, responsible for showing unexpected error.
     required bool isUnexpectedError,
 
     /// Flag, responsible showing error when no internet connection.

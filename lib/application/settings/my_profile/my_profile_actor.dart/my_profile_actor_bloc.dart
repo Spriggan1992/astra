@@ -1,7 +1,8 @@
 import 'dart:io';
 
+import 'package:astra_app/domain/core/models/cached_file_image_model.dart';
 import 'package:astra_app/domain/core/models/image_models.dart';
-import 'package:astra_app/domain/image_picker/reopositories/i_image_picker.dart';
+import 'package:astra_app/domain/image_picker/i_image_picker.dart';
 import 'package:astra_app/domain/profile/models/curator_model.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
 import 'package:astra_app/domain/profile/repositories/i_profile_repository.dart';
@@ -41,11 +42,11 @@ class MyProfileActorBloc
           emit(
             response.fold(
               (failure) => failure.map(
-                api: (_) => state.copyWith(isShowUnexpactedError: true),
+                api: (_) => state.copyWith(isShowUnexpectedError: true),
                 noConnection: (_) =>
                     state.copyWith(isShowNoInternetConnectionError: true),
               ),
-              (sucess) => state.copyWith(
+              (success) => state.copyWith(
                 profile:
                     state.profile.copyWith(showInfo: !state.profile.showInfo),
               ),
@@ -58,11 +59,11 @@ class MyProfileActorBloc
           emit(
             response.fold(
               (failure) => failure.map(
-                api: (_) => state.copyWith(isShowUnexpactedError: true),
+                api: (_) => state.copyWith(isShowUnexpectedError: true),
                 noConnection: (_) =>
                     state.copyWith(isShowNoInternetConnectionError: true),
               ),
-              (sucess) => state.copyWith(
+              (success) => state.copyWith(
                 profile:
                     state.profile.copyWith(isHidden: !state.profile.isHidden),
               ),
@@ -79,7 +80,7 @@ class MyProfileActorBloc
             emit(
               response.fold(
                 (failure) => failure.map(
-                    api: (_) => state.copyWith(isShowUnexpactedError: true),
+                    api: (_) => state.copyWith(isShowUnexpectedError: true),
                     noConnection: (_) =>
                         state.copyWith(isShowNoInternetConnectionError: true)),
                 (success) {
@@ -96,26 +97,31 @@ class MyProfileActorBloc
               .updateShortInfo(state.profile.profileInfo);
           // Here we fold our response, if we get left(failure response) -> mapping state -> if we get AstraFailure.
           // no connection, setup  flag ///isShowNoInternetConnectionError to true for displaying snackbar with message that
-          // no innternet connection, if we get AstraFailure.api (rest dio exception), show coresponding error in UI.
+          // no internet connection, if we get AstraFailure.api (rest dio exception), show corresponding error in UI.
           // if response is success -> setup flag isSuccessfullySubmitted to true.
           emit(
             response.fold(
               (failure) => failure.map(
                   noConnection: (_) =>
                       state.copyWith(isShowNoInternetConnectionError: true),
-                  api: (_) => state.copyWith(isShowUnexpactedError: true)),
+                  api: (_) => state.copyWith(isShowUnexpectedError: true)),
               (success) => state.copyWith(),
             ),
           );
-          emit(state.copyWith(
-            isShowNoInternetConnectionError: false,
-          ));
+          emit(
+            state.copyWith(
+              isShowNoInternetConnectionError: false,
+            ),
+          );
         }, imagesAdded: (e) async {
-          final imagesResult = await _imagePicker.getImgs();
+          final imagesResult = await _imagePicker.getImages();
           if (imagesResult != null) {
             final images = imagesResult
                 .map(
-                  (e) => ImageModel(fileImage: File(e.path), imageUrl: ""),
+                  (e) => ImageModel(
+                      cachedImage:
+                          CachedFileImageModel(fullImage: File(e.path)),
+                      imageUrl: ""),
                 )
                 .toList();
             emit(state.copyWith(selectedImages: images));
@@ -124,7 +130,7 @@ class MyProfileActorBloc
           final response = await _profileRepository.deletePhoto(e.image);
           emit(response.fold(
               (failure) => failure.map(
-                  api: (_) => state.copyWith(isShowUnexpactedError: true),
+                  api: (_) => state.copyWith(isShowUnexpectedError: true),
                   noConnection: (_) =>
                       state.copyWith(isShowNoInternetConnectionError: true)),
               (success) {
@@ -137,7 +143,7 @@ class MyProfileActorBloc
           }));
           emit(state.copyWith(
               isShowNoInternetConnectionError: false,
-              isShowUnexpactedError: false));
+              isShowUnexpectedError: false));
         }, editingModeCanceled: (e) async {
           emit(state.copyWith(
               isEditMode: false, selectedImages: [], profile: state.profile));

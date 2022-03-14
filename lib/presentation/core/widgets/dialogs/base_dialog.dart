@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 
 /// Base class for dialogs.
 class BaseDialog extends StatelessWidget {
-  const BaseDialog(Key? key, this.dialogContent, this.dialogAction)
-      : super(key: key);
-
   /// Base dialog content.
   final Widget dialogContent;
 
   /// Base dialog action.
   final Widget dialogAction;
+
+  const BaseDialog(
+    Key? key,
+    this.dialogContent,
+    this.dialogAction,
+  ) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Dialog(

@@ -43,7 +43,7 @@ class SupportScreen extends StatelessWidget {
   }
 }
 
-/// Defimnse content for Support screen.
+/// Defines content for Support screen.
 class SupportScreenContent extends StatelessWidget {
   /// Information about curator.
   final CuratorModel curatorInfo;
@@ -70,7 +70,7 @@ class SupportScreenContent extends StatelessWidget {
           children: [
             CuratorListTile(
               curator: curatorInfo,
-              trallingRadius: 28,
+              trailingRadius: 28,
               onPressed: () {},
             ),
 

@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'text_item_widget.dart';
 
 /// Applicant main card, do display main info about the applicant
-class ApplicationMainCardScreen extends StatelessWidget {
-  const ApplicationMainCardScreen(
-      {Key? key, required this.applicant, required this.onClose})
-      : super(key: key);
+class UserInfoMainCardScreen extends StatelessWidget {
+  const UserInfoMainCardScreen({
+    Key? key,
+    required this.applicant,
+    required this.onClose,
+  }) : super(key: key);
 
   /// Applicant info model
   final Profile applicant;
@@ -24,11 +26,11 @@ class ApplicationMainCardScreen extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
-          color: const Color.fromRGBO(0, 0, 0, 0.7),
+          color: AstraColors.darken,
           border: Border.all(
-              color: const Color.fromRGBO(251, 251, 251, 0.2), width: 2),
+              color: const Color.fromRGBO(251, 251, 251, 0.2), width: 1),
         ),
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.only(left: 16, top: 8, bottom: 48),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -36,15 +38,19 @@ class ApplicationMainCardScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: IconButton(
-                  onPressed: onClose,
-                  icon: const Icon(
-                    Icons.close,
-                    color: AstraColors.white,
-                  )),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: IconButton(
+                    alignment: Alignment.topRight,
+                    onPressed: onClose,
+                    icon: const Icon(
+                      Icons.close,
+                      color: AstraColors.white,
+                    )),
+              ),
             ),
             Text(
-              '${applicant.firstname}, ${applicant.age} лет',
+              '${applicant.userInfo} лет',
               style: const TextStyle(
                   color: AstraColors.white,
                   fontSize: 18,
@@ -52,7 +58,7 @@ class ApplicationMainCardScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              '${applicant.userLocation} - ${applicant.age} от вас',
+              applicant.userLocation,
               style: const TextStyle(
                   color: AstraColors.white05,
                   fontSize: 15,
@@ -67,7 +73,10 @@ class ApplicationMainCardScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400),
             ),
             const SizedBox(height: 8),
-            const Divider(color: AstraColors.white01, thickness: 1),
+            const Padding(
+              padding: EdgeInsets.only(right: 16),
+              child: Divider(color: AstraColors.white01, thickness: 1),
+            ),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +84,11 @@ class ApplicationMainCardScreen extends StatelessWidget {
               children: [
                 TextItemWidget(
                     title: 'Семейное положение:', value: applicant.status),
-                TextItemWidget(title: 'Рост:', value: '${applicant.height}'),
+                Padding(
+                  padding: const EdgeInsets.only(right: 34),
+                  child: TextItemWidget(
+                      title: 'Рост:', value: '${applicant.height} см'),
+                ),
               ],
             ),
             const SizedBox(height: 16),

@@ -26,6 +26,7 @@ class AstraAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: elevation,
       centerTitle: true,
       backgroundColor: (bgColor == null) ? Colors.white : bgColor,
+      automaticallyImplyLeading: false,
       leading: onPressed == null
           ? null
           : IconButton(

@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:astra_app/domain/profile/models/profile_properties.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

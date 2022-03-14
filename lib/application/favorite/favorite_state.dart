@@ -21,7 +21,13 @@ class FavoriteState with _$FavoriteState {
 
     /// Flag responsible for successfully loaded data from server.
     required bool isSuccess,
-  }) = _FavoritState;
+
+    /// Whether the user has likes on account.
+    required bool isEmptyBalance,
+
+    /// Whether the current is hidden.
+    required bool isHiddenProfile,
+  }) = _FavoriteState;
 
   /// Initial states loaded.
   factory FavoriteState.initial() => const FavoriteState(
@@ -31,5 +37,7 @@ class FavoriteState with _$FavoriteState {
         isNoInternetConnection: false,
         isUnexpectedError: false,
         isSuccess: false,
+        isEmptyBalance: false,
+        isHiddenProfile: false,
       );
 }

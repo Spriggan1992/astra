@@ -1,26 +1,30 @@
-import 'dart:developer';
-
+import 'package:astra_app/application/chats/chats_bloc.dart';
+import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/search/search_action/search_action_bloc.dart';
 import 'package:astra_app/domain/profile/models/profile.dart';
-import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/astra/search/sympathy/sympathy_dialog.dart';
 import 'package:astra_app/presentation/astra/search/widgets/search_card.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 
 import 'widgets/search_finish_widget.dart';
 
 /// Main search screen.
 class SearchScreen extends StatefulWidget {
+  /// List of [Profile]
+  final List<Profile> applicants;
+
+  /// Enumeration of the display category of the screen favorites.
+  final FavoriteScreenType? favoriteType;
+
   const SearchScreen({
     Key? key,
     required this.applicants,
+    this.favoriteType,
   }) : super(key: key);
-
-  /// List of [Profile]
-  final List<Profile> applicants;
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -33,9 +37,108 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-
     if (widget.applicants.isNotEmpty) {
       lastProfile = widget.applicants.last;
+    }
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final _routeName = context.router.current.name;
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: _routeName == 'SearchPage'
+          ? null
+          : AppBar(
+              centerTitle: true,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                onPressed: () {
+                  context.popRoute();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+      body: Stack(
+        children: [
+          SearchFinishWidget(
+            onTap: () {
+              context.navigateTo(const FavoritesTab());
+            },
+            profile: lastProfile,
+          ),
+          if (widget.applicants.isNotEmpty)
+            SwipableStack(
+              controller: controller,
+              itemCount: widget.applicants.length,
+              builder: (context, properties) {
+                final Profile _currentProfile =
+                    widget.applicants[properties.index];
+                return SearchCard(
+                  favoriteType: widget.favoriteType,
+                  profile: _currentProfile,
+                  onTapDislike: () =>
+                      _onTapDislike(_currentProfile, _routeName),
+                  onTapStop: () => _onTapStop(_currentProfile),
+                  onTapPhoto: () => _navigateToPhotosScreen(_currentProfile),
+                  onTapInfo: () =>
+                      _navigateToUserInfoScreen(_currentProfile, _routeName),
+                  onTapLike: () => _onTapLike(_currentProfile, _routeName),
+                );
+              },
+            ),
+        ],
+      ),
+    );
+  }
+
+  void _navigateToPhotosScreen(Profile currentProfile) {
+    context.router.push(
+      ShowImageFullScreenRoute(images: currentProfile.profilePhotos),
+    );
+  }
+
+  void _onTapDislike(Profile currentProfile, String routeName) {
+    if (routeName == 'FavoriteSearchRouter') {
+      context.popRoute();
+    } else {
+      controller.next(swipeDirection: SwipeDirection.left);
+      controller.rewind();
+    }
+    context
+        .read<SearchActionBloc>()
+        .add(SearchActionEvent.reject(id: currentProfile.id));
+  }
+
+  void _onTapStop(Profile currentProfile) {
+    context
+        .read<SearchActionBloc>()
+        .add(SearchActionEvent.reject(id: currentProfile.id));
+    controller.next(swipeDirection: SwipeDirection.up);
+    controller.rewind();
+  }
+
+  void _navigateToUserInfoScreen(Profile currentProfile, String routeName) {
+    if (routeName == 'SearchPage') {
+      context.navigateTo(
+        SearchUserInfoRouter(applicant: currentProfile),
+      );
+    } else if (routeName == 'FavoriteSearchRouter') {
+      context.navigateTo(
+        FavoritesUserInfoRouter(applicant: currentProfile),
+      );
+    } else {
+      SettingsUserInfoDetailRouter(userInfo: currentProfile);
     }
   }
 
@@ -55,7 +158,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
     //go to store
     if (result) {
-      context.navigateTo(const ChatsRouter());
+      context.navigateTo(const ChatsTab());
     }
     //go back
     else {
@@ -64,70 +167,24 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          SearchFinishWidget(
-            onTap: () {
-              context.navigateTo(const FavoritesRouter());
-            },
-            fileImage: (lastProfile == Profile.empty())
-                ? null
-                : Image.file(lastProfile.profilePhotos.first.fileImage!).image,
-          ),
-          SwipableStack(
-            controller: controller,
-            itemCount: widget.applicants.length,
-            builder: (context, properties) {
-              final Profile _currentProfile =
-                  widget.applicants[properties.index];
-              final _thumbnail = _currentProfile.profilePhotos.first.fileImage;
-              final _curatorImage =
-                  _currentProfile.curatorPhotos.first.fileImage;
-              return SearchCard(
-                profile: _currentProfile,
-                onClose: () {
-                  getIt<SearchActionBloc>()
-                      .add(SearchActionEvent.reject(id: _currentProfile.id));
-
-                  controller.next(swipeDirection: SwipeDirection.left);
-                  controller.rewind();
-                },
-                onTapPhoto: () {
-                  context.router.push(
-                    ShowImageFullScreenRoute(
-                        images: _currentProfile.profilePhotos),
-                  );
-                },
-                onTapInfo: () {
-                  context.router.push(
-                    ApplicantScreenRoute(
-                      applicant: _currentProfile,
-                      image: Image.file(_thumbnail!).image,
-                      curatorImage: (_curatorImage != null)
-                          ? Image.file(_curatorImage).image
-                          : Image.asset('assets/girl.png').image,
-                    ),
-                  );
-                },
-                onTapLike: () async {
-                  if (_currentProfile.isMutualLike) {
-                    _showSympathyDialog(
-                        context, _currentProfile, Image.file(_thumbnail!));
-                  } else {
-                    controller.next(swipeDirection: SwipeDirection.right);
-                    controller.rewind();
-                  }
-                  getIt<SearchActionBloc>()
-                      .add(SearchActionEvent.like(id: _currentProfile.id));
-                },
-              );
-            },
-          ),
-        ],
-      ),
-    );
+  void _onTapLike(Profile currentProfile, String routeName) {
+    // Todo just don't touch it.
+    // if (currentProfile.isMutualLike) {
+    //   _showSympathyDialog(context, currentProfile,
+    //       Image.file(currentProfile.profilePhotos.first.fileImage!));
+    // } else {
+    // controller.next(swipeDirection: SwipeDirection.right);
+    // controller.rewind();
+    // }
+    if (routeName == 'FavoriteSearchRouter') {
+      context.popRoute();
+    } else {
+      controller.next(swipeDirection: SwipeDirection.right);
+      controller.rewind();
+    }
+    context
+        .read<SearchActionBloc>()
+        .add(SearchActionEvent.like(id: currentProfile.id));
+    context.read<ChatsBloc>().add(const ChatsEvent.chatsUpdated());
   }
 }

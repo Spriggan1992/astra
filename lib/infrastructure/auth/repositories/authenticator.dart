@@ -44,6 +44,7 @@ class Authenticator {
         return null;
       }
     }
+    return null;
   }
 
   /// Check if user already signed in.
