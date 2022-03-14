@@ -122,9 +122,7 @@ class ProfileRepository implements IProfileRepository {
   }
 
   Future<FormData> _createFormData(List<ImageModel> images) async {
-    FormData data = FormData.fromMap({
-      _images: _astraImages,
-    });
+    FormData data = FormData();
     for (var e in images) {
       data.files.add(MapEntry(
           _images,

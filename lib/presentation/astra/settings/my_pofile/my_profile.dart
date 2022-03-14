@@ -143,7 +143,7 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Logo.
-                      BlocBuilder<MyProfileActorBloc, MyProfileActorState>(
+                      BlocConsumer<MyProfileActorBloc, MyProfileActorState>(
                         buildWhen: (p, c) =>
                             p.isEditMode != c.isEditMode ||
                             p.profile.profilePhotos !=
@@ -177,7 +177,16 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                             },
                           );
                         },
+                        listenWhen: (p, c) =>
+                            p.uploadImageLimited != c.uploadImageLimited,
+                        listener: (context, listenState) {
+                          if (listenState.uploadImageLimited) {
+                            showSnackBar(context,
+                                title: 'Превышен лимит загрузки фотографии');
+                          }
+                        },
                       ),
+
                       const SizedBox(height: 8),
                       // User info.
                       BlocBuilder<MyProfileActorBloc, MyProfileActorState>(

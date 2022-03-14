@@ -22,6 +22,9 @@ class MyProfileActorState with _$MyProfileActorState {
     /// A flag responsible for successfully or unsuccessfully submitted changed settings.
     required bool isSuccessfullySubmitted,
 
+    /// A flag is showing dialog is count of upload images more than limit.
+    required bool uploadImageLimited,
+
     /// Selected images from gallery on device.
     required List<ImageModel> selectedImages,
 
@@ -36,6 +39,7 @@ class MyProfileActorState with _$MyProfileActorState {
         isShowUnexpectedError: false,
         isSuccessfullySubmitted: false,
         selectedImages: [],
+        uploadImageLimited: false,
         walletInfo: Wallet.empty(),
       );
 }

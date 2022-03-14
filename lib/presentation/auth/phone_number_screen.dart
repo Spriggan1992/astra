@@ -81,6 +81,7 @@ class PhoneNumberScreen extends StatelessWidget {
               return TextFormField(
                 style: const TextStyle(fontSize: 24),
                 inputFormatters: [maskFormatter],
+                initialValue: '+7',
                 autofocus: true,
                 keyboardType: TextInputType.phone,
                 decoration:
