@@ -157,12 +157,17 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                                   .add(const MyProfileActorEvent.imagesAdded());
                             },
                             onShowImage: () async {
-                              await context.router.push(
-                                ShowImageFullScreenRoute(
-                                  images: widget.profile.profilePhotos,
-                                  enableDeleteButton: true,
-                                ),
-                              );
+                              await context.router
+                                  .push(
+                                    ShowImageFullScreenRoute(
+                                      images: widget.profile.profilePhotos,
+                                      enableDeleteButton: true,
+                                    ),
+                                  )
+                                  .then((_) => context
+                                      .read<MyProfileBloc>()
+                                      .add(const MyProfileEvent
+                                          .profileLoaded()));
                             },
                           );
                         },

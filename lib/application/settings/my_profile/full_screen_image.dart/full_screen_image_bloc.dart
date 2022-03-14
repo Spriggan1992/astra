@@ -42,9 +42,11 @@ class FullScreenImageBloc
                           state.images[state.currentImageIndex].id)
                       .toList();
                   return state.copyWith(
-                      images: updatedImages,
-                      currentImageIndex: _getCurrentIndex(
-                          state.currentImageIndex, updatedImages.length));
+                    images: updatedImages,
+                    isSuccessfullyDeletePhoto: true,
+                    currentImageIndex: _getCurrentIndex(
+                        state.currentImageIndex, updatedImages.length),
+                  );
                 },
               ),
             );

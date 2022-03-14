@@ -21,6 +21,7 @@ class FullScreenImageState with _$FullScreenImageState {
 
     /// A flag responsible for showing or hiding error, when get unexpected exception.
     required bool isShowUnexpectedError,
+    required bool isSuccessfullyDeletePhoto,
   }) = _FullScreenImageState;
   factory FullScreenImageState.initial() => const FullScreenImageState(
         images: [],
@@ -29,5 +30,6 @@ class FullScreenImageState with _$FullScreenImageState {
         isShowNoInternetConnectionError: false,
         isShowUnexpectedError: false,
         isHideAppbarAndBottomBar: false,
+        isSuccessfullyDeletePhoto: false,
       );
 }

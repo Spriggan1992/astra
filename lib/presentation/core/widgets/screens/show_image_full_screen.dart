@@ -127,11 +127,11 @@ class ShowImageFullScreen extends StatelessWidget {
                                                                 FullScreenImageBloc>()
                                                             .add(const FullScreenImageEvent
                                                                 .imagesDeleted());
-                                                        BlocProvider.of<
-                                                                    MyProfileBloc>(
-                                                                context)
-                                                            .add(const MyProfileEvent
-                                                                .profileLoaded());
+                                                        // BlocProvider.of<
+                                                        //             MyProfileBloc>(
+                                                        //         context)
+                                                        //     .add(const MyProfileEvent
+                                                        //         .profileLoaded());
                                                         context.router.pop();
                                                       },
                                                       buttonStyle:
