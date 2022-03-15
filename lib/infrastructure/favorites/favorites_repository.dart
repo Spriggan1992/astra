@@ -17,67 +17,88 @@ class FavoritesRepository implements IFavoritesRepository {
   FavoritesRepository(this._dio);
   @override
   Future<Either<AstraFailure, List<Profile>>> getLikes() async {
-    return await makeRequest<List<Profile>>(() async {
-      final response = await _dio.get(Endpoints.feed.getLikes);
-      return (response.data as List<dynamic>)
-          .map((e) => ProfileDTO.fromJson(e).toDomain())
-          .toList();
-    });
+    return await makeRequest<List<Profile>>(
+      () async {
+        final response = await _dio.get(Endpoints.feed.getLikes);
+        return (response.data as List<dynamic>)
+            .map((e) => ProfileDTO.fromJson(e).toDomain())
+            .toList();
+      },
+      from: 'FavoritesRepository, method: getLikes',
+    );
   }
 
   @override
   Future<Either<AstraFailure, List<Profile>>> getNope() async {
-    return await makeRequest<List<Profile>>(() async {
-      final response = await _dio.get(Endpoints.feed.getNope);
-      return (response.data as List<dynamic>)
-          .map((e) => ProfileDTO.fromJson(e).toDomain())
-          .toList();
-    });
+    return await makeRequest<List<Profile>>(
+      () async {
+        final response = await _dio.get(Endpoints.feed.getNope);
+        return (response.data as List<dynamic>)
+            .map((e) => ProfileDTO.fromJson(e).toDomain())
+            .toList();
+      },
+      from: 'FavoritesRepository, method: getNope',
+    );
   }
 
   @override
   Future<Either<AstraFailure, List<Profile>>> getThink() async {
-    return await makeRequest<List<Profile>>(() async {
-      final response = await _dio.get(Endpoints.feed.getThink);
-      return (response.data as List<dynamic>)
-          .map((e) => ProfileDTO.fromJson(e).toDomain())
-          .toList();
-    });
+    return await makeRequest<List<Profile>>(
+      () async {
+        final response = await _dio.get(Endpoints.feed.getThink);
+        return (response.data as List<dynamic>)
+            .map((e) => ProfileDTO.fromJson(e).toDomain())
+            .toList();
+      },
+      from: 'FavoritesRepository, method: getThink',
+    );
   }
 
   @override
   Future<Either<AstraFailure, List<Profile>>> getWhoLikes() async {
-    return await makeRequest<List<Profile>>(() async {
-      final response = await _dio.get(Endpoints.feed.getWhoLike);
-      return (response.data as List<dynamic>)
-          .map((e) => ProfileDTO.fromJson(e).toDomain())
-          .toList();
-    });
+    return await makeRequest<List<Profile>>(
+      () async {
+        final response = await _dio.get(Endpoints.feed.getWhoLike);
+        return (response.data as List<dynamic>)
+            .map((e) => ProfileDTO.fromJson(e).toDomain())
+            .toList();
+      },
+      from: 'FavoritesRepository, method: getWhoLikes',
+    );
   }
 
   @override
   Future<Either<AstraFailure, List<Profile>>> getMatch() async {
-    return await makeRequest<List<Profile>>(() async {
-      final response = await _dio.get(Endpoints.feed.getMatch);
-      return (response.data as List<dynamic>)
-          .map((e) => ProfileDTO.fromJson(e).toDomain())
-          .toList();
-    });
+    return await makeRequest<List<Profile>>(
+      () async {
+        final response = await _dio.get(Endpoints.feed.getMatch);
+        return (response.data as List<dynamic>)
+            .map((e) => ProfileDTO.fromJson(e).toDomain())
+            .toList();
+      },
+      from: 'FavoritesRepository, method: getWhoLikes',
+    );
   }
 
   @override
   Future<Either<AstraFailure, Unit>> toThink(int id) async {
-    return await makeRequest<Unit>(() async {
-      await _dio.post(Endpoints.feed.think(id));
-      return unit;
-    });
+    return await makeRequest<Unit>(
+      () async {
+        await _dio.post(Endpoints.feed.think(id));
+        return unit;
+      },
+      from: 'FavoritesRepository, method: toThink',
+    );
   }
 
   @override
   Future<Either<AstraFailure, Unit>> removeAllFromStopList() async {
-    return await makeRequest<Unit>(() async {
-      await _dio.post(Endpoints.feed.allUsersToThink);
-      return unit;
-    });
+    return await makeRequest<Unit>(
+      () async {
+        await _dio.post(Endpoints.feed.allUsersToThink);
+        return unit;
+      },
+      from: 'FavoritesRepository, method: removeAllFromStopList',
+    );
   }
 }

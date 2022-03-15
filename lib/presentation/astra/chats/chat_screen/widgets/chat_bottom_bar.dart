@@ -94,7 +94,7 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
                       backgroundColor: Color.fromRGBO(251, 251, 251, 0.2),
                       radius: 16,
                       child: SvgIcon(
-                        height: 24,
+                        height: 14,
                         asset: 'assets/icons/paper-plane.svg',
                       ),
                     ),

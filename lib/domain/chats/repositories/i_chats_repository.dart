@@ -25,5 +25,5 @@ abstract class IChatsRepository {
   /// Open chat with user.
   ///
   /// Where [id] - user id.
-  Future<Either<AstraFailure, Unit>> openChat(int userId);
+  Future<Either<AstraFailure, ChatModel>> openChat(int userId);
 }

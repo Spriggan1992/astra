@@ -93,32 +93,34 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
             await _chatsRepository.dispose();
           },
           existenceChatChecked: (e) async {
-            final chat =
-                state.chats.any((element) => element.userId == e.userId);
-            if (!chat) {
+            final chat = state.chats
+                .firstWhereOrNull((element) => element.userId == e.userId);
+            if (chat == null) {
               add(
                 ChatsEvent.createChat(e.userId),
               );
             } else {
               emit(state.copyWith(
-                  chatOpeningStatuses: ChatOpeningStatuses.success));
+                  chat: chat, chatOpeningStatuses: ChatOpeningStatuses.success));
+              emit(state.copyWith(
+                  chatOpeningStatuses: ChatOpeningStatuses.initial));
             }
           },
           createChat: (e) async {
             emit(
               state.copyWith(chatOpeningStatuses: ChatOpeningStatuses.loading),
             );
+
             final response = await _chatsRepository.openChat(e.userId);
             response.fold(
-              (failure) => emit(state.copyWith(
-                  chatOpeningStatuses: ChatOpeningStatuses.failure)),
-              (_) => add(ChatsEvent.chatOpened(e.userId)),
-            );
+                (failure) => emit(state.copyWith(
+                    chatOpeningStatuses: ChatOpeningStatuses.failure)),
+                (chatModel) => add(ChatsEvent.chatOpened(chatModel)));
           },
           chatOpened: (e) async {
             emit(state.copyWith(
+                chat: e.chatModel,
                 chatOpeningStatuses: ChatOpeningStatuses.success));
-            await Future.delayed(const Duration(milliseconds: 100));
             emit(state.copyWith(
                 chatOpeningStatuses: ChatOpeningStatuses.initial));
           },

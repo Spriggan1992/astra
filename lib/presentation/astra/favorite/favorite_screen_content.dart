@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_actor/favorite_actor_bloc.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
@@ -48,9 +50,13 @@ class _FavoriteScreenContentState extends State<FavoriteScreenContent>
     super.initState();
     _controller = TabController(length: _tabs.length, vsync: this);
     _controller.index = 1;
+
     _controller.addListener(() {
-      BlocProvider.of<FavoriteBloc>(context).add(FavoriteEvent.loadedData(
-          favoriteType: getFavoriteType(_controller.index)));
+      BlocProvider.of<FavoriteBloc>(context).add(
+        FavoriteEvent.loadedData(
+          favoriteType: getFavoriteType(_controller.index),
+        ),
+      );
     });
   }
 

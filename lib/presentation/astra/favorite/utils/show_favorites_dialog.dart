@@ -141,9 +141,9 @@ void _showMatchDialog(
       },
       onPositiveBtnClick: (dialogContext) {
         dialogContext.router.pop();
-        context
-            .read<ChatsBloc>()
-            .add(ChatsEvent.existenceChatChecked(profile.id));
+        context.read<ChatsBloc>().add(
+              ChatsEvent.existenceChatChecked(profile.id),
+            );
       },
     );
   }

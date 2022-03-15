@@ -25,7 +25,7 @@ class ChatsEvent with _$ChatsEvent {
   const factory ChatsEvent.createChat(int userId) = _CreateChat;
 
   /// Chat opened event.
-  const factory ChatsEvent.chatOpened(int userId) = _ChatOpened;
+  const factory ChatsEvent.chatOpened(ChatModel chatModel) = _ChatOpened;
 
   ///Chat existence check event
   ///

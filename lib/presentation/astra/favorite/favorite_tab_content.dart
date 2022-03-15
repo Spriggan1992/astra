@@ -3,6 +3,7 @@ import 'package:astra_app/application/chats/enums/chat_opening_statuses.dart';
 import 'package:astra_app/application/core/enums/favorite_screen_type.dart';
 import 'package:astra_app/application/favorite/favorite_actor/favorite_actor_bloc.dart';
 import 'package:astra_app/application/favorite/favorite_bloc.dart';
+import 'package:astra_app/domain/chats/models/chats_model.dart';
 import 'package:astra_app/presentation/astra/favorite/utils/show_favorites_dialog.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
@@ -30,11 +31,7 @@ class FavoriteTabContent extends StatelessWidget {
       listener: (context, state) {
         if (state.chatOpeningStatuses == ChatOpeningStatuses.success) {
           context.pushRoute(
-            const HomeScreenRoute(
-              children: [
-                ChatsTab(),
-              ],
-            ),
+            ChatScreenRoute(chatModel: state.chat!),
           );
         }
         if (state.chatOpeningStatuses == ChatOpeningStatuses.failure) {

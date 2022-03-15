@@ -19,7 +19,7 @@ class ChatsState with _$ChatsState {
     required ChatOpeningStatuses chatOpeningStatuses,
 
     ///The [ChatModel] for passing to chat screen.
-    required ChatModel chat,
+    required ChatModel? chat,
   }) = _ChatsWatcherState;
 
   /// Initial state when bloc will be initialized.

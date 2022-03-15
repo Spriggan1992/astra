@@ -94,15 +94,9 @@ class _MatchStatusIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     if (matchStatus == MatchStatus.success) {
       return const SvgIcon(
-        // color: Colors.w,
         asset: 'assets/icons/paper-plane.svg',
         height: 1,
       );
-      // Image.asset(
-      //   'assets/paper_plane.png',
-      //   color: Colors.white,
-      //   scale: 0.8,
-      // );
     } else {
       return const Icon(
         Icons.question_mark,

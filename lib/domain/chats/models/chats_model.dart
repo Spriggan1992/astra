@@ -47,4 +47,6 @@ class ChatModel with _$ChatModel {
 
   /// Get time as `hour:minute`.
   String get time => lastMessageTime?.dateTimeToStringTime ?? '';
+
+  bool get chatIsNotEmpty => this != ChatModel.empty();
 }
