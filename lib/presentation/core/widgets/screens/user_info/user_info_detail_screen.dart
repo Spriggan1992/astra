@@ -63,11 +63,13 @@ class UserInfoDetailScreen extends StatelessWidget {
                   AstraNetworkImage(
                     imageUrl: userInfo.profilePhotos.first.imageUrl,
                     isOverlayBackground: true,
-                    fileImage: userInfo.profilePhotos.first.cachedImage == null
-                        ? null
-                        : Image.file(userInfo
-                                .profilePhotos.first.cachedImage!.fullImage!)
-                            .image,
+                    fileImage:
+                        userInfo.profilePhotos.first.cachedImage?.fullImage ==
+                                null
+                            ? null
+                            : Image.file(userInfo.profilePhotos.first
+                                    .cachedImage!.fullImage!)
+                                .image,
                   ),
                   _UserInfoDetailStackContent(state: state)
                 ],

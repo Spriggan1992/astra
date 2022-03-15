@@ -36,7 +36,11 @@ class SearchFinishWidget extends StatelessWidget {
                     ? null
                     : Image.file(
                             profile.profilePhotos.first.cachedImage!.fullImage!)
-                        .image),
+                        .image,
+              ),
+        Container(
+          color: AstraColors.black07,
+        ),
         SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
