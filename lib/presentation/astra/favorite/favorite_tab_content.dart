@@ -30,9 +30,13 @@ class FavoriteTabContent extends StatelessWidget {
     return BlocListener<ChatsBloc, ChatsState>(
       listener: (context, state) {
         if (state.chatOpeningStatuses == ChatOpeningStatuses.success) {
-          context.pushRoute(
-            ChatScreenRoute(chatModel: state.chat!),
-          );
+          context
+              .pushRoute(
+                ChatScreenRoute(chatModel: state.chat!),
+              )
+              .then((_) => context
+                  .read<ChatsBloc>()
+                  .add(const ChatsEvent.chatsUpdated()));
         }
         if (state.chatOpeningStatuses == ChatOpeningStatuses.failure) {
           showSnackBar(context);

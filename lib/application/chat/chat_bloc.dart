@@ -34,24 +34,29 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           initialized: (e) async {
             emit(state.copyWith(loadingStates: LoadingStates.loading));
             final response = await _chatRepo.getChatHistory(e.chatModel.id);
-
-            emit(
-              response.fold(
-                (failure) => failure.map(
+            response.fold(
+              (failure) => emit(
+                failure.map(
                   api: (_) => state.copyWith(
                     loadingStates: LoadingStates.unexpectedFailure,
                   ),
                   noConnection: (_) => state.copyWith(
                       loadingStates: LoadingStates.noConnectionFailure),
                 ),
-                (paginationResult) => state.copyWith(
-                  paginationResult: paginationResult,
-                  chatId: e.chatModel.id,
-                  isOnline: e.chatModel.isOnline,
-                  loadingStates: LoadingStates.success,
-                ),
               ),
+              (paginationResult) {
+                emit(
+                  state.copyWith(
+                    paginationResult: paginationResult,
+                    chatId: e.chatModel.id,
+                    isOnline: e.chatModel.isOnline,
+                    loadingStates: LoadingStates.success,
+                  ),
+                );
+                add(const ChatEvent.chatRead());
+              },
             );
+
             add(const ChatEvent.internetConnectionStartedWatch());
           },
           chatStartedWatch: (e) async {
