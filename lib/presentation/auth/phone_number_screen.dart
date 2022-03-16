@@ -2,6 +2,7 @@ import 'package:astra_app/application/auth/phone/phone_bloc.dart';
 import 'package:astra_app/injection.dart';
 import 'package:astra_app/presentation/core/routes/app_router.gr.dart';
 import 'package:astra_app/presentation/core/theming/colors.dart';
+import 'package:astra_app/presentation/core/utils/astra_input_formatter.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/astra_elevated_button.dart';
 import 'package:astra_app/presentation/core/widgets/buttons/dialog_action_button.dart';
 import 'package:astra_app/presentation/core/widgets/dialogs/dialog_one_actions.dart';
@@ -9,6 +10,7 @@ import 'package:astra_app/presentation/core/widgets/dialogs/snack_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'constants/constants.dart';
@@ -17,7 +19,6 @@ import 'widgets/screen_content.dart';
 /// Phone number entry screen.
 class PhoneNumberScreen extends StatelessWidget {
   const PhoneNumberScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider<PhoneBloc>(
@@ -80,7 +81,10 @@ class PhoneNumberScreen extends StatelessWidget {
             builder: (context, state) {
               return TextFormField(
                 style: const TextStyle(fontSize: 24),
-                inputFormatters: [maskFormatter],
+                inputFormatters: [
+                  maskFormatter,
+                  AstraPhoneInputFormatter(),
+                ],
                 initialValue: '+7',
                 autofocus: true,
                 keyboardType: TextInputType.phone,
