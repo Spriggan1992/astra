@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.config.dart';
 
-/// Get instanse of [GetIt]
+/// Get instance of [GetIt]
 final GetIt getIt = GetIt.instance;
 
 /// initializes the configurations of [GetIt].

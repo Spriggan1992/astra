@@ -11,7 +11,6 @@
         "**/.project": true,
         "**/.settings": true,
         "**/*.freezed.dart": true,
-        "**/*.freezed.dartt": true,
         "**/*.g.dart": true
     },
     "explorerExclude.backup": null,
