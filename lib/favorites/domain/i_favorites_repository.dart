@@ -1,5 +1,5 @@
 import 'package:astra_app/core/domain/failure/astra_failure.dart';
-import 'package:astra_app/settings/domain/profile/models/profile_model.dart';
+import 'package:astra_app/core/domain/models/profile_model.dart';
 import 'package:dartz/dartz.dart';
 
 /// Describes the request service to Favorites.

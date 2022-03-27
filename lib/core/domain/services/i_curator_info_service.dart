@@ -1,6 +1,6 @@
-import 'package:astra_app/settings/domain/profile/models/curator_model.dart';
-
 /// Describes the curator information service.
+import 'package:astra_app/core/domain/models/curator_model.dart';
+
 abstract class ICuratorInfoService {
   /// Returns curator profile.
   CuratorModel get curatorProfile;

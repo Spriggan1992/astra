@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:astra_app/auth/infrastructure/extensions/dio_extensions.dart';
 import 'package:astra_app/core/domain/failure/astra_failure.dart';
+import 'package:astra_app/core/infrastructure/extensions/dio_extensions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 

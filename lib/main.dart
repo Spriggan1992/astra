@@ -1,5 +1,5 @@
 import 'package:astra_app/core/infrastructure/database/sembast/sembast_database.dart';
-import 'package:astra_app/core/infrastructure/http/dio_interceptor.dart';
+import 'package:astra_app/auth/core/infrastructure/dio_interceptor.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/run_astra_app.dart';
 import 'package:astra_app/injection.dart';

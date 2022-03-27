@@ -1,4 +1,4 @@
-import 'package:astra_app/chats/application/chats/chats_bloc.dart';
+import 'package:astra_app/chats/chats/application/chats_bloc.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/utils/get_favorite_type.dart';
 import 'package:astra_app/core/presentation/utils/show_one_action_dialog.dart';
@@ -9,9 +9,9 @@ import 'package:astra_app/core/presentation/widgets/custom/app_system_manager.da
 import 'package:astra_app/core/presentation/widgets/custom/restart_widget.dart';
 import 'package:astra_app/favorites/application/favorite_bloc.dart';
 import 'package:astra_app/injection.dart';
-import 'package:astra_app/search/application/search_action/search_action_bloc.dart';
-import 'package:astra_app/search/application/search_bloc.dart';
-import 'package:astra_app/shared/features/user/application/user_bloc.dart';
+import 'package:astra_app/search/search/application/search_action/search_action_bloc.dart';
+import 'package:astra_app/search/search/application/search_bloc.dart';
+import 'package:astra_app/shared/features/user_subscription/application/user_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

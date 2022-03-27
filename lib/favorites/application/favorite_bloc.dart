@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:astra_app/core/application/enums/favorite_screen_type.dart';
 import 'package:astra_app/core/domain/failure/astra_failure.dart';
+import 'package:astra_app/core/domain/models/profile_model.dart';
 import 'package:astra_app/core/domain/services/i_cache_user_service.dart';
 import 'package:astra_app/favorites/domain/i_favorites_repository.dart';
-import 'package:astra_app/settings/domain/profile/models/profile_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

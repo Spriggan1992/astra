@@ -1,8 +1,8 @@
+import 'package:astra_app/core/domain/models/profile_model.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/utils/show_one_action_dialog.dart';
 import 'package:astra_app/favorites/domain/match_status.dart';
-import 'package:astra_app/settings/domain/profile/models/profile_model.dart';
-import 'package:astra_app/settings/presentation/my_form/widgets/my_form_card.dart';
+import 'package:astra_app/settings/my_form/presentation/widgets/my_form_card.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 

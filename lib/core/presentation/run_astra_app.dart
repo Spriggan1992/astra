@@ -1,7 +1,7 @@
-import 'package:astra_app/auth/application/auth/auth_bloc.dart';
+import 'package:astra_app/auth/core/application/auth_bloc.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/themes/app_theme.dart';
-import 'package:astra_app/search/application/search_bloc.dart';
+import 'package:astra_app/search/search/application/search_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../injection.dart';

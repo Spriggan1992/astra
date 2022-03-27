@@ -5,7 +5,7 @@ import 'package:astra_app/core/presentation/widgets/buttons/dialog_action_button
 import 'package:astra_app/core/presentation/widgets/dialogs/dialog_two_actions.dart';
 import 'package:astra_app/core/presentation/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/core/presentation/widgets/images/astra_network_image.dart';
-import 'package:astra_app/settings/application/my_profile/my_profile/my_profile_bloc.dart';
+import 'package:astra_app/settings/my_profile/application/my_profile/my_profile_bloc.dart';
 import 'package:astra_app/shared/features/full_screen_image.dart/application/full_screen_image_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';

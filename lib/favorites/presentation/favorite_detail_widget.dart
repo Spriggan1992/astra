@@ -1,9 +1,9 @@
 import 'package:astra_app/core/application/enums/favorite_screen_type.dart';
+import 'package:astra_app/core/domain/models/profile_model.dart';
 import 'package:astra_app/core/presentation/theming/borders.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/custom/blur_mask.dart';
 import 'package:astra_app/core/presentation/widgets/images/astra_network_image.dart';
-import 'package:astra_app/settings/domain/profile/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

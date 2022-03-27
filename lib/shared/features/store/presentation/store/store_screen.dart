@@ -1,4 +1,4 @@
-import 'package:astra_app/auth/application/auth/auth_bloc.dart';
+import 'package:astra_app/auth/core/application/auth_bloc.dart';
 import 'package:astra_app/core/presentation/enums/store_screen_qualifier.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';

@@ -1,6 +1,6 @@
 import 'package:astra_app/core/domain/failure/astra_failure.dart';
+import 'package:astra_app/core/domain/models/profile_model.dart';
 import 'package:astra_app/favorites/domain/i_favorites_repository.dart';
-import 'package:astra_app/settings/domain/profile/models/profile_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

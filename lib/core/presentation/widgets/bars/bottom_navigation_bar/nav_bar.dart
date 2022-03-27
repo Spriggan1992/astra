@@ -1,10 +1,10 @@
+import 'package:astra_app/chats/chats/application/chats_bloc.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/gradients.dart';
 import 'package:astra_app/core/presentation/theming/icons/svg_icon.dart';
 import 'package:astra_app/core/presentation/widgets/bars/bottom_navigation_bar/i_nav_item.dart';
 import 'package:astra_app/core/presentation/widgets/bars/bottom_navigation_bar/icon_nav_item.dart';
 import 'package:astra_app/core/presentation/widgets/bars/bottom_navigation_bar/svg_nav_item.dart';
-import 'package:astra_app/chats/application/chats/chats_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

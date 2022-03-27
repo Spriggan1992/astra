@@ -6,7 +6,7 @@ import 'package:astra_app/favorites/application/favorite_actor/favorite_actor_bl
 import 'package:astra_app/favorites/application/favorite_bloc.dart';
 import 'package:astra_app/favorites/presentation/favorite_tab_content.dart';
 import 'package:astra_app/favorites/presentation/tab_item.dart';
-import 'package:astra_app/shared/features/user/application/user_bloc.dart';
+import 'package:astra_app/shared/features/user_subscription/application/user_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

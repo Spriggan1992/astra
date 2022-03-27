@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:astra_app/core/domain/models/image_models.dart';
-import 'package:astra_app/settings/domain/profile/repositories/i_profile_repository.dart';
+import 'package:astra_app/settings/my_profile/domain/repositories/i_profile_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

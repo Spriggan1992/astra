@@ -1,4 +1,4 @@
-import 'package:astra_app/shared/features/user/application/user_bloc.dart';
+import 'package:astra_app/shared/features/user_subscription/application/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,9 +1,9 @@
 import 'package:astra_app/core/domain/failure/astra_failure.dart';
+import 'package:astra_app/core/infrastructure/DTOs/profile_dto.dart';
 import 'package:astra_app/core/infrastructure/http/api_client.dart';
 import 'package:astra_app/core/infrastructure/http/endpoints.dart';
 import 'package:astra_app/favorites/domain/i_favorites_repository.dart';
-import 'package:astra_app/settings/domain/profile/models/profile_model.dart';
-import 'package:astra_app/settings/infrastructure/profile/DTOs/profile_dto.dart';
+import 'package:astra_app/core/domain/models/profile_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 

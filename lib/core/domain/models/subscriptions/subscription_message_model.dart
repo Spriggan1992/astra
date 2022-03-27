@@ -1,5 +1,5 @@
+import 'package:astra_app/chats/chat/domain/models/message_model.dart';
 import 'package:astra_app/core/domain/models/subscriptions/i_subscription_model.dart';
-import 'package:astra_app/chats/domain/models/message_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'subscription_message_model.freezed.dart';
 

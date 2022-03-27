@@ -1,6 +1,6 @@
+import 'package:astra_app/chats/chats/application/chats_bloc.dart';
+import 'package:astra_app/chats/chats/application/enums/chat_opening_statuses.dart';
 import 'package:astra_app/core/application/enums/favorite_screen_type.dart';
-import 'package:astra_app/chats/application/chats/chats_bloc.dart';
-import 'package:astra_app/chats/application/chats/enums/chat_opening_statuses.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/core/presentation/widgets/scaffolds/error_screens/empty_data_screen.dart';

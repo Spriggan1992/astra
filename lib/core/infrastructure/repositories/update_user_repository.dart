@@ -7,7 +7,6 @@ import 'package:astra_app/core/infrastructure/DTOs/user_online_status_dto.dart';
 import 'package:astra_app/core/infrastructure/http/api_client.dart';
 import 'package:astra_app/core/infrastructure/http/endpoints.dart';
 import 'package:astra_app/core/infrastructure/services/subscription_service/subscription_service.dart';
-import 'package:astra_app/core/infrastructure/utils/make_request.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 

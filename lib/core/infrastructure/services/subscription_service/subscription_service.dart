@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:astra_app/injection.dart';
 import "package:dart_amqp/dart_amqp.dart";
@@ -48,7 +47,7 @@ class SubscriptionService {
 
   /// Be sure to call this method when do not need to listen signals anymore.
   Future<void> dispose() async {
-    await _consumer!.cancel();
+    await _consumer?.cancel();
     await _controller.close();
   }
 }
