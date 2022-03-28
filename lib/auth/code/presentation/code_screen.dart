@@ -2,6 +2,7 @@ import 'package:astra_app/auth/code/application/code_bloc.dart';
 import 'package:astra_app/auth/core/presentation/widgets/pin_code_field.dart';
 import 'package:astra_app/auth/core/presentation/widgets/screen_content.dart';
 import 'package:astra_app/auth/core/presentation/widgets/timer_text_widget.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/astra_elevated_button.dart';
@@ -24,7 +25,7 @@ class CodeScreen extends StatelessWidget {
         builder: (context, state) {
           return ScreenContent(
             onBackPressed: () => context.router.pop(),
-            title: "Код из сообщения",
+            title: AppTexts.codeFromMessage,
             textFieldContent: PinCodeField(
               isError: state.isShowErrorMessage,
               onChanged: (value) => context.read<CodeBloc>().add(
@@ -39,8 +40,8 @@ class CodeScreen extends StatelessWidget {
               children: [
                 Text(
                   state.isShowErrorMessage
-                      ? "Неправильный код\nПовторите пожалуйста еще раз."
-                      : "Отправить поторно",
+                      ? AppTexts.incorrectCodeRepeate
+                      : AppTexts.resend,
                   style: TextStyle(
                       color: state.isShowErrorMessage
                           ? AstraColors.red
@@ -52,7 +53,7 @@ class CodeScreen extends StatelessWidget {
             ),
             button: AstraElevatedButton(
               isEnableButton: true,
-              title: 'Продолжить',
+              title: AppTexts.continueText,
               onClick: () {
                 AutoRouter.of(context).replace(
                   PasswordScreenRoute(

@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/widgets/logo.dart';
 import 'package:astra_app/core/presentation/widgets/scaffolds/astra_appbar.dart';
@@ -15,7 +16,7 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AstraAppBar(
         onPressed: () => context.router.pop(),
-        title: 'О приложении',
+        title: AppTexts.aboutApp,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -32,7 +33,7 @@ class AboutScreen extends StatelessWidget {
               ),
               const SizedBox(width: 25),
               const Text(
-                'ООО Пабло \nВерсия 1.0.0',
+                AppTexts.pabloOOO,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
@@ -44,24 +45,24 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(height: 30),
           AboutButton(
             onTap: () => context.router.push(PoliticsScreenRoute(
-              title: "Пользовательское соглашение",
+              title: AppTexts.termsOfUse,
               uri: "$_baseUri/end-user-license/",
             )),
-            title: 'Пользовательское соглашение',
+            title: AppTexts.termsOfUse,
           ),
           AboutButton(
             onTap: () => context.router.push(PoliticsScreenRoute(
-              title: "Политика конфиденциальности",
+              title: AppTexts.privacyPolicy,
               uri: "$_baseUri/confidential/",
             )),
-            title: 'Политика конфиденциальности',
+            title: AppTexts.privacyPolicy,
           ),
           AboutButton(
             onTap: () => context.router.push(PoliticsScreenRoute(
-              title: "Положение по обработке персональных данных",
+              title: AppTexts.regulationPersonalData,
               uri: "$_baseUri/personal-data/",
             )),
-            title: 'Положение по обработке персональных данных',
+            title:  AppTexts.regulationPersonalData,
           ),
         ],
       ),

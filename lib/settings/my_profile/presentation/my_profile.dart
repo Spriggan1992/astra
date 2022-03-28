@@ -1,4 +1,5 @@
 import 'package:astra_app/core/domain/models/profile_model.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/icons/svg_icon.dart';
@@ -103,7 +104,7 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
               onPressed: () {
                 AutoRouter.of(context).pop(true);
               },
-              title: 'Мой профиль',
+              title: AppTexts.myProfile,
               actions: [
                 BlocBuilder<MyProfileActorBloc, MyProfileActorState>(
                   buildWhen: (p, c) => p.isEditMode != c.isEditMode,
@@ -176,7 +177,7 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                         listener: (context, listenState) {
                           if (listenState.uploadImageLimited) {
                             showSnackBar(context,
-                                title: 'Превышен лимит загрузки фотографии');
+                                title: AppTexts.photoUploadLimitExceeded);
                           }
                         },
                       ),
@@ -226,7 +227,7 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text(
-                              'На счету:',
+                              AppTexts.inAccount,
                               style: TextStyle(
                                 color: AstraColors.black04,
                                 fontSize: 12,
@@ -267,7 +268,7 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                                       .accountInfoDisplayingToggled());
                             },
                             switchValue: state.profile.showInfo,
-                            title: 'Отображать подробную анкету',
+                            title: AppTexts.showDetailedApplication,
                           );
                         },
                       ),
@@ -282,7 +283,7 @@ class _MyProfileScreenContentState extends State<MyProfileScreenContent> {
                                       .accountVisibilityToggled());
                             },
                             switchValue: state.profile.isHidden,
-                            title: 'Скрыть профиль',
+                            title: AppTexts.hideProfile,
                           );
                         },
                       ),

@@ -1,4 +1,5 @@
 import 'package:astra_app/core/domain/models/profile_model.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/dialogs/dialog_one_actions.dart';
 import 'package:astra_app/core/presentation/widgets/dialogs/dialog_two_actions.dart';
@@ -58,7 +59,7 @@ class _CoachScreenState extends State<CoachScreen> {
       builder: (_) {
         return DialogTwoActions(
           content: const Text(
-            'Хотите пройти быстрое обучение?',
+            AppTexts.getQuikTutorial,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: AstraColors.black,
@@ -68,7 +69,7 @@ class _CoachScreenState extends State<CoachScreen> {
           ),
           action1: TextButton(
             child: const Text(
-              'Пропустить',
+              AppTexts.skip,
               style: TextStyle(
                 color: AstraColors.black,
                 fontSize: 14,
@@ -81,7 +82,7 @@ class _CoachScreenState extends State<CoachScreen> {
           ),
           action2: TextButton(
             child: const Text(
-              'Начать',
+              AppTexts.start,
               style: TextStyle(
                 color: AstraColors.black,
                 fontSize: 14,
@@ -112,7 +113,7 @@ class _CoachScreenState extends State<CoachScreen> {
       builder: (_) {
         return DialogOneAction(
           content: const Text(
-            'Поздравляем вы прошли обучение!',
+            AppTexts.youHaveBeenTrained,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: AstraColors.black,
@@ -122,7 +123,7 @@ class _CoachScreenState extends State<CoachScreen> {
           ),
           action: TextButton(
             child: const Text(
-              'ОК',
+             AppTexts.ok,
               maxLines: 2,
               style: TextStyle(
                 color: AstraColors.black,
@@ -159,9 +160,9 @@ class _CoachScreenState extends State<CoachScreen> {
           TargetContent(
             align: ContentAlign.top,
             child: const CoachTile(
-              title: 'Кнопка <<Отклонить>>',
+              title: AppTexts.rejectButton,
               subtitle:
-                  "(При нажатии переносит \nпользователя в <<Избранное -\nСтоп лист>>)",
+                  AppTexts.transferStopList,
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(bottom: 80),
             ),
@@ -181,9 +182,9 @@ class _CoachScreenState extends State<CoachScreen> {
             align: ContentAlign.top,
             builder: (context, controller) {
               return CoachTile(
-                title: 'Кнопка <<Нравитcя>>',
+                title: AppTexts.likeButton,
                 subtitle:
-                    "(При нажатии переносит\n пользователя в раздель \n<<Избранное - Ваши лайки>>",
+                    AppTexts.transferYouLikes,
                 alignment: Alignment.topRight,
                 padding: EdgeInsets.only(bottom: widget.size.height / 2),
               );
@@ -194,9 +195,9 @@ class _CoachScreenState extends State<CoachScreen> {
             builder: (context, controller) {
               return CoachTile(
                 title:
-                    'Как только вы понравитесь другому \nпользователю, появиться взаимная \nсимпатия, и вы сможете начать \nобщение.',
+                    AppTexts.otherLikeYouBeginChat,
                 subtitle:
-                    "(Пользователь перенесется в раздел \n <<Избранное - Лайки вас>>)",
+                    AppTexts.transferLikesForYou,
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.only(bottom: widget.size.height / 5),
               );
@@ -217,9 +218,9 @@ class _CoachScreenState extends State<CoachScreen> {
             align: ContentAlign.top,
             builder: (context, controller) {
               return CoachTile(
-                title: 'Кнопка <<Подумать>>',
+                title: AppTexts.thinkButton,
                 subtitle:
-                    "(При нажатии переносит пользователя в \nраздел <<Избранное Подумать>>)",
+                    AppTexts.transferThink,
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(bottom: widget.size.height / 5),
               );
@@ -243,7 +244,7 @@ class _CoachScreenState extends State<CoachScreen> {
             builder: (context, controller) {
               return CoachTile(
                 title:
-                    'Здесь находится краткая \nинформация вашей будущей пары. \nПри нажатии на окно, вам откроется \nподробная информация.',
+                    AppTexts.hereBitInformationYourPair,
                 subtitle: "",
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(bottom: widget.size.height / 5),
@@ -267,7 +268,7 @@ class _CoachScreenState extends State<CoachScreen> {
             builder: (context, controller) {
               return CoachTile(
                 title:
-                    'При нажатии на фотографию вам \n откроются окно с остальными \n  фотографиями пользователя.',
+                   AppTexts.openPhotoApplicant,
                 subtitle: "",
                 alignment: Alignment.bottomCenter,
                 padding: EdgeInsets.only(bottom: widget.size.height / 6),
@@ -374,7 +375,7 @@ class _CoachScreenState extends State<CoachScreen> {
                   tutorialCoachMark.show();
                 },
                 child: const Text(
-                  'Обучение',
+                  AppTexts.tutorial,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,

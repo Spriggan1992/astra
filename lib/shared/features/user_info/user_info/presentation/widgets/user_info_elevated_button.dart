@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/custom/blur_mask.dart';
 import 'package:flutter/material.dart';
@@ -40,12 +41,12 @@ class UserInfoElevatedButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 18),
             child: (isEnableButton)
                 ? const Text(
-                    'Подробная анкета',
+                    AppTexts.detailedApplication,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: AstraColors.white),
                   )
                 : const Text(
-                    'Подробная анкета скрыта',
+                    AppTexts.detailedApplicationHiden,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: AstraColors.white04),
                   ),

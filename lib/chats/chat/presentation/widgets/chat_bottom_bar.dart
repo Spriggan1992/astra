@@ -1,4 +1,5 @@
 import 'package:astra_app/chats/chat/application/chat_bloc.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/icons/svg_icon.dart';
 import 'package:flutter/material.dart';
@@ -65,8 +66,8 @@ class _ChatBottomBarState extends State<ChatBottomBar> {
                             horizontal: 15.0,
                           ),
                           hintText: hasConnection
-                              ? 'Cooбщение...'
-                              : 'Ожидание сети...',
+                              ? AppTexts.message
+                              : AppTexts.waitingNetwork,
                           hintStyle:
                               const TextStyle(color: AstraColors.white03),
                           border: OutlineInputBorder(

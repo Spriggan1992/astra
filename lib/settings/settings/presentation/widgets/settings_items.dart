@@ -1,4 +1,5 @@
 import 'package:astra_app/auth/core/application/auth_bloc.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/icons/svg_icon.dart';
@@ -60,7 +61,7 @@ class SettingsItems extends StatelessWidget {
                     asset: 'assets/icons/profile.svg',
                     height: 25,
                   ),
-                  title: 'Мой профиль',
+                  title: AppTexts.myProfile,
                   onTap: () async {
                     await AutoRouter.of(
                       context,
@@ -74,7 +75,7 @@ class SettingsItems extends StatelessWidget {
                     asset: 'assets/icons/anketa.svg',
                     height: 20,
                   ),
-                  title: 'Моя анкета',
+                  title: AppTexts.myApplication,
                   onTap: () {
                     context.router.push(MyFormScreenRoute());
                   },
@@ -85,7 +86,7 @@ class SettingsItems extends StatelessWidget {
                     color: AstraColors.darkWhite,
                     size: 28,
                   ),
-                  title: 'Магазин',
+                  title: AppTexts.store,
                   onTap: () {
                     context.router.push(StoreScreenRoute());
                   },
@@ -95,7 +96,7 @@ class SettingsItems extends StatelessWidget {
                     asset: 'assets/icons/promocode.svg',
                     height: 20,
                   ),
-                  title: 'Промокод',
+                  title: AppTexts.promocode,
                   onTap: () =>
                       context.router.push(const PromocodeScreenRoute()),
                 ),
@@ -105,7 +106,7 @@ class SettingsItems extends StatelessWidget {
                     color: AstraColors.darkWhite,
                     size: 28,
                   ),
-                  title: 'Обучение',
+                  title: AppTexts.tutorial,
                   onTap: () {
                     context.router.push(
                         CoachScreenRoute(size: MediaQuery.of(context).size));
@@ -116,7 +117,7 @@ class SettingsItems extends StatelessWidget {
                     asset: 'assets/icons/support.svg',
                     height: 25,
                   ),
-                  title: 'Поддержка',
+                  title: AppTexts.support,
                   onTap: () {
                     context.router.push(const SupportScreenRoute());
                   },
@@ -127,7 +128,7 @@ class SettingsItems extends StatelessWidget {
                     asset: 'assets/icons/aboutApp.svg',
                     height: 25,
                   ),
-                  title: 'О приложении',
+                  title: AppTexts.aboutApp,
                   onTap: () {
                     context.router.push(const AboutScreenRoute());
                   },
@@ -146,11 +147,11 @@ class SettingsItems extends StatelessWidget {
                       builder: (BuildContext dialogContext) {
                         return DialogTwoActions(
                           content: const Text(
-                            "Вы точно хотите выйти из аккаунта?",
+                            AppTexts.doYouWantSignOut,
                             textAlign: TextAlign.center,
                           ),
                           action1: DialogActionButton(
-                            title: 'Отмена',
+                            title: AppTexts.cancel,
                             onClick: () => dialogContext.router.pop(false).then(
                                 (value) => context
                                     .read<LogoutCubit>()
@@ -161,7 +162,7 @@ class SettingsItems extends StatelessWidget {
                               context.read<LogoutCubit>().setLogoutState(true);
                             },
                             child: const Text(
-                              "Выйти",
+                              AppTexts.signOut,
                               style: TextStyle(color: Colors.red),
                             ),
                           ),

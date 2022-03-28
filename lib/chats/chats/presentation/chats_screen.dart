@@ -1,4 +1,5 @@
 import 'package:astra_app/chats/chats/application/enums/delete_statuses.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:flutter/material.dart';
 import 'package:astra_app/chats/chats/application/chats_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,7 @@ class ChatsScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(
-          'Сообщения',
+          AppTexts.messages,
           style: Theme.of(context).textTheme.headline6!.copyWith(
                 color: const Color.fromRGBO(31, 31, 31, 1),
                 fontSize: 17,

@@ -1,4 +1,5 @@
 import 'package:astra_app/auth/core/application/auth_bloc.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/astra_button.dart';
 import 'package:astra_app/core/presentation/widgets/logo.dart';
@@ -55,12 +56,12 @@ class FinishRegisterScreen extends StatelessWidget {
               ],
             ),
             const Text(
-              'Доступ к анкетам \nпользователей открыт!',
+              AppTexts.accessOpened,
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white),
             ),
             AstraButton(
-              title: 'Начать просмотр',
+              title: AppTexts.startBrowsing,
               onTap: () {
                 context.read<AuthBloc>().add(const AuthEvent.firstAuthSet());
                 context.router.push(const HomeScreenRoute());

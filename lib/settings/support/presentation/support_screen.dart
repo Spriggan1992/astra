@@ -1,4 +1,5 @@
 import 'package:astra_app/core/domain/models/curator_model.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/scaffolds/astra_appbar.dart';
 import 'package:astra_app/core/presentation/widgets/scaffolds/error_screens/astra_failure_screen.dart';
@@ -60,7 +61,7 @@ class SupportScreenContent extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pop();
         },
-        title: 'Поддержка',
+        title: AppTexts.support,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
@@ -115,7 +116,7 @@ class SupportScreenContent extends StatelessWidget {
                                     .saveData(curatorInfo.email);
                               },
                         child: Text(
-                          'Копировать',
+                          AppTexts.copy,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12,
@@ -133,7 +134,7 @@ class SupportScreenContent extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             const Text(
-              'Вы можете оставить заявку вашему \nкуратору, либо отправить \nсообщение на email.',
+              AppTexts.leftApplicationForCurator,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 15,

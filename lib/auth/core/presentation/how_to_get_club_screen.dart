@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/gradients.dart';
 import 'package:astra_app/core/presentation/widgets/scaffolds/astra_appbar.dart';
@@ -34,25 +35,19 @@ class HowToGetClubScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 40)
                         .add(const EdgeInsets.only(top: 70)),
                     child: const Text(
-                      'Как попасть в клуб',
+                      AppTexts.howToGetClubWithowtQuestion,
                       style: TextStyle(color: AstraColors.white, fontSize: 28),
                     ),
                   ),
-                  _buildLineText('АСТРА — это реальные существующие люди.'),
-                  _buildLineText('Люди, цель которых построить отношения.'),
+                  _buildLineText(AppTexts.realPeople),
+                  _buildLineText(AppTexts.realPeopleGoal),
                   _buildLineText(
-                    'Люди, которые готовы рассказать о себе, и которые знают, что они хотят.',
+                    AppTexts.realPeopleWhantsWhat,
                   ),
-                  _buildLineText('Мы поддерживаем этих людей.'),
-                  _buildLineText(
-                    'Так как все люди в нашей базе реально существуют, зарегестрироваться в системе возможно только при очном визите к нам в офис.',
-                  ),
-                  _buildLineText(
-                    'Регистарция платная. \nВ стоимость входит: заполнение вместе с вами расширенной анкеты, составление психологического профиля, работа видазжиста и фотографа (2-3 фото из нашей студии в профиле обязательны).',
-                  ),
-                  _buildLineText(
-                    ' Связаться с нами можно по телефону: \n +7 (999) 123-45-67',
-                  ),
+                  _buildLineText(AppTexts.weSupportRealPeople),
+                  _buildLineText(AppTexts.realPeopleRegistratedInOffice),
+                  _buildLineText(AppTexts.realPeopleRegistrationIsPaid),
+                  _buildLineText(AppTexts.realPeopleContactUs),
                 ],
               ),
             ),

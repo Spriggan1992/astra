@@ -1,6 +1,7 @@
 import 'package:astra_app/core/application/enums/favorite_screen_type.dart';
 import 'package:astra_app/core/application/enums/search_state_type.dart';
 import 'package:astra_app/core/domain/failure/astra_failure.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/enums/store_screen_qualifier.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
@@ -37,8 +38,8 @@ class SearchPageRoute extends StatelessWidget {
               _showHiddenAccountDialog(
                 context: context,
                 title:
-                    'Вы не можете просматривать анкеты, так как ваш профиль скрыт',
-                positiveBtnTitle: 'Включить',
+                    AppTexts.yourProfileIsHidenWithoutTransfer,
+                positiveBtnTitle: AppTexts.turnOn,
                 positiveBtnPressed: () => context
                     .read<SearchActionBloc>()
                     .add(const SearchActionEvent.accountShown()),
@@ -48,8 +49,8 @@ class SearchPageRoute extends StatelessWidget {
           if (listenState.stateType == SearchStateType.emptyBalance) {
             _showHiddenAccountDialog(
               context: context,
-              title: 'У вас не осталось лайков, пополните баланс',
-              positiveBtnTitle: 'Магазин',
+              title: AppTexts.youHaveNoLikes,
+              positiveBtnTitle: AppTexts.store,
               positiveBtnPressed: () {
                 context.navigateTo(
                   CommonStoreScreenRouter(
@@ -111,7 +112,7 @@ class SearchPageRoute extends StatelessWidget {
           ),
           action1: TextButton(
             child: const Text(
-              'Отмена',
+              AppTexts.cancel,
               style: TextStyle(
                 color: AstraColors.black,
                 fontSize: 14,

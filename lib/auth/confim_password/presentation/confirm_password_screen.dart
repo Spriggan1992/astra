@@ -2,6 +2,7 @@ import 'package:astra_app/auth/confim_password/application/confirm_password_bloc
 import 'package:astra_app/auth/core/application/auth_bloc.dart';
 import 'package:astra_app/auth/core/presentation/widgets/pin_code_field.dart';
 import 'package:astra_app/auth/core/presentation/widgets/screen_content.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/astra_elevated_button.dart';
 import 'package:astra_app/injection.dart';
@@ -33,7 +34,7 @@ class ConfirmPasswordScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return ScreenContent(
-            title: "Повторите пароль",
+            title: AppTexts.retypePassword,
             textFieldContent: PinCodeField(
               isError: state.isShowError,
               onChanged: (value) => context
@@ -48,13 +49,13 @@ class ConfirmPasswordScreen extends StatelessWidget {
             ),
             notificationMessageContent: Text(
               state.isShowError
-                  ? "Неправильный пароль\nПовторите пожалуйста еще раз."
+                  ? AppTexts.incorrectPassworedRepeate
                   : "",
               style: const TextStyle(color: AstraColors.red),
             ),
             button: AstraElevatedButton(
               isEnableButton: true,
-              title: 'Продолжить',
+              title: AppTexts.continueText,
               onClick: () {},
             ),
           );

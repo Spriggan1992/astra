@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/images/astra_file_image.dart';
 import 'package:astra_app/core/presentation/widgets/scaffolds/astra_appbar.dart';
@@ -57,7 +58,7 @@ class SettingsScreenBodyContent extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: const AstraAppBar(
-          title: 'Настройки',
+          title: AppTexts.settings,
         ),
         body: SingleChildScrollView(
           child: Column(

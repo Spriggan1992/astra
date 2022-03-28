@@ -1,4 +1,5 @@
 import 'package:astra_app/core/domain/models/image_models.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/custom/blur_mask.dart';
 import 'package:astra_app/core/presentation/widgets/images/astra_network_image.dart';
@@ -63,7 +64,7 @@ class CuratorTile extends StatelessWidget {
                         ),
                       ),
                       const Text(
-                        'Куратор',
+                        AppTexts.curator,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

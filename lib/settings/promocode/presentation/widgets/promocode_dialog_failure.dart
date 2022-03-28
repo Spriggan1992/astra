@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/icons/svg_icon.dart';
@@ -21,7 +22,7 @@ class PromocodeDialogFailure extends StatelessWidget {
           SvgIcon(asset: 'assets/icons/promocode_failure.svg'),
           SizedBox(height: 4),
           Text(
-            'Оопс!',
+            AppTexts.oops,
             style: TextStyle(
                 fontWeight: FontWeight.w800,
                 fontSize: 14,
@@ -29,24 +30,24 @@ class PromocodeDialogFailure extends StatelessWidget {
           ),
           SizedBox(height: 18),
           Text(
-            'Не удалось применить промокод.',
+          AppTexts.failedApplyPromoCode,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           SizedBox(height: 4),
           Text(
-            'Обратитесь к вашему куратору',
+            AppTexts.contactYouCurator,
             style: TextStyle(fontSize: 15, color: AstraColors.black06),
           )
         ],
       ),
       action1: DialogActionButton(
-        title: 'Отмена',
+        title: AppTexts.cancel,
         onClick: () {
           context.router.pop();
         },
       ),
       action2: DialogActionButton(
-        title: 'Куратор',
+        title: AppTexts.curator,
         onClick: () async {
           await context.router.pop();
           context.router.replace(const SupportScreenRoute());

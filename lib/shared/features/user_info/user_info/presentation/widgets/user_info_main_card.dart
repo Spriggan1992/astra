@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/custom/blur_mask.dart';
 import 'package:astra_app/core/domain/models/profile_model.dart';
@@ -50,7 +51,7 @@ class UserInfoMainCardScreen extends StatelessWidget {
               ),
             ),
             Text(
-              '${applicant.userInfo} лет',
+              '${applicant.userInfo} ${AppTexts.year}',
               style: const TextStyle(
                   color: AstraColors.white,
                   fontSize: 18,
@@ -83,18 +84,18 @@ class UserInfoMainCardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextItemWidget(
-                    title: 'Семейное положение:', value: applicant.status),
+                    title: AppTexts.familyStatus, value: applicant.status),
                 Padding(
                   padding: const EdgeInsets.only(right: 34),
                   child: TextItemWidget(
-                      title: 'Рост:', value: '${applicant.height} см'),
+                      title: AppTexts.growth, value: '${applicant.height} ${AppTexts.sm}'),
                 ),
               ],
             ),
             const SizedBox(height: 16),
             TextItemWidget(
-                title: 'Наличие детей:',
-                value: (applicant.haveChild) ? 'Есть' : 'Нет'),
+                title: AppTexts.haveChildren,
+                value: (applicant.haveChild) ? AppTexts.have : AppTexts.notHave),
           ],
         ),
       ),

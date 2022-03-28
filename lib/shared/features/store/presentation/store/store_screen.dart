@@ -1,4 +1,5 @@
 import 'package:astra_app/auth/core/application/auth_bloc.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/enums/store_screen_qualifier.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
@@ -85,7 +86,7 @@ class StoreScreenContent extends StatelessWidget {
       child: Scaffold(
         appBar: AstraAppBar(
           onPressed: _navigateBack(context),
-          title: 'Магазин',
+          title: AppTexts.store,
           elevation: 0.3,
           actions: [
             IconButton(
@@ -111,7 +112,7 @@ class StoreScreenContent extends StatelessWidget {
           children: [
             const SizedBox(height: 24),
             const Text(
-              'Выберите количество лайков,\n которые хотите преобрести',
+              AppTexts.chooseCountOfLikesForPay,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AstraColors.black,
@@ -144,7 +145,7 @@ class StoreScreenContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'К оплате',
+                    AppTexts.forPay,
                     style: TextStyle(
                       color: AstraColors.black,
                       fontSize: 18,
@@ -219,7 +220,7 @@ class StoreScreenContent extends StatelessWidget {
                             .add(const AuthEvent.firstAuthSet());
                       },
                       child: const Text(
-                        "Позже",
+                        AppTexts.later,
                         style: TextStyle(
                           color: AstraColors.black,
                           decoration: TextDecoration.underline,

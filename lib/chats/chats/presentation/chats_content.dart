@@ -2,6 +2,7 @@ import 'package:astra_app/chats/chats/application/chats_bloc.dart';
 import 'package:astra_app/chats/chats/application/enums/chats_loading_statuses.dart';
 import 'package:astra_app/chats/chats/presentation/chat_list_item.dart';
 import 'package:astra_app/core/domain/failure/astra_failure.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/dialog_action_button.dart';
 import 'package:astra_app/core/presentation/widgets/dialogs/dialog_two_actions.dart';
@@ -57,7 +58,7 @@ class ChatsContent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: const [
                         Icon(Icons.delete_outline, color: Colors.white),
-                        Text('Удалить',
+                        Text(AppTexts.delete,
                             style:
                                 TextStyle(color: Colors.white, fontSize: 10)),
                       ],
@@ -71,12 +72,12 @@ class ChatsContent extends StatelessWidget {
                   builder: (BuildContext _) {
                     return DialogTwoActions(
                       content: const Text(
-                        'Вы точно хотите удалить диалог?',
+                        AppTexts.confirmDeletion,
                         textAlign: TextAlign.center,
                       ),
                       action1: DialogActionButton(
                         onClick: () => context.router.pop(false),
-                        title: 'Отмена',
+                        title: AppTexts.cancel,
                       ),
                       action2: DialogActionButton(
                         onClick: () {
@@ -84,7 +85,7 @@ class ChatsContent extends StatelessWidget {
                               ChatsEvent.chatDeleted(state.chats[index].id));
                           context.router.pop(true);
                         },
-                        title: 'Удалить',
+                        title: AppTexts.delete,
                         buttonStyle:
                             TextButton.styleFrom(primary: AstraColors.red),
                       ),

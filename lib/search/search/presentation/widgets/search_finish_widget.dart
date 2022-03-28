@@ -1,4 +1,5 @@
 import 'package:astra_app/core/domain/models/profile_model.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/images/astra_network_image.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class SearchFinishWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                'Вы посмотрели все Анкеты.',
+                AppTexts.youSeeAllApplications,
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -58,7 +59,7 @@ class SearchFinishWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Text(
-                'Самое время заглянуть в Избранное',
+                AppTexts.seeFavorites,
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -68,7 +69,7 @@ class SearchFinishWidget extends StatelessWidget {
               TextButton(
                 onPressed: onTap,
                 child: const Text(
-                  'Избранное',
+                  AppTexts.favorites,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

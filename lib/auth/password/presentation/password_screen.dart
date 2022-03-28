@@ -2,6 +2,7 @@ import 'package:astra_app/auth/core/application/auth_bloc.dart';
 import 'package:astra_app/auth/core/presentation/widgets/pin_code_field.dart';
 import 'package:astra_app/auth/core/presentation/widgets/screen_content.dart';
 import 'package:astra_app/auth/password/application/password_bloc.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/astra_elevated_button.dart';
@@ -51,7 +52,7 @@ class PasswordScreen extends StatelessWidget {
         },
         child: ScreenContent(
           onBackPressed: () => context.router.pop(),
-          title: code == null ? "Введите пароль" : "Задайте пароль",
+          title: code == null ? AppTexts.enterPassword : AppTexts.setPassword,
           textFieldContent: BlocBuilder<PasswordBloc, PasswordState>(
               buildWhen: (p, c) =>
                   p.errorMessage != c.errorMessage || p.password != c.password,
@@ -79,7 +80,7 @@ class PasswordScreen extends StatelessWidget {
                 return AstraElevatedButton(
                   isLoading: state.isLoading,
                   isEnableButton: state.isEnableBtn,
-                  title: 'Продолжить',
+                  title: AppTexts.continueText,
                   onClick: () {
                     context
                         .read<PasswordBloc>()

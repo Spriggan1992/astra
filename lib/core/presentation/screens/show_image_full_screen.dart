@@ -1,4 +1,5 @@
 import 'package:astra_app/core/domain/models/image_models.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/icons/svg_icon.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/dialog_action_button.dart';
@@ -46,7 +47,7 @@ class ShowImageFullScreen extends StatelessWidget {
           if (state.isShowUnexpectedError) {
             showSnackBar(context,
                 title:
-                    'Произошла непредвиденная ошибка.\nОбратитесь в службу поддержки.');
+                    AppTexts.unExpectedErrorContactSupportTeam);
           }
         },
         builder: (context, state) {
@@ -108,18 +109,18 @@ class ShowImageFullScreen extends StatelessWidget {
                                                 ) {
                                                   return DialogTwoActions(
                                                     content: const Text(
-                                                      "Вы точно хотите удалить\nфотографию?",
+                                                      AppTexts.areYouSureDeletePhoto,
                                                       textAlign:
                                                           TextAlign.center,
                                                     ),
                                                     action1: DialogActionButton(
-                                                      title: 'Отмена',
+                                                      title: AppTexts.cancel,
                                                       onClick: () =>
                                                           showDialogContext
                                                               .popRoute(false),
                                                     ),
                                                     action2: DialogActionButton(
-                                                      title: 'Удалить',
+                                                      title: AppTexts.delete,
                                                       onClick: () {
                                                         context
                                                             .read<
@@ -153,7 +154,7 @@ class ShowImageFullScreen extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: const [
                                         Text(
-                                          'Может удалить куратор',
+                                          AppTexts.canDeleteCurator,
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -180,7 +181,7 @@ class ShowImageFullScreen extends StatelessWidget {
                       child: AppBar(
                         centerTitle: true,
                         title: Text(
-                          '${state.currentImageIndex + 1} из ${state.images.length}',
+                          '${state.currentImageIndex + 1} ${AppTexts.from} ${state.images.length}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,

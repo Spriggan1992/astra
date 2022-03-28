@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/theming/gradients.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class SympathyDialog extends StatelessWidget {
               children: [
                 const SizedBox(width: 30),
                 const Text(
-                  'Поздравляем!',
+                  AppTexts.congratulations,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,
@@ -76,7 +77,7 @@ class SympathyDialog extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
-                'У вас взаимная симпатия!',
+                AppTexts.youHaveMutualSympathy,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,
@@ -91,7 +92,7 @@ class SympathyDialog extends StatelessWidget {
             TextButton(
               onPressed: () {},
               child: const Text(
-                'Написать',
+                AppTexts.write,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,

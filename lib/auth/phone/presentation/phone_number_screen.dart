@@ -1,6 +1,7 @@
 import 'package:astra_app/auth/core/presentation/constants/constants.dart';
 import 'package:astra_app/auth/core/presentation/widgets/screen_content.dart';
 import 'package:astra_app/auth/phone/application/phone_bloc.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/astra_elevated_button.dart';
@@ -35,7 +36,7 @@ class PhoneNumberScreen extends StatelessWidget {
                 content: Column(
                   children: const [
                     Text(
-                      'Номер в базе\nне зарегистрирован',
+                      AppTexts.numberNotRegistered,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
@@ -44,7 +45,7 @@ class PhoneNumberScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Для регистрации обратитесь\nв службу поддержки по номеру',
+                      AppTexts.contactSupport,
                       style: TextStyle(
                         color: AstraColors.dialogContent,
                         fontSize: 15,
@@ -63,7 +64,7 @@ class PhoneNumberScreen extends StatelessWidget {
                   ],
                 ),
                 action: DialogActionButton(
-                  title: "Спасибо",
+                  title: AppTexts.thankYou,
                   onClick: () => context.router.pop(),
                 ),
               ),
@@ -74,7 +75,7 @@ class PhoneNumberScreen extends StatelessWidget {
           }
         },
         child: ScreenContent(
-          title: "Мой номер телефона",
+          title: AppTexts.myPhoneNumber,
           textFieldContent: BlocBuilder<PhoneBloc, PhoneState>(
             builder: (context, state) {
               return TextFormField(
@@ -84,7 +85,7 @@ class PhoneNumberScreen extends StatelessWidget {
                 autofocus: true,
                 keyboardType: TextInputType.phone,
                 decoration:
-                    const InputDecoration(hintText: "Введите номер телефона"),
+                    const InputDecoration(hintText: AppTexts.enterPhoneNumber),
                 onChanged: (value) {
                   context.read<PhoneBloc>().add(
                         PhoneEvent.changedTextValue(value),
@@ -99,7 +100,7 @@ class PhoneNumberScreen extends StatelessWidget {
               return AstraElevatedButton(
                 isLoading: state.isLoading,
                 isEnableButton: state.isEnableBtn,
-                title: 'Продолжить',
+                title: AppTexts.continueText,
                 onClick: () {
                   context.read<PhoneBloc>().add(const PhoneEvent.pressedBtn());
                 },
@@ -115,10 +116,10 @@ class PhoneNumberScreen extends StatelessWidget {
               const SizedBox(height: 8),
               RichText(
                 text: TextSpan(
-                  text: "Нажимая кнопку “продолжить” я соглашаюсь с ",
+                  text: AppTexts.enterAgreement,
                   children: [
                     TextSpan(
-                      text: "пользовательским соглашением",
+                      text: AppTexts.withTermsOfUse,
                       style: const TextStyle(
                         color: Colors.blueAccent,
                         decoration: TextDecoration.underline,
@@ -128,7 +129,7 @@ class PhoneNumberScreen extends StatelessWidget {
                           context.router.push(PoliticsScreenRoute(
                             uri:
                                 "http://92.255.108.56:8000/info/end-user-license/",
-                            title: "Пользовательское соглашение",
+                            title: AppTexts.termsOfUse,
                           ));
                         },
                     )

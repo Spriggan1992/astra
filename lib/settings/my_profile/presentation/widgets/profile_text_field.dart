@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -36,7 +37,7 @@ class ProfileTextField extends HookWidget {
               border: InputBorder.none,
               focusedBorder: UnderlineInputBorder(),
               label: Text(
-                'Краткое описание:',
+                AppTexts.shortDescription,
                 style: TextStyle(
                   color: AstraColors.black04,
                   fontSize: 14,
@@ -55,7 +56,7 @@ class ProfileTextField extends HookWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                'Осталось символов: ${_inputMaxLength - _controller.text.length}',
+                '${AppTexts.charactersLeft}: ${_inputMaxLength - _controller.text.length}',
                 style: const TextStyle(
                   color: Color.fromRGBO(222, 66, 66, 1),
                   fontSize: 12,

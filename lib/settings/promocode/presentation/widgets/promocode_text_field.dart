@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/settings/promocode/presentation/constants.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class _PromocodeTextFieldState extends State<PromocodeTextField> {
       decoration: InputDecoration(
         fillColor: AstraColors.promocodeScreenTextFieldColor,
         filled: true,
-        hintText: 'Промокод',
+        hintText: AppTexts.promocode,
         errorBorder: _errorBorder,
         focusedBorder: widget.isShowError ? _errorBorder : _defaultBorder,
         enabledBorder: widget.isShowError ? _errorBorder : _defaultBorder,

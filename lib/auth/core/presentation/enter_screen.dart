@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/gradients.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/astra_button.dart';
@@ -27,7 +28,7 @@ class EnterScreen extends StatelessWidget {
             const Logo(logoWithText: true),
             const SizedBox(height: 140),
             AstraButton(
-              title: "Войти",
+              title: AppTexts.signIn,
               onTap: () => context.router.push(const PhoneNumberScreenRoute()),
             ),
             const SizedBox(height: 20),
@@ -35,7 +36,7 @@ class EnterScreen extends StatelessWidget {
               onPressed: () =>
                   context.router.push(const HowToGetClubScreenRoute()),
               child: const Text(
-                "Как вступить в клуб?",
+                AppTexts.howToGetClub,
                 style: TextStyle(color: Colors.white),
               ),
             ),

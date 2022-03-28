@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:astra_app/core/domain/models/cached_file_image_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-part '../../DTOs/cached_file_image.freezed.dart';
+part 'cached_file_image.freezed.dart';
 
 /// Defines cached images as file on device.
 @freezed

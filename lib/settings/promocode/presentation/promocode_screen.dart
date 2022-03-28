@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/theming/colors.dart';
 import 'package:astra_app/core/presentation/widgets/buttons/astra_elevated_button.dart';
 import 'package:astra_app/core/presentation/widgets/custom/keyboard_visibility.dart';
@@ -41,13 +42,13 @@ class PromocodeScreen extends StatelessWidget {
             showSnackBar(context);
           }
           if (state.isUnexpectedError) {
-            showSnackBar(context, title: 'Что-то пошло не так....');
+            showSnackBar(context, title: AppTexts.somethingWentWrong);
           }
         },
         child: KeyboardDismisser(
           child: Scaffold(
             appBar: AstraAppBar(
-              title: 'Промокод',
+              title: AppTexts.promocode,
               iconColor: AstraColors.black,
               onPressed: () => context.router.pop(),
             ),
@@ -77,7 +78,7 @@ class PromocodeScreen extends StatelessWidget {
                       return Visibility(
                         visible: isNotExist,
                         child: const Text(
-                          'Неправильно введен промокод',
+                          AppTexts.wrongPromocode,
                           style: TextStyle(color: AstraColors.red),
                         ),
                       );
@@ -88,7 +89,7 @@ class PromocodeScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(top: 32),
                       child: Text(
-                        'Введите промокод',
+                        AppTexts.setPromocode,
                         style: TextStyle(fontSize: 15),
                       ),
                     ),
@@ -106,7 +107,7 @@ class PromocodeScreen extends StatelessWidget {
                           child: AstraElevatedButton(
                             isLoading: state.isLoading,
                             isEnableButton: state.textInputIsValid,
-                            title: 'Продолжить',
+                            title: AppTexts.continueText,
                             onClick: () {
                               context
                                   .read<PromocodeBloc>()

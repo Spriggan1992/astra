@@ -1,6 +1,7 @@
 import 'package:astra_app/chats/chats/application/chats_bloc.dart';
 import 'package:astra_app/chats/chats/application/enums/chat_opening_statuses.dart';
 import 'package:astra_app/core/application/enums/favorite_screen_type.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/widgets/dialogs/snack_bar.dart';
 import 'package:astra_app/core/presentation/widgets/scaffolds/error_screens/empty_data_screen.dart';
@@ -116,7 +117,7 @@ Widget _getErrorScreen(
     BuildContext context, FavoriteScreenType favoriteScreenType) {
   if (favoriteScreenType == FavoriteScreenType.yoursLikes) {
     return EmptyDataScreen(
-      title: 'Список пуст,\nвы никого не лайкнули.',
+      title: AppTexts.emtyListWithoutLike,
       onClick: () => context.router.navigate(const SearchTab()),
     );
   } else {

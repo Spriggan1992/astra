@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:flutter/material.dart';
 
 class TimerTextWidget extends StatefulWidget {
@@ -35,7 +36,7 @@ class _TimerTextWidgetState extends State<TimerTextWidget> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Через:$seconds сек',
+      '${AppTexts.after}:$seconds ${AppTexts.sec}',
       style: Theme.of(context).textTheme.subtitle2!.copyWith(
             fontWeight: FontWeight.w600,
             fontSize: 12,

@@ -1,6 +1,7 @@
 import 'package:astra_app/chats/chats/application/chats_bloc.dart';
 import 'package:astra_app/core/application/enums/favorite_screen_type.dart';
 import 'package:astra_app/core/domain/models/profile_model.dart';
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/enums/store_screen_qualifier.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/utils/show_one_action_dialog.dart';
@@ -49,8 +50,8 @@ void showFavoritesDialog(
       if (isStopList) {
         showOneActionDialog(
           context: context,
-          dialogTitle: 'Пользователи пересен в раздел\n«подумать‎»',
-          btnTitle: 'Продолжить',
+          dialogTitle: AppTexts.movedToThinkSection,
+          btnTitle: AppTexts.continueText,
           onClick: (dialogContext) {
             context.read<FavoriteActorBloc>().add(
                   FavoriteActorEvent.removedFromStopList(
@@ -86,8 +87,8 @@ void _showEmptyBalanceDialog(BuildContext context) {
   showTwoActionDialog(
     context: context,
     dialogTitle:
-        'У вас недостаточно средст на счету.\nДля подтверждения мэтча необходимо пополнить баланс',
-    positiveBtnTitle: 'В магазин',
+        AppTexts.insufficientFunds,
+    positiveBtnTitle: AppTexts.toStore,
     onPositiveBtnClick: (dialogContext) {
       dialogContext.router.pop();
       context.pushRoute(CommonStoreScreenRouter(
@@ -100,8 +101,8 @@ void _showHideAccountDialog(BuildContext context) {
   showTwoActionDialog(
     context: context,
     dialogTitle:
-        'Вы не можете просматривать анкеты,\nтак как ваш профиль скрыт',
-    positiveBtnTitle: 'Включить',
+        AppTexts.yourProfileIsHiden,
+    positiveBtnTitle: AppTexts.turnOn,
     onPositiveBtnClick: (dialogContext) {
       dialogContext.router.pop();
       context
@@ -128,9 +129,9 @@ void _showMatchDialog(
   if (isSuccess) {
     showTwoActionDialog(
       context: context,
-      dialogTitle: 'Выберите куда перейти',
-      negativeBtnTitle: 'Анкета',
-      positiveBtnTitle: 'Чат',
+      dialogTitle: AppTexts.chooseWhereToGo,
+      negativeBtnTitle: AppTexts.application,
+      positiveBtnTitle: AppTexts.chat,
       onNegativeBtnClick: (dialogContext) {
         dialogContext.popRoute();
         context.navigateTo(

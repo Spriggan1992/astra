@@ -1,3 +1,4 @@
+import 'package:astra_app/core/presentation/constants/app_tests.dart';
 import 'package:astra_app/core/presentation/routes/app_router.gr.dart';
 import 'package:astra_app/core/presentation/theming/gradients.dart';
 import 'package:astra_app/core/presentation/theming/icons/svg_icon.dart';
@@ -25,7 +26,7 @@ class PromocodeDialogSuccess extends StatelessWidget {
           const SvgIcon(asset: 'assets/icons/promocode_success.svg'),
           const SizedBox(height: 37),
           const Text(
-            'Вам успешно зачислено',
+            AppTexts.creditedSuccessfully,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           const SizedBox(height: 4),
@@ -37,7 +38,7 @@ class PromocodeDialogSuccess extends StatelessWidget {
         ],
       ),
       action: DialogActionButton(
-        title: 'Отлично!',
+        title: AppTexts.perfect,
         onClick: () {
           context.router.pop();
           context.router.navigate(const SettingsTab());
